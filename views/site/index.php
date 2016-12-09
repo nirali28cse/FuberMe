@@ -1,4 +1,13 @@
 
+<style>
+.sofa-grid h4 a{
+    background: #38b662;
+	color: White;
+	border-radius: 0;
+}
+</style>
+
+
 <!---->
 <!--  <div class="content">
 	 <div class="container">
@@ -14,21 +23,34 @@
 <!---->
 <div class="bottom_content">
 	 <div class="container">
+			 <div class="col-md-12">
+				<img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/howitswork.jpg'); ?>" alt="How it works" style="width: 100%;"/>
+			 </div>
 		 <div class="sofas">
+
+ <?php 	if(Yii::$app->user->isGuest){ ?>
+
 			 <div class="col-md-6 sofa-grid">
-				 <img src="../vendor/bower/fuberme/images/t2.jpg" alt=""/>
-				 <h3>SPECIAL Italian</h3>
-				 <h4><a href="<?php echo Yii::$app->homeUrl; ?>?r=site/products">Italian Food</a></h4>
+<?php /*		 <img src="../vendor/bower/fuberme/images/t2.jpg" alt=""/>
+				 <h3>SPECIAL Italian</h3> */ ?>
+				 <h4><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login/clogin" class="btn btn-success">FOODIE SIGNUP</a></h4>
 			 </div>
 			 <div class="col-md-6 sofa-grid sofs">
-				 <img src="../vendor/bower/fuberme/images/t1.jpg" alt=""/>
-				 <h3>Special Indian Foods</h3>
-				 <h4><a href="<?php echo Yii::$app->homeUrl; ?>?r=site/products">SPECIAL OFFER</a></h4>
+<?php /*       <img src="../vendor/bower/fuberme/images/t1.jpg" alt=""/>
+				 <h3>Special Indian Foods</h3> */ ?>
+				 <h4><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login" class="btn btn-success">CHEF SIGNUP</a></h4>
 			 </div>
+			 
+<?php } ?>
+			 
 			 <div class="clearfix"></div>
 		 </div>
 	 </div>
 </div>
+
+
+<?php
+/*
 <!---->
 <div class="new">
 	 <div class="container">
@@ -191,3 +213,5 @@
 	 </div>
 </div>
 <!---->
+*/
+?>

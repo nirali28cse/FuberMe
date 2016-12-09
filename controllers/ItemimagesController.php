@@ -8,7 +8,8 @@ use app\models\ItemImagesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\components\Mediaopration;
+use yii\web\UploadedFile;
 /**
  * ItemimagesController implements the CRUD actions for ItemImages model.
  */
@@ -64,14 +65,46 @@ class ItemimagesController extends Controller
     public function actionCreate()
     {
         $model = new ItemImages();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-             return $this->redirect(['index']);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+       	if (Yii::$app->request->isPost) {
+			
+			$folder_name='item_images';
+			$user_id=Yii::$app->user->id;
+			$item_info_id=$_GET['iteminfoid'];
+			
+			if(isset($_POST['delete_images'])){
+				 $item_images=ItemImages::find()->where(['item_info_id'=>$_GET['iteminfoid']])->all();
+				 $user_path = Yii::$app->basePath.'/media_content/'.$user_id.'/'.$folder_name.'/';	
+				 foreach($item_images as $item_image){
+					// $images_array[]=$user_path.$item_image->image_path;	
+					$old_file_name=null;
+					$old_file_name=$item_image->image_path;
+					$delete_images=Mediaopration::Delete($old_file_name,$folder_name,$user_id);
+				 }
+			}
+			
+			$media_path_array = UploadedFile::getInstances($model, 'image_path');
+			if($media_path_array!=null){
+				$old_file_name=$model->image_path;
+				$new_file_array=$media_path_array;
+				$new_uploaded_file_name_array=Mediaopration::Multipleupload($new_file_array,$folder_name,$user_id);
+				if($new_uploaded_file_name_array!=null){
+					
+				    foreach($new_uploaded_file_name_array as $new_uploaded_file){							
+						$model = new ItemImages();
+						$model->item_info_id=$item_info_id;
+						$model->image_path=$new_uploaded_file['media_name'];
+						$model->media_type=$new_uploaded_file['media_type'];
+						$model->media_size=$new_uploaded_file['media_size'];
+						$model->save();							
+					}						
+					return $this->redirect(['index']);
+				}
+			}
+		}else {
+			return $this->render('create', [
+				'model' => $model,
+			]);
+		}
     }
 
     /**

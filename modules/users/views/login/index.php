@@ -9,10 +9,7 @@ use yii\bootstrap\ActiveForm;
 <!---->
 <div class="login_sec">
 	 <div class="container">
-		 <ol class="breadcrumb">
-		  <li><a href="index.html">Home</a></li>
-		  <li class="active">Login</li>
-		 </ol>
+
 		 <h2>Login</h2>
 		 <div class="col-md-6 log">			 
 				 <p>Welcome, please enter the following to continue.</p>
@@ -28,12 +25,12 @@ use yii\bootstrap\ActiveForm;
 							->label(false)
 							->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>			
 					 <input type="submit" value="Login">
-					  <a href="#">Forgot Password ?</a>
+					  <a href="<?php echo  Yii::$app->getHomeUrl(); ?>?r=users/forgotpassword">Forgot Password ?</a>
 				 <?php ActiveForm::end(); ?>		 
 		 </div>
 		  <div class="col-md-6 login-right">
-			  	<h3>NEW REGISTRATION</h3>
-				<p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+			  	<h3>NEW CHEF REGISTRATION</h3>
+				<p>By creating an account with us, you will be able to add your Recipes.</p>
 				<a class="acount-btn" href="<?php echo  Yii::$app->getHomeUrl(); ?>?r=users/registration">Create an Account</a>
 		 </div>
 		 <div class="clearfix"></div>

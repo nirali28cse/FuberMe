@@ -43,11 +43,37 @@ class LoginController extends Controller
 
         $model = new LoginForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {			
-             return $this->redirect(['//site/dashbord']);
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {	
+
+			if(Yii::$app->user->identity->user_type==1){
+				 return $this->goHome();
+			}else{
+				return $this->redirect(['//iteminfo/index']);
+			}
+             
         }
 		
         return $this->render('index', [
+            'model' => $model,
+        ]);
+    }   
+
+	public function actionClogin()
+    {
+
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {			
+			if(Yii::$app->user->identity->user_type==1){
+				 return $this->goHome();
+			}else{
+				return $this->redirect(['//iteminfo/index']);
+			}
+        }
+		
+        return $this->render('clogin', [
             'model' => $model,
         ]);
     } 

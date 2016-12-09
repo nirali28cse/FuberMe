@@ -8,7 +8,8 @@ use app\models\ItemInfoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\components\Mediaopration;
+use yii\web\UploadedFile;
 /**
  * IteminfoController implements the CRUD actions for ItemInfo model.
  */
@@ -23,7 +24,7 @@ class IteminfoController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                  //  'delete' => ['POST'],
                 ],
             ],
         ];
@@ -67,6 +68,23 @@ class IteminfoController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 			$model->chef_user_id=Yii::$app->user->id;
+			
+			$folder_name='item_images';
+			$user_id=Yii::$app->user->id;
+			$media_path_array = UploadedFile::getInstances($model, 'image');
+			if($media_path_array!=null){
+				$old_file_name=$model->image;
+				$new_file_array=$media_path_array;
+				$new_uploaded_file_name_array=Mediaopration::Multipleupload($new_file_array,$folder_name,$user_id);
+				if($new_uploaded_file_name_array!=null){					
+				    foreach($new_uploaded_file_name_array as $new_uploaded_file){							
+						$model->image=$new_uploaded_file['media_name'];
+						$model->save();							
+					}						
+					return $this->redirect(['index']);
+				}
+			}
+
 			if ($model->save()) {
 				return $this->redirect(['index']);
 			}else {
@@ -105,6 +123,22 @@ class IteminfoController extends Controller
                 'model' => $model,
             ]);
         }
+    } 
+
+	public function actionMakeitemlive($id)
+    {
+        $model = $this->findModel($id);
+		$oldstatus=$model->status;
+		if($oldstatus){
+			$newstatus=0;
+		}else{
+			$newstatus=1;
+		}
+		
+		$model->status=$newstatus;
+		if ($model->save()) {
+			return $this->redirect(['index']);
+		}
     }
 
     /**

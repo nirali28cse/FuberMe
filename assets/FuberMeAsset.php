@@ -52,9 +52,9 @@ class FuberMeAsset  extends AssetBundle
     ];
 	
 	
-    public $depends = [
+/*     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
-    ];
+    ]; */
 
 }

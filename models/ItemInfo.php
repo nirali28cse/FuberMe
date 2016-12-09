@@ -42,11 +42,13 @@ class ItemInfo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['chef_user_id', 'name', 'price', 'delivery_method', 'item_cuisine_type_info_id', 'item_category_info_id', 'status'], 'required'],
+            [['chef_user_id', 'name', 'price', 'delivery_method', 'item_cuisine_type_info_id', 'item_category_info_id'], 'required'],
             [['chef_user_id', 'item_category_info_id', 'item_cuisine_type_info_id', 'status'], 'integer'],
             [['ingredients', 'description'], 'string'],
             [['date_time'], 'safe'],
-            [['name', 'price'], 'string', 'max' => 500],
+            [['name'], 'string', 'max' => 500],
+            [['price'], 'number'],
+			[['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg,jpeg,gif,png'],
             [['delivery_method', 'head_up_time', 'availability_from_date', 'availability_to_date', 'availability_from_time', 'availability_to_time'], 'string', 'max' => 100],
             [['chef_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['chef_user_id' => 'id']],
         ];
@@ -67,7 +69,7 @@ class ItemInfo extends \yii\db\ActiveRecord
             'ingredients' => 'Ingredients',
             'description' => 'Description',
             'delivery_method' => 'Delivery Method',
-            'head_up_time' => 'Head Up Time',
+            'head_up_time' => 'Heads Up Time',
             'availability_from_date' => 'Availability From Date',
             'availability_from_time' => 'Availability From Time',
             'availability_to_date' => 'Availability To Date',

@@ -3,57 +3,66 @@
 <div class="top_bg">
 	<div class="container">
 		<div class="header_top-sec">
+
+			<div class="top_left">
+				<a href="<?php echo Yii::$app->homeUrl; ?>" class="top-sellers"><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/whitelogo.png'); ?>" style="width:15%;" alt="FuberMe"></a>			 
+			</div>
+			
+			
 			<div class="top_right">
 				<ul>
-					<li><a href="#">help</a></li>|
-					<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=site/login">Track Order</a></li>
+			<?php 	if(!Yii::$app->user->isGuest){ ?>			
+
+						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=cuisinetypeinfo%2Findex"> <span class="glyphicon glyphicon-user"></span> <?php echo Yii::$app->user->identity->username; ?></a></li>				
+						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login/logout">LOGOUT</a></li>				
+
+			<?php }else{ ?>
+						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login/clogin">Foodie SignUP</a></li>				
+						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration">Chef SignUP</a></li>				
+						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login">Chef Login</a></li>				
+			<?php } ?>
 				</ul>
 			</div>
-			<div class="top_left">
-				<ul>
-					<li class="top_link">Email:<a href="mailto@example.com">info@fooder.com</a></li>
-					 <?php 	if(!Yii::$app->user->isGuest){ ?>
-						| <li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/default">My Account</a></li>|					
-					<?php } ?>
-				</ul>
-				<div class="social">
-					<ul>
-						<li><a href="#"><i class="facebook"></i></a></li>
-						<li><a href="#"><i class="twitter"></i></a></li>
-						<li><a href="#"><i class="dribble"></i></a></li>	
-						<li><a href="#"><i class="google"></i></a></li>										
-					</ul>
-				</div>
-			</div>
+				
 				<div class="clearfix"> </div>
 		</div>
 	</div>
 </div>
+
+
+<?php 
+
+/*
+
 <div class="header_top">
 	 <div class="container">
-		 <div class="logo">
-		 	<a href="<?php echo Yii::$app->homeUrl; ?>" class="top-sellers"><h3>Fooder</h3></a>			 
-		 </div>
+
 		 <div class="header_right">	
 			 <div class="login">
 			 <?php 	if(Yii::$app->user->isGuest){ ?>
-				<a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login">LOGIN</a>
+				<!-- <a href="<?php // echo Yii::$app->homeUrl; ?>?r=users/login">CHEF SIGN UP</a> -->
 			 <?php }else{ ?>
 				<a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login/logout">LOGOUT</a>
 			 <?php } ?>
 				
 			 </div>
-			 <div class="cart box_1">
+			 <?php
+/* 			 <div class="cart box_1">
 				<a href="<?php echo Yii::$app->homeUrl; ?>?r=site/cart">
 					<h3> <span class="simpleCart_total">$0.00</span> (<span id="simpleCart_quantity" class="simpleCart_quantity">0</span> items)</h3>
 				</a>	
 				<!-- <p><a href="javascript:;" class="simpleCart_empty">Empty cart</a></p> -->
 				<div class="clearfix"> </div>
-			 </div>				 
+			 </div>	 
+?>			 
 		 </div>
 		  <div class="clearfix"></div>	
 	 </div>
 </div>
+*/
+?>
+
+
 <!--cart-->
 	 
 <!------>
