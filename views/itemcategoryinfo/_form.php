@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use kartik\switchinput\SwitchInput;
 /* @var $this yii\web\View */
 /* @var $model app\models\ItemCategoryInfo */
 /* @var $form yii\widgets\ActiveForm */
@@ -28,12 +28,18 @@ use yii\widgets\ActiveForm;
         );
 	?>	
 
-	
-	<?= $form->field($model, 'status')->radioList([1 => 'Active', 0 => 'InActive']); ?> 
-
+    <?= $form->field($model, 'status')->widget(SwitchInput::classname(), [
+					'type' => SwitchInput::CHECKBOX,
+					 'pluginOptions' => [
+							'onColor' => 'success',
+							'onText' => 'Active',
+							'offText' => 'NotActive',
+						]
+				]);
+				 ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

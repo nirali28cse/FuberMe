@@ -21,8 +21,9 @@
 					'items' => [
 					//	['label' => 'Dashbord', 'url' => ['users/default']],
 						// ['label' => 'Cuisine Type Info', 'url' => ['cuisinetypeinfo/index'], 'visible' => Yii::$app->user->isGuest],
-						['label' => 'Cuisine Type', 'url' => [ '/cuisinetypeinfo/index']],
-						['label' => 'Category', 'url' => ['/itemcategoryinfo/index']],
+						['label' => 'Cuisine Type', 'url' => [ '/cuisinetypeinfo/index'],'active'=>Yii::$app->controller->id=='cuisinetypeinfo'],
+						['label' => 'Category', 'url' => ['/itemcategoryinfo/index'],'active'=>Yii::$app->controller->id=='itemcategoryinfo'],
+						['label' => 'Dietary Preference', 'url' => ['/dietarypreference/index'],'active'=>Yii::$app->controller->id=='dietarypreference'],
 					//	['label' => 'My Menu', 'url' => ['/iteminfo/index']],
 					],
 				]);
@@ -31,7 +32,7 @@
 					'options' => ['class' => 'megamenu skyblue'],
 					'activeCssClass' => 'active',
 					'items' => [
-						['label' => 'My Menu', 'url' => ['/iteminfo/index']],
+						['label' => 'My Menu', 'url' => ['/iteminfo/index'],'active'=>Yii::$app->controller->id=='iteminfo'],
 					],
 				]);
 			}

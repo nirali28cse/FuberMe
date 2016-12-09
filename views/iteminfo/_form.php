@@ -11,9 +11,53 @@ use yii\helpers\Url;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+<style>
+.datepicker table tr td.active:active:hover, .datepicker table tr td.active.highlighted:active:hover, .datepicker table tr td.active.active:hover, .datepicker table tr td.active.highlighted.active:hover, .datepicker table tr td.active:active:focus, .datepicker table tr td.active.highlighted:active:focus, .datepicker table tr td.active.active:focus, .datepicker table tr td.active.highlighted.active:focus, .datepicker table tr td.active:active.focus, .datepicker table tr td.active.highlighted:active.focus, .datepicker table tr td.active.active.focus, .datepicker table tr td.active.highlighted.active.focus{
+    background-color:#38b662;
+    border-color: #38b662;
+}
+
+.datepicker table tr td.active:active, .datepicker table tr td.active.highlighted:active, .datepicker table tr td.active.active, .datepicker table tr td.active.highlighted.active{
+    background-color:#38b662;
+    border-color: #38b662;
+}
+.input-group-addon{
+	 background-color:#38b662;
+	 border-color: green;
+	 color:white;
+}
+</style>
+
 <div class="item-info-form">
 
-    <?php 	
+    <?php 
+
+/* 
+function hoursRange( $lower = 0, $upper = 86400, $step = 1800, $format = '' ) {
+    $times = array();
+
+    if ( empty( $format ) ) {
+        $format = 'g:i a';
+    }
+
+    foreach ( range( $lower, $upper, $step ) as $increment ) {
+        $increment = gmdate( 'H:i', $increment );
+
+        list( $hour, $minutes ) = explode( ':', $increment );
+
+        $date = new DateTime( $hour . ':' . $minutes );
+
+        $times["'".(string) $increment."'"] = "'".$date->format( $format )."'";
+    }
+
+    return $times;
+}
+
+$sds=hoursRange();
+echo '<pre>';
+print_r($sds);
+exit; */
+	
 	$form = ActiveForm::begin([
 		'options'=>['enctype'=>'multipart/form-data'] // important
 	]); ?>
@@ -65,120 +109,109 @@ use yii\helpers\Url;
 			?>
 		</div>	
 		<div class="col-sm-6">	
-		Heads UP Time	
+
 		<?php // $form->field($model, 'availability_to_time')->textInput(['maxlength' => true]) ?>
-		<?=  TimePicker::widget([
-			'name' => 'ItemInfo[head_up_time]', 
-			'value' => '11:00',
-			'pluginOptions' => [
-				'showSeconds' => false,
-				'minuteStep' => 30,
-				'todayHighlight' => true,
-				'showMeridian' => false,
-				 'autoclose'=>true,
-				
-			]
-		]); ?>
+		<?= $form->field($model, 'head_up_time')
+			->dropDownList(
+				Yii::$app->params['time_piker'],           // Flat array ('id'=>'label')
+				['prompt'=>'Select Time']    // options
+			);
+		?>
 		</div>
 	 </div>
 
 
-	<br/>
 
-	  <div class="row">
-		<div class="col-sm-6">
-			Availability Start On	
-		</div>
-	  </div>
 	<div class="row">
 		<div class="col-sm-6">	
+			<div class="col-sm-6" style="padding: 0;">
 			<?php // $form->field($model, 'availability_from_date')->textInput(['maxlength' => true]) ?>
-				<?=  DatePicker::widget([
-					'name' => 'ItemInfo[availability_from_date]', 
-					'type' => DatePicker::TYPE_COMPONENT_APPEND,
-					'value' => date('d-M-Y'),
-					'options' => ['placeholder' => 'Select issue date ...'],
-					'pluginOptions' => [
-						'format' => 'dd-M-yyyy',
-						'todayHighlight' => true,
-						 'autoclose'=>true,
-					]
-				]);
+
+				<?= $form->field($model, 'availability_from_date')->widget(
+											DatePicker::className(), [
+														//	'name' => 'ItemInfo[availability_to_date]', 
+													'value' => date('d-M-Y'),
+													'type' => DatePicker::TYPE_COMPONENT_APPEND,
+													'options' => ['placeholder' => 'Select start date','style'=>'height: 50px;, font-size: 16px;'],
+													'pluginOptions' => [
+														'format' => 'dd-M-yyyy',
+														'todayHighlight' => true,
+														 'autoclose'=>true,
+													],
+																
+											]
+											);
+				 ?>
+
+			</div>
+			<div class="col-sm-6" style="padding: 0;">	
+				<?php // $form->field($model, 'availability_from_time')->textInput(['maxlength' => true]) ?>
+				<?= $form->field($model, 'availability_from_time')->label(false)
+					->dropDownList(
+						Yii::$app->params['time_piker'],           // Flat array ('id'=>'label')
+						['prompt'=>'Select Time','style'=>'height: 50px;margin-top: 22px;']    // options
+					);
 				?>
+			</div>
 		</div>
-		<div class="col-sm-6">	
-			<?php // $form->field($model, 'availability_from_time')->textInput(['maxlength' => true]) ?>
-			<?=  TimePicker::widget([
-				'name' => 'ItemInfo[availability_from_time]', 
-				'value' => '11:00',
-				'pluginOptions' => [
-					'showSeconds' => false,
-					'minuteStep' => 30,
-					'todayHighlight' => true,
-					'showMeridian' => false,
-					 'autoclose'=>true,
-				]
-			]); ?>
-		</div>
-	  </div>
 
-	<br/>
-	
-
-	  <div class="row">
 		<div class="col-sm-6">
-			Availability End On	
-		</div>
-	  </div>
-	  <div class="row">
-		<div class="col-sm-6">
-			<?php // $form->field($model, 'availability_to_date')->textInput(['maxlength' => true]) ?>
-			<?=  DatePicker::widget([
-				'name' => 'ItemInfo[availability_to_date]', 
-				'value' => date('d-M-Y'),
-				'type' => DatePicker::TYPE_COMPONENT_APPEND,
-				'options' => ['placeholder' => 'Select issue date ...'],
-				'pluginOptions' => [
-					'format' => 'dd-M-yyyy',
-					'todayHighlight' => true,
-					 'autoclose'=>true,
-				]
-			]); ?>
-		</div>
-		<div class="col-sm-6">	
-			<?php // $form->field($model, 'availability_to_time')->textInput(['maxlength' => true]) ?>
-			<?=  TimePicker::widget([
-				'name' => 'ItemInfo[availability_to_time]', 
-				'value' => '11:00',
-				'pluginOptions' => [
-					'showSeconds' => false,
-					'minuteStep' => 30,
-					'todayHighlight' => true,
-					'showMeridian' => false,
-					 'autoclose'=>true,
-					
-				]
-			]); ?>	
-		</div>
+			<div class="col-sm-6" style="padding: 0;">
+				<?php // $form->field($model, 'availability_to_date')->textInput(['maxlength' => true]) ?>
+
+				<?= $form->field($model, 'availability_to_date')->widget(
+											DatePicker::className(), [
+												// 'name' => 'ItemInfo[availability_to_date]', 
+													'value' => date('d-M-Y'),
+													'type' => DatePicker::TYPE_COMPONENT_APPEND,
+													'options' => ['placeholder' => 'Select end date','style'=>'height: 50px;, font-size: 16px;'],
+													'pluginOptions' => [
+														'format' => 'dd-M-yyyy',
+														'todayHighlight' => true,
+														 'autoclose'=>true,
+													]
+											]
+											);
+				 ?>
+			</div>
+			<div class="col-sm-6" style="padding: 0;">
+				<?php // $form->field($model, 'availability_to_time')->textInput(['maxlength' => true]) ?>
+				<?= $form->field($model, 'availability_to_time')->label(false)
+					->dropDownList(
+						Yii::$app->params['time_piker'],           // Flat array ('id'=>'label')
+						['prompt'=>'Select Time','style'=>'height: 50px;margin-top: 22px;']    // options
+					);
+				?>	
+			</div>
+		  </div>
+		
 	  </div>
 
+	
+	<div class="col-sm-12">	
+       <?= $form->field($model, 'ingredients')->textarea(['rows' => 6 ]) ?>
+	 </div>
 
-	<br/>
-	
-	
-    <?= $form->field($model, 'ingredients')->textarea(['rows' => 6,'class'=>"col-sm-12"]) ?>
-
-    <?= $form->field($model, 'description')->textarea(['rows' => 6,'class'=>"col-sm-12"]) ?>
-	
-	<?php $images_array=null; ?>
-    <?=	
-	
-	
-	    $form->field($model, 'image')->widget(FileInput::classname(), [
-					'options' => ['accept' => 'image/*'],
+	 <div class="col-sm-12">	
+       <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+	 </div>
+   
+	 <div class="col-sm-12">	
+	<?php
+		$images_array=null; 
+		$folder_name='item_images';
+		$user_id=Yii::$app->user->id;
+		if($model->image!=null){
+			$images_array= Yii::$app->basePath.'/web/fuberme/'.$user_id.'/'.$folder_name.'/'.$model->image;			
+		}
+		
+	  echo   $form->field($model, 'image')->widget(FileInput::classname(), [
+					'options' => ['accept' => 'image/*','class' =>'btn btn-success'],
 					'pluginOptions'=>[
 						'allowedFileExtensions'=>['jpg', 'gif', 'png', 'jpeg'],
 						'showUpload' => false,
+						'initialPreview' =>$images_array,
+						
 
 					],
 				]);	
@@ -207,17 +240,15 @@ use yii\helpers\Url;
 			]); */
 		
 		?>
+	 </div>
+   
 
-	
-	
-	<?php // $form->field($model, 'status')->radioList([1 => 'Active', 0 => 'InActive']); ?> 
-		
 
 	<br/>
 	
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

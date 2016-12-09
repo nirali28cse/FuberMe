@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ItemImages */
+/* @var $model app\models\DietaryPreference */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Item Images', 'url' => ['index']];
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Dietary Preferences', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="item-images-view">
+<div class="dietary-preference-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'item_info_id',
-            'image_path',
+            'name',
+            'status',
             'date_time',
         ],
     ]) ?>

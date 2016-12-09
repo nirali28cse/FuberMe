@@ -26,15 +26,16 @@ use yii\widgets\ActiveForm;
 
 				<div class="userdetail-form signin" >
 
-					<?php $form = ActiveForm::begin(); ?>
+					<?php $form = ActiveForm::begin(['id'=>'registrationform']); ?>
+
+					<?= $form->field($model, 'email_id')->textInput(['maxlength' => true]) ?>
+			
+					<?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 						
 					<?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+		
+					<?= $form->field($model, 'mobile_number')->textInput(['maxlength' => '12']) ?>
 					
-					<?= $form->field($model, 'mobile_number')->textInput(['maxlength' => '10']) ?>
-					
-					<?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
-					
-					<?= $form->field($model, 'email_id')->textInput(['maxlength' => true]) ?>
 					
 					<?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>	
 
@@ -53,13 +54,6 @@ use yii\widgets\ActiveForm;
 					<?= $form->field($model, 'zipcode')->textInput(['maxlength' => true]) ?>
 					
 
-					<?= $form->field($model, 'payment_method')
-						->dropDownList(
-							Yii::$app->params['payment_method'],           // Flat array ('id'=>'label')
-							['prompt'=>'Select Payment Method']    // options
-						);
-					?>
-
 					
 					<?= $form->field($model, 'delivery_method')
 						->dropDownList(
@@ -68,6 +62,13 @@ use yii\widgets\ActiveForm;
 						);
 					?>
 					
+
+					<?= $form->field($model, 'payment_method')
+						->dropDownList(
+							Yii::$app->params['payment_method'],           // Flat array ('id'=>'label')
+							['prompt'=>'Select Payment Method']    // options
+						);
+					?>
 
 					<?=  $form->field($model, 'paypal_email')->textInput(['maxlength' => true]) ?>
 
@@ -132,4 +133,18 @@ use yii\widgets\ActiveForm;
 	 </div>
 </div>
 
+<script>
 
+$('.field-userdetail-paypal_email').hide();
+$("body").on("change","#userdetail-payment_method",function(){
+	var paymentmethod=$(this).val();				
+	if(paymentmethod=='paypal'){
+		$('.field-userdetail-paypal_email').show();
+	}else{
+		$('.field-userdetail-paypal_email').hide();
+	}
+});	
+
+
+
+</script>

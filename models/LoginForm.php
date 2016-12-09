@@ -12,6 +12,7 @@ use  app\modules\users\models\Userdetail;
 class LoginForm extends \yii\db\ActiveRecord
 {
     
+	public $email_id;
 	public $username;
     public $password;
     public $rememberMe = true;
@@ -25,7 +26,7 @@ class LoginForm extends \yii\db\ActiveRecord
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
+            [['email_id', 'password'], 'required'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
@@ -75,7 +76,7 @@ class LoginForm extends \yii\db\ActiveRecord
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = Userdetail::findByUsername($this->username);
+            $this->_user = Userdetail::findByUsername($this->email_id);
         }
 
         return $this->_user;
