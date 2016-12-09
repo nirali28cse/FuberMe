@@ -44,12 +44,16 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'mobile_number', 'email_id', 'city', 'zipcode', 'password', 'address', 'delivery_method', 'payment_method', 'is_aggree_with_terms_condition'], 'required'],
-            [['address'], 'string'],
+            [['username', 'mobile_number', 'email_id',  'paypal_email', 'city','state', 'zipcode', 'password', 'address', 'delivery_method', 'payment_method'], 'required'],
+            ['is_aggree_with_terms_condition', 'required', 'requiredValue' => 1, 'message' => 'Agree terms and condition'],
+			[['address'], 'string'],
             [['zipcode'], 'number'],
-            [['user_type', 'is_aggree_with_terms_condition', 'is_admin', 'status'], 'integer'],
-            [['username', 'email_id', 'city', 'delivery_method', 'payment_method'], 'string', 'max' => 100],
-            [['mobile_number'], 'string', 'max' => 10],
+            [['user_type', 'is_aggree_with_terms_condition', 'mobile_number','is_admin', 'status'], 'integer'],
+            [['username', 'email_id', 'city', 'state', 'delivery_method', 'payment_method'], 'string', 'max' => 100],
+            [['mobile_number'], 'number'],
+			['username', 'unique', 'targetAttribute' => ['username'], 'message' => 'This username already taken.'],
+			['email_id', 'email'],
+			['paypal_email', 'email'],
             [['image_path', 'auth_key'], 'string', 'max' => 500],
         ];
     }
@@ -61,18 +65,20 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'username' => 'Name',
+            'username' => 'Username',
             'mobile_number' => 'Mobile Number',
             'email_id' => 'Email ID',
+            'paypal_email' => 'Paypal Email',
             'address' => 'Address',
             'city' => 'City',
+            'state' => 'State',
             'zipcode' => 'Zipcode',
             'user_type' => 'User Type',
             'delivery_method' => 'Delivery Method',
             'payment_method' => 'Payment Method',
             'image_path' => 'Image Path',
             'auth_key' => 'Auth Key',
-            'is_aggree_with_terms_condition' => 'Is Aggree With Terms Condition',
+            'is_aggree_with_terms_condition' => 'I agree to the terms and conditions',
             'date_time' => 'Date Time',
             'is_admin' => 'Is Admin',
             'status' => 'Status',

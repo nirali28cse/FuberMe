@@ -30,7 +30,7 @@ class ItemImages extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['item_info_id', 'image_path', 'date_time'], 'required'],
+            [['item_info_id', 'image_path'], 'required'],
             [['item_info_id'], 'integer'],
             [['date_time'], 'safe'],
             [['image_path'], 'string', 'max' => 500],

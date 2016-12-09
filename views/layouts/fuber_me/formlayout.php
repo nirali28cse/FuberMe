@@ -8,9 +8,23 @@
 <?php include('common_file/header.php'); ?>
 
 <style>
-.glyphicon-eye-open:before {
-	color: initial;
+
+.btn-success {
+    float: right;
+    background-color: #38b662;
+    border-color: #4cae4c;
+	border-radius: 0;
 }
+
+
+.grid-view,.list-view{
+	clear: both;
+}
+
+form{
+	clear: both;
+}
+    
 </style>
 
 

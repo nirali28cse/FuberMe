@@ -60,7 +60,7 @@ class ItemInfoSearch extends ItemInfo
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'chef_user_id' => Yii::$app->user->id,
+            'chef_user_id' => $this->chef_user_id,
             'item_category_info_id' => $this->item_category_info_id,
             'item_cuisine_type_info_id' => $this->item_cuisine_type_info_id,
             'date_time' => $this->date_time,

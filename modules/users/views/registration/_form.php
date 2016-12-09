@@ -16,10 +16,7 @@ use yii\widgets\ActiveForm;
 
 <!---->
 <div class="container">
-	  <ol class="breadcrumb">
-		  <li><a href="index.html">Home</a></li>
-		  <li class="active">Account</li>
-		 </ol>
+
 	 <div class="registration">
 		 <div class="registration_left">
 			 <h2>new user? <span> create an account </span></h2>
@@ -33,24 +30,28 @@ use yii\widgets\ActiveForm;
 						
 					<?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 					
-					<?= $form->field($model, 'mobile_number')->textInput(['maxlength' => true]) ?>
+					<?= $form->field($model, 'mobile_number')->textInput(['maxlength' => '10']) ?>
 					
 					<?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 					
 					<?= $form->field($model, 'email_id')->textInput(['maxlength' => true]) ?>
 					
 					<?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>	
-					
+
 					<?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
+					
+						
+					<?php $usa_state = yii\helpers\ArrayHelper::map(app\models\UsaState::find()->where(['status'=>1])->all(), 'id', 'name'); ?>
+					<?= $form->field($model, 'state')
+						->dropDownList(
+							$usa_state,           // Flat array ('id'=>'label')
+							['prompt'=>'Select state']    // options
+						);
+					?>
+
 					
 					<?= $form->field($model, 'zipcode')->textInput(['maxlength' => true]) ?>
 					
-					<?= $form->field($model, 'delivery_method')
-						->dropDownList(
-							Yii::$app->params['delivery_method'],           // Flat array ('id'=>'label')
-							['prompt'=>'Select Delivery Method']    // options
-						);
-					?>
 
 					<?= $form->field($model, 'payment_method')
 						->dropDownList(
@@ -59,7 +60,17 @@ use yii\widgets\ActiveForm;
 						);
 					?>
 
-					<?php // $form->field($model, 'activkey')->textInput(['maxlength' => true]) ?>
+					
+					<?= $form->field($model, 'delivery_method')
+						->dropDownList(
+							Yii::$app->params['delivery_method'],           // Flat array ('id'=>'label')
+							['prompt'=>'Select Delivery Method']    // options
+						);
+					?>
+					
+
+					<?=  $form->field($model, 'paypal_email')->textInput(['maxlength' => true]) ?>
+
 
 					<?php // $form->field($model, 'create_at')->textInput() ?>
 
@@ -78,7 +89,11 @@ use yii\widgets\ActiveForm;
 					</div>
 					
 					<br/>
-					<p>Go Back to <a href="<?php echo  Yii::$app->getHomeUrl(); ?>">Home</a></p>
+					<p>Go Back to
+					<a href="<?php echo  Yii::$app->getHomeUrl(); ?>?r=users/login" class="green">Login</a> | 
+					<a href="<?php echo  Yii::$app->getHomeUrl(); ?>"  class="green">Home</a>
+					</p>
+
 
 
 					<?php ActiveForm::end(); ?>
@@ -88,7 +103,8 @@ use yii\widgets\ActiveForm;
 			 </div>
 		 </div>
 		 <div class="registration_left">
-			 <h2>existing user</h2>
+		  <?php
+/* 			 <h2>existing user</h2>
 			 <div class="registration_form">
 			 <!-- Form -->
 				  <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
@@ -107,7 +123,10 @@ use yii\widgets\ActiveForm;
 					  <a href="#">Forgot Password ?</a>
 				 <?php ActiveForm::end(); ?>	
 			 <!-- /Form -->
-			 </div>
+			 </div> */
+			 ?>
+			 <img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/chef.jpg'); ?>"alt="" style="width:100%;" />
+			 
 		 </div>
 		 <div class="clearfix"></div>
 	 </div>

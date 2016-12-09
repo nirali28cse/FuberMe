@@ -15,19 +15,29 @@ $this->params['breadcrumbs'][] = $this->title;
     <h2><?= Html::encode($this->title) ?></h2>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
         <?= Html::a('Create Cuisine Type Info', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+
+	
+	
+	
+	
+	
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+       // 'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
          //   'id',
             'name',
          //   'chef_user_id',
-            'status',
+             [
+				'attribute' => 'status',
+				'format' => 'raw',
+				'value' => function ($model) {
+					return $model->status == 0 ? "In Active" : "Active";
+				},
+			],
          //   'date_time',
 
 			[
