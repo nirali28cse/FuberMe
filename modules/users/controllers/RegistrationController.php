@@ -52,10 +52,12 @@ class RegistrationController extends Controller
 			
 			if($model->save()){
 				 Yii::$app->user->switchIdentity($model); // log in
-				if(Yii::$app->user->identity->user_type==1){
-					 return $this->goHome();
-				}else{
+				if(Yii::$app->user->identity->user_type==2){
 					return $this->redirect(['//iteminfo/index']);
+				}elseif(Yii::$app->user->identity->is_admin==1){
+					return $this->redirect(['//cuisinetypeinfo/index']);
+				}else{
+					 return $this->goHome();
 				}
 			}
 
@@ -78,17 +80,19 @@ class RegistrationController extends Controller
 		if ($model->load(Yii::$app->request->post())) {
 		
 			if (isset($_POST['Cuserdetail'])) {
-				$password=$_POST['Cuserdetail']['password'];
-				$model->password=MD5($password);	
+/* 				$password=$_POST['Cuserdetail']['password'];
+				$model->password=MD5($password);	 */
 				$model->user_type=1;	
 			}
 			
 			if($model->save()){
-				 Yii::$app->user->switchIdentity($model); // log in
-				if(Yii::$app->user->identity->user_type==1){
-					 return $this->goHome();
-				}else{
+				Yii::$app->user->switchIdentity($model); // log in
+				if(Yii::$app->user->identity->user_type==2){
 					return $this->redirect(['//iteminfo/index']);
+				}elseif(Yii::$app->user->identity->is_admin==1){
+					return $this->redirect(['//cuisinetypeinfo/index']);
+				}else{
+					 return $this->goHome();
 				}
 			}
 

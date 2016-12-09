@@ -44,16 +44,17 @@ class Cuserdetail extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'mobile_number', 'email_id', 'city','state', 'zipcode', 'password', 'address'], 'required'],
-            ['is_aggree_with_terms_condition', 'required', 'requiredValue' => 1, 'message' => 'Agree terms and condition'],
-		    [['address'], 'string'],
-            [['zipcode'], 'number'],
-            [['user_type', 'is_aggree_with_terms_condition', 'mobile_number', 'is_admin', 'status'], 'integer'],
-            [['username', 'email_id', 'city', 'state'], 'string', 'max' => 100],
-            [['mobile_number'], 'number'],
-			['username', 'unique', 'targetAttribute' => ['username'], 'message' => 'This username already taken.'],
+            [['email_id'], 'required'],
+          //  ['is_aggree_with_terms_condition', 'required', 'requiredValue' => 1, 'message' => 'Agree terms and condition'],
+		  //  [['address'], 'string'],
+          //  [['zipcode'], 'number'],
+           // [['user_type', 'is_aggree_with_terms_condition', 'mobile_number', 'is_admin', 'status'], 'integer'],
+          //  [['username', 'email_id', 'city', 'state'], 'string', 'max' => 100],
+          //  [['mobile_number'], 'number'],
+			//['username', 'unique', 'targetAttribute' => ['username'], 'message' => 'This username already taken.'],
+			['email_id', 'unique', 'targetAttribute' => ['email_id'], 'message' => 'This email already taken.'],
 			['email_id', 'email'],
-            [['image_path', 'auth_key'], 'string', 'max' => 500],
+          //  [['image_path', 'auth_key'], 'string', 'max' => 500],
         ];
     }
 
@@ -66,7 +67,7 @@ class Cuserdetail extends \yii\db\ActiveRecord implements IdentityInterface
             'id' => 'ID',
             'username' => 'Username',
             'mobile_number' => 'Mobile Number',
-            'email_id' => 'Email ID',
+            'email_id' => 'Email',
             'address' => 'Address',
             'city' => 'City',
             'state' => 'State',
@@ -113,9 +114,9 @@ class Cuserdetail extends \yii\db\ActiveRecord implements IdentityInterface
      * @param  string      $username
      * @return static|null
      */
-    public static function findByUsername($username)
+    public static function findByUsername($email_id)
     {
-        return static::findOne(['username' => $username]);
+        return static::findOne(['email_id' => $email_id]);
     }
 
     /**

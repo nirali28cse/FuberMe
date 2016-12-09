@@ -108,9 +108,33 @@ class IteminfoController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+		$old_file_name=$model->image;
+		
         if ($model->load(Yii::$app->request->post())) {
 			$model->chef_user_id=Yii::$app->user->id;
+
+			$folder_name='item_images';
+			$user_id=Yii::$app->user->id;
+			$media_path_array = UploadedFile::getInstances($model, 'image');
+			
+			// new image upload
+			if($media_path_array!=null){				
+				$new_file_array=$media_path_array;
+				$new_uploaded_file_name_array=Mediaopration::Multipleupload($new_file_array,$folder_name,$user_id);
+				if($new_uploaded_file_name_array!=null){					
+				    foreach($new_uploaded_file_name_array as $new_uploaded_file){							
+						$model->image=$new_uploaded_file['media_name'];
+						$model->save();							
+					}	
+					
+					// delete old image upload
+					$old_image_delete=Mediaopration::Delete($old_file_name,$folder_name,$user_id);
+					return $this->redirect(['index']);
+				}
+			}else{
+				$model->image=$old_file_name;
+			}
+			
 			if ($model->save()) {
 				return $this->redirect(['index']);
 			}else {

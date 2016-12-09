@@ -43,12 +43,14 @@ class LoginController extends Controller
 
         $model = new LoginForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {	
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
 
-			if(Yii::$app->user->identity->user_type==1){
-				 return $this->goHome();
-			}else{
+			if(Yii::$app->user->identity->user_type==2){
 				return $this->redirect(['//iteminfo/index']);
+			}elseif(Yii::$app->user->identity->is_admin==1){
+				return $this->redirect(['//cuisinetypeinfo/index']);
+			}else{
+				 return $this->goHome();
 			}
              
         }
@@ -66,10 +68,12 @@ class LoginController extends Controller
         }
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {			
-			if(Yii::$app->user->identity->user_type==1){
-				 return $this->goHome();
-			}else{
+			if(Yii::$app->user->identity->user_type==2){
 				return $this->redirect(['//iteminfo/index']);
+			}elseif(Yii::$app->user->identity->is_admin==1){
+				return $this->redirect(['//cuisinetypeinfo/index']);
+			}else{
+				 return $this->goHome();
 			}
         }
 		

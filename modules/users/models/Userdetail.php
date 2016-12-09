@@ -44,17 +44,31 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'mobile_number', 'email_id',  'paypal_email', 'city','state', 'zipcode', 'password', 'address', 'delivery_method', 'payment_method'], 'required'],
+            [['username', 'mobile_number', 'email_id','city','state', 'zipcode', 'password', 'address', 'delivery_method', 'payment_method'], 'required'],
             ['is_aggree_with_terms_condition', 'required', 'requiredValue' => 1, 'message' => 'Agree terms and condition'],
 			[['address'], 'string'],
             [['zipcode'], 'number'],
-            [['user_type', 'is_aggree_with_terms_condition', 'mobile_number','is_admin', 'status'], 'integer'],
+            [['user_type', 'is_aggree_with_terms_condition','is_admin', 'status'], 'integer'],
             [['username', 'email_id', 'city', 'state', 'delivery_method', 'payment_method'], 'string', 'max' => 100],
-            [['mobile_number'], 'number'],
-			['username', 'unique', 'targetAttribute' => ['username'], 'message' => 'This username already taken.'],
+          //  [['mobile_number'], 'number'],
+			['email_id', 'unique', 'targetAttribute' => ['email_id'], 'message' => 'This email already taken.'],
 			['email_id', 'email'],
 			['paypal_email', 'email'],
             [['image_path', 'auth_key'], 'string', 'max' => 500],
+			[
+            'city',
+            'match', 'not' => true, 'pattern' => '/[^[a-zA-Z0-9_ ]*$]/',
+			],
+
+			[
+            'mobile_number',
+            'match', 'not' => true, 'pattern' => '/[^0-9_-]/',
+			],
+			['paypal_email', 'required', 'when' => function($model) {
+					return $model->payment_method == 'paypal';
+				}, 'whenClient' => "function (attribute, value) {
+						  return $('#userdetail-payment_method').val() == 'paypal';
+						}"],
         ];
     }
 
@@ -65,9 +79,9 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'username' => 'Username',
+            'username' => 'Name',
             'mobile_number' => 'Mobile Number',
-            'email_id' => 'Email ID',
+            'email_id' => 'Email',
             'paypal_email' => 'Paypal Email',
             'address' => 'Address',
             'city' => 'City',
@@ -115,9 +129,9 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
      * @param  string      $username
      * @return static|null
      */
-    public static function findByUsername($username)
+    public static function findByUsername($email_id)
     {
-        return static::findOne(['username' => $username]);
+        return static::findOne(['email_id' => $email_id]);
     }
 
     /**

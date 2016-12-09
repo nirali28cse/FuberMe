@@ -27,12 +27,21 @@ use yii\helpers\Html;
 
 								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-edit"></span>',['update','id'=>$model->id],['class'=>'item_add items','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Edit'] ) ?> 
 								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-trash"></span>',['delete','id'=>$model->id], ['onclick' => 'return confirm("Are you sure you want to delete this '.$model->name.' ?");','class'=>'item_add items','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Delete']) ?>
-								<?php if($model->status==1){  ?>
+								<?php
+								if($model->status==1){  
+								?>
 								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-close"></span> Make Offline',['makeitemlive','id'=>$model->id],['class'=>'item_add items','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Make Offline']) ?>
 								<?php }else{ ?>
-								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-open"></span> Make Live',['makeitemlive','id'=>$model->id],['class'=>'item_add items','data-toggle'=>'modal','data-target'=>'#bsModal3','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Make Live']) ?>
+								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-open"></span> Make Live','#',['class'=>'item_add items','data-toggle'=>'popover','data-title'=>'Select End Date','data-html'=>true,'data-placement'=>'right']) ?>
 								<?php } ?>
 							</div>													
 							<div class="clearfix"> </div>
 						</div>
 					</div>
+
+	<div id="popover-content" class="hide popfdsf">
+	  <?php
+
+	  echo Yii::$app->controller->renderPartial('get_enddate',['model' => $model],false,true); ?>	  
+    </div>
+		

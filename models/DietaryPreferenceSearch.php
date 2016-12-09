@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\ItemImages;
+use app\models\DietaryPreference;
 
 /**
- * ItemImagesSearch represents the model behind the search form about `app\models\ItemImages`.
+ * DietaryPreferenceSearch represents the model behind the search form about `app\models\DietaryPreference`.
  */
-class ItemImagesSearch extends ItemImages
+class DietaryPreferenceSearch extends DietaryPreference
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class ItemImagesSearch extends ItemImages
     public function rules()
     {
         return [
-            [['id', 'item_info_id'], 'integer'],
-            [['image_path', 'date_time'], 'safe'],
+            [['id', 'status'], 'integer'],
+            [['name', 'date_time'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class ItemImagesSearch extends ItemImages
      */
     public function search($params)
     {
-        $query = ItemImages::find();
+        $query = DietaryPreference::find();
 
         // add conditions that should always apply here
 
@@ -60,11 +60,11 @@ class ItemImagesSearch extends ItemImages
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'item_info_id' => $this->item_info_id,
+            'status' => $this->status,
             'date_time' => $this->date_time,
         ]);
 
-        $query->andFilterWhere(['like', 'image_path', $this->image_path]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

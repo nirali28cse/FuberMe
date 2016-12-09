@@ -14,11 +14,11 @@ use yii\bootstrap\ActiveForm;
 		 <div class="col-md-6 log">			 
 				 <p>Welcome, please enter the following to continue.</p>
 				  <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
-					 <h5>User Name:</h5>	
+					 <h5>Email:</h5>	
 						<?= $form
-							->field($model, 'username')
+							->field($model, 'email_id')
 							->label(false)
-							->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
+							->textInput(['placeholder' => $model->getAttributeLabel('email')]) ?>
 					 <h5>Password:</h5>
 						<?= $form
 							->field($model, 'password')

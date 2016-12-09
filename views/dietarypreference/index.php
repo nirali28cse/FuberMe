@@ -4,32 +4,26 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\CuisineTypeInfoSearch */
+/* @var $searchModel app\models\DietaryPreferenceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Cuisine Type Infos';
+$this->title = 'Dietary Preferences';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="cuisine-type-info-index">
+<div class="dietary-preference-index">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-        <?= Html::a('Create Cuisine Type', ['create'], ['class' => 'btn btn-success']) ?>
-
-	
-	
-	
-	
-	
+    <p>
+        <?= Html::a('Create Dietary Preference', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-       // 'filterModel' => $searchModel,
+      // 'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
          //   'id',
             'name',
-         //   'chef_user_id',
              [
 				'attribute' => 'status',
 				'format' => 'raw',

@@ -27,53 +27,18 @@ use yii\widgets\ActiveForm;
 				<div class="userdetail-form signin" >
 
 					<?php $form = ActiveForm::begin(); ?>
-						
-					<?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
-					
-					<?= $form->field($model, 'mobile_number')->textInput(['maxlength' => '10']) ?>
-					
-					<?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
-					
+
 					<?= $form->field($model, 'email_id')->textInput(['maxlength' => true]) ?>
 					
-					<?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>	
-										
-					<?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
-					
-					<?php $usa_state = yii\helpers\ArrayHelper::map(app\models\UsaState::find()->where(['status'=>1])->all(), 'id', 'name'); ?>
-					<?= $form->field($model, 'state')
-						->dropDownList(
-							$usa_state,           // Flat array ('id'=>'label')
-							['prompt'=>'Select state']    // options
-						);
-					?>
-					
-					<?= $form->field($model, 'zipcode')->textInput(['maxlength' => true]) ?>
-					
 
-
-					<?php // $form->field($model, 'activkey')->textInput(['maxlength' => true]) ?>
-
-					<?php // $form->field($model, 'create_at')->textInput() ?>
-
-					<?php // $form->field($model, 'lastvisit_at')->textInput() ?>
-
-					<?php // $form->field($model, 'superuser')->textInput() ?>
-
-					<?php // $form->field($model, 'status')->textInput() ?>
-
-					<?php $model->is_aggree_with_terms_condition = true; 
-
-					 echo $form->field($model, 'is_aggree_with_terms_condition')->checkbox(['checked'=>true,'uncheck'=>'0','value'=>'1']); ?>
-					
 					<div>
 						<input type="submit" value="create an account" id="register-submit">
 					</div>
 					
 					<br/>
 					<p>Go Back to
-					<a href="<?php echo  Yii::$app->getHomeUrl(); ?>?r=users/login/clogin" class="green">Login</a> | 
-					<a href="<?php echo  Yii::$app->getHomeUrl(); ?>"  class="green">Home</a>
+					<!-- <a href="<?php // echo  Yii::$app->getHomeUrl(); ?>?r=users/login/clogin" class="green">Login</a> |  -->
+					| <a href="<?php echo  Yii::$app->getHomeUrl(); ?>"  class="green">Home</a>
 					</p>
 
 

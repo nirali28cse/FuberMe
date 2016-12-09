@@ -68,6 +68,7 @@ class ItemInfoSearch extends ItemInfo
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['=', 'chef_user_id',Yii::$app->user->id])
             ->andFilterWhere(['like', 'price', $this->price])
             ->andFilterWhere(['like', 'ingredients', $this->ingredients])
             ->andFilterWhere(['like', 'description', $this->description])

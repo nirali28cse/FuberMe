@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ItemImages */
+/* @var $model app\models\DietaryPreference */
 
-$this->title = 'Create Item Images';
-$this->params['breadcrumbs'][] = ['label' => 'Item Images', 'url' => ['index']];
+$this->title = 'Create Dietary Preference';
+$this->params['breadcrumbs'][] = ['label' => 'Dietary Preferences', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="item-images-create">
+<div class="dietary-preference-create">
 
     <h2><?= Html::encode($this->title) ?></h2>
 
