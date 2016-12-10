@@ -19,14 +19,19 @@ use yii\widgets\ActiveForm;
 
 	 <div class="registration">
 		 <div class="registration_left">
-			 <h2>new Password? <span> </span></h2>
-		
+
 			 <div class="registration_form">
 			 <!-- Form -->
 
 				<div class="userdetail-form signin" >
-
-					<?php $form = ActiveForm::begin(); ?>
+				
+				
+				
+					<h2>Please Contact to Admin</h2>
+					
+					<span><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=info@fuberme.com">info@fuberme.com</a></span>
+ 
+					<?php /* $form = ActiveForm::begin(); ?>
 					
 					Username					
 					<input type="text" class="form-control" name="username">
@@ -52,7 +57,7 @@ use yii\widgets\ActiveForm;
 
 
 
-					<?php ActiveForm::end(); ?>
+					<?php ActiveForm::end(); */ ?>
 
 				</div>
 				<!-- /Form -->
@@ -81,7 +86,7 @@ use yii\widgets\ActiveForm;
 			 <!-- /Form -->
 			 </div> */
 			 ?>
-			 <img src="../vendor/bower/fuberme/images/forgotpass.jpg" alt="" style="float: right;" />
+			 <img src="../web/fuberme/images/forgotpass.jpg" alt="" style="float: right;" />
 			 
 		 </div>
 		 <div class="clearfix"></div>

@@ -4,6 +4,8 @@ return [
     'adminEmail' => 'admin@example.com',
     'delivery_method' => array('pickup'=>'Pickup','homedelivery'=>'Home Delivery','both'=>'Both'),
     'payment_method' => array('paypal'=>'Paypal','cod'=>'Cash On Delivery'),
+    'head_up_time' => array('30'=>'30 Min','60'=>'1 Hour','120'=>'2 Hour','240'=>'4 Hour','720'=>'Half Day',
+					'1440'=>'1 Day','2160'=>'1.5 Days','2880'=>'2 Days','4320'=>'3 Days','10080'=>'1 Week'),
     'time_piker' => array('00:00' => '12:00 AM','00:30' => '12:30 AM','01:00' => '1:00 AM',
 							'01:30' => '1:30 AM','02:00' => '2:00 AM','02:30' => '2:30 AM',
 							'03:00' => '3:00 AM','03:30' => '3:30 AM','04:00' => '4:00 AM',

@@ -60,11 +60,17 @@ exit; */
 	
 	$form = ActiveForm::begin([
 		'options'=>['enctype'=>'multipart/form-data'] // important
-	]); ?>
+	]); 
+	
+	// ->hint('testing');
+	
+	
+	
+	?>
 	
 	<div class="row">
 		<div class="col-sm-6">	
-		    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+		    <?= $form->field($model, 'name')->textInput(['maxlength' => true])  ?>
 		</div>	
 		<div class="col-sm-6">	
 		    <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
@@ -113,7 +119,7 @@ exit; */
 		<?php // $form->field($model, 'availability_to_time')->textInput(['maxlength' => true]) ?>
 		<?= $form->field($model, 'head_up_time')
 			->dropDownList(
-				Yii::$app->params['time_piker'],           // Flat array ('id'=>'label')
+				Yii::$app->params['head_up_time'],           // Flat array ('id'=>'label')
 				['prompt'=>'Select Time']    // options
 			);
 		?>
@@ -198,7 +204,7 @@ exit; */
    
 	 <div class="col-sm-12">	
 	<?php
-		$images_array=null; 
+		$images_array=''; 
 		$folder_name='item_images';
 		$user_id=Yii::$app->user->id;
 		if($model->image!=null){
@@ -206,10 +212,10 @@ exit; */
 		}
 		
 	  echo   $form->field($model, 'image')->widget(FileInput::classname(), [
-					'options' => ['accept' => 'image/*','class' =>'btn btn-success'],
+					'options' => ['accept' => 'image/*'],
 					'pluginOptions'=>[
 						'allowedFileExtensions'=>['jpg', 'gif', 'png', 'jpeg'],
-						'showUpload' => false,
+						'showUpload' => true,
 						'initialPreview' =>$images_array,
 						
 

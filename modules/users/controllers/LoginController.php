@@ -49,6 +49,8 @@ class LoginController extends Controller
 				return $this->redirect(['//iteminfo/index']);
 			}elseif(Yii::$app->user->identity->is_admin==1){
 				return $this->redirect(['//cuisinetypeinfo/index']);
+			}elseif(Yii::$app->user->identity->user_type==3){
+					return $this->redirect(['//iteminfo/index']);
 			}else{
 				 return $this->goHome();
 			}

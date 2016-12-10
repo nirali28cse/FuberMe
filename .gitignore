@@ -14,6 +14,7 @@ Thumbs.db
 
 # composer vendor dir
 /web/assets
+/web/fuberme
 
 # composer itself is not needed
 composer.phar

@@ -12,7 +12,7 @@
 			<div class="top_right">
 				<ul>
 			<?php 	if(!Yii::$app->user->isGuest){
-					if(Yii::$app->user->identity->user_type==2){
+					if((Yii::$app->user->identity->user_type==2) or (Yii::$app->user->identity->user_type==3)){
 						$url=Yii::$app->homeUrl.'?r=iteminfo/index';
 					}elseif(Yii::$app->user->identity->is_admin==1){
 						$url=Yii::$app->homeUrl.'?r=cuisinetypeinfo/index';
@@ -23,8 +23,10 @@
 			?>			
 
 						<li class="top_link"><a href="<?php echo $url; ?>"> <span class="glyphicon glyphicon-user"></span> <?php echo Yii::$app->user->identity->email_id; ?></a></li>				
-						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login/logout">LOGOUT</a></li>				
-
+					
+						<?php if(Yii::$app->user->identity->user_type!=1){ ?>
+							<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login/logout">LOGOUT</a></li>				
+						<?php  } ?>
 			<?php }else{ ?>
 						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex">Foodie SignUP</a></li>				
 						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration">Chef SignUP</a></li>				

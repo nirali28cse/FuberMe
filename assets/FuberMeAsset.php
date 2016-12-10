@@ -34,7 +34,7 @@ class FuberMeAsset  extends AssetBundle
         'css/fontAladin.css',
         'css/fontMontserrat.css',
         'css/fontPlayfair.css',
-      //  'css/megamenu.css',
+        'css/megamenu.css',
         'css/etalage.css',        
         'css/form.css',
         'css/jquery-ui.css',
