@@ -32,7 +32,7 @@ $user_id=Yii::$app->user->id;
 								?>
 								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-close"></span> Make Offline',['makeitemlive','id'=>$model->id],['class'=>'item_add items','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Make Offline']) ?>
 								<?php }else{ ?>
-								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-open"></span> Make Live','#',['class'=>'item_add items','data-toggle'=>'popover','data-title'=>'Select End Date','data-html'=>true,'data-placement'=>'right']) ?>
+								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-open"></span> Make Live','#',['class'=>'item_add items','data-toggle'=>'popover','data-title'=>'Select End Date','data-html'=>true,'data-placement'=>'top']) ?>
 								<?php } ?>
 							</div>													
 							<div class="clearfix"> </div>
