@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-
+$user_id=Yii::$app->user->id;
 ?>
 
 					<a href="#"><div class="product-grid love-grid">
@@ -9,7 +9,7 @@ use yii\helpers\Html;
 							<?php if($model->image==null){ ?>
 								<img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/default_item_image.jpg'); ?>"  alt="item image">
 							<?php }else{ ?>
-								<img src="<?php echo  yii\helpers\Url::to('@web/fuberme/1/item_images/'.$model->image); ?>" alt="FuberMe">
+								<img src="<?php echo  yii\helpers\Url::to('@web/fuberme/'.$user_id.'/item_images/'.$model->image); ?>" alt="FuberMe">
 							<?php } ?>
 								
 							<div class="b-wrapper">

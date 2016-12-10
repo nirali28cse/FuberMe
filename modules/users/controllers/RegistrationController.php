@@ -41,13 +41,20 @@ class RegistrationController extends Controller
 		// $this->layout = '/zorens_main/front_layout/registration';
 		
         $model = new Userdetail();
-
+		$user_type=2;
+		if (isset($_POST['Userdetail'])) {
+			$model1=Userdetail::find()->where(['email_id'=>$_POST['Userdetail']['email_id']])->one();
+			if(count($model1)>0){
+				$user_type=3;
+				$model=$model1;
+			}
+		}
 		if ($model->load(Yii::$app->request->post())) {
 		
 			if (isset($_POST['Userdetail'])) {
 				$password=$_POST['Userdetail']['password'];
 				$model->password=MD5($password);	
-				$model->user_type=2;	
+				$model->user_type=$user_type;	
 			}
 			
 			if($model->save()){
@@ -56,6 +63,8 @@ class RegistrationController extends Controller
 					return $this->redirect(['//iteminfo/index']);
 				}elseif(Yii::$app->user->identity->is_admin==1){
 					return $this->redirect(['//cuisinetypeinfo/index']);
+				}elseif(Yii::$app->user->identity->user_type==3){
+					return $this->redirect(['//iteminfo/index']);
 				}else{
 					 return $this->goHome();
 				}
@@ -77,7 +86,9 @@ class RegistrationController extends Controller
 		
         $model = new Cuserdetail();
 
+		
 		if ($model->load(Yii::$app->request->post())) {
+		
 		
 			if (isset($_POST['Cuserdetail'])) {
 /* 				$password=$_POST['Cuserdetail']['password'];
@@ -85,6 +96,16 @@ class RegistrationController extends Controller
 				$model->user_type=1;	
 			}
 			
+
+			if (isset($_POST['Cuserdetail'])) {
+				$model1=Cuserdetail::find()->where(['email_id'=>$_POST['Cuserdetail']['email_id']])->one();
+				if(count($model1)>0){
+					$model=$model1;
+					$model->user_type=3;	
+				}
+			}
+			
+		
 			if($model->save()){
 				Yii::$app->user->switchIdentity($model); // log in
 				if(Yii::$app->user->identity->user_type==2){
