@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
 
 	 <div class="registration">
 		 <div class="registration_left">
-			 <h2>new user? <span> create an account </span></h2>
+			 <h2>SignUP</h2>
 		
 			 <div class="registration_form">
 			 <!-- Form -->

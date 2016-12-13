@@ -19,16 +19,20 @@ use yii\widgets\ActiveForm;
 
 	 <div class="registration">
 		 <div class="registration_left">
-			 <h2>new user? <span> Subscribe </span></h2>
+			 <h2>Still Cooking</h2>
 		
 			 <div class="registration_form">
 			 <!-- Form -->
 
 				<div class="userdetail-form signin" >
-
+					
+					<p>
+					  We will let you know as soon as we are ready to take your order
+					</p>
+					<br/>
 					<?php $form = ActiveForm::begin(); ?>
 
-					<?= $form->field($model, 'email_id')->textInput(['maxlength' => true]) ?>
+					<?= $form->field($model, 'email_id')->label(false)->textInput(['Placeholder'=>'Enter Your Email','maxlength' => true]) ?>
 					
 
 					<div>
@@ -44,6 +48,8 @@ use yii\widgets\ActiveForm;
 
 
 					<?php ActiveForm::end(); ?>
+					
+					<br/>
 
 				</div>
 				<!-- /Form -->
@@ -73,6 +79,11 @@ use yii\widgets\ActiveForm;
 			 </div> */
 			 ?>
 
+					
+					<br/>
+					
+			 <img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/foody.png'); ?>"alt="" style="float: right;" />
+			 
 		 </div>
 		 <div class="clearfix"></div>
 	 </div>

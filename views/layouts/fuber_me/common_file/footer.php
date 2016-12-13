@@ -15,7 +15,7 @@
 				</div> */
 				?>
 			 <p>Help |
-					<a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=info@fuberme.com">info@fuberme.com</a>
+					<a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=info@fuberme.com">fuberme@gmail.com</a>
 			 </p>
 		 </div>	
 

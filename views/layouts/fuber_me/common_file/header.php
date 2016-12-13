@@ -27,11 +27,20 @@
 						<?php if(Yii::$app->user->identity->user_type!=1){ ?>
 							<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login/logout">LOGOUT</a></li>				
 						<?php  } ?>
+						
+						<?php if(Yii::$app->user->identity->user_type==2 or Yii::$app->user->identity->user_type==3){
+								$activeclass=null; if(Yii::$app->controller->id=='iteminfo') $activeclass='yellowactive';
+						?>
+							<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/index" class="<?php echo $activeclass; ?>">My Menu</a></li>	
+						<?php  } ?>
 			<?php }else{ ?>
-						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex">Foodie SignUP</a></li>				
-						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration">Chef SignUP</a></li>				
-						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login">Chef Login</a></li>				
+						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex">Hungry?</a></li>				
+						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration">Start Cooking</a></li>				
+						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login">Chef Login</a></li>							
 			<?php } ?>
+			
+			
+			
 				</ul>
 			</div>
 				
