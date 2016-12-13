@@ -29,7 +29,7 @@ form{
 
 
 <?php //  include('common_file/header_search.php'); ?>
- <?php 	if(!Yii::$app->user->isGuest){ ?>
+ <?php 	if(!Yii::$app->user->isGuest and Yii::$app->user->identity->is_admin){ ?>
 		<?php   include('common_file/chef_header.php'); ?>
  <?php } ?>
 

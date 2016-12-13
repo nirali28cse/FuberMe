@@ -7,19 +7,18 @@ use yii\bootstrap\ActiveForm;
 ?>
 
 <!---->
-<div class="login_sec">
+
 	 <div class="container">
 
 		 <h2>Login</h2>
 		 <div class="col-md-6 log">			 
-				 <p>Welcome, please enter the following to continue.</p>
-				  <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
-					 <h5>Email:</h5>	
+				
+				  <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => true]); ?>
+	
 						<?= $form
 							->field($model, 'email_id')
 							->label(false)
 							->textInput(['placeholder' => $model->getAttributeLabel('email')]) ?>
-					 <h5>Password:</h5>
 						<?= $form
 							->field($model, 'password')
 							->label(false)
@@ -30,13 +29,13 @@ use yii\bootstrap\ActiveForm;
 		 </div>
 		  <div class="col-md-6 login-right">
 			  	<h3>NEW CHEF REGISTRATION</h3>
-				<p>By creating an account with us, you will be able to add your Recipes.</p>
+				<p>
+					Home based chefs who want to sell their home-made food to foodies without leaving their home! Can’t get easier and the best part is doing it when you feel like and get rewarded $$$
+				</p>
 				<a class="acount-btn" href="<?php echo  Yii::$app->getHomeUrl(); ?>?r=users/registration">Create an Account</a>
 		 </div>
 		 <div class="clearfix"></div>
 	 </div>
-</div>
-
 
 
 

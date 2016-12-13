@@ -16,6 +16,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     padding-right: 0px;
     padding-left: 0px;
 }
+.yellowactive{
+    border-color:yellow !important;
+    color: yellow!important;
+}
+
 
 h4, h5, h6,
 h1, h2, h3 {margin: 0;}
@@ -1449,7 +1454,7 @@ font-size:1.3em;
 padding-bottom:10px; 
 }
 .log form {
-margin-top:2em;
+
 }
 .log form input[type="text"],.log form input[type="password"] {
 width: 70%;
@@ -1459,7 +1464,7 @@ font-weight: 400;
 border: 1px solid #D6D6D6;
 outline: none;
 color: #5d5959;
-margin-bottom:2em;
+
 }
 .log form input[type="submit"]{
 font-size: 0.8em;

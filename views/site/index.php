@@ -33,12 +33,12 @@
 			 <div class="col-md-6 sofa-grid">
 <?php /*		 <img src="../vendor/bower/fuberme/images/t2.jpg" alt=""/>
 				 <h3>SPECIAL Italian</h3> */ ?>
-				 <h4><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex" class="btn btn-success">FOODIE SIGNUP</a></h4>
+				 <h4><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex" class="btn btn-success">HUNGRY ?</a></h4>
 			 </div>
 			 <div class="col-md-6 sofa-grid sofs">
 <?php /*       <img src="../vendor/bower/fuberme/images/t1.jpg" alt=""/>
 				 <h3>Special Indian Foods</h3> */ ?>
-				 <h4><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login" class="btn btn-success">CHEF SIGNUP</a></h4>
+				 <h4><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login" class="btn btn-success">START COOKING</a></h4>
 			 </div>
 			 
 <?php } ?>
