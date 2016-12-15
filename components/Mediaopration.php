@@ -14,6 +14,7 @@ class Mediaopration extends Component
 
 	 public static function Getuserfolderpath($user_id)
 	 {
+
 			$user_path = Yii::$app->basePath.'/web/fuberme/'.$user_id;			
 			return $user_path;
 	 }	

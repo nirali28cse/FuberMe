@@ -7,6 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'yii\\swiftmailer\\' => array($vendorDir . '/yiisoft/yii2-swiftmailer'),
+    'yii\\jui\\' => array($vendorDir . '/yiisoft/yii2-jui'),
+    'yii\\imagine\\' => array($vendorDir . '/yiisoft/yii2-imagine'),
     'yii\\gii\\' => array($vendorDir . '/yiisoft/yii2-gii'),
     'yii\\faker\\' => array($vendorDir . '/yiisoft/yii2-faker'),
     'yii\\debug\\' => array($vendorDir . '/yiisoft/yii2-debug'),
@@ -14,6 +16,8 @@ return array(
     'yii\\codeception\\' => array($vendorDir . '/yiisoft/yii2-codeception'),
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
+    'sjaakp\\illustrated\\' => array($vendorDir . '/sjaakp/yii2-illustrated-behavior'),
+    'mongosoft\\file\\' => array($vendorDir . '/mongosoft/yii2-upload-behavior'),
     'kartik\\widgets\\' => array($vendorDir . '/kartik-v/yii2-widgets'),
     'kartik\\typeahead\\' => array($vendorDir . '/kartik-v/yii2-widget-typeahead'),
     'kartik\\touchspin\\' => array($vendorDir . '/kartik-v/yii2-widget-touchspin'),
@@ -36,6 +40,9 @@ return array(
     'kartik\\base\\' => array($vendorDir . '/kartik-v/yii2-krajee-base'),
     'kartik\\alert\\' => array($vendorDir . '/kartik-v/yii2-widget-alert'),
     'kartik\\affix\\' => array($vendorDir . '/kartik-v/yii2-widget-affix'),
+    'karpoff\\icrop\\' => array($vendorDir . '/karpoff/yii2-crop-image-upload'),
+    'cozumel\\cropper\\' => array($vendorDir . '/cozumel/yii2-image-cropper'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
+    'budyaga\\cropper\\' => array($vendorDir . '/budyaga/yii2-cropper'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
 );

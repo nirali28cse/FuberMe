@@ -29,7 +29,7 @@ use yii\widgets\ActiveForm;
 				
 					<h2>Please Contact to Admin</h2>
 					
-					<span><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=info@fuberme.com">info@fuberme.com</a></span>
+					<span><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=info@fuberme.com"><?php echo Yii::$app->params['adminemailid']; ?></a></span>
  
 					<?php /* $form = ActiveForm::begin(); ?>
 					

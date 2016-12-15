@@ -16,7 +16,13 @@ $config = [
     'components' => [
 	
 		'assetManager' => [
-			'linkAssets' => true,
+			'linkAssets' => false,
+		    'bundles' => [
+				'yii\bootstrap\BootstrapAsset' => [
+					'css' => [],
+					'js' => [],
+				],
+			 ],
 		], 
 	
 		'mycomponent' => [ 
@@ -82,6 +88,9 @@ $config = [
 
 		
     ],
+	
+
+
     'params' => $params,
 ];
 

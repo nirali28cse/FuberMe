@@ -74,12 +74,16 @@ body a{
 .top_left{
 	float: left;
 	color:#fff;
-        width: 70%;
+    width: 14%;
 }
 .top_right{
 	float:right;
 	color: #ffffff;
-	margin-top: 1%;
+	margin-top: 2%;
+}
+.top_center{
+    float: left;
+    margin-left: 5%;
 }
 .top_right ul,.top_left ul{
 	padding:0;

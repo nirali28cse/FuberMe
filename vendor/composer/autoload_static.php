@@ -15,6 +15,8 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
+            'yii\\jui\\' => 8,
+            'yii\\imagine\\' => 12,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
@@ -22,6 +24,14 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
             'yii\\codeception\\' => 16,
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
+        ),
+        's' => 
+        array (
+            'sjaakp\\illustrated\\' => 19,
+        ),
+        'm' => 
+        array (
+            'mongosoft\\file\\' => 15,
         ),
         'k' => 
         array (
@@ -47,10 +57,16 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
             'kartik\\base\\' => 12,
             'kartik\\alert\\' => 13,
             'kartik\\affix\\' => 13,
+            'karpoff\\icrop\\' => 14,
         ),
         'c' => 
         array (
+            'cozumel\\cropper\\' => 16,
             'cebe\\markdown\\' => 14,
+        ),
+        'b' => 
+        array (
+            'budyaga\\cropper\\' => 16,
         ),
         'F' => 
         array (
@@ -62,6 +78,14 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
         'yii\\swiftmailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
+        ),
+        'yii\\jui\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-jui',
+        ),
+        'yii\\imagine\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-imagine',
         ),
         'yii\\gii\\' => 
         array (
@@ -90,6 +114,14 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'sjaakp\\illustrated\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sjaakp/yii2-illustrated-behavior',
+        ),
+        'mongosoft\\file\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mongosoft/yii2-upload-behavior',
         ),
         'kartik\\widgets\\' => 
         array (
@@ -179,9 +211,21 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-affix',
         ),
+        'karpoff\\icrop\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/karpoff/yii2-crop-image-upload',
+        ),
+        'cozumel\\cropper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cozumel/yii2-image-cropper',
+        ),
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
+        ),
+        'budyaga\\cropper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/budyaga/yii2-cropper',
         ),
         'Faker\\' => 
         array (
@@ -190,6 +234,13 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
     );
 
     public static $prefixesPsr0 = array (
+        'I' => 
+        array (
+            'Imagine' => 
+            array (
+                0 => __DIR__ . '/..' . '/imagine/imagine/lib',
+            ),
+        ),
         'H' => 
         array (
             'HTMLPurifier' => 

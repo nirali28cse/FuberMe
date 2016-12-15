@@ -19,7 +19,12 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "kartik-v/yii2-widgets": "*",
-        "kartik-v/yii2-widget-timepicker": "@dev"
+        "kartik-v/yii2-widget-timepicker": "@dev",
+        "yiisoft/yii2-imagine": "*",
+        "karpoff/yii2-crop-image-upload": "*",
+        "budyaga/yii2-cropper": "*",
+        "cozumel/yii2-image-cropper": "*",
+        "sjaakp/yii2-illustrated-behavior": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

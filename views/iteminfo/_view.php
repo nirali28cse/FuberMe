@@ -30,18 +30,15 @@ $user_id=Yii::$app->user->id;
 								<?php
 								if($model->status==1){  
 								?>
-								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-close"></span> Make Offline',['makeitemlive','id'=>$model->id],['class'=>'item_add items','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Make Offline']) ?>
+								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-close"></span> Take Offline',['makeitemlive','id'=>$model->id],['class'=>'item_add','style'=>'background: lightgray;color: red;','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Make Offline']) ?>
 								<?php }else{ ?>
-								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-open"></span> Make Live','#',['class'=>'item_add items','data-toggle'=>'popover','data-title'=>'Select End Date','data-html'=>true,'data-placement'=>'top']) ?>
+								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-open"></span> Make Live',['getenddate','id'=>$model->id],['class'=>'item_add items','data-toggle'=>'modal','data-html'=>true,'data-target'=>'#myModal']) ?>
 								<?php } ?>
 							</div>													
 							<div class="clearfix"> </div>
 						</div>
 					</div>
 
-	<div id="popover-content" class="hide popfdsf">
-	  <?php
 
-	  echo Yii::$app->controller->renderPartial('get_enddate',['model' => $model],false,true); ?>	  
-    </div>
+
 		

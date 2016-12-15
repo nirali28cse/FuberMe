@@ -77,7 +77,7 @@ class Cuserdetail extends \yii\db\ActiveRecord implements IdentityInterface
             'payment_method' => 'Payment Method',
             'image_path' => 'Image Path',
             'auth_key' => 'Auth Key',
-            'is_aggree_with_terms_condition' => 'I agree to the terms and conditions',
+            'is_aggree_with_terms_condition' => 'I accept terms and conditions.',
             'date_time' => 'Date Time',
             'is_admin' => 'Is Admin',
             'status' => 'Status',
