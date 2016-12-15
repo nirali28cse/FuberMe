@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-use sjaakp\illustrated\Illustrated;
+
 
 
 /**
@@ -104,23 +104,6 @@ class ItemInfo extends \yii\db\ActiveRecord
     {
         return $this->hasMany(OrderItemInfo::className(), ['item_id' => 'id']);
     }
-	
-	
-		public function behaviors(){
-        return [
-            [
-                "class" => Illustrated::className(),
-                "attributes" => [
-                    "image" => [  // attribute name of the illustration
-					//	'aspectRatio'=>1.0,
-						'cropSize'=>100,     // options for 'picture'
-                    ],
-                         // other illustrations
-                ],
-                    // other Illustrated options
-            ],
-                // other behaviors
-        ];
-    }
+
 
 }
