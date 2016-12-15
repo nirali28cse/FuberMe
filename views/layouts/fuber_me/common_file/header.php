@@ -15,7 +15,9 @@
 
 
 			
-			<?php if(Yii::$app->user->identity->user_type==2 or Yii::$app->user->identity->user_type==3){
+			<?php 
+			if(!Yii::$app->user->isGuest){
+			if(Yii::$app->user->identity->user_type==2 or Yii::$app->user->identity->user_type==3){
 					$activeclass=null; if(Yii::$app->controller->id=='iteminfo') $activeclass='yellowactive';
 			?>
 				<div class="top_right top_center">
@@ -23,6 +25,7 @@
 						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/index" class="<?php echo $activeclass; ?>">My Menu</a></li>	
 					</ul>
 				</div>
+			<?php  } ?>
 			<?php  } ?>
 
 
