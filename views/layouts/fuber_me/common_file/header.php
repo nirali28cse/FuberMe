@@ -1,46 +1,62 @@
-
+	
+			
 <!-- header -->
 <div class="top_bg">
 	<div class="container">
 		<div class="header_top-sec">
 
 			<div class="top_left">
-				<a href="<?php echo Yii::$app->homeUrl; ?>" class="top-sellers"><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/whitelogo.png'); ?>" style="width:15%;" alt="FuberMe"></a>			 
+				<a href="<?php echo Yii::$app->homeUrl; ?>" class="top-sellers">
+				 <img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/whitelogo.png'); ?>" style="width: 100%;" alt="FuberMe">
+				</a>			 
 			</div>
+			
+			
+
+
+			
+			<?php if(Yii::$app->user->identity->user_type==2 or Yii::$app->user->identity->user_type==3){
+					$activeclass=null; if(Yii::$app->controller->id=='iteminfo') $activeclass='yellowactive';
+			?>
+				<div class="top_right top_center">
+					<ul>
+						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/index" class="<?php echo $activeclass; ?>">My Menu</a></li>	
+					</ul>
+				</div>
+			<?php  } ?>
+
+
+
+			
 			
 			
 			<div class="top_right">
 				<ul>
-			<?php 	if(!Yii::$app->user->isGuest){
-					if((Yii::$app->user->identity->user_type==2) or (Yii::$app->user->identity->user_type==3)){
-						$url=Yii::$app->homeUrl.'?r=iteminfo/index';
-					}elseif(Yii::$app->user->identity->is_admin==1){
-						$url=Yii::$app->homeUrl.'?r=cuisinetypeinfo/index';
-					}else{
-						$url=Yii::$app->homeUrl;
-					}
+	<?php 	if(!Yii::$app->user->isGuest){
+			if((Yii::$app->user->identity->user_type==2) or (Yii::$app->user->identity->user_type==3)){
+				$url=Yii::$app->homeUrl.'?r=iteminfo/index';
+			}elseif(Yii::$app->user->identity->is_admin==1){
+				$url=Yii::$app->homeUrl.'?r=cuisinetypeinfo/index';
+			}else{
+				$url=Yii::$app->homeUrl;
+			}
 
-			?>			
-
+	?>					
 						<li class="top_link"><a href="<?php echo $url; ?>"> <span class="glyphicon glyphicon-user"></span> <?php echo Yii::$app->user->identity->email_id; ?></a></li>				
 					
 						<?php if(Yii::$app->user->identity->user_type!=1){ ?>
 							<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login/logout">LOGOUT</a></li>				
 						<?php  } ?>
-						
-						<?php if(Yii::$app->user->identity->user_type==2 or Yii::$app->user->identity->user_type==3){
-								$activeclass=null; if(Yii::$app->controller->id=='iteminfo') $activeclass='yellowactive';
-						?>
-							<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/index" class="<?php echo $activeclass; ?>">My Menu</a></li>	
-						<?php  } ?>
-			<?php }else{ ?>
-						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex">Hungry?</a></li>				
+
+			<?php }else{  ?>
+						<?php 
+						 if(Yii::$app->controller->action->id!='thanku'){ ?>
+							<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex">Hungry?</a></li>	
+						<?php } ?>
 						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration">Start Cooking</a></li>				
 						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login">Chef Login</a></li>							
 			<?php } ?>
-			
-			
-			
+
 				</ul>
 			</div>
 				

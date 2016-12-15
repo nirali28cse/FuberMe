@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\components\Mediaopration;
 use yii\web\UploadedFile;
+use yii\helpers\Url;
 /**
  * IteminfoController implements the CRUD actions for ItemInfo model.
  */
@@ -71,7 +72,48 @@ class IteminfoController extends Controller
 			
 			$folder_name='item_images';
 			$user_id=Yii::$app->user->id;
-			$media_path_array = UploadedFile::getInstances($model, 'image');
+			
+			
+			
+			// image upload			
+			$valid_exts = array('jpeg', 'jpg', 'png', 'gif');
+			$max_file_size = 200 * 1024; #200kb
+			$nw = $nh = 200; # image with # height								
+			if ( isset($_FILES['image']) ) {
+				if (! $_FILES['image']['error'] && $_FILES['image']['size'] < $max_file_size) {
+					$ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+					if (in_array($ext, $valid_exts)) {
+							$image_name=Yii::$app->security->generateRandomString(). '.' . $ext;
+							$path = Yii::$app->basePath.'/web/fuberme/'.$user_id.'/'.$folder_name.'/'.$image_name;
+							$size = getimagesize($_FILES['image']['tmp_name']);
+
+							$x = (int) $_POST['x'];
+							$y = (int) $_POST['y'];
+							$w = (int) $_POST['w'] ? $_POST['w'] : $size[0];
+							$h = (int) $_POST['h'] ? $_POST['h'] : $size[1];
+
+							$data = file_get_contents($_FILES['image']['tmp_name']);
+							$vImg = imagecreatefromstring($data);
+							$dstImg = imagecreatetruecolor($nw, $nh);
+							imagecopyresampled($dstImg, $vImg, 0, 0, $x, $y, $nw, $nh, $w, $h);
+							imagejpeg($dstImg, $path);
+							imagedestroy($dstImg);
+						//	echo "<img src='$path' />";
+							$model->image=$image_name;
+							$model->save();		
+							return $this->redirect(['index']);
+							
+						} else {
+						//	echo 'unknown problem!';
+						} 
+				} else {
+				//	echo 'file is too small or large';
+				}
+			}
+			
+			
+			
+/* 			$media_path_array = UploadedFile::getInstances($model, 'image');
 			if($media_path_array!=null){
 				$old_file_name=$model->image;
 				$new_file_array=$media_path_array;
@@ -83,7 +125,7 @@ class IteminfoController extends Controller
 					}						
 					return $this->redirect(['index']);
 				}
-			}
+			} */
 
 			if ($model->save()) {
 				return $this->redirect(['index']);
@@ -115,8 +157,56 @@ class IteminfoController extends Controller
 
 			$folder_name='item_images';
 			$user_id=Yii::$app->user->id;
-			$media_path_array = UploadedFile::getInstances($model, 'image');
+						
+						
+			// image upload			
+			$valid_exts = array('jpeg', 'jpg', 'png', 'gif');
+			$max_file_size = 200 * 1024; #200kb
+			$nw = $nh = 200; # image with # height								
+			if ( isset($_FILES['image']) ) {
+				if (! $_FILES['image']['error'] && $_FILES['image']['size'] < $max_file_size) {
+					$ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+					if (in_array($ext, $valid_exts)) {
+							$image_name=Yii::$app->security->generateRandomString(). '.' . $ext;
+							$path = Yii::$app->basePath.'/web/fuberme/'.$user_id.'/'.$folder_name.'/'.$image_name;
+							$size = getimagesize($_FILES['image']['tmp_name']);
+
+							$x = (int) $_POST['x'];
+							$y = (int) $_POST['y'];
+							$w = (int) $_POST['w'] ? $_POST['w'] : $size[0];
+							$h = (int) $_POST['h'] ? $_POST['h'] : $size[1];
+
+							$data = file_get_contents($_FILES['image']['tmp_name']);
+							$vImg = imagecreatefromstring($data);
+							$dstImg = imagecreatetruecolor($nw, $nh);
+							imagecopyresampled($dstImg, $vImg, 0, 0, $x, $y, $nw, $nh, $w, $h);
+							imagejpeg($dstImg, $path);
+							imagedestroy($dstImg);
+						//	echo "<img src='$path' />";
+							$model->image=$image_name;
+							$model->save();		
+							// delete old image upload
+							$old_image_delete=Mediaopration::Delete($old_file_name,$folder_name,$user_id);
+							return $this->redirect(['index']);
+							
+						} else {
+						//	echo 'unknown problem!';
+						} 
+				} else {
+				//	echo 'file is too small or large';
+				}
+			}else{
+				$model->image=$old_file_name;
+			}
 			
+			
+			
+			
+			
+			
+			
+/* 			$media_path_array = UploadedFile::getInstances($model, 'image');
+
 			// new image upload
 			if($media_path_array!=null){				
 				$new_file_array=$media_path_array;
@@ -133,7 +223,7 @@ class IteminfoController extends Controller
 				}
 			}else{
 				$model->image=$old_file_name;
-			}
+			} */
 			
 			if ($model->save()) {
 				return $this->redirect(['index']);
@@ -151,19 +241,45 @@ class IteminfoController extends Controller
 
 	public function actionMakeitemlive($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($id);		
 		$oldstatus=$model->status;
+		
 		if($oldstatus){
 			$newstatus=0;
 		}else{
 			$newstatus=1;
-		}
+		}	
 		
+		if ($model->load(Yii::$app->request->post())) {
+		}		
 		$model->status=$newstatus;
 		if ($model->save()) {
 			return $this->redirect(['index']);
 		}
     }
+	
+	
+	public function actionGetenddate($id)
+    {
+		$model = $this->findModel($id);
+
+		echo '
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Select End Date</h4>
+			  </div>
+			  <div class="modal-body">';
+				return $this->renderAjax('get_enddate', [
+					'model' => $model,
+				]); 
+		echo '</div>
+			 
+			';
+
+
+	} 
+	
+	
 
     /**
      * Deletes an existing ItemInfo model.
@@ -173,8 +289,15 @@ class IteminfoController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+		$file_name=$model->image;
+		$folder_name='item_images';
+		$user_id=Yii::$app->user->id;			
+		if($file_name!=null){
+			$image_delete=Mediaopration::Delete($file_name,$folder_name,$user_id);
+		}	
 
+        $this->findModel($id)->delete();
         return $this->redirect(['index']);
     }
 

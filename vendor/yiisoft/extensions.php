@@ -237,4 +237,67 @@ return array (
       '@kartik/time' => $vendorDir . '/kartik-v/yii2-widget-timepicker',
     ),
   ),
+  'yiisoft/yii2-imagine' => 
+  array (
+    'name' => 'yiisoft/yii2-imagine',
+    'version' => '2.1.0.0',
+    'alias' => 
+    array (
+      '@yii/imagine' => $vendorDir . '/yiisoft/yii2-imagine',
+    ),
+  ),
+  'mongosoft/yii2-upload-behavior' => 
+  array (
+    'name' => 'mongosoft/yii2-upload-behavior',
+    'version' => '0.1.6.0',
+    'alias' => 
+    array (
+      '@mongosoft/file' => $vendorDir . '/mongosoft/yii2-upload-behavior',
+    ),
+  ),
+  'karpoff/yii2-crop-image-upload' => 
+  array (
+    'name' => 'karpoff/yii2-crop-image-upload',
+    'version' => '0.0.1.0',
+    'alias' => 
+    array (
+      '@karpoff/icrop' => $vendorDir . '/karpoff/yii2-crop-image-upload',
+    ),
+  ),
+  'budyaga/yii2-cropper' => 
+  array (
+    'name' => 'budyaga/yii2-cropper',
+    'version' => '2.0.7.0',
+    'alias' => 
+    array (
+      '@budyaga/cropper' => $vendorDir . '/budyaga/yii2-cropper',
+    ),
+  ),
+  'cozumel/yii2-image-cropper' => 
+  array (
+    'name' => 'cozumel/yii2-image-cropper',
+    'version' => '1.0.0.0',
+    'alias' => 
+    array (
+      '@cozumel/cropper' => $vendorDir . '/cozumel/yii2-image-cropper',
+    ),
+  ),
+  'yiisoft/yii2-jui' => 
+  array (
+    'name' => 'yiisoft/yii2-jui',
+    'version' => '2.0.6.0',
+    'alias' => 
+    array (
+      '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
+    ),
+  ),
+  'sjaakp/yii2-illustrated-behavior' => 
+  array (
+    'name' => 'sjaakp/yii2-illustrated-behavior',
+    'version' => '1.1.1.0',
+    'alias' => 
+    array (
+      '@sjaakp/illustrated' => $vendorDir . '/sjaakp/yii2-illustrated-behavior',
+    ),
+  ),
 );

@@ -6,6 +6,9 @@ use kartik\date\DatePicker;
 use kartik\time\TimePicker;
 use kartik\widgets\FileInput;
 use yii\helpers\Url;
+use sjaakp\illustrated\Uploader;
+
+
 /* @var $this yii\web\View */
 /* @var $model app\models\ItemInfo */
 /* @var $form yii\widgets\ActiveForm */
@@ -32,39 +35,9 @@ use yii\helpers\Url;
 
     <?php 
 
-/* 
-function hoursRange( $lower = 0, $upper = 86400, $step = 1800, $format = '' ) {
-    $times = array();
-
-    if ( empty( $format ) ) {
-        $format = 'g:i a';
-    }
-
-    foreach ( range( $lower, $upper, $step ) as $increment ) {
-        $increment = gmdate( 'H:i', $increment );
-
-        list( $hour, $minutes ) = explode( ':', $increment );
-
-        $date = new DateTime( $hour . ':' . $minutes );
-
-        $times["'".(string) $increment."'"] = "'".$date->format( $format )."'";
-    }
-
-    return $times;
-}
-
-$sds=hoursRange();
-echo '<pre>';
-print_r($sds);
-exit; */
-	
 	$form = ActiveForm::begin([
 		'options'=>['enctype'=>'multipart/form-data'] // important
 	]); 
-	
-	// ->hint('testing');
-	
-	
 	
 	?>
 	
@@ -136,13 +109,14 @@ exit; */
 				<?= $form->field($model, 'availability_from_date')->widget(
 											DatePicker::className(), [
 														//	'name' => 'ItemInfo[availability_to_date]', 
-													'value' => date('d-M-Y'),
+													
 													'type' => DatePicker::TYPE_COMPONENT_APPEND,
 													'options' => ['placeholder' => 'Select start date','style'=>'height: 50px;, font-size: 16px;'],
 													'pluginOptions' => [
 														'format' => 'dd-M-yyyy',
 														'todayHighlight' => true,
-														 'autoclose'=>true,
+														'autoclose'=>true,
+														'startDate'=> date('d-M-Y'),														 
 													],
 																
 											]
@@ -174,7 +148,8 @@ exit; */
 													'pluginOptions' => [
 														'format' => 'dd-M-yyyy',
 														'todayHighlight' => true,
-														 'autoclose'=>true,
+														'autoclose'=>true,
+														'startDate'=> date('d-M-Y'),
 													]
 											]
 											);
@@ -208,44 +183,31 @@ exit; */
 		$folder_name='item_images';
 		$user_id=Yii::$app->user->id;
 		if($model->image!=null){
-			$images_array= Yii::$app->basePath.'/web/fuberme/'.$user_id.'/'.$folder_name.'/'.$model->image;			
+			$images_array=yii\helpers\Url::to('@web/fuberme/').$user_id.'/'.$folder_name.'/'.$model->image;			
+			echo '<img id="uploadPreview" src="'.$images_array.'"/>';
+		}else{
+			
+		echo '<img id="uploadPreview" style="display:none;"/>';	
 		}
 		
-	  echo   $form->field($model, 'image')->widget(FileInput::classname(), [
-					'options' => ['accept' => 'image/*'],
-					'pluginOptions'=>[
-						'allowedFileExtensions'=>['jpg', 'gif', 'png', 'jpeg'],
-						'showUpload' => true,
-						'initialPreview' =>$images_array,
-						
 
-					],
-				]);	
-				
-				
-		/* $form->field($model, 'image')->widget(FileInput::classname(), [
-				'options' => [
-							'accept' => 'image/*',
-							 'multiple' => false,
-							 
-							],
-				'pluginOptions'=>[
-						'allowedFileExtensions'=>['jpg', 'gif', 'png', 'jpeg'],
-						'uploadExtraData' => [
-						//	'item_info_id' => $_GET['iteminfoid'],
-						],
-						'initialPreview' =>$images_array,
-					//	'overwriteInitial' => false,
-						'maxFileCount' =>5,
-						'showPreview' => true,
-						'showCaption' => true,
-						'showRemove' => true,
-						'showUpload' => true,
-					],
-				
-			]); */
-		
 		?>
+		
+		
+		
+	
+	<!-- image uploading form -->
+
+		<input id="uploadImage" type="file" accept="image/*" name="image" />
+		
+
+		<!-- hidden inputs -->
+		<input type="hidden" id="x" name="x" />
+		<input type="hidden" id="y" name="y" />
+		<input type="hidden" id="w" name="w" />
+		<input type="hidden" id="h" name="h" />
+
+	
 	 </div>
    
 

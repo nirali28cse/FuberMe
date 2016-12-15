@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use sjaakp\illustrated\Illustrated;
+
 
 /**
  * This is the model class for table "item_info".
@@ -42,7 +44,7 @@ class ItemInfo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['chef_user_id', 'name', 'price', 'delivery_method', 'item_cuisine_type_info_id', 'item_category_info_id'], 'required'],
+            [['chef_user_id', 'name', 'price', 'delivery_method', 'item_cuisine_type_info_id', 'item_category_info_id','head_up_time','availability_from_date', 'availability_to_date', 'availability_from_time', 'availability_to_time'], 'required'],
             [['chef_user_id', 'item_category_info_id', 'item_cuisine_type_info_id', 'status'], 'integer'],
             [['ingredients', 'description'], 'string'],
             [['date_time'], 'safe'],
@@ -69,11 +71,11 @@ class ItemInfo extends \yii\db\ActiveRecord
             'ingredients' => 'Ingredients',
             'description' => 'Description',
             'delivery_method' => 'Delivery Method',
-            'head_up_time' => 'Preparation time',
+            'head_up_time' => 'Preparation Time',
             'availability_from_date' => 'Available FROM',
-            'availability_from_time' => 'Availability From Time',
+            'availability_from_time' => 'From Time',
             'availability_to_date' => 'TO',
-            'availability_to_time' => 'Availability To Time',
+            'availability_to_time' => 'To Time',
             'date_time' => 'Date Time',
             'status' => 'Status',
         ];
@@ -102,4 +104,23 @@ class ItemInfo extends \yii\db\ActiveRecord
     {
         return $this->hasMany(OrderItemInfo::className(), ['item_id' => 'id']);
     }
+	
+	
+		public function behaviors(){
+        return [
+            [
+                "class" => Illustrated::className(),
+                "attributes" => [
+                    "image" => [  // attribute name of the illustration
+					//	'aspectRatio'=>1.0,
+						'cropSize'=>100,     // options for 'picture'
+                    ],
+                         // other illustrations
+                ],
+                    // other Illustrated options
+            ],
+                // other behaviors
+        ];
+    }
+
 }

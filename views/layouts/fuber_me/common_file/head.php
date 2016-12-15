@@ -8,6 +8,10 @@ $favicon_href = yii\helpers\Url::to('@web/default_images/favicon.ico');
 ?>
 
 <title>FuberMe</title>
+
+
+
+
 </head>
 
 

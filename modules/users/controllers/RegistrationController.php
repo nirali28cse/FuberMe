@@ -104,16 +104,18 @@ class RegistrationController extends Controller
 					$model->user_type=3;	
 				}
 			}
+
 			
-		
 			if($model->save()){
 				Yii::$app->user->switchIdentity($model); // log in
 				if(Yii::$app->user->identity->user_type==2){
 					return $this->redirect(['//iteminfo/index']);
 				}elseif(Yii::$app->user->identity->is_admin==1){
 					return $this->redirect(['//cuisinetypeinfo/index']);
-				}else{
-					 return $this->goHome();
+				}else{					
+					 Yii::$app->user->logout();
+					 return $this->redirect(['//site/thanku']);
+				//	 return $this->goHome();
 				}
 			}
 

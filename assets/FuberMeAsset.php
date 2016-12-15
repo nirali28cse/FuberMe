@@ -38,6 +38,7 @@ class FuberMeAsset  extends AssetBundle
         'css/etalage.css',        
         'css/form.css',
         'css/jquery-ui.css',
+        'css/imgareaselect-animated.css',
     ];
     public $js = [
 	//	'js/jquery.easydropdown.js',
@@ -49,7 +50,11 @@ class FuberMeAsset  extends AssetBundle
 		'js/responsiveslides.min.js',
 		'js/simpleCart.min.js',
 		'js/jquery.flexisel.js',
+		'js/jquery.min.js',
+		'js/jquery.imgareaselect.pack.js',
+		'js/script.js',
     ];
+
 	
 	
 /*     public $depends = [

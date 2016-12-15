@@ -31,15 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
 						<p>
 							<?= Html::a('Add New Item', ['create'], ['class' => 'btn btn-success']) ?>
 						</p>
-						
-						
-						
+												
+
 						
 						<?php
 						
 						
 						 echo  ListView::widget([
-								'dataProvider' => $dataProvider,
+								'dataProvider' => $dataProvider,	
+								 'emptyText' => '<center><h2>Start adding your dishes.</h2></center>',
 								'itemOptions' => ['class' => 'item'],
 						/*         'itemView' => function ($model, $key, $index, $widget) {
 										return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
@@ -55,52 +55,6 @@ $this->params['breadcrumbs'][] = $this->title;
 								
 						]); 
 
-						
-
-						/*
-						GridView::widget([
-							'dataProvider' => $dataProvider,
-							'filterModel' => $searchModel,
-							'columns' => [
-								['class' => 'yii\grid\SerialColumn'],
-
-							   // 'id',
-							   // 'chef_user_id',
-								'name',
-								'price',
-								'item_category_info_id',
-								'item_cuisine_type_info_id',
-								// 'ingredients:ntext',
-								// 'description:ntext',
-								'delivery_method',
-								// 'head_up_time',
-								'availability_from_date',
-								'availability_from_time',  
-								'availability_to_date',
-								'availability_to_time',
-								// 'date_time',
-								'status',
-
-								[
-									'class' => 'yii\grid\ActionColumn',
-									'template' => '{images} {view} {update} {delete}',
-									'buttons' => [
-										'images' => function ($url) {
-											return Html::a(
-												'<span class="glyphicon glyphicon-picture"></span>',
-												Yii::$app->homeUrl.'?r=itemimages/create&iteminfoid=1', 
-												[
-													'title' => 'Images',
-													'data-pjax' => '0',
-												]
-											);
-										},
-									],
-								],
-
-							],
-						]); 
-						*/
 						?>
 					</div>
 
@@ -112,13 +66,14 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>	
 
 
-<script>
-$("[data-toggle=popover]").popover({
-    html: true, 
-	content: function() {
-          return $('#popover-content').html();
-        }
-});
 
+<!-- Default bootstrap modal example -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-</script>
+    </div>
+  </div>
+</div>
+
+	
