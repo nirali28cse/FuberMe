@@ -12,7 +12,20 @@ use sjaakp\illustrated\Uploader;
 /* @var $this yii\web\View */
 /* @var $model app\models\ItemInfo */
 /* @var $form yii\widgets\ActiveForm */
+
+
+$this->registerJsFile('@bower/fuberme/js/jquery.min.js',array(
+		'position' => \yii\web\View::POS_HEAD
+	));
+$this->registerJsFile('@bower/fuberme/js/jquery.imgareaselect.pack.js',array(
+		'position' => \yii\web\View::POS_HEAD
+	));
+$this->registerJsFile('@bower/fuberme/js/script.js',array(
+		'position' => \yii\web\View::POS_HEAD
+	));
 ?>
+
+
 
 <style>
 .datepicker table tr td.active:active:hover, .datepicker table tr td.active.highlighted:active:hover, .datepicker table tr td.active.active:hover, .datepicker table tr td.active.highlighted.active:hover, .datepicker table tr td.active:active:focus, .datepicker table tr td.active.highlighted:active:focus, .datepicker table tr td.active.active:focus, .datepicker table tr td.active.highlighted.active:focus, .datepicker table tr td.active:active.focus, .datepicker table tr td.active.highlighted:active.focus, .datepicker table tr td.active.active.focus, .datepicker table tr td.active.highlighted.active.focus{
