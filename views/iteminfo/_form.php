@@ -14,15 +14,16 @@ use sjaakp\illustrated\Uploader;
 /* @var $form yii\widgets\ActiveForm */
 
 
-$this->registerJsFile('@bower/fuberme/js/jquery.min.js',array(
+$this->registerJsFile(Url::to('@web/fuberme/js/jquery.min.js'),array(
 		'position' => \yii\web\View::POS_HEAD
 	));
-$this->registerJsFile('@bower/fuberme/js/jquery.imgareaselect.pack.js',array(
+$this->registerJsFile(Url::to('@web/fuberme/js/jquery.imgareaselect.pack.js'),array(
 		'position' => \yii\web\View::POS_HEAD
 	));
-$this->registerJsFile('@bower/fuberme/js/script.js',array(
+$this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 		'position' => \yii\web\View::POS_HEAD
 	));
+
 ?>
 
 
