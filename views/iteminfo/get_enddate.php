@@ -44,7 +44,7 @@ use kartik\date\DatePicker;
 												// 'name' => 'ItemInfo[availability_to_date]', 
 													
 													'type' => DatePicker::TYPE_COMPONENT_APPEND,
-													'options' => ['placeholder' => 'Select end date','value' => date('d-M-Y'),'style'=>'height: 50px;, font-size: 16px;'],
+													'options' => ['placeholder' => 'Select end date','style'=>'height: 50px;, font-size: 16px;'],
 													'pluginOptions' => [
 														'format' => 'dd-M-yyyy',
 														'todayHighlight' => true,
