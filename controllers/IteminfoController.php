@@ -162,7 +162,8 @@ class IteminfoController extends Controller
 			// image upload			
 			$valid_exts = array('jpeg', 'jpg', 'png', 'gif');
 			$max_file_size = 200 * 1024; #200kb
-			$nw = $nh = 200; # image with # height								
+			$nw  = 340; # image with # height
+			$nh	= 220;		
 			if ( isset($_FILES['image']) ) {
 				if (! $_FILES['image']['error'] && $_FILES['image']['size'] < $max_file_size) {
 					$ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
@@ -185,8 +186,10 @@ class IteminfoController extends Controller
 						//	echo "<img src='$path' />";
 							$model->image=$image_name;
 							$model->save();		
-							// delete old image upload
-							$old_image_delete=Mediaopration::Delete($old_file_name,$folder_name,$user_id);
+							if($old_file_name!=null){
+								// delete old image upload
+								$old_image_delete=Mediaopration::Delete($old_file_name,$folder_name,$user_id);	
+							}							
 							return $this->redirect(['index']);
 							
 						} else {

@@ -45,7 +45,7 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['username', 'mobile_number', 'email_id','city','state', 'zipcode', 'password', 'address', 'delivery_method', 'payment_method'], 'required'],
-            ['is_aggree_with_terms_condition', 'required', 'requiredValue' => 1, 'message' => 'Agree terms and condition'],
+            ['is_aggree_with_terms_condition', 'required', 'requiredValue' => 1, 'message' => 'Please check this box to proceed.'],
 			[['address'], 'string'],
             [['zipcode'], 'number'],
             [['user_type', 'is_aggree_with_terms_condition','is_admin', 'status'], 'integer'],
@@ -55,6 +55,7 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
 			['email_id', 'email'],
 			['paypal_email', 'email'],
             [['image_path', 'auth_key'], 'string', 'max' => 500],
+           
 			[
             'city',
             'match', 'not' => true, 'pattern' => '/[^[a-zA-Z0-9_ ]*$]/',
@@ -62,8 +63,10 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
 
 			[
             'mobile_number',
-            'match', 'not' => true, 'pattern' => '/[^0-9_-]/',
+            'match','not' => true, 'pattern' => '/[^0-9_-]/'
 			],
+			['mobile_number', 'string', 'min' => 10, 'message' => 'Mobile Number should contain at least 10 digits.'],
+			 
 			['paypal_email', 'required', 'when' => function($model) {
 					return $model->payment_method == 'paypal';
 				}, 'whenClient' => "function (attribute, value) {
