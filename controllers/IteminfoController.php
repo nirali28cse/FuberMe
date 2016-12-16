@@ -81,6 +81,18 @@ class IteminfoController extends Controller
 			$nw = $nh = 200; # image with # height								
 			if ( isset($_FILES['image']) ) {
 				if (! $_FILES['image']['error'] && $_FILES['image']['size'] < $max_file_size) {
+						
+					$user_path = Yii::$app->basePath.'/web/fuberme/'.$user_id;		
+					if ($user_path && ! file_exists($user_path))
+					{
+						mkdir($user_path, 0755, true);	
+					} 
+					$folder_path = $user_path.'/'.$folder_name;		
+					if ($folder_path && ! file_exists($folder_path))
+					{
+						mkdir($folder_path, 0755, true);
+					} 	
+						
 					$ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
 					if (in_array($ext, $valid_exts)) {
 							$image_name=Yii::$app->security->generateRandomString(). '.' . $ext;
@@ -166,6 +178,21 @@ class IteminfoController extends Controller
 			$nh	= 220;		
 			if ( isset($_FILES['image']) ) {
 				if (! $_FILES['image']['error'] && $_FILES['image']['size'] < $max_file_size) {
+					
+						
+					$user_path = Yii::$app->basePath.'/web/fuberme/'.$user_id;		
+					if ($user_path && ! file_exists($user_path))
+					{
+						mkdir($user_path, 0755, true);	
+					} 
+					$folder_path = $user_path.'/'.$folder_name;		
+					if ($folder_path && ! file_exists($folder_path))
+					{
+						mkdir($folder_path, 0755, true);
+					} 	
+						
+
+					
 					$ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
 					if (in_array($ext, $valid_exts)) {
 							$image_name=Yii::$app->security->generateRandomString(). '.' . $ext;
