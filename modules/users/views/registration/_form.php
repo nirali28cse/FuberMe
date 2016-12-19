@@ -34,7 +34,7 @@ use yii\widgets\ActiveForm;
 						
 					<?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 		
-					<?= $form->field($model, 'mobile_number')->hint('e.g. 5085551234',['class'=>'green'])->textInput(['minlength' => '10','maxlength' => '12']) ?>
+					<?= $form->field($model, 'mobile_number')->hint('e.g. 5085551234',['class'=>'green'])->textInput(['minlength' => '10','maxlength' => '10']) ?>
 					
 					
 					<?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>	
@@ -51,7 +51,7 @@ use yii\widgets\ActiveForm;
 					?>
 
 					
-					<?= $form->field($model, 'zipcode')->textInput(['maxlength' => true]) ?>
+					<?= $form->field($model, 'zipcode')->hint('e.g. 01581',['class'=>'green'])->textInput(['minlength' => '5','maxlength' => '5']) ?>
 					
 
 					

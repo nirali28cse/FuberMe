@@ -22,7 +22,7 @@
 					//	['label' => 'Dashbord', 'url' => ['users/default']],
 						// ['label' => 'Cuisine Type Info', 'url' => ['cuisinetypeinfo/index'], 'visible' => Yii::$app->user->isGuest],
 						['label' => 'Cuisine Type', 'url' => [ '/cuisinetypeinfo/index'],'active'=>Yii::$app->controller->id=='cuisinetypeinfo'],
-						['label' => 'Main Entree', 'url' => ['/itemcategoryinfo/index'],'active'=>Yii::$app->controller->id=='itemcategoryinfo'],
+						['label' => 'Category', 'url' => ['/itemcategoryinfo/index'],'active'=>Yii::$app->controller->id=='itemcategoryinfo'],
 						['label' => 'Dietary Preference', 'url' => ['/dietarypreference/index'],'active'=>Yii::$app->controller->id=='dietarypreference'],
 					//	['label' => 'My Menu', 'url' => ['/iteminfo/index']],
 					],
