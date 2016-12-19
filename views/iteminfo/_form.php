@@ -198,10 +198,10 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 		$user_id=Yii::$app->user->id;
 		if($model->image!=null){
 			$images_array=yii\helpers\Url::to('@web/fuberme/').$user_id.'/'.$folder_name.'/'.$model->image;			
-			echo '<img id="uploadPreview" src="'.$images_array.'" style="" />';
+			echo '<img id="uploadPreview" src="'.$images_array.'" style="max-width: 700px;" />';
 		}else{
 			
-		echo '<img id="uploadPreview" style="" />';	
+		echo '<img id="uploadPreview" style="max-width: 700px;" />';	
 		}
 		
 

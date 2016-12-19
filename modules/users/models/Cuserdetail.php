@@ -67,7 +67,7 @@ class Cuserdetail extends \yii\db\ActiveRecord implements IdentityInterface
             'id' => 'ID',
             'username' => 'Username',
             'mobile_number' => 'Mobile Number',
-            'email_id' => 'Email ( This will be your login id )',
+            'email_id' => 'Email',
             'address' => 'Address',
             'city' => 'City',
             'state' => 'State',

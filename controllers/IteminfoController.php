@@ -77,10 +77,11 @@ class IteminfoController extends Controller
 			
 			// image upload			
 			$valid_exts = array('jpeg', 'jpg', 'png', 'gif');
-			$max_file_size = 200 * 1024; #200kb
-			$nw = $nh = 200; # image with # height								
+			$max_file_size = $_FILES['image']['size']; #200kb
+			$nw = 350;# image with # height			
+			$nh = 250; 							
 			if ( isset($_FILES['image']) ) {
-				if (! $_FILES['image']['error'] && $_FILES['image']['size'] < $max_file_size) {
+				if (! $_FILES['image']['error'] && $_FILES['image']['size'] <= $max_file_size) {
 						
 					$user_path = Yii::$app->basePath.'/web/fuberme/'.$user_id;		
 					if ($user_path && ! file_exists($user_path))
@@ -173,11 +174,12 @@ class IteminfoController extends Controller
 						
 			// image upload			
 			$valid_exts = array('jpeg', 'jpg', 'png', 'gif');
-			$max_file_size = 200 * 1024; #200kb
-			$nw  = 340; # image with # height
-			$nh	= 220;		
+			$max_file_size =$_FILES['image']['size']; //  200 * 1024; #200kb
+			$nw = 350;# image with # height			
+			$nh = 250; 
+			
 			if ( isset($_FILES['image']) ) {
-				if (! $_FILES['image']['error'] && $_FILES['image']['size'] < $max_file_size) {
+				if (! $_FILES['image']['error'] && $_FILES['image']['size'] <= $max_file_size) {
 					
 						
 					$user_path = Yii::$app->basePath.'/web/fuberme/'.$user_id;		
@@ -203,6 +205,11 @@ class IteminfoController extends Controller
 							$y = (int) $_POST['y'];
 							$w = (int) $_POST['w'] ? $_POST['w'] : $size[0];
 							$h = (int) $_POST['h'] ? $_POST['h'] : $size[1];
+
+/* 							$percent = 0.5;
+
+							$nw = $size[0] * $percent;
+							$nh = $size[1] * $percent; */
 
 							$data = file_get_contents($_FILES['image']['tmp_name']);
 							$vImg = imagecreatefromstring($data);
@@ -272,12 +279,23 @@ class IteminfoController extends Controller
 	public function actionMakeitemlive($id)
     {
         $model = $this->findModel($id);		
-		$oldstatus=$model->status;
+	//	$oldstatus=$model->status;		
+		$newstatus=$_GET['status'];	
+
+		$newhours = date("H");
+		$newminiute = date("i");		
+		if($newminiute>=0 and $newminiute<=30) $newminiute = '00';
+		if($newminiute>=30 and $newminiute<=60) $newminiute = 30;
+		$newTime = $newhours.':'.$newminiute;
 		
-		if($oldstatus){
-			$newstatus=0;
+		if($newstatus){
+		//	$newstatus=0;
+			$model->availability_to_date=date('d-M-Y');
+			$model->availability_to_time=$newTime;
 		}else{
-			$newstatus=1;
+		//	$newstatus=1;
+			$model->availability_from_date=date('d-M-Y');
+			$model->availability_from_time=$newTime;
 		}	
 		
 		if ($model->load(Yii::$app->request->post())) {

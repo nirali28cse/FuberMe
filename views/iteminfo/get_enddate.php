@@ -30,7 +30,7 @@ use kartik\date\DatePicker;
 
     <?php 
 
-	$form = ActiveForm::begin(['action' => Yii::$app->homeUrl.'?r=iteminfo/makeitemlive&id='.$model->id,'method' => 'post',]); ?>
+	$form = ActiveForm::begin(['action' => Yii::$app->homeUrl.'?r=iteminfo/makeitemlive&id='.$model->id.'&status=1','method' => 'post',]); ?>
 	
 	<div class="row">
 		<div class="col-sm-12"  style="padding: 0;">
