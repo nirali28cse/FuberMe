@@ -86,7 +86,8 @@ use yii\widgets\ActiveForm;
 			 <!-- /Form -->
 			 </div> */
 			 ?>
-			 <img src="../web/fuberme/images/forgotpass.jpg" alt="" style="float: right;" />
+			 <img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/forgotpass.jpg'); ?>" alt="" style="float: right;" />
+			 
 			 
 		 </div>
 		 <div class="clearfix"></div>
