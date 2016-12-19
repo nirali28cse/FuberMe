@@ -62,11 +62,12 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
             'match', 'not' => true, 'pattern' => '/[^[a-zA-Z0-9_ ]*$]/',
 			],
 
-			[
+/* 			[
             'mobile_number',
             'match','not' => true, 'pattern' => '/[^0-9_-]/'
-			],
+			], */
 			['mobile_number', 'string', 'min' => 10, 'message' => 'Mobile Number should contain at least 10 digits.'],
+			['zipcode', 'string', 'min' => 5, 'message' => 'Zip code should contain at least 5 digits.'],
 			 
 			['paypal_email', 'required', 'when' => function($model) {
 					return $model->payment_method == 'paypal';

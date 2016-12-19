@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ItemCategoryInfo */
 
-$this->title = 'Create Main Entree';
+$this->title = 'Create Category';
 $this->params['breadcrumbs'][] = ['label' => 'Item Category Infos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
