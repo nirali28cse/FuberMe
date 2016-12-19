@@ -36,8 +36,8 @@ $user_id=Yii::$app->user->id;
 								$availability_from_date = strtotime($model->availability_from_date);
 								$newhours = date("H");
 								$newminiute = date("i");		
-								if($newminiute>=0 and $newminiute<=30) $newminiute = 00;
-								if($newminiute>=30 and $newminiute<=60) $newminiute = 30;
+								//if($newminiute>=0 and $newminiute<=30) $newminiute = 00;
+								//if($newminiute>=30 and $newminiute<=60) $newminiute = 30;
 								$newTime = $newhours.':'.$newminiute;
 								
 								if(($availability_from_date<=$newdates and $newdates<=$availability_to_date) and ($model->availability_to_time>=$newTime and $newTime<=$model->availability_from_time)){  

@@ -290,12 +290,12 @@ class IteminfoController extends Controller
 		
 		if($newstatus){
 		//	$newstatus=0;
-			$model->availability_to_date=date('d-M-Y');
-			$model->availability_to_time=$newTime;
-		}else{
-		//	$newstatus=1;
 			$model->availability_from_date=date('d-M-Y');
 			$model->availability_from_time=$newTime;
+		}else{
+		//	$newstatus=1;
+			$model->availability_to_date=date('d-M-Y');
+			$model->availability_to_time=$newTime;
 		}	
 		
 		if ($model->load(Yii::$app->request->post())) {
