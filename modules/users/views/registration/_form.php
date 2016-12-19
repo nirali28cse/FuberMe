@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
 
 					<?php $form = ActiveForm::begin(['id'=>'registrationform']); ?>
 
-					<?= $form->field($model, 'email_id')->textInput(['maxlength' => true]) ?>
+					<?= $form->field($model, 'email_id')->label('Email ( This will be your login id )')->textInput(['maxlength' => true]) ?>
 			
 					<?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 						

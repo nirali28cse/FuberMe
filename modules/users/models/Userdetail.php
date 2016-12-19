@@ -53,6 +53,7 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
           //  [['mobile_number'], 'number'],
 		//	['email_id', 'unique', 'targetAttribute' => ['email_id'], 'message' => 'This email already taken.'],
 			['email_id', 'email'],
+			['email_id', 'unique', 'targetAttribute' => ['email_id'], 'message' => 'This email already taken.'],
 			['paypal_email', 'email'],
             [['image_path', 'auth_key'], 'string', 'max' => 500],
            
@@ -84,7 +85,7 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
             'id' => 'ID',
             'username' => 'Name',
             'mobile_number' => 'Mobile Number',
-            'email_id' => 'Email ( This will be your login id )',
+            'email_id' => 'Email',
             'paypal_email' => 'Paypal Email',
             'address' => 'Address',
             'city' => 'City',

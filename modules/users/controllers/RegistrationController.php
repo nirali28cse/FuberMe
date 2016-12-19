@@ -43,7 +43,7 @@ class RegistrationController extends Controller
         $model = new Userdetail();
 		$user_type=2;
 		if (isset($_POST['Userdetail'])) {
-			$model1=Userdetail::find()->where(['email_id'=>$_POST['Userdetail']['email_id']])->one();
+			$model1=Userdetail::find()->where(['email_id'=>$_POST['Userdetail']['email_id']])->where(['user_type'=>'!2'])->one();
 			if(count($model1)>0){
 				$user_type=3;
 				$model=$model1;
