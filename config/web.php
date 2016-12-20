@@ -13,6 +13,7 @@ $config = [
 			],	
 		],	
 	'layout' => '/fuber_me/formlayout',
+	'timeZone' => 'US/Eastern',
     'components' => [
 	
 		'assetManager' => [

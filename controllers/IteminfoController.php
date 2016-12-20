@@ -171,7 +171,9 @@ class IteminfoController extends Controller
 			$folder_name='item_images';
 			$user_id=Yii::$app->user->id;
 						
-						
+/* 			echo '<pre>';
+			print_r($_FILES);
+exit;			 */
 			// image upload			
 			$valid_exts = array('jpeg', 'jpg', 'png', 'gif');
 			$max_file_size =$_FILES['image']['size']; //  200 * 1024; #200kb
