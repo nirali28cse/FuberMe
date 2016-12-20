@@ -47,7 +47,7 @@ $user_id=Yii::$app->user->id;
 									if($availability_from_date!=$newdates and $newdates!=$availability_to_date){
 										$display_offline=1;
 									}else{
-										if($availability_from_date==$newdates and $newTime>=$model->availability_from_time and $model->availability_to_time>=$newTime){
+										if($availability_from_date==$newdates and $newTime>=$model->availability_from_time){
 											$display_offline=1;
 										}
 										if($availability_to_date==$newdates and $newTime>=$model->availability_from_time and $model->availability_to_time>=$newTime){
