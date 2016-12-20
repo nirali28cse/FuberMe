@@ -28,8 +28,9 @@ $user_id=Yii::$app->user->id;
 								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-edit"></span>',['update','id'=>$model->id],['class'=>'item_add items','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Edit'] ) ?> 
 								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-trash"></span>',['delete','id'=>$model->id], ['onclick' => 'return confirm("Are you sure you want to delete this '.$model->name.' ?");','class'=>'item_add items','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Delete']) ?>
 								<?php
-								// echo date_default_timezone_get();
-							//	echo date("h:i:sa");
+								// echo date_default_timezone_get(); 
+
+								// echo date("h:i:sa");
 								$newdate = date("d-M-Y");
 								$newdates = strtotime($newdate);
 								$availability_to_date = strtotime($model->availability_to_date);
@@ -40,7 +41,22 @@ $user_id=Yii::$app->user->id;
 								//if($newminiute>=30 and $newminiute<=60) $newminiute = 30;
 								$newTime = $newhours.':'.$newminiute;
 								
-								if(($availability_from_date<=$newdates and $newdates<=$availability_to_date) and ($model->availability_to_time>=$newTime and $newTime<=$model->availability_from_time)){  
+								
+								$display_offline=0;
+								if($availability_from_date<=$newdates and $newdates<=$availability_to_date){
+									if($availability_from_date!=$newdates and $newdates!=$availability_to_date){
+										$display_offline=1;
+									}else{
+										if($availability_from_date==$newdates and $newTime>=$model->availability_from_time and $model->availability_to_time>=$newTime){
+											$display_offline=1;
+										}
+										if($availability_to_date==$newdates and $newTime>=$model->availability_from_time and $model->availability_to_time>=$newTime){
+											$display_offline=1;
+										}
+									}
+								}
+								
+								if($display_offline==1){  
 								?>
 								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-close"></span> Take Offline',['makeitemlive','id'=>$model->id,'status'=>0],['class'=>'item_add','style'=>'background: lightgray;color: red;','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Make Offline']) ?>
 								<?php }else{ ?>
