@@ -30,7 +30,12 @@ $user_id=Yii::$app->user->id;
 								<?php
 								// echo date_default_timezone_get(); 
 
-								// echo date("h:i:sa");
+/* 								echo date("H:i:sa");
+								 echo '<br/>';
+								 echo $model->availability_from_time;
+								 echo '<br/>';
+								 echo $model->availability_to_time;  */
+								// echo $newhours = date("H");
 								$newdate = date("d-M-Y");
 								$newdates = strtotime($newdate);
 								$availability_to_date = strtotime($model->availability_to_date);
@@ -40,17 +45,19 @@ $user_id=Yii::$app->user->id;
 								//if($newminiute>=0 and $newminiute<=30) $newminiute = 00;
 								//if($newminiute>=30 and $newminiute<=60) $newminiute = 30;
 								$newTime = $newhours.':'.$newminiute;
-								
+								$newTime = strtotime($newTime); 
+								$availability_from_time = strtotime($model->availability_from_time); 
+								$availability_to_time = strtotime($model->availability_to_time); 
 								
 								$display_offline=0;
 								if($availability_from_date<=$newdates and $newdates<=$availability_to_date){
 									if($availability_from_date!=$newdates and $newdates!=$availability_to_date){
 										$display_offline=1;
 									}else{
-										if($availability_from_date==$newdates and $newTime>=$model->availability_from_time){
+										if($availability_from_date==$newdates and ($newTime>=$availability_from_time and $availability_to_time>=$newTime)){
 											$display_offline=1;
 										}
-										if($availability_to_date==$newdates and $newTime>=$model->availability_from_time and $model->availability_to_time>=$newTime){
+										if($availability_to_date==$newdates and $newTime>=$availability_from_time and $availability_to_time>=$newTime){
 											$display_offline=1;
 										}
 									}
