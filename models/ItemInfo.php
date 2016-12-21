@@ -53,6 +53,9 @@ class ItemInfo extends \yii\db\ActiveRecord
 			[['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg,jpeg,gif,png'],
             [['delivery_method', 'head_up_time', 'availability_from_date', 'availability_to_date', 'availability_from_time', 'availability_to_time'], 'string', 'max' => 100],
             [['chef_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['chef_user_id' => 'id']],
+			[['availability_to_date', 'availability_from_date'], 'date', 'format' => 'php:d-M-Y'],
+			['availability_to_date', 'compare', 'compareAttribute' => 'availability_from_date', 'operator' => '>='],
+			
         ];
     }
 
