@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 
 	 <div class="registration">
 				
-					<center><h2>Thank You For Subscribe , we will get back to you soon</h2></center>
+					<center><h2>Thank you for your interest , we will get back to you soon</h2></center>
 		
 		 <div class="clearfix"></div>
 	 </div>
