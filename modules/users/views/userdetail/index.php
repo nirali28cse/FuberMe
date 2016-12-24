@@ -27,32 +27,30 @@ $this->params['breadcrumbs'][] = $this->title;
          //  'id',
             'username',
            // 'password',
-		    'fullname',
-			
-            'email:email',
-		
-             [
-				'attribute' => 'status',
+            'email_id',
+            'mobile_number',
+            [
+				'attribute' => 'Identity',
 				'format' => 'raw',
 				'value' => function ($model) {
-					return $model->status == 0 ? "In Active" : "Active";
+					if($model->user_type == 1){
+						return  "Customer";
+					}	
+					if($model->user_type == 2){
+						return  "Chef";
+					}			
+					if($model->user_type == 3){
+						return  "Chef & Customer";
+					}	
+					if($model->user_type == 0){
+						return  "Admin";
+					}
+					
 				},
 			],
-
-            // 'auth_key',
-            // 'create_at',
-            // 'lastvisit_at',
-            // 'superuser',
-            // 'status',
-            // 'is_agree_with_terms_conditions',
-            // 'is_employeer',
-            // 'is_job_seeker',
-             'api_key',
-             'api_sn',
-
            	[
 				'class' => 'yii\grid\ActionColumn',
-				'template' => '{update}',			
+				'template' => '{delete}',			
 			],
         ],
     ]); 

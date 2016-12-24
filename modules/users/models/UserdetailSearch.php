@@ -18,8 +18,8 @@ class UserdetailSearch extends Userdetail
     public function rules()
     {
         return [
-            [['id', 'status', 'is_agree_with_terms_conditions'], 'integer'],
-            [['mobile_number','name', 'password', 'email_id', 'auth_key', 'date_time'], 'safe'],
+            [['id', 'status'], 'integer'],
+            [['mobile_number','username', 'password', 'email_id', 'auth_key', 'date_time'], 'safe'],
         ];
     }
 
@@ -56,18 +56,20 @@ class UserdetailSearch extends Userdetail
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'create_at' => $this->create_at,            
+            'id' => $this->id,         
             'status' => $this->status,
-            'is_agree_with_terms_conditions' => $this->is_agree_with_terms_conditions,
+            'user_type' => $this->user_type,
+          
            
         ]);
 
         $query->andFilterWhere(['like', 'mobile_number', $this->mobile_number])
             ->andFilterWhere(['like', 'password', $this->password])
-            ->andFilterWhere(['like', 'email_id', $this->email])
-            ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'auth_key', $this->auth_key]);
+            ->andFilterWhere(['like', 'email_id', $this->email_id])
+            ->andFilterWhere(['like', '	username', $this->username])
+            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
+            ->andFilterWhere(['like', 'user_type', $this->user_type]);
+            // ->orFilterWhere(['like', 'user_type', 3]);
 
         return $dataProvider;
     }

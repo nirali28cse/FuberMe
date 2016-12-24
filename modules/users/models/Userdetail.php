@@ -44,7 +44,7 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'mobile_number', 'email_id','city','state', 'zipcode', 'password', 'address', 'delivery_method', 'payment_method'], 'required'],
+            [['username', 'mobile_number', 'email_id','city','state', 'zipcode', 'password', 'address', 'delivery_method', 'payment_method'], 'required', 'message' => '{attribute} is required'],
             ['is_aggree_with_terms_condition', 'required', 'requiredValue' => 1, 'message' => 'Please check this box to proceed.'],
 			[['address'], 'string'],
             [['zipcode'], 'number'],

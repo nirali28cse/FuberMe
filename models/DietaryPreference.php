@@ -28,7 +28,7 @@ class DietaryPreference extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name','status'], 'required'],
+            [['name','status'], 'required', 'message' => '{attribute} is required'],
             [['status'], 'integer'],
             [['date_time'], 'safe'],
             [['name'], 'string', 'max' => 500],

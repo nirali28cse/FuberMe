@@ -50,7 +50,7 @@ body a{
 /*-- header_top --*/
 .top_bg{
   background:#38b662;
-  margin-bottom: 2%;
+ // margin-bottom: 2%;
 }
 .header_top-sec{
   padding: 0 0 8px;
@@ -316,7 +316,7 @@ a i.google:hover {
 /*----*/
 .slider{
 	position:relative;
-	margin:2em 0;
+ // margin:2em 0;
 }
 .rslides {
   position: relative;
@@ -325,6 +325,7 @@ a i.google:hover {
   width: 100%;
   padding: 0;
   margin: 0;
+  height:450px;
   }
 .rslides li {
   -webkit-backface-visibility: hidden;

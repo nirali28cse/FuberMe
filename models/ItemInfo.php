@@ -44,12 +44,12 @@ class ItemInfo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['chef_user_id', 'name', 'price', 'delivery_method', 'item_cuisine_type_info_id','item_dietary_preference', 'item_category_info_id','head_up_time','availability_from_date', 'availability_to_date', 'availability_from_time', 'availability_to_time'], 'required'],
+            [['chef_user_id', 'name', 'price', 'delivery_method', 'item_cuisine_type_info_id','item_dietary_preference', 'item_category_info_id','head_up_time','availability_from_date', 'availability_to_date', 'availability_from_time', 'availability_to_time'], 'required', 'message' => '{attribute} is required'],
             [['chef_user_id', 'item_category_info_id', 'item_cuisine_type_info_id', 'status'], 'integer'],
             [['ingredients', 'description'], 'string'],
             [['date_time'], 'safe'],
             [['name','ingredients', 'description'], 'string', 'max' => 500],
-			['price', 'compare', 'compareValue' => 100, 'operator' => '<=', 'type' => 'number'],
+			['price', 'compare', 'compareValue' => 100, 'operator' => '<=', 'type' => 'number','message'=>'Enter a valid Price up to $100'],
 			[['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg,jpeg,gif,png'],
             [['delivery_method', 'head_up_time', 'availability_from_date', 'availability_to_date', 'availability_from_time', 'availability_to_time'], 'string', 'max' => 100],
             [['chef_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['chef_user_id' => 'id']],
@@ -71,6 +71,7 @@ class ItemInfo extends \yii\db\ActiveRecord
             'price' => 'Price',
             'item_category_info_id' => 'Category',
             'item_cuisine_type_info_id' => 'Cuisine',
+            'item_dietary_preference' => 'Dietary Preference',
             'ingredients' => 'Ingredients',
             'description' => 'Description',
             'delivery_method' => 'Delivery Method',
