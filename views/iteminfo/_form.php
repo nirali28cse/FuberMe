@@ -84,12 +84,21 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 					$item_category_info_id,           // Flat array ('id'=>'label')
 					['prompt'=>'Select Category']    // options
 				);
+			?>		
+		</div>
+	 </div>
+
+	<div class="row">
+		<div class="col-sm-12">	
+			<?php $item_dietary_preference = yii\helpers\ArrayHelper::map(app\models\DietaryPreference::find()->where(['status'=>1])->all(), 'id', 'name'); ?>
+			<?= $form->field($model, 'item_dietary_preference')
+				->dropDownList(
+					$item_dietary_preference,           // Flat array ('id'=>'label')
+					['prompt'=>'Select Dietary Preference']    // options
+				);
 			?>	
 		</div>
 	 </div>
-	
-
-	<br/>
 
 
 	<div class="row">
@@ -184,11 +193,11 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 
 	
 	<div class="col-sm-12">	
-       <?= $form->field($model, 'ingredients')->textarea(['rows' => 6 ]) ?>
+       <?= $form->field($model, 'ingredients')->textarea(['rows' => 6 ,'maxlength' => 500 ]) ?>
 	 </div>
 
 	 <div class="col-sm-12">	
-       <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+       <?= $form->field($model, 'description')->textarea(['rows' => 6,'maxlength' => 500]) ?>
 	 </div>
    
 	 <div class="col-sm-12">	
