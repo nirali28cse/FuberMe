@@ -44,17 +44,17 @@ class ItemInfo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['chef_user_id', 'name', 'price', 'delivery_method', 'item_cuisine_type_info_id', 'item_category_info_id','head_up_time','availability_from_date', 'availability_to_date', 'availability_from_time', 'availability_to_time'], 'required'],
+            [['chef_user_id', 'name', 'price', 'delivery_method', 'item_cuisine_type_info_id','item_dietary_preference', 'item_category_info_id','head_up_time','availability_from_date', 'availability_to_date', 'availability_from_time', 'availability_to_time'], 'required'],
             [['chef_user_id', 'item_category_info_id', 'item_cuisine_type_info_id', 'status'], 'integer'],
             [['ingredients', 'description'], 'string'],
             [['date_time'], 'safe'],
-            [['name'], 'string', 'max' => 500],
-            [['price'], 'number'],
+            [['name','ingredients', 'description'], 'string', 'max' => 500],
+			['price', 'compare', 'compareValue' => 100, 'operator' => '<=', 'type' => 'number'],
 			[['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg,jpeg,gif,png'],
             [['delivery_method', 'head_up_time', 'availability_from_date', 'availability_to_date', 'availability_from_time', 'availability_to_time'], 'string', 'max' => 100],
             [['chef_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['chef_user_id' => 'id']],
 			[['availability_to_date', 'availability_from_date'], 'date', 'format' => 'php:d-M-Y'],
-			['availability_to_date', 'compare', 'compareAttribute' => 'availability_from_date', 'operator' => '>='],
+			['availability_to_date', 'compare', 'compareAttribute' => 'availability_from_date','message'=>'Enter a valid end date that is after the start date.', 'operator' => '>='],
 			
         ];
     }

@@ -7,19 +7,32 @@
 }
 </style>
 
-
+<script>
+    // You can also use "$(window).load(function() {"
+    $(function () {
+      // Slideshow 1
+      $("#slider1").responsiveSlides({
+         auto: true,
+		 nav: true,
+		 speed: 500,
+		 namespace: "callbacks",
+      });
+    });
+  </script>
+  
 <!---->
-<!--  <div class="content">
-	 <div class="container">
+ <div class="content">
+	<!-- <div class="container"> -->
 		 <div class="slider">
 				<ul class="rslides" id="slider1">
-				  <li><img src="../vendor/bower/fuberme/images/banner2.jpg" alt=""></li>
-				  <li><img src="../vendor/bower/fuberme/images/banner1.jpg" alt=""></li>
-				  <li><img src="../vendor/bower/fuberme/images/banner3.jpg" alt=""></li>
+				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/1.jpeg'); ?>" alt=""></li>
+				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/2.jpeg'); ?>" alt=""></li>
+				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/3.jpg'); ?>" alt=""></li>
+				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/4.jpeg'); ?>" alt=""></li>
 				</ul>
 		 </div>
-	 </div>
-</div> -->
+	<!-- </div> -->
+</div> 
 <!---->
 <div class="bottom_content">
 	 <div class="container">
