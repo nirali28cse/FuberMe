@@ -32,7 +32,7 @@ class ItemCategoryInfo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'chef_user_id', 'parent_id'], 'required'],
+            [['name', 'chef_user_id', 'parent_id'], 'required', 'message' => '{attribute} is required'],
             [['chef_user_id', 'parent_id', 'status'], 'integer'],
             [['date_time'], 'safe'],
             [['name'], 'string', 'max' => 100],

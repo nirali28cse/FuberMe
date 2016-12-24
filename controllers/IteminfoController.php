@@ -38,9 +38,24 @@ class IteminfoController extends Controller
     public function actionIndex()
     {
         $searchModel = new ItemInfoSearch();
+		if(Yii::$app->user->identity->is_admin!=1){
+		 $searchModel->chef_user_id = Yii::$app->user->id;	
+		}
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+	
+	
+    public function actionIndex2()
+    {
+        $searchModel = new ItemInfoSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index2', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

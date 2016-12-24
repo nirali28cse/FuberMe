@@ -24,6 +24,9 @@
 						['label' => 'Cuisine Type', 'url' => [ '/cuisinetypeinfo/index'],'active'=>Yii::$app->controller->id=='cuisinetypeinfo'],
 						['label' => 'Category', 'url' => ['/itemcategoryinfo/index'],'active'=>Yii::$app->controller->id=='itemcategoryinfo'],
 						['label' => 'Dietary Preference', 'url' => ['/dietarypreference/index'],'active'=>Yii::$app->controller->id=='dietarypreference'],
+						['label' => 'All Items', 'url' => ['/iteminfo/index2'],'active'=>Yii::$app->controller->id=='iteminfo'],
+						['label' => 'All Users', 'url' => ['/users/userdetail/index'],'active'=>Yii::$app->controller->id=='userdetail'],
+
 					//	['label' => 'My Menu', 'url' => ['/iteminfo/index']],
 					],
 				]);

@@ -20,11 +20,16 @@ class UserdetailController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                 //   'delete' => ['post'],
                 ],
             ],
         ];
     }
+	
+	public function beforeAction($action) {
+		$this->enableCsrfValidation = false;
+		return parent::beforeAction($action);
+	}
 
     /**
      * Lists all Userdetail models.
@@ -39,7 +44,19 @@ class UserdetailController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-    }
+    }  
+
+/* 	public function actionIndexcust()
+    {
+        $searchModel = new UserdetailSearch();
+		$searchModel->user_type=1;	
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    } */
 
     /**
      * Displays a single Userdetail model.
@@ -99,9 +116,9 @@ class UserdetailController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
-    }
+    }  
+
 
     /**
      * Finds the Userdetail model based on its primary key value.
