@@ -69,6 +69,13 @@ class SiteController extends Controller
 		$this->layout = '/fuber_me/homepage';
         return $this->render('thanku');
     }
+	
+	public function actionFaq()
+    {
+		$this->layout = '/fuber_me/homepage';
+        return $this->render('faq');
+    }
+	
     public function actionProducts()
     {
 		$this->layout = '/fuber_me/homepage';

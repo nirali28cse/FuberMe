@@ -25,10 +25,10 @@
 	<!-- <div class="container"> -->
 		 <div class="slider">
 				<ul class="rslides" id="slider1">
-				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/1.jpeg'); ?>" alt=""></li>
-				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/2.jpeg'); ?>" alt=""></li>
+				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/1.jpg'); ?>" alt=""></li>
+				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/2.jpg'); ?>" alt=""></li>
 				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/3.jpg'); ?>" alt=""></li>
-				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/4.jpeg'); ?>" alt=""></li>
+				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/4.jpg'); ?>" alt=""></li>
 				</ul>
 		 </div>
 	<!-- </div> -->
