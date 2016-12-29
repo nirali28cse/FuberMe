@@ -35,6 +35,7 @@
 			
 			<div class="top_right">
 				<ul>
+				<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=site/faq">FAQ</a></li>							
 	<?php 	if(!Yii::$app->user->isGuest){
 			if((Yii::$app->user->identity->user_type==2) or (Yii::$app->user->identity->user_type==3)){
 				$url=Yii::$app->homeUrl.'?r=iteminfo/index';
@@ -59,7 +60,7 @@
 						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration">Start Cooking</a></li>				
 						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login">Chef Login</a></li>							
 			<?php } ?>
-
+					
 				</ul>
 			</div>
 				

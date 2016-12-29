@@ -89,4 +89,8 @@ use yii\widgets\ActiveForm;
 	 </div>
 </div>
 
-
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
