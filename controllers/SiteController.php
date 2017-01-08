@@ -148,8 +148,31 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionAbout()
+    public function actionSendemail($uid)
+    {
+		$send_email=Yii::$app->emailcomponent->Userregistrationverification($uid);
+		return $this->redirect(['//site/thanku']);			
+    }  
+
+	public function actionAbout()
     {
         return $this->render('about');
     }
+		
+	public function actionConfirm($id, $key)
+	{
+		$user = \app\modules\users\models\Userdetail::find()->where([
+		'id'=>$id,
+		'auth_key'=>$key,
+		'status'=>1,
+		])->one();
+		if(!empty($user)){
+		$user->status=1;
+		$user->save();
+		 Yii::$app->user->switchIdentity($model); // log in
+		}
+		
+		return $this->goHome();
+	}
+		
 }

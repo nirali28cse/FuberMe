@@ -39,14 +39,18 @@ class RegistrationController extends Controller
     {
 
 		// $this->layout = '/zorens_main/front_layout/registration';
-		
+		Yii::$app->session->set('email_error', null);
         $model = new Userdetail();
 		$user_type=2;
+		$usend_email=1;	
 		if (isset($_POST['Userdetail'])) {
 			$model1=Userdetail::find()->where(['email_id'=>$_POST['Userdetail']['email_id']])->where(['user_type'=>'!2'])->one();
 			if(count($model1)>0){
 				$user_type=3;
 				$model=$model1;
+				if($model->status==1){
+					$usend_email=0;	
+				}	
 			}
 		}
 		if ($model->load(Yii::$app->request->post())) {
@@ -55,19 +59,24 @@ class RegistrationController extends Controller
 				$password=$_POST['Userdetail']['password'];
 				$model->password=MD5($password);	
 				$model->user_type=$user_type;	
+				$model->auth_key =  Yii::$app->getSecurity()->generateRandomString();
 			}
-			
+
 			if($model->save()){
-				 Yii::$app->user->switchIdentity($model); // log in
-				if(Yii::$app->user->identity->user_type==2){
-					return $this->redirect(['//iteminfo/index']);
-				}elseif(Yii::$app->user->identity->is_admin==1){
-					return $this->redirect(['//cuisinetypeinfo/index']);
-				}elseif(Yii::$app->user->identity->user_type==3){
-					return $this->redirect(['//iteminfo/index']);
+				if($usend_email==1){
+	
+					$send_email=Yii::$app->emailcomponent->Userregistrationverification($model->id);
+					
+					if($send_email==1){
+						return $this->redirect(['//site/thanku']);	
+					}else{
+						$this->findModel($model->id)->delete();
+						Yii::$app->session->set('email_error','<div class="alert alert-danger">This email id is not valid,please try again.</div>');
+					}	
 				}else{
+					 Yii::$app->user->switchIdentity($model); // log in
 					 return $this->goHome();
-				}
+				}			
 			}
 
         } 
@@ -82,17 +91,14 @@ class RegistrationController extends Controller
 	public function actionCindex()
     {
 
-		// $this->layout = '/zorens_main/front_layout/registration';
-		
         $model = new Cuserdetail();
 
-		
 		if ($model->load(Yii::$app->request->post())) {
-		
-		
+		    Yii::$app->session->set('email_error', null);
+			$usend_email=1;
 			if (isset($_POST['Cuserdetail'])) {
-/* 				$password=$_POST['Cuserdetail']['password'];
-				$model->password=MD5($password);	 */
+				$password=$_POST['Cuserdetail']['password'];
+				$model->password=MD5($password);	 
 				$model->user_type=1;	
 			}
 			
@@ -102,29 +108,72 @@ class RegistrationController extends Controller
 				if(count($model1)>0){
 					$model=$model1;
 					$model->user_type=3;	
-				}
+					if($model->status==1){
+						$usend_email=0;	
+					}					
+				}				
 			}
-
+			$model->auth_key =  Yii::$app->getSecurity()->generateRandomString();
 			
-			if($model->save()){
-				Yii::$app->user->switchIdentity($model); // log in
-				if(Yii::$app->user->identity->user_type==2){
-					return $this->redirect(['//iteminfo/index']);
-				}elseif(Yii::$app->user->identity->is_admin==1){
-					return $this->redirect(['//cuisinetypeinfo/index']);
-				}else{					
-					 Yii::$app->user->logout();
-					 return $this->redirect(['//site/thanku']);
-				//	 return $this->goHome();
-				}
+			
+			if (isset($_POST['Userdetail'])) {
+				$password=$_POST['Userdetail']['password'];
+				$model->password=MD5($password);	
+				$model->user_type=$user_type;	
+				$model->auth_key =  Yii::$app->getSecurity()->generateRandomString();
 			}
 
-        } 
+			if($model->save()){				
+				if($usend_email==1){
 		
-            return $this->render('cindex', [
-                'model' => $model,
-            ]);
+					$send_email=Yii::$app->emailcomponent->Userregistrationverification($model->id);
+					
+					if($send_email==1){
+						return $this->redirect(['//site/thanku']);	
+					}else{
+						$this->findModel($model->id)->delete();
+						Yii::$app->session->set('email_error','<div class="alert alert-danger">This email id is not valid,please try again.</div>');
+					}	
+				}else{
+					 Yii::$app->user->switchIdentity($model); // log in
+					 return $this->goHome();
+				}				
+			}
+
+        }
+	
+		return $this->render('cindex', [
+			'model' => $model,
+		]);
 
     } 
+	
+	
+    public function actionUpdate()
+    {
+		$id=Yii::$app->user->id;
+        $model = $this->findModel($id);
+		if($model->user_type==1){
+			$model1 = Cuserdetail::findOne($id);
+			$model=$model1;
+		}
+		
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->goHome();
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
+	
+    protected function findModel($id)
+    {
+        if (($model = Userdetail::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 	
 }

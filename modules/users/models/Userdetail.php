@@ -5,7 +5,7 @@ namespace app\modules\users\models;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
-use yii\helpers\Security;
+use yii\base\Security;
 use yii\web\IdentityInterface;
 
 /**
@@ -208,7 +208,7 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * Generates "remember me" authentication key
      */
-    public function generateAuthKey()
+    public static function generateAuthKey()
     {
         $this->auth_key = Security::generateRandomKey();
     }
@@ -216,7 +216,7 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * Generates new password reset token
      */
-    public function generatePasswordResetToken()
+    public static function generatePasswordResetToken()
     {
         $this->password_reset_token = Security::generateRandomKey() . '_' . time();
     }

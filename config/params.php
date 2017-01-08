@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'adminEmail' => 'admin@example.com',
+    'adminEmail' => 'nirali28cse@gmail.com',
     'adminemailid' => 'contact@fuberme.com',
     'delivery_method' => array('pickup'=>'Pickup','homedelivery'=>'Home Delivery','both'=>'Both'),
     'payment_method' => array('paypal'=>'PayPal','cod'=>'Cash On Delivery'),

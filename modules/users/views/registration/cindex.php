@@ -1,3 +1,4 @@
+
 <?php
 
 use yii\helpers\Html;
@@ -18,38 +19,68 @@ use yii\widgets\ActiveForm;
 <div class="container">
 
 	 <div class="registration">
+
 		 <div class="registration_left">
-			 <h2>Still Cooking</h2>
+	 
+<?php
+     $email_error=Yii::$app->session->get('email_error');
+	 if(!is_null($email_error)){
+		 echo $email_error;
+	 }
+?>	
+	 
+			 <h2>SignUP</h2>
 		
 			 <div class="registration_form">
 			 <!-- Form -->
 
 				<div class="userdetail-form signin" >
-					
-					<p>
-					  We will let you know as soon as we are ready to take your order
-					</p>
-					<br/>
-					<?php $form = ActiveForm::begin(); ?>
 
-					<?= $form->field($model, 'email_id')->label(false)->textInput(['Placeholder'=>'Enter Your Email','maxlength' => true]) ?>
+					<?php $form = ActiveForm::begin(['id'=>'registrationform']); ?>
+
+					<?= $form->field($model, 'email_id')->label('Email ( This will be your login id )')->textInput(['maxlength' => true]) ?>
+			
+					<?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
+						
+					<?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+		
+					<?= $form->field($model, 'mobile_number')->hint('e.g. 5085551234',['class'=>'green'])->textInput(['minlength' => '10','maxlength' => '10']) ?>
+					
+					
+					<?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>	
+
+					<?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
+					
+						
+					<?php $usa_state = yii\helpers\ArrayHelper::map(app\models\UsaState::find()->where(['status'=>1])->all(), 'id', 'name'); ?>
+					<?= $form->field($model, 'state')
+						->dropDownList(
+							$usa_state,           // Flat array ('id'=>'label')
+							['prompt'=>'Select state']    // options
+						);
+					?>
+
+					
+					<?= $form->field($model, 'zipcode')->hint('e.g. 01581',['class'=>'green'])->textInput(['minlength' => '5','maxlength' => '5']) ?>
 					
 
+					<?php $model->is_aggree_with_terms_condition = true; 
+
+					 echo $form->field($model, 'is_aggree_with_terms_condition')->checkbox(['checked'=>true,'uncheck'=>'0','value'=>'1']); ?>
+					
 					<div>
-						<input type="submit" value="Subscribe" id="register-submit">
+						<input type="submit" value="create an account" id="register-submit">
 					</div>
 					
 					<br/>
 					<p>Go Back to
-					<!-- <a href="<?php // echo  Yii::$app->getHomeUrl(); ?>?r=users/login/clogin" class="green">Login</a> |  -->
-					| <a href="<?php echo  Yii::$app->getHomeUrl(); ?>"  class="green">Home</a>
+					<a href="<?php echo  Yii::$app->getHomeUrl(); ?>?r=users/login" class="green">Login</a> | 
+					<a href="<?php echo  Yii::$app->getHomeUrl(); ?>"  class="green">Home</a>
 					</p>
 
 
 
 					<?php ActiveForm::end(); ?>
-					
-					<br/>
 
 				</div>
 				<!-- /Form -->
@@ -78,10 +109,6 @@ use yii\widgets\ActiveForm;
 			 <!-- /Form -->
 			 </div> */
 			 ?>
-
-					
-					<br/>
-					
 			 <img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/foody.png'); ?>"alt="" style="float: right;" />
 			 
 		 </div>
@@ -89,8 +116,18 @@ use yii\widgets\ActiveForm;
 	 </div>
 </div>
 
-<div class="clearfix">&nbsp;</div>
-<div class="clearfix">&nbsp;</div>
-<div class="clearfix">&nbsp;</div>
-<div class="clearfix">&nbsp;</div>
-<div class="clearfix">&nbsp;</div>
+<script>
+
+$('.field-userdetail-paypal_email').hide();
+$("body").on("change","#userdetail-payment_method",function(){
+	var paymentmethod=$(this).val();				
+	if(paymentmethod=='paypal'){
+		$('.field-userdetail-paypal_email').show();
+	}else{
+		$('.field-userdetail-paypal_email').hide();
+	}
+});	
+
+
+
+</script>
