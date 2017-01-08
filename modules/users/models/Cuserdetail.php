@@ -44,17 +44,32 @@ class Cuserdetail extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['email_id'], 'required'],
-          //  ['is_aggree_with_terms_condition', 'required', 'requiredValue' => 1, 'message' => 'Agree terms and condition'],
-		  //  [['address'], 'string'],
-          //  [['zipcode'], 'number'],
-           // [['user_type', 'is_aggree_with_terms_condition', 'mobile_number', 'is_admin', 'status'], 'integer'],
-          //  [['username', 'email_id', 'city', 'state'], 'string', 'max' => 100],
+            [['username', 'mobile_number', 'email_id','city','state', 'zipcode', 'password', 'address'], 'required', 'message' => '{attribute} is required'],
+            ['is_aggree_with_terms_condition', 'required', 'requiredValue' => 1, 'message' => 'Please check this box to proceed.'],
+			[['address'], 'string'],
+            [['zipcode'], 'number'],
+            [['user_type', 'is_aggree_with_terms_condition','is_admin', 'status'], 'integer'],
+            [['username', 'email_id', 'city', 'state'], 'string', 'max' => 100],
           //  [['mobile_number'], 'number'],
-			//['username', 'unique', 'targetAttribute' => ['username'], 'message' => 'This username already taken.'],
-			['email_id', 'unique', 'targetAttribute' => ['email_id'], 'message' => 'This email already taken.'],
+		//	['email_id', 'unique', 'targetAttribute' => ['email_id'], 'message' => 'This email already taken.'],
 			['email_id', 'email'],
-          //  [['image_path', 'auth_key'], 'string', 'max' => 500],
+			['email_id', 'unique', 'targetAttribute' => ['email_id'], 'message' => 'This email already taken.'],
+		//	['paypal_email', 'email'],
+            [['image_path', 'auth_key'], 'string', 'max' => 500],
+           
+			[
+            'city',
+            'match', 'not' => true, 'pattern' => '/[^[a-zA-Z0-9_ ]*$]/',
+			],
+
+/* 			[
+            'mobile_number',
+            'match','not' => true, 'pattern' => '/[^0-9_-]/'
+			], */
+			['mobile_number', 'string', 'min' => 10, 'message' => 'Mobile Number should contain at least 10 digits.'],
+			['zipcode', 'string', 'min' => 5, 'message' => 'Zip code should contain at least 5 digits.'],
+			 
+
         ];
     }
 
@@ -65,9 +80,10 @@ class Cuserdetail extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'username' => 'Username',
+            'username' => 'Name',
             'mobile_number' => 'Mobile Number',
             'email_id' => 'Email',
+            'paypal_email' => 'Paypal Email',
             'address' => 'Address',
             'city' => 'City',
             'state' => 'State',

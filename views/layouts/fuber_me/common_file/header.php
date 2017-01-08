@@ -37,29 +37,34 @@
 				<ul>
 				<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=site/faq">FAQ</a></li>							
 	<?php 	if(!Yii::$app->user->isGuest){
-			if((Yii::$app->user->identity->user_type==2) or (Yii::$app->user->identity->user_type==3)){
+		
+		
+/* 			if((Yii::$app->user->identity->user_type==2) or (Yii::$app->user->identity->user_type==3)){
 				$url=Yii::$app->homeUrl.'?r=iteminfo/index';
 			}elseif(Yii::$app->user->identity->is_admin==1){
 				$url=Yii::$app->homeUrl.'?r=cuisinetypeinfo/index';
 			}else{
 				$url=Yii::$app->homeUrl;
-			}
-
+			} */
+		
+				$url=Yii::$app->homeUrl.'?r=users/registration/update';
 	?>					
-						<li class="top_link"><a href="<?php echo $url; ?>"> <span class="glyphicon glyphicon-user"></span> <?php echo Yii::$app->user->identity->email_id; ?></a></li>				
+						<li class="top_link"><a href="<?php echo $url; ?>"> <span class="glyphicon glyphicon-cog"></span> <?php echo Yii::$app->user->identity->email_id; ?></a></li>				
 					
-						<?php if(Yii::$app->user->identity->user_type!=1){ ?>
-							<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login/logout">LOGOUT</a></li>				
-						<?php  } ?>
+						
+						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login/logout">LOGOUT</a></li>				
+						
 
 			<?php }else{  ?>
 						<?php 
 						 if(Yii::$app->controller->action->id!='thanku'){ ?>
 							<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex">Hungry?</a></li>	
-						<?php } ?>
-						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration">Start Cooking</a></li>				
-						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login">Chef Login</a></li>							
+							<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration">Start Cooking</a></li>		
+						<?php } ?>		
+						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login">Login</a></li>							
 			<?php } ?>
+			
+
 					
 				</ul>
 			</div>

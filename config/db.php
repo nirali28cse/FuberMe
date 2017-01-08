@@ -2,8 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=fuberme',
+    'dsn' => 'mysql:host=54.191.228.76;dbname=fuberme',
     'username' => 'root',
-    'password' => '',
+    'password' => '12345',
     'charset' => 'utf8',
+
 ];

@@ -83,7 +83,7 @@ body a{
 	margin-top: 2%;
 }
 .top_center{
-    float: left;
+    float: left !important;
     margin-left: 5%;
 }
 .top_right ul,.top_left ul{

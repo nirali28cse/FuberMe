@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 	 <div class="registration">
 				
 					<center><h2>Thank you for registering as an Early Bird! <br/>
-					We will let you know as soon as we are ready to take your orders. 
+					Please Verify Your email id first and then go for login. 
 					</h2></center>
 		
 		 <div class="clearfix"></div>

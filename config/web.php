@@ -33,6 +33,10 @@ $config = [
 		'mediacomponent' => [ 
             'class' => 'app\components\Mediaopration', 
         ],	
+		
+		'emailcomponent' => [ 
+            'class' => 'app\components\Emailfunction', 
+        ],	
 
         'view' => [
             'theme' => [
@@ -57,10 +61,19 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
+		//	'viewPath' => '@app/mail',
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+           // 'useFileTransport' => false,
+			'transport' => [
+				'class' => 'Swift_SmtpTransport',
+				'host' => 'smtp.gmail.com',
+				'username' => 'ernirali28@gmail.com',
+				'password' => 'n9510691',
+				'port' => '587',
+				'encryption' => 'tls',
+			],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

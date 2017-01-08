@@ -31,13 +31,13 @@
 					],
 				]);
 			}else{
-				echo yii\widgets\Menu::widget([
+/* 				echo yii\widgets\Menu::widget([
 					'options' => ['class' => 'megamenu skyblue'],
 					'activeCssClass' => 'active',
 					'items' => [
 						['label' => 'My Menu', 'url' => ['/iteminfo/index'],'active'=>Yii::$app->controller->id=='iteminfo'],
 					],
-				]);
+				]); */
 			}
 
 			?>

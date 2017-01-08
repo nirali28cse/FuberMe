@@ -15,8 +15,6 @@ Thumbs.db
 # composer vendor dir
 /vendor
 /web/assets
-/web/fuberme
-/config/db.php
 
 # composer itself is not needed
 composer.phar

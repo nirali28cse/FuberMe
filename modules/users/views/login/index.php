@@ -9,7 +9,14 @@ use yii\bootstrap\ActiveForm;
 <!---->
 
 	 <div class="container">
+	 
+<?php
 
+     $verify_email=Yii::$app->session->get('verify_email');
+	 if(!is_null($verify_email)){
+		 echo $verify_email;
+	 }
+?>	
 		 <h2>Login</h2>
 		 <div class="col-md-6 log">			 
 				

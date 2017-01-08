@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+
 /**
  * RegistrationController implements the CRUD actions for Userdetail model.
  */
@@ -42,19 +43,24 @@ class LoginController extends Controller
         }
 
         $model = new LoginForm();
-
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-
-			if(Yii::$app->user->identity->user_type==2){
-				return $this->redirect(['//iteminfo/index']);
-			}elseif(Yii::$app->user->identity->is_admin==1){
-				return $this->redirect(['//cuisinetypeinfo/index']);
-			}elseif(Yii::$app->user->identity->user_type==3){
+		Yii::$app->session->set('verify_email', null);
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {			
+			if(Yii::$app->user->identity->status==1){
+				if(Yii::$app->user->identity->user_type==2){
 					return $this->redirect(['//iteminfo/index']);
-			}else{
-				 return $this->goHome();
-			}
-             
+				}elseif(Yii::$app->user->identity->is_admin==1){
+					return $this->redirect(['//cuisinetypeinfo/index']);
+				}elseif(Yii::$app->user->identity->user_type==3){
+						return $this->redirect(['//iteminfo/index']);
+				}else{
+					 return $this->goHome();
+				}
+			}else{						
+				Yii::$app->session->set('verify_email','<div class="alert alert-danger">Please Verify Your email and then try login.
+				<a href="'.Yii::$app->homeUrl.'?r=site/sendemail&uid='.Yii::$app->user->id.'" style="float:right;">Click Here To Get Conformation Email.</a>
+				</div>');
+				Yii::$app->user->logout();		
+			}             
         }
 		
         return $this->render('index', [
@@ -62,7 +68,7 @@ class LoginController extends Controller
         ]);
     }   
 
-	public function actionClogin()
+	/* public function actionClogin()
     {
 
         if (!Yii::$app->user->isGuest) {
@@ -83,7 +89,7 @@ class LoginController extends Controller
             'model' => $model,
         ]);
     } 
-	
+	 */
 	 public function actionLogout()
     {
         Yii::$app->user->logout();
