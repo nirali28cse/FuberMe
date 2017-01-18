@@ -12,7 +12,7 @@
 
 
 		<!-- content-starts-here -->
-		<div class="content">
+		<div class="content" style="margin-top: 5%;">
 			<?php  echo $content; ?>
 		</div>
 

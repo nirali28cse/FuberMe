@@ -52,6 +52,11 @@ body a{
 .top_bg{
   background:#38b662;
  // margin-bottom: 2%;
+	top: 0;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
 }
 .header_top-sec{
   padding: 0 0 8px;
@@ -137,8 +142,7 @@ body a{
 	color:#d0ff40;
 	text-decoration: none;
 }
-.item_add:hover{
-}	
+	
 .grid_1 img{
 	margin-bottom:1em;
 }
@@ -893,8 +897,12 @@ ul.tabs-menu li.active a{
 	margin: 0 0 16px 0px;
 }
 .item_add:hover {
-	background:#d0ff40;
+	background:#3ab638;
 } 
+a:hover, a:focus {
+    color: #38b662;
+    text-decoration: none;
+}
 .product-info-price {
 	float: right;
 	background: #fff;

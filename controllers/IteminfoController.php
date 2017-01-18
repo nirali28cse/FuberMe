@@ -60,6 +60,41 @@ class IteminfoController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+	
+    public function actionConhome()
+    {
+		session_start();
+		unset($_SESSION['filetrsarray']);
+		$price=0;
+		$cusion=0;
+		if(isset($_GET['price']) and $_GET['price']>0){
+			$price=$_GET['price'];
+		}		
+		if(isset($_GET['cusion']) and $_GET['cusion']>0){
+			$cusion=$_GET['cusion'];
+		}
+		
+		if(isset($_GET['dcusion']) and $_GET['dcusion']==1){
+			$cusion=0;
+		}		
+		
+		if(isset($_GET['dprice']) and $_GET['dprice']==1){
+			$price=0;
+		}
+		
+		if($cusion>0 or $price>0){
+			$_SESSION['filetrsarray']=array('price'=>$price,'cusion'=>$cusion);
+		}
+		
+		
+        $searchModel = new ItemInfoSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('Conhome', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 
     /**
      * Displays a single ItemInfo model.
@@ -331,7 +366,7 @@ exit;			 */
 		echo '
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Select End Date</h4>
+				<h4 class="modal-title" id="myModalLabel">Select End Date and Time</h4>
 			  </div>
 			  <div class="modal-body">';
 				return $this->renderAjax('get_enddate', [

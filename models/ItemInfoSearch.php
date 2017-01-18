@@ -47,7 +47,33 @@ class ItemInfoSearch extends ItemInfo
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+			'sort' => [
+/* 				'defaultOrder' => [
+					'price' => SORT_DESC,
+					'id' => SORT_DESC,
+				],  */
+				'attributes' => [
+					'price' => [
+						'asc' => [
+							'price' => SORT_ASC, 
+						],
+						'desc' => [
+							'price' => SORT_DESC,
+						],
+					],		
+/* 					'item_cuisine_type_info_id' => [
+						'asc' => [
+							'item_cuisine_type_info_id' => SORT_ASC, 
+						],
+						'desc' => [
+							'item_cuisine_type_info_id' => SORT_DESC,
+						],
+					],		 */			
+				],
+			],
         ]);
+		
+		
 
         $this->load($params);
 
@@ -56,12 +82,34 @@ class ItemInfoSearch extends ItemInfo
             // $query->where('0=1');
             return $dataProvider;
         }
+		
+		
+		$item_category_info_id=$this->item_category_info_id;
+		if(isset($_SESSION['filetrsarray'])){
+			
+			$min_price=0;
+			$max_price=0;
+			if($_SESSION['filetrsarray']['cusion']>0){
+				$item_category_info_id=$_SESSION['filetrsarray']['cusion'];
+			}	
+			
+			if($_SESSION['filetrsarray']['price']>0){
+				$price=$_SESSION['filetrsarray']['price'];
+				if($price==75){ $min_price=75; $max_price=100; }
+				if($price==57){ $min_price=50; $max_price=75; }
+				if($price==25){ $min_price=25; $max_price=50; }
+				if($price==02){ $min_price=5; $max_price=25; }
+				$query->andFilterWhere(['between', 'price', $min_price, $max_price]);	
+			}							
+		}else{
+			$query->andFilterWhere(['like', 'price', $this->price]);
+		}
 
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'chef_user_id' => $this->chef_user_id,
-            'item_category_info_id' => $this->item_category_info_id,
+            'item_category_info_id' => $item_category_info_id,
             'item_cuisine_type_info_id' => $this->item_cuisine_type_info_id,
             'date_time' => $this->date_time,
             'status' => $this->status,
@@ -69,7 +117,6 @@ class ItemInfoSearch extends ItemInfo
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['=', 'chef_user_id',$this->chef_user_id])
-            ->andFilterWhere(['like', 'price', $this->price])
             ->andFilterWhere(['like', 'ingredients', $this->ingredients])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'delivery_method', $this->delivery_method])

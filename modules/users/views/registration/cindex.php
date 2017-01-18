@@ -64,9 +64,9 @@ use yii\widgets\ActiveForm;
 					<?= $form->field($model, 'zipcode')->hint('e.g. 01581',['class'=>'green'])->textInput(['minlength' => '5','maxlength' => '5']) ?>
 					
 
-					<?php $model->is_aggree_with_terms_condition = true; 
+					<?php // $model->is_aggree_with_terms_condition = true; 
 
-					 echo $form->field($model, 'is_aggree_with_terms_condition')->checkbox(['checked'=>true,'uncheck'=>'0','value'=>'1']); ?>
+					 echo $form->field($model, 'is_aggree_with_terms_condition')->checkbox(['checked'=>false]); ?>
 					
 					<div>
 						<input type="submit" value="create an account" id="register-submit">

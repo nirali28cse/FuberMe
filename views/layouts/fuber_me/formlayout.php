@@ -34,7 +34,7 @@ form{
  <?php } ?>
 
 		<!-- content-starts-here -->
-		<div class="content">
+		<div class="content" style="margin-top: 5%;">
 			<div class="login_sec">
 				<div class="container">
 		
