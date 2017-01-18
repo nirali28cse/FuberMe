@@ -50,7 +50,7 @@ class Userdetail extends \yii\db\ActiveRecord implements IdentityInterface
             [['zipcode'], 'number'],
             [['user_type', 'is_aggree_with_terms_condition','is_admin', 'status'], 'integer'],
             [['username', 'email_id', 'city', 'state', 'delivery_method', 'payment_method'], 'string', 'max' => 100],
-          //  [['mobile_number'], 'number'],
+            [['mobile_number'], 'number'],
 		//	['email_id', 'unique', 'targetAttribute' => ['email_id'], 'message' => 'This email already taken.'],
 			['email_id', 'email'],
 			['email_id', 'unique', 'targetAttribute' => ['email_id'], 'message' => 'This email already taken.'],

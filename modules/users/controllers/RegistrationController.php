@@ -75,7 +75,24 @@ class RegistrationController extends Controller
 					}	
 				}else{
 					 Yii::$app->user->switchIdentity($model); // log in
-					 return $this->goHome();
+						// if admin 
+						if(Yii::$app->user->identity->is_admin==1){
+							return $this->redirect(['//cuisinetypeinfo/index']);
+						}else{
+							//if only customer
+							if(Yii::$app->user->identity->user_type==1){
+								return $this->redirect(['//iteminfo/conhome']);
+							}
+							//if only chef
+							if(Yii::$app->user->identity->user_type==2){
+								return $this->redirect(['//iteminfo/index']);
+							}	
+							//if only chef
+							if(Yii::$app->user->identity->user_type==3){
+							//	return $this->goHome();
+								return $this->redirect(['//iteminfo/index']);
+							}
+						}
 				}			
 			}
 
@@ -136,7 +153,24 @@ class RegistrationController extends Controller
 					}	
 				}else{
 					 Yii::$app->user->switchIdentity($model); // log in
-					 return $this->goHome();
+					// if admin 
+					if(Yii::$app->user->identity->is_admin==1){
+						return $this->redirect(['//cuisinetypeinfo/index']);
+					}else{
+						//if only customer
+						if(Yii::$app->user->identity->user_type==1){
+							return $this->redirect(['//iteminfo/conhome']);
+						}
+						//if only chef
+						if(Yii::$app->user->identity->user_type==2){
+							return $this->redirect(['//iteminfo/index']);
+						}	
+						//if only chef
+						if(Yii::$app->user->identity->user_type==3){
+						//	return $this->goHome();
+							return $this->redirect(['//iteminfo/index']);
+						}
+					}
 				}				
 			}
 
