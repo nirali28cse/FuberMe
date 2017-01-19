@@ -35,12 +35,12 @@ jQuery(document).ready(function ($) {
 	// implement imgAreaSelect plug in (http://odyniec.net/projects/imgareaselect/)
 	$('img#uploadPreview').imgAreaSelect({
 		// set crop ratio (optional)
-		 imageWidth: 350,
-		 imageHeight: 250,
+		 imageWidth: 340,
+		 imageHeight: 220,
 		 handles : true,
 		 aspectRatio: '16:9',
-		 maxWidth: 350, 
-		 maxHeight: 250,
+		 maxWidth: 340, 
+		 maxHeight: 215,
 		 onSelectEnd: setInfo
 	});
 });
