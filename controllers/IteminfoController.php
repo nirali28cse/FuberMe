@@ -67,12 +67,20 @@ class IteminfoController extends Controller
 		unset($_SESSION['filetrsarray']);
 		$price=0;
 		$cusion=0;
+		$location=0;
 		if(isset($_GET['price']) and $_GET['price']>0){
 			$price=$_GET['price'];
 		}		
 		if(isset($_GET['cusion']) and $_GET['cusion']>0){
 			$cusion=$_GET['cusion'];
+		}	
+		if(isset($_GET['location']) and $_GET['location']>0){
+			$location=$_GET['location'];
 		}
+		
+		if(isset($_GET['dlocation']) and $_GET['dlocation']==1){
+			$location=0;
+		}	
 		
 		if(isset($_GET['dcusion']) and $_GET['dcusion']==1){
 			$cusion=0;
@@ -82,8 +90,8 @@ class IteminfoController extends Controller
 			$price=0;
 		}
 		
-		if($cusion>0 or $price>0){
-			$_SESSION['filetrsarray']=array('price'=>$price,'cusion'=>$cusion);
+		if($cusion>0 or $price>0 or $location>0){
+			$_SESSION['filetrsarray']=array('price'=>$price,'cusion'=>$cusion,'location'=>$location);
 		}
 		
 		

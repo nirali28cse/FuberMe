@@ -85,12 +85,13 @@ class ItemInfoSearch extends ItemInfo
 		
 		
 		$item_category_info_id=$this->item_category_info_id;
+		$item_cuisine_type_info_id=$this->item_cuisine_type_info_id;
 		if(isset($_SESSION['filetrsarray'])){
 			
 			$min_price=0;
 			$max_price=0;
 			if($_SESSION['filetrsarray']['cusion']>0){
-				$item_category_info_id=$_SESSION['filetrsarray']['cusion'];
+				$item_cuisine_type_info_id=$_SESSION['filetrsarray']['cusion'];
 			}	
 			
 			if($_SESSION['filetrsarray']['price']>0){
@@ -110,7 +111,7 @@ class ItemInfoSearch extends ItemInfo
             'id' => $this->id,
             'chef_user_id' => $this->chef_user_id,
             'item_category_info_id' => $item_category_info_id,
-            'item_cuisine_type_info_id' => $this->item_cuisine_type_info_id,
+            'item_cuisine_type_info_id' => $item_cuisine_type_info_id,
             'date_time' => $this->date_time,
             'status' => $this->status,
         ]);
