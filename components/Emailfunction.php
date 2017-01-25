@@ -19,8 +19,6 @@ class Emailfunction extends Component
 		
 		try
 		{
-		
-			echo $toemail.'<br/>';
 			$emailSend = Yii::$app->mailer->compose()
 				->setFrom([Yii::$app->params['adminemailid'] => 'FuberMe'])
 				->setTo($toemail)
@@ -35,8 +33,9 @@ class Emailfunction extends Component
         }
         catch(\Swift_TransportException $exception)
         {
-			 $response = $exception->getMessage() ;
-            echo 'Can sent mail due to the following exception'.print_r($response);
+			$response = $exception->getMessage() ;
+			echo '<pre>';
+            print_r($response);
 			exit;
         }		
 
@@ -46,6 +45,8 @@ class Emailfunction extends Component
 	{
 		$model=Userdetail::findOne($user_id);
 		$toemail = $model->email_id;
+		$toemail = 'nirali28cse@gmail.com';
+		
 		$subject = 'Signup Confirmation';
 		
 		$emailcontent = "Click this link ".\yii\helpers\Html::a('confirm',
