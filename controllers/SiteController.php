@@ -161,14 +161,14 @@ class SiteController extends Controller
 		
 	public function actionConfirm($id, $key)
 	{
-		$user = \app\modules\users\models\Userdetail::find()->where([
+		$model = \app\modules\users\models\Userdetail::find()->where([
 		'id'=>$id,
 		'auth_key'=>$key,
 		'status'=>0,
 		])->one();
-		if(!empty($user)){
-		$user->status=1;
-		$user->save();
+		if(!empty($model)){
+		$model->status=1;
+		$model->save();
 		 Yii::$app->user->switchIdentity($model); // log in
 		}
 		
