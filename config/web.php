@@ -68,9 +68,9 @@ $config = [
            // 'useFileTransport' => false,
 			'transport' => [
 				'class' => 'Swift_SmtpTransport',
-				'host' => 'smtp.gmail.com',
-				'username' => 'ernirali28@gmail.com',
-				'password' => 'n9510691',
+				'host' => 'smtp.1and1.com',
+				'username' => 'kuldip@icubes.us',
+				'password' => 'Kuldip@12345',
 				'port' => '587',
 				'encryption' => 'tls',
 			],
