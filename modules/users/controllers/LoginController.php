@@ -59,7 +59,7 @@ class LoginController extends Controller
 					if(Yii::$app->user->identity->user_type==2){
 						return $this->redirect(['//iteminfo/index']);
 					}	
-					//if only chef
+					//if only Both
 					if(Yii::$app->user->identity->user_type==3){
 					//	return $this->goHome();
 						return $this->redirect(['//iteminfo/index']);
