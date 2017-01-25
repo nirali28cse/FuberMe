@@ -3,7 +3,7 @@ use yii\helpers\Html;
 $user_id=$model->chef_user_id;
 ?>
 
-					<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/update&id=<?php echo $model->id; ?>"><div class="product-grid love-grid" style="width: auto;">
+					<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/view&id=<?php echo $model->id; ?>"><div class="product-grid love-grid" style="width: auto;">
 						<div class="more-product"><span> </span></div>						
 						<div class="product-img b-link-stripe b-animate-go  thickbox">
 							<?php if($model->image==null){ ?>
@@ -12,11 +12,11 @@ $user_id=$model->chef_user_id;
 								<img src="<?php echo  yii\helpers\Url::to('@web/fuberme/'.$user_id.'/item_images/'.$model->image); ?>" alt="FuberMe">
 							<?php } ?>
 								
-						<!--	<div class="b-wrapper">
+							<div class="b-wrapper">
 							<h4 class="b-animate b-from-left  b-delay03">							
 							<button class="btns"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</button>
 							</h4>
-							</div>  -->
+							</div> 
 						</div></a>						
 						<div class="product-info simpleCart_shelfItem">
 							<div class="product-info-cust">

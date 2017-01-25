@@ -42,9 +42,10 @@ class FuberMeAsset  extends AssetBundle
     ];
     public $js = [
 	//	'js/jquery.easydropdown.js',
-	//	'js/jquery.etalage.min.js',		
+		
 	//	'js/jquery.jscrollpane.min.js',
 		'js/jquery-1.11.1.min.js',
+		'js/jquery.etalage.min.js',		
 		// 'js/megamenu.js',
 		'js/menu_jquery.js',
 		'js/responsiveslides.min.js',

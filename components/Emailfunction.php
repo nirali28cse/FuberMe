@@ -17,17 +17,27 @@ class Emailfunction extends Component
 		$htmlBody='<center>FuberMe</center>';	
 		$htmlBody=$htmlBody.$emailcontent;
 		
-		$emailSend = Yii::$app->mailer->compose()
-			->setFrom([Yii::$app->params['adminemailid'] => 'FuberMe'])
-			->setTo($toemail)
-		 // ->setCc($model->email_2)
-			->setSubject($subject)
-		 // ->setTextBody('This is Plain text content')
-			->setHtmlBody($htmlBody)
-		 // ->attach($model->attachment)
-			->send();
-		
-		return $emailSend;	
+		try
+		{
+			
+			$emailSend = Yii::$app->mailer->compose()
+				->setFrom([Yii::$app->params['adminemailid'] => 'FuberMe'])
+				->setTo($toemail)
+			 // ->setCc($model->email_2)
+				->setSubject($subject)
+			 // ->setTextBody('This is Plain text content')
+				->setHtmlBody($htmlBody)
+			 // ->attach($model->attachment)
+				->send();
+			
+			return $emailSend;	
+        }
+        catch(Swift_SwiftException $exception)
+        {
+            return 'Can sent mail due to the following exception'.print_r($exception);
+			exit;
+        }		
+
 	}	
 
 	public static function Userregistrationverification($user_id)

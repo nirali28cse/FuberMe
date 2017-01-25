@@ -1,0 +1,2936 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://54.144.212.170/panel/Workout/update?id=173 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="3zoQtgJs6Rc2tmHX6iusIkk6rSVUXZM7Mj8wpJWx">
+    <link rel="shortcut icon" href="http://54.144.212.170/packages/serverfireteam/panel/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://54.144.212.170/packages/serverfireteam/panel/favicon.ico" type="image/x-icon">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link media="all" type="text/css" rel="stylesheet" href="./Panel_files/style.css">
+    <!--link media="all" type="text/css" rel="stylesheet" href="http://54.144.212.170/packages/zofe/rapyd/assets/redactor/css/redactor.css"-->
+    <link media="all" type="text/css" rel="stylesheet" href="./Panel_files/datepicker3.css">
+    <link media="all" type="text/css" rel="stylesheet" href="./Panel_files/autocomplete.css">
+    <link media="all" type="text/css" rel="stylesheet" href="./Panel_files/bootstrap-tagsinput.css">
+    <link media="all" type="text/css" rel="stylesheet" href="./Panel_files/bootstrap-colorpicker.min.css">
+    <!--link media="all" type="text/css" rel="stylesheet" href="http://54.144.212.170/packages/serverfireteam/rapyd-laravel/assets/colorpicker/css/bootstrap-colorpicker.min.css" -->
+
+    <!--Admin Manually-->
+    <link href="./Panel_files/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="./Panel_files/cycle-show.css" rel="stylesheet">
+    <link href="./Panel_files/font-awesome.css" rel="stylesheet">
+
+
+    <title>Panel</title>
+    <!-- compiled styles -->
+
+
+    <link href="./Panel_files/styles.css" rel="stylesheet" type="text/css">
+    <link href="./Panel_files/style(1).css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="./Panel_files/css" rel="stylesheet" type="text/css">
+        
+    <meta name="csrf-token" content="3zoQtgJs6Rc2tmHX6iusIkk6rSVUXZM7Mj8wpJWx">
+
+    <link rel="stylesheet" href="./Panel_files/jquery-ui.css">
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="./Panel_files/jquery-1.11.0.js.download"></script>
+    <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+
+</head>
+
+<body class="dashboard">
+        	
+	<!-- For tags with auto search -->
+	<script type="text/javascript" src="./Panel_files/tagsly.js.download"></script>
+	<link rel="stylesheet" type="text/css" href="./Panel_files/tagsly.css">
+	
+	
+	<!-- For tags with auto search -->
+	<script type="text/javascript" src="./Panel_files/bootstrap-clockpicker.min.js.download"></script>
+	<link rel="stylesheet" type="text/css" href="./Panel_files/bootstrap-clockpicker.min.css">
+	
+	<!-- For select2 -->
+	<link rel="stylesheet" type="text/css" href="./Panel_files/select2.css">
+	<script type="text/javascript" src="./Panel_files/select2.js.download"></script>
+	
+	
+    <div class="loading" style="display: none;">
+        <h1> LOADING </h1>
+        <div class="spinner">
+          <div class="rect1"></div>
+          <div class="rect2"></div>
+          <div class="rect3"></div>
+          <div class="rect4"></div>
+          <div class="rect5"></div>
+        </div>
+    </div>
+
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top " role="navigation" style="margin-bottom: 0">
+
+            <!-- /.navbar-header -->
+             <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed btn-resp-sidebar" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+
+              </div>
+
+
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar " role="navigation">
+                <div class="sidebar-nav navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <div class="grav center"><img src="./Panel_files/5fa9da59a9fdbfc3a08c75d8acc7d698"><a href="https://www.gravatar.com/"><span> change</span></a></div>
+                      <div class="user-info"> </div>
+                      <a class="visit-site" href="http://54.144.212.170/">Visit Site  </a>
+                      <ul class="nav" id="side-menu">
+                          <li class="">
+                              <a href="http://54.144.212.170/panel"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                          </li>
+
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Role/all" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Roles
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">1</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Role/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Role/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Permission/all" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Permissions
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">0</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Permission/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Permission/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Link/all" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Links
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">19</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Link/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Link/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Admin/all" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Admins
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">1</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Admin/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Admin/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Program/index" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Programs
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">37</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Program/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Program/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Cycle/index" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Cycles
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">50</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Cycle/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Cycle/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Equipment/all" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Equipments
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">20</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Equipment/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Equipment/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Category/all" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Categorys
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">14</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Category/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Category/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link actmainTemplateive">
+                                                                      <a href="http://54.144.212.170/panel/Workout/index" class="active">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Workouts        
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">165</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Workout/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Workout/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Sport/all" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Sports
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">16</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Sport/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Sport/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Goal/all" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Goals
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">5</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Goal/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Goal/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Exercise/index" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Exercises        
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">195</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Exercise/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Exercise/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Injury/all" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Injurys
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">8</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Injury/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Injury/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Muscles/all" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Muscles
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">17</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Muscles/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Muscles/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/ExerciseGroup/index" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      ExerciseGroups 
+								                                                    
+                                  </a>
+                                  <span class="badge pull-right">46</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/ExerciseGroup/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/ExerciseGroup/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Position/index" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Positions  	
+								                                                    
+                                  </a>
+                                  <span class="badge pull-right">14</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Position/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Position/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/Extraexercombo/index" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      Extraexercombos 
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">38</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/Extraexercombo/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/Extraexercombo/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/LibraryWorkout/index" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      LibraryWorkouts  
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">156</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/LibraryWorkout/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/LibraryWorkout/all"></a>
+                                  </div>
+                              </li>
+                                                                                      <li class="s-link ">
+                                                                      <a href="http://54.144.212.170/panel/VideoSeries/index" class="">
+                                      <i class="fa fa-edit fa-fw"></i>
+                                      VideoSeriess       									  
+                                                                    
+                                  </a>
+                                  <span class="badge pull-right">7</span>
+                                  <div class="items-bar">
+                                      <a href="http://54.144.212.170/panel/VideoSeries/edit" class="ic-plus" title="Add"></a>
+                                      <a title="List" class="ic-lines" href="http://54.144.212.170/panel/VideoSeries/all"></a>
+                                  </div>
+                              </li>
+                                                </ul>
+
+                        
+                    
+                </div>
+
+
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div class="powered-by"><a href="http://laravelpanel.com/">Thank you for using LaravelPanel.</a></div>
+        <div id="page-wrapper" style="min-height: 4188px;">
+
+
+            <!-- Menu Bar -->
+            <div class="row">
+                <div class="col-xs-12 text-a top-icon-bar">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <div class="btn-group" role="group">
+                            <a type="button" class="btn btn-default dropdown-toggle main-link" data-toggle="dropdown" aria-expanded="false">
+                                Settings
+                                <span class="caret"></span>
+                            </a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="http://54.144.212.170/panel/edit"><span class="icon  ic-users "></span>Profile Edit</a></li>
+                            <li><a href="http://54.144.212.170/panel/changePassword"><span class="icon ic-cog"></span>Change Password</a></li>
+                          </ul>
+                        </div>
+                        <a href="http://54.144.212.170/panel/logout" type="button" class="btn btn-default main-link">Log out<span class="icon  ic-switch"></span></a>
+                      </div>
+                </div>
+            </div>
+
+            <!-- Flash messages -->
+            <div id="flash-message">
+                          </div>  
+
+            <h1>Update Workout</h1>
+
+
+
+
+<div class="col-md-12">
+  <form action="http://54.144.212.170/panel/Workout/update_action" method="post" enctype="multipart/form-data">
+    
+	<input type="hidden" name="update_id" value="173">
+    <input type="hidden" name="_token" id="csrf-token" value="3zoQtgJs6Rc2tmHX6iusIkk6rSVUXZM7Mj8wpJWx">
+    <div class="row">
+      <div class="main-container">
+	  
+	  
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4 " style="margin-top:1%">
+            <div class="headings">
+              <input type="text" class="form-control" name="name" id="name" placeholder="Workout Name" value="Lower Body Strength 2">
+            </div>
+          </div>
+        </div>
+		
+		
+		
+        <div class="row">
+          <div class="col-md-12">
+          <table border="1" width="100%" class="table-first-top">
+            <tbody><tr>
+			
+			<td>  
+				<a href="http://54.144.212.170/panel/Workout/copyworkout?id=173">
+				  <span>Copy</span> <i class="fa fa-plus-square"></i>
+				</a>
+			</td>  
+
+			<td>  
+			  </td><td>
+				<a href="http://54.144.212.170/panel/Workout/delete?id=173" onclick="return confirm(&#39;Are you sure you want to delete?&#39;)">
+				  <span>Delete</span> 
+				  <i class="fa fa-minus-circle" aria-hidden="true"></i>
+				</a>  
+			  </td>
+			
+				
+              <td>
+                <span style="float:left; padding:8px 10px;">Active</span> 
+                <span class="switch" style="float:left;padding:8px 10px;">
+				                    <input id="workout_active" class="cmn-toggle cmn-toggle-round-flat workout_active_class" type="checkbox" name="active" checked="">
+                <label for="workout_active"></label>
+                </span>
+                
+              </td>         
+              <td>
+                <span>Ideal number of Exercise</span> 
+				<input type="text" class="form-control" name="ideal_number_of_exer" id="ideal_number_of_exer" placeholder="12" value="5.00">			
+              </td>
+              <td>
+                <span>Ideal Time</span>
+				<input type="text" class="form-control" name="ideal_time" id="ideal_time" placeholder="3.30" value="20:00" readonly="">
+              </td>
+              <td>
+                <span>Max Time</span>
+				<input type="text" class="form-control" name="max_time" id="max_time" placeholder="00.00" value="20:0" readonly=""> 
+              </td>
+            </tr>
+          </tbody></table>
+        </div>
+      </div>
+	  
+	  
+	  
+	  
+	  
+	  
+		<div class="row">
+           <div class="col-md-12 table-2-container">
+
+			 <table class="table-bordered table-condensed table-border-color">
+
+			 
+		  
+			  <tbody id="exergroupTable_1_A">
+			  
+		  
+			<tr class="wexgp_1">
+			<input type="hidden" name="workout[1][workout_exercise_group_id][A]" value="964">			
+
+			 <td class="numeric txt-center-td">
+				1			   </td>
+			   <td class="numeric txt-center-td"><input class="cycle_auto form-input exercise_gid ui-autocomplete-input" style="width: 100%;" name="workout[1][exer_group_id][A]" placeholder="Group Name" value="Group 1: a1 b2 c3 d4 e5 f6 g7 h8 i90" autocomplete="off"></td>
+			   
+			    
+			   <td class="numeric txt-center-td">
+				 <label class="btn btn-primary active">
+			   <input type="checkbox" name="workout[1][set_super_set]" class="addsuperset" data-workout_exercise_group_id="0" data-exercise_gid="1" autocomplete="off">Super Set
+				  </label>
+			   </td>
+			   	
+		   </tr> 
+
+			<tr class="wexgp_1">
+			  <td colspan="6">			  
+
+				<table width="100%" class="table-bordered table-first-top">
+					<tbody><tr>      
+					  <td>
+						<span>Switch Weeks</span> 
+						 <select type="select" id="workout[1][swap_week]" name="workout[1][swap_week]" class="form-control">
+							<option value="0">0</option><option value="1">1</option><option value="2" selected="">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>						  </select>
+					  </td>
+					  <td>
+						<span>Rest Time</span> 
+						<input type="text" class="form-control resttime" name="workout[1][group_rest_time]" id="workout[1][group_rest_time]" placeholder="2:00" value="2:00">			
+					  </td>
+					  <td>
+						<span>Set Time</span> 
+						<input type="text" class="form-control settime" data-groupid="1" data-superalpchar="A" name="workout[1][group_set_time]" id="workout[1][group_set_time]" placeholder="00:00" value="2:00">			
+					  </td>	
+					  <td>
+						<span>Drop Priority</span> 
+						<input type="number" class="form-input" name="workout[1][group_priority]" placeholder="1" value="5">
+					  </td>
+					</tr>
+				  </tbody></table>
+			  
+			 
+				 </td>
+				   
+            </tr>
+			
+				
+
+			<tr class="wexgp_1">
+				<td colspan="6">			  
+					<table width="100%" class="table-bordered table-first-top" id="workout_exgrp_1_A">
+					<tbody>
+					<tr>
+						<td class="col-md-3">Set 
+							<button type="button" class="btn-add addsets" data-superchar="A" id="workoutexgrp_1_2_A">Add Sets</button>
+						</td>  
+
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 1</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 2</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 3</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>		
+						
+
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 4</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>		
+
+						<td class="col-md-1">  
+							Minimum Sets
+						</td>				
+					  </tr>	
+					  
+					  
+					  
+								<tr id="workoutexgrpsets_1_1">
+								  
+						<input type="hidden" name="workout[1][sets][1][workout_exercise_group_sets_id][A]" value="2755">			
+				
+					  
+						<td class="col-md-3">1 	</td>  
+					  
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[1][sets][1][week_1_set_reps][A]" placeholder="5" value="11"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[1][sets][1][week_1_set_weight][A]" placeholder="70%" value="11"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[1][sets][1][week_2_set_reps][A]" placeholder="5" value="12"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[1][sets][1][week_2_set_weight][A]" placeholder="70%" value="12"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[1][sets][1][week_3_set_reps][A]" placeholder="5" value="13"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[1][sets][1][week_3_set_weight][A]" placeholder="70%" value="13"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[1][sets][1][week_4_set_reps][A]" placeholder="5" value="14"></td>				
+								<td><input type="number" style="width: 100%;" class="form-input" name="workout[1][sets][1][week_4_set_weight][A]" placeholder="70%" value="14"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+
+						<td class="col-md-1"> 
+							<input type="checkbox" style="zoom: 1.7;" name="workout[1][sets][1][week_maximum_set][A]" checked="">
+						</td>				
+					  </tr>		
+					  
+									<tr id="workoutexgrpsets_1_2">
+								  
+						<input type="hidden" name="workout[1][sets][2][workout_exercise_group_sets_id][A]" value="2756">			
+				
+					  
+						<td class="col-md-3">2  <button class="removewexergrpset btn-add" type="button" data-workout_exercise_group_set_id="2756" id="wexgrpsetd_1_2_A">Delete</button> 	</td>  
+					  
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[1][sets][2][week_1_set_reps][A]" placeholder="5" value="21"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[1][sets][2][week_1_set_weight][A]" placeholder="70%" value="21"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[1][sets][2][week_2_set_reps][A]" placeholder="5" value="22"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[1][sets][2][week_2_set_weight][A]" placeholder="70%" value="22"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[1][sets][2][week_3_set_reps][A]" placeholder="5" value="23"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[1][sets][2][week_3_set_weight][A]" placeholder="70%" value="23"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[1][sets][2][week_4_set_reps][A]" placeholder="5" value="24"></td>				
+								<td><input type="number" style="width: 100%;" class="form-input" name="workout[1][sets][2][week_4_set_weight][A]" placeholder="70%" value="24"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+
+						<td class="col-md-1"> 
+							<input type="checkbox" style="zoom: 1.7;" name="workout[1][sets][2][week_maximum_set][A]">
+						</td>				
+					  </tr>		
+					  
+											
+ 
+					  
+					</tbody>
+					</table>
+				</td>
+              </tr> 
+
+
+			  
+			 <tr class="wexgp_1">
+				<td colspan="1">Selection Priority</td>
+				<td colspan="5">
+					<div class="tagsly"><input type="text" style="width: 100%; display: none;" class="form-input" id="selection_priority1A" name="workout[1][selection_priority][A]" placeholder="A,B-C,1" value="a"><span class="tag" tabindex="-1">a<a href="http://54.144.212.170/panel/Workout/update?id=173#" tabindex="-1">x</a></span><input type="text" class="tag-textbox" placeholder="Enter Priority"><ul class="suggest" style="display: none; left: 275px;"></ul></div>
+				</td>
+              </tr> 
+			  
+			  
+			  
+			  
+			 <tr class="wexgp_1">
+				<td colspan="1">Logic Override Priority 1</td>
+				<td colspan="3">
+					 <select type="select" class="form-control" id="workout[1][logic_override_priority_1]" name="workout[1][logic_override_priority_1]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>					 </select>	
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[1][logic_override_priority_1_cat]" name="workout[1][logic_override_priority_1_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>				
+              </tr> 
+			  
+			 <tr class="wexgp_1">
+				<td colspan="1">Logic Override Priority 2</td>
+				<td colspan="3">
+				 <select type="select" class="form-control" id="workout[1][logic_override_priority_2]" name="workout[1][logic_override_priority_2]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				 </select>	
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[1][logic_override_priority_2_cat]" name="workout[1][logic_override_priority_2_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr> 
+			  
+			<tr class="wexgp_1">
+				<td colspan="1">Logic Override Priority 3</td>
+				<td colspan="3">
+				 <select type="select" class="form-control" id="workout[1][logic_override_priority_3]" name="workout[1][logic_override_priority_3]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				  </select>
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[1][logic_override_priority_3_cat]" name="workout[1][logic_override_priority_3_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr>		
+			  
+			  <tr class="wexgp_1">
+				<td colspan="1">Logic Override Priority 4</td>
+				<td colspan="3">
+					<select type="select" class="form-control" id="workout[1][logic_override_priority_4]" name="workout[1][logic_override_priority_4]">
+					<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				  </select>
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[1][logic_override_priority_4_cat]" name="workout[1][logic_override_priority_4_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr>
+			   			   
+			     
+					</tbody>
+				 
+			  <script>
+			  // for selection priority
+				$(function() {
+				$('#selection_priority1A').tagsly({
+				  suggestions: function(input, cb) {
+					cb(['A', 'B', 'C', 'D', '1', '2', '3']);
+				  },
+				  placeholder: 'Enter Priority',
+				 // maxItems: 5
+				});
+				});
+			  </script>
+			
+					 
+		  
+			  <tbody id="exergroupTable_2_A">
+			  
+		  
+			<tr class="wexgp_2">
+			<input type="hidden" name="workout[2][workout_exercise_group_id][A]" value="965">			
+
+			 <td class="numeric txt-center-td">
+				2			   </td>
+			   <td class="numeric txt-center-td"><input class="cycle_auto form-input exercise_gid ui-autocomplete-input" style="width: 100%;" name="workout[2][exer_group_id][A]" placeholder="Group Name" value="Group 2: a12 b34 c56 d78 e90" autocomplete="off"></td>
+			   
+			    
+			   <td class="numeric txt-center-td">
+				 <label class="btn btn-primary active">
+			   <input type="checkbox" name="workout[2][set_super_set]" class="addsuperset" data-workout_exercise_group_id="0" data-exercise_gid="2" autocomplete="off">Super Set
+				  </label>
+			   </td>
+			   				<td class="numeric txt-center-td"><button class="removewexergrp  btn-add" data-workout_exercise_group_id="965" type="button" id="exerdgrptr_2">Delete  <span class="glyphicon glyphicon-minus-sign"></span></button></td>
+			   	
+		   </tr> 
+
+			<tr class="wexgp_2">
+			  <td colspan="6">			  
+
+				<table width="100%" class="table-bordered table-first-top">
+					<tbody><tr>      
+					  <td>
+						<span>Switch Weeks</span> 
+						 <select type="select" id="workout[1][swap_week]" name="workout[2][swap_week]" class="form-control">
+							<option value="0">0</option><option value="1">1</option><option value="2" selected="">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>						  </select>
+					  </td>
+					  <td>
+						<span>Rest Time</span> 
+						<input type="text" class="form-control resttime" name="workout[2][group_rest_time]" id="workout[2][group_rest_time]" placeholder="2:00" value="2:00">			
+					  </td>
+					  <td>
+						<span>Set Time</span> 
+						<input type="text" class="form-control settime" data-groupid="2" data-superalpchar="A" name="workout[2][group_set_time]" id="workout[2][group_set_time]" placeholder="00:00" value="2:00">			
+					  </td>	
+					  <td>
+						<span>Drop Priority</span> 
+						<input type="number" class="form-input" name="workout[2][group_priority]" placeholder="1" value="4">
+					  </td>
+					</tr>
+				  </tbody></table>
+			  
+			 
+				 </td>
+				   
+            </tr>
+			
+				
+
+			<tr class="wexgp_2">
+				<td colspan="6">			  
+					<table width="100%" class="table-bordered table-first-top" id="workout_exgrp_2_A">
+					<tbody>
+					<tr>
+						<td class="col-md-3">Set 
+							<button type="button" class="btn-add addsets" data-superchar="A" id="workoutexgrp_2_2_A">Add Sets</button>
+						</td>  
+
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 1</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 2</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 3</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>		
+						
+
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 4</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>		
+
+						<td class="col-md-1">  
+							Minimum Sets
+						</td>				
+					  </tr>	
+					  
+					  
+					  
+								<tr id="workoutexgrpsets_2_1">
+								  
+						<input type="hidden" name="workout[2][sets][1][workout_exercise_group_sets_id][A]" value="2762">			
+				
+					  
+						<td class="col-md-3">1 	</td>  
+					  
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[2][sets][1][week_1_set_reps][A]" placeholder="5" value="11"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[2][sets][1][week_1_set_weight][A]" placeholder="70%" value="11"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[2][sets][1][week_2_set_reps][A]" placeholder="5" value="12"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[2][sets][1][week_2_set_weight][A]" placeholder="70%" value="12"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[2][sets][1][week_3_set_reps][A]" placeholder="5" value="13"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[2][sets][1][week_3_set_weight][A]" placeholder="70%" value="13"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[2][sets][1][week_4_set_reps][A]" placeholder="5" value="14"></td>				
+								<td><input type="number" style="width: 100%;" class="form-input" name="workout[2][sets][1][week_4_set_weight][A]" placeholder="70%" value="14"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+
+						<td class="col-md-1"> 
+							<input type="checkbox" style="zoom: 1.7;" name="workout[2][sets][1][week_maximum_set][A]" checked="">
+						</td>				
+					  </tr>		
+					  
+									<tr id="workoutexgrpsets_2_2">
+								  
+						<input type="hidden" name="workout[2][sets][2][workout_exercise_group_sets_id][A]" value="2763">			
+				
+					  
+						<td class="col-md-3">2  <button class="removewexergrpset btn-add" type="button" data-workout_exercise_group_set_id="2763" id="wexgrpsetd_2_2_A">Delete</button> 	</td>  
+					  
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[2][sets][2][week_1_set_reps][A]" placeholder="5" value="21"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[2][sets][2][week_1_set_weight][A]" placeholder="70%" value="21"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[2][sets][2][week_2_set_reps][A]" placeholder="5" value="22"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[2][sets][2][week_2_set_weight][A]" placeholder="70%" value="22"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[2][sets][2][week_3_set_reps][A]" placeholder="5" value="23"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[2][sets][2][week_3_set_weight][A]" placeholder="70%" value="23"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[2][sets][2][week_4_set_reps][A]" placeholder="5" value="24"></td>				
+								<td><input type="number" style="width: 100%;" class="form-input" name="workout[2][sets][2][week_4_set_weight][A]" placeholder="70%" value="24"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+
+						<td class="col-md-1"> 
+							<input type="checkbox" style="zoom: 1.7;" name="workout[2][sets][2][week_maximum_set][A]">
+						</td>				
+					  </tr>		
+					  
+											
+ 
+					  
+					</tbody>
+					</table>
+				</td>
+              </tr> 
+
+
+			  
+			 <tr class="wexgp_2">
+				<td colspan="1">Selection Priority</td>
+				<td colspan="5">
+					<div class="tagsly"><input type="text" style="width: 100%; display: none;" class="form-input" id="selection_priority2A" name="workout[2][selection_priority][A]" placeholder="A,B-C,1" value="a"><span class="tag" tabindex="-1">a<a href="http://54.144.212.170/panel/Workout/update?id=173#" tabindex="-1">x</a></span><input type="text" class="tag-textbox" placeholder="Enter Priority"><ul class="suggest" style="display: none; left: 275px;"></ul></div>
+				</td>
+              </tr> 
+			  
+			  
+			  
+			  
+			 <tr class="wexgp_2">
+				<td colspan="1">Logic Override Priority 1</td>
+				<td colspan="3">
+					 <select type="select" class="form-control" id="workout[2][logic_override_priority_1]" name="workout[2][logic_override_priority_1]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>					 </select>	
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[2][logic_override_priority_1_cat]" name="workout[2][logic_override_priority_1_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>				
+              </tr> 
+			  
+			 <tr class="wexgp_2">
+				<td colspan="1">Logic Override Priority 2</td>
+				<td colspan="3">
+				 <select type="select" class="form-control" id="workout[2][logic_override_priority_2]" name="workout[2][logic_override_priority_2]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				 </select>	
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[2][logic_override_priority_2_cat]" name="workout[2][logic_override_priority_2_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr> 
+			  
+			<tr class="wexgp_2">
+				<td colspan="1">Logic Override Priority 3</td>
+				<td colspan="3">
+				 <select type="select" class="form-control" id="workout[2][logic_override_priority_3]" name="workout[2][logic_override_priority_3]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				  </select>
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[2][logic_override_priority_3_cat]" name="workout[2][logic_override_priority_3_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr>		
+			  
+			  <tr class="wexgp_2">
+				<td colspan="1">Logic Override Priority 4</td>
+				<td colspan="3">
+					<select type="select" class="form-control" id="workout[2][logic_override_priority_4]" name="workout[2][logic_override_priority_4]">
+					<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				  </select>
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[2][logic_override_priority_4_cat]" name="workout[2][logic_override_priority_4_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr>
+			   			   
+			     
+					</tbody>
+				 
+			  <script>
+			  // for selection priority
+				$(function() {
+				$('#selection_priority2A').tagsly({
+				  suggestions: function(input, cb) {
+					cb(['A', 'B', 'C', 'D', '1', '2', '3']);
+				  },
+				  placeholder: 'Enter Priority',
+				 // maxItems: 5
+				});
+				});
+			  </script>
+			
+					 
+		  
+			  <tbody id="exergroupTable_3_A">
+			  
+		  
+			<tr class="wexgp_3">
+			<input type="hidden" name="workout[3][workout_exercise_group_id][A]" value="966">			
+
+			 <td class="numeric txt-center-td">
+				3			   </td>
+			   <td class="numeric txt-center-td"><input class="cycle_auto form-input exercise_gid ui-autocomplete-input" style="width: 100%;" name="workout[3][exer_group_id][A]" placeholder="Group Name" value="Group 3: a45678 i90" autocomplete="off"></td>
+			   
+			    
+			   <td class="numeric txt-center-td">
+				 <label class="btn btn-primary active">
+			   <input type="checkbox" name="workout[3][set_super_set]" class="addsuperset" data-workout_exercise_group_id="0" data-exercise_gid="3" autocomplete="off">Super Set
+				  </label>
+			   </td>
+			   				<td class="numeric txt-center-td"><button class="removewexergrp  btn-add" data-workout_exercise_group_id="966" type="button" id="exerdgrptr_3">Delete  <span class="glyphicon glyphicon-minus-sign"></span></button></td>
+			   	
+		   </tr> 
+
+			<tr class="wexgp_3">
+			  <td colspan="6">			  
+
+				<table width="100%" class="table-bordered table-first-top">
+					<tbody><tr>      
+					  <td>
+						<span>Switch Weeks</span> 
+						 <select type="select" id="workout[1][swap_week]" name="workout[3][swap_week]" class="form-control">
+							<option value="0">0</option><option value="1">1</option><option value="2" selected="">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>						  </select>
+					  </td>
+					  <td>
+						<span>Rest Time</span> 
+						<input type="text" class="form-control resttime" name="workout[3][group_rest_time]" id="workout[3][group_rest_time]" placeholder="2:00" value="2:00">			
+					  </td>
+					  <td>
+						<span>Set Time</span> 
+						<input type="text" class="form-control settime" data-groupid="3" data-superalpchar="A" name="workout[3][group_set_time]" id="workout[3][group_set_time]" placeholder="00:00" value="2:00">			
+					  </td>	
+					  <td>
+						<span>Drop Priority</span> 
+						<input type="number" class="form-input" name="workout[3][group_priority]" placeholder="1" value="3">
+					  </td>
+					</tr>
+				  </tbody></table>
+			  
+			 
+				 </td>
+				   
+            </tr>
+			
+				
+
+			<tr class="wexgp_3">
+				<td colspan="6">			  
+					<table width="100%" class="table-bordered table-first-top" id="workout_exgrp_3_A">
+					<tbody>
+					<tr>
+						<td class="col-md-3">Set 
+							<button type="button" class="btn-add addsets" data-superchar="A" id="workoutexgrp_3_2_A">Add Sets</button>
+						</td>  
+
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 1</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 2</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 3</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>		
+						
+
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 4</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>		
+
+						<td class="col-md-1">  
+							Minimum Sets
+						</td>				
+					  </tr>	
+					  
+					  
+					  
+								<tr id="workoutexgrpsets_3_1">
+								  
+						<input type="hidden" name="workout[3][sets][1][workout_exercise_group_sets_id][A]" value="2769">			
+				
+					  
+						<td class="col-md-3">1 	</td>  
+					  
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[3][sets][1][week_1_set_reps][A]" placeholder="5" value="11"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[3][sets][1][week_1_set_weight][A]" placeholder="70%" value="11"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[3][sets][1][week_2_set_reps][A]" placeholder="5" value="12"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[3][sets][1][week_2_set_weight][A]" placeholder="70%" value="12"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[3][sets][1][week_3_set_reps][A]" placeholder="5" value="13"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[3][sets][1][week_3_set_weight][A]" placeholder="70%" value="13"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[3][sets][1][week_4_set_reps][A]" placeholder="5" value="14"></td>				
+								<td><input type="number" style="width: 100%;" class="form-input" name="workout[3][sets][1][week_4_set_weight][A]" placeholder="70%" value="14"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+
+						<td class="col-md-1"> 
+							<input type="checkbox" style="zoom: 1.7;" name="workout[3][sets][1][week_maximum_set][A]" checked="">
+						</td>				
+					  </tr>		
+					  
+									<tr id="workoutexgrpsets_3_2">
+								  
+						<input type="hidden" name="workout[3][sets][2][workout_exercise_group_sets_id][A]" value="2770">			
+				
+					  
+						<td class="col-md-3">2  <button class="removewexergrpset btn-add" type="button" data-workout_exercise_group_set_id="2770" id="wexgrpsetd_3_2_A">Delete</button> 	</td>  
+					  
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[3][sets][2][week_1_set_reps][A]" placeholder="5" value="21"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[3][sets][2][week_1_set_weight][A]" placeholder="70%" value="21"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[3][sets][2][week_2_set_reps][A]" placeholder="5" value="22"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[3][sets][2][week_2_set_weight][A]" placeholder="70%" value="22"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[3][sets][2][week_3_set_reps][A]" placeholder="5" value="23"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[3][sets][2][week_3_set_weight][A]" placeholder="70%" value="23"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[3][sets][2][week_4_set_reps][A]" placeholder="5" value="24"></td>				
+								<td><input type="number" style="width: 100%;" class="form-input" name="workout[3][sets][2][week_4_set_weight][A]" placeholder="70%" value="24"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+
+						<td class="col-md-1"> 
+							<input type="checkbox" style="zoom: 1.7;" name="workout[3][sets][2][week_maximum_set][A]">
+						</td>				
+					  </tr>		
+					  
+											
+ 
+					  
+					</tbody>
+					</table>
+				</td>
+              </tr> 
+
+
+			  
+			 <tr class="wexgp_3">
+				<td colspan="1">Selection Priority</td>
+				<td colspan="5">
+					<div class="tagsly"><input type="text" style="width: 100%; display: none;" class="form-input" id="selection_priority3A" name="workout[3][selection_priority][A]" placeholder="A,B-C,1" value="a"><span class="tag" tabindex="-1">a<a href="http://54.144.212.170/panel/Workout/update?id=173#" tabindex="-1">x</a></span><input type="text" class="tag-textbox" placeholder="Enter Priority"><ul class="suggest" style="display: none; left: 275px;"></ul></div>
+				</td>
+              </tr> 
+			  
+			  
+			  
+			  
+			 <tr class="wexgp_3">
+				<td colspan="1">Logic Override Priority 1</td>
+				<td colspan="3">
+					 <select type="select" class="form-control" id="workout[3][logic_override_priority_1]" name="workout[3][logic_override_priority_1]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>					 </select>	
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[3][logic_override_priority_1_cat]" name="workout[3][logic_override_priority_1_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>				
+              </tr> 
+			  
+			 <tr class="wexgp_3">
+				<td colspan="1">Logic Override Priority 2</td>
+				<td colspan="3">
+				 <select type="select" class="form-control" id="workout[3][logic_override_priority_2]" name="workout[3][logic_override_priority_2]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				 </select>	
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[3][logic_override_priority_2_cat]" name="workout[3][logic_override_priority_2_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr> 
+			  
+			<tr class="wexgp_3">
+				<td colspan="1">Logic Override Priority 3</td>
+				<td colspan="3">
+				 <select type="select" class="form-control" id="workout[3][logic_override_priority_3]" name="workout[3][logic_override_priority_3]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				  </select>
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[3][logic_override_priority_3_cat]" name="workout[3][logic_override_priority_3_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr>		
+			  
+			  <tr class="wexgp_3">
+				<td colspan="1">Logic Override Priority 4</td>
+				<td colspan="3">
+					<select type="select" class="form-control" id="workout[3][logic_override_priority_4]" name="workout[3][logic_override_priority_4]">
+					<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				  </select>
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[3][logic_override_priority_4_cat]" name="workout[3][logic_override_priority_4_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr>
+			   			   
+			     
+					</tbody>
+				 
+			  <script>
+			  // for selection priority
+				$(function() {
+				$('#selection_priority3A').tagsly({
+				  suggestions: function(input, cb) {
+					cb(['A', 'B', 'C', 'D', '1', '2', '3']);
+				  },
+				  placeholder: 'Enter Priority',
+				 // maxItems: 5
+				});
+				});
+			  </script>
+			
+					 
+		  
+			  <tbody id="exergroupTable_4_A">
+			  
+		  
+			<tr class="wexgp_4">
+			<input type="hidden" name="workout[4][workout_exercise_group_id][A]" value="967">			
+
+			 <td class="numeric txt-center-td">
+				4			   </td>
+			   <td class="numeric txt-center-td"><input class="cycle_auto form-input exercise_gid ui-autocomplete-input" style="width: 100%;" name="workout[4][exer_group_id][A]" placeholder="Group Name" value="Group 4: a8 b567 c90(rep OR)" autocomplete="off"></td>
+			   
+			    
+			   <td class="numeric txt-center-td">
+				 <label class="btn btn-primary active">
+			   <input type="checkbox" name="workout[4][set_super_set]" class="addsuperset" data-workout_exercise_group_id="0" data-exercise_gid="4" autocomplete="off">Super Set
+				  </label>
+			   </td>
+			   				<td class="numeric txt-center-td"><button class="removewexergrp  btn-add" data-workout_exercise_group_id="967" type="button" id="exerdgrptr_4">Delete  <span class="glyphicon glyphicon-minus-sign"></span></button></td>
+			   	
+		   </tr> 
+
+			<tr class="wexgp_4">
+			  <td colspan="6">			  
+
+				<table width="100%" class="table-bordered table-first-top">
+					<tbody><tr>      
+					  <td>
+						<span>Switch Weeks</span> 
+						 <select type="select" id="workout[1][swap_week]" name="workout[4][swap_week]" class="form-control">
+							<option value="0">0</option><option value="1">1</option><option value="2" selected="">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>						  </select>
+					  </td>
+					  <td>
+						<span>Rest Time</span> 
+						<input type="text" class="form-control resttime" name="workout[4][group_rest_time]" id="workout[4][group_rest_time]" placeholder="2:00" value="2:00">			
+					  </td>
+					  <td>
+						<span>Set Time</span> 
+						<input type="text" class="form-control settime" data-groupid="4" data-superalpchar="A" name="workout[4][group_set_time]" id="workout[4][group_set_time]" placeholder="00:00" value="2:00">			
+					  </td>	
+					  <td>
+						<span>Drop Priority</span> 
+						<input type="number" class="form-input" name="workout[4][group_priority]" placeholder="1" value="2">
+					  </td>
+					</tr>
+				  </tbody></table>
+			  
+			 
+				 </td>
+				   
+            </tr>
+			
+				
+
+			<tr class="wexgp_4">
+				<td colspan="6">			  
+					<table width="100%" class="table-bordered table-first-top" id="workout_exgrp_4_A">
+					<tbody>
+					<tr>
+						<td class="col-md-3">Set 
+							<button type="button" class="btn-add addsets" data-superchar="A" id="workoutexgrp_4_2_A">Add Sets</button>
+						</td>  
+
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 1</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 2</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 3</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>		
+						
+
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 4</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>		
+
+						<td class="col-md-1">  
+							Minimum Sets
+						</td>				
+					  </tr>	
+					  
+					  
+					  
+								<tr id="workoutexgrpsets_4_1">
+								  
+						<input type="hidden" name="workout[4][sets][1][workout_exercise_group_sets_id][A]" value="2776">			
+				
+					  
+						<td class="col-md-3">1 	</td>  
+					  
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[4][sets][1][week_1_set_reps][A]" placeholder="5" value="11"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[4][sets][1][week_1_set_weight][A]" placeholder="70%" value="11"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[4][sets][1][week_2_set_reps][A]" placeholder="5" value="12"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[4][sets][1][week_2_set_weight][A]" placeholder="70%" value="12"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[4][sets][1][week_3_set_reps][A]" placeholder="5" value="13"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[4][sets][1][week_3_set_weight][A]" placeholder="70%" value="13"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[4][sets][1][week_4_set_reps][A]" placeholder="5" value="14"></td>				
+								<td><input type="number" style="width: 100%;" class="form-input" name="workout[4][sets][1][week_4_set_weight][A]" placeholder="70%" value="14"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+
+						<td class="col-md-1"> 
+							<input type="checkbox" style="zoom: 1.7;" name="workout[4][sets][1][week_maximum_set][A]" checked="">
+						</td>				
+					  </tr>		
+					  
+									<tr id="workoutexgrpsets_4_2">
+								  
+						<input type="hidden" name="workout[4][sets][2][workout_exercise_group_sets_id][A]" value="2777">			
+				
+					  
+						<td class="col-md-3">2  <button class="removewexergrpset btn-add" type="button" data-workout_exercise_group_set_id="2777" id="wexgrpsetd_4_2_A">Delete</button> 	</td>  
+					  
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[4][sets][2][week_1_set_reps][A]" placeholder="5" value="21"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[4][sets][2][week_1_set_weight][A]" placeholder="70%" value="21"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[4][sets][2][week_2_set_reps][A]" placeholder="5" value="22"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[4][sets][2][week_2_set_weight][A]" placeholder="70%" value="22"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[4][sets][2][week_3_set_reps][A]" placeholder="5" value="23"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[4][sets][2][week_3_set_weight][A]" placeholder="70%" value="23"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[4][sets][2][week_4_set_reps][A]" placeholder="5" value="24"></td>				
+								<td><input type="number" style="width: 100%;" class="form-input" name="workout[4][sets][2][week_4_set_weight][A]" placeholder="70%" value="24"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+
+						<td class="col-md-1"> 
+							<input type="checkbox" style="zoom: 1.7;" name="workout[4][sets][2][week_maximum_set][A]">
+						</td>				
+					  </tr>		
+					  
+											
+ 
+					  
+					</tbody>
+					</table>
+				</td>
+              </tr> 
+
+
+			  
+			 <tr class="wexgp_4">
+				<td colspan="1">Selection Priority</td>
+				<td colspan="5">
+					<div class="tagsly"><input type="text" style="width: 100%; display: none;" class="form-input" id="selection_priority4A" name="workout[4][selection_priority][A]" placeholder="A,B-C,1" value="a"><span class="tag" tabindex="-1">a<a href="http://54.144.212.170/panel/Workout/update?id=173#" tabindex="-1">x</a></span><input type="text" class="tag-textbox" placeholder="Enter Priority"><ul class="suggest" style="display: none; left: 275px;"></ul></div>
+				</td>
+              </tr> 
+			  
+			  
+			  
+			  
+			 <tr class="wexgp_4">
+				<td colspan="1">Logic Override Priority 1</td>
+				<td colspan="3">
+					 <select type="select" class="form-control" id="workout[4][logic_override_priority_1]" name="workout[4][logic_override_priority_1]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>					 </select>	
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[4][logic_override_priority_1_cat]" name="workout[4][logic_override_priority_1_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>				
+              </tr> 
+			  
+			 <tr class="wexgp_4">
+				<td colspan="1">Logic Override Priority 2</td>
+				<td colspan="3">
+				 <select type="select" class="form-control" id="workout[4][logic_override_priority_2]" name="workout[4][logic_override_priority_2]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				 </select>	
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[4][logic_override_priority_2_cat]" name="workout[4][logic_override_priority_2_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr> 
+			  
+			<tr class="wexgp_4">
+				<td colspan="1">Logic Override Priority 3</td>
+				<td colspan="3">
+				 <select type="select" class="form-control" id="workout[4][logic_override_priority_3]" name="workout[4][logic_override_priority_3]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				  </select>
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[4][logic_override_priority_3_cat]" name="workout[4][logic_override_priority_3_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr>		
+			  
+			  <tr class="wexgp_4">
+				<td colspan="1">Logic Override Priority 4</td>
+				<td colspan="3">
+					<select type="select" class="form-control" id="workout[4][logic_override_priority_4]" name="workout[4][logic_override_priority_4]">
+					<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				  </select>
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[4][logic_override_priority_4_cat]" name="workout[4][logic_override_priority_4_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr>
+			   			   
+			     
+					</tbody>
+				 
+			  <script>
+			  // for selection priority
+				$(function() {
+				$('#selection_priority4A').tagsly({
+				  suggestions: function(input, cb) {
+					cb(['A', 'B', 'C', 'D', '1', '2', '3']);
+				  },
+				  placeholder: 'Enter Priority',
+				 // maxItems: 5
+				});
+				});
+			  </script>
+			
+					 
+		  
+			  <tbody id="exergroupTable_5_A">
+			  
+		  
+			<tr class="wexgp_5">
+			<input type="hidden" name="workout[5][workout_exercise_group_id][A]" value="968">			
+
+			 <td class="numeric txt-center-td">
+				5			   </td>
+			   <td class="numeric txt-center-td"><input class="cycle_auto form-input exercise_gid ui-autocomplete-input" style="width: 100%;" name="workout[5][exer_group_id][A]" placeholder="Group Name" value="Group 5: a1 b2 c3 d4 e5 f6 g7 h8 i9(rep OR)" autocomplete="off"></td>
+			   
+			    
+			   <td class="numeric txt-center-td">
+				 <label class="btn btn-primary active">
+			   <input type="checkbox" name="workout[5][set_super_set]" class="addsuperset" data-workout_exercise_group_id="0" data-exercise_gid="5" autocomplete="off">Super Set
+				  </label>
+			   </td>
+			   				<td class="numeric txt-center-td"><button class="removewexergrp  btn-add" data-workout_exercise_group_id="968" type="button" id="exerdgrptr_5">Delete  <span class="glyphicon glyphicon-minus-sign"></span></button></td>
+			   	
+		   </tr> 
+
+			<tr class="wexgp_5">
+			  <td colspan="6">			  
+
+				<table width="100%" class="table-bordered table-first-top">
+					<tbody><tr>      
+					  <td>
+						<span>Switch Weeks</span> 
+						 <select type="select" id="workout[1][swap_week]" name="workout[5][swap_week]" class="form-control">
+							<option value="0">0</option><option value="1">1</option><option value="2" selected="">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>						  </select>
+					  </td>
+					  <td>
+						<span>Rest Time</span> 
+						<input type="text" class="form-control resttime" name="workout[5][group_rest_time]" id="workout[5][group_rest_time]" placeholder="2:00" value="2:00">			
+					  </td>
+					  <td>
+						<span>Set Time</span> 
+						<input type="text" class="form-control settime" data-groupid="5" data-superalpchar="A" name="workout[5][group_set_time]" id="workout[5][group_set_time]" placeholder="00:00" value="2:00">			
+					  </td>	
+					  <td>
+						<span>Drop Priority</span> 
+						<input type="number" class="form-input" name="workout[5][group_priority]" placeholder="1" value="1">
+					  </td>
+					</tr>
+				  </tbody></table>
+			  
+			 
+				 </td>
+				   
+            </tr>
+			
+				
+
+			<tr class="wexgp_5">
+				<td colspan="6">			  
+					<table width="100%" class="table-bordered table-first-top" id="workout_exgrp_5_A">
+					<tbody>
+					<tr>
+						<td class="col-md-3">Set 
+							<button type="button" class="btn-add addsets" data-superchar="A" id="workoutexgrp_5_2_A">Add Sets</button>
+						</td>  
+
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 1</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 2</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 3</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>		
+						
+
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">
+								<tbody><tr><td colspan="2"> Week 4</td></tr>			
+								 <tr><td>resp</td><td>%1RM</td> </tr>	
+							</tbody></table>							
+						</td>		
+
+						<td class="col-md-1">  
+							Minimum Sets
+						</td>				
+					  </tr>	
+					  
+					  
+					  
+								<tr id="workoutexgrpsets_5_1">
+								  
+						<input type="hidden" name="workout[5][sets][1][workout_exercise_group_sets_id][A]" value="2783">			
+				
+					  
+						<td class="col-md-3">1 	</td>  
+					  
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[5][sets][1][week_1_set_reps][A]" placeholder="5" value="11"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[5][sets][1][week_1_set_weight][A]" placeholder="70%" value="11"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[5][sets][1][week_2_set_reps][A]" placeholder="5" value="12"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[5][sets][1][week_2_set_weight][A]" placeholder="70%" value="12"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[5][sets][1][week_3_set_reps][A]" placeholder="5" value="13"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[5][sets][1][week_3_set_weight][A]" placeholder="70%" value="13"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[5][sets][1][week_4_set_reps][A]" placeholder="5" value="14"></td>				
+								<td><input type="number" style="width: 100%;" class="form-input" name="workout[5][sets][1][week_4_set_weight][A]" placeholder="70%" value="14"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+
+						<td class="col-md-1"> 
+							<input type="checkbox" style="zoom: 1.7;" name="workout[5][sets][1][week_maximum_set][A]" checked="">
+						</td>				
+					  </tr>		
+					  
+									<tr id="workoutexgrpsets_5_2">
+								  
+						<input type="hidden" name="workout[5][sets][2][workout_exercise_group_sets_id][A]" value="2784">			
+				
+					  
+						<td class="col-md-3">2  <button class="removewexergrpset btn-add" type="button" data-workout_exercise_group_set_id="2784" id="wexgrpsetd_5_2_A">Delete</button> 	</td>  
+					  
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[5][sets][2][week_1_set_reps][A]" placeholder="5" value="21"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[5][sets][2][week_1_set_weight][A]" placeholder="70%" value="21"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[5][sets][2][week_2_set_reps][A]" placeholder="5" value="22"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[5][sets][2][week_2_set_weight][A]" placeholder="70%" value="22"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[5][sets][2][week_3_set_reps][A]" placeholder="5" value="23"></td>				
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[5][sets][2][week_3_set_weight][A]" placeholder="70%" value="23"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+						
+						<td class="col-md-2" style="padding: 0;">  
+							<table width="100%" class="table-bordered">	
+							 <tbody><tr>
+								<td><input type="number" style=" width: 100%;" class="form-input" name="workout[5][sets][2][week_4_set_reps][A]" placeholder="5" value="24"></td>				
+								<td><input type="number" style="width: 100%;" class="form-input" name="workout[5][sets][2][week_4_set_weight][A]" placeholder="70%" value="24"></td>				
+							 </tr>	
+							</tbody></table>							
+						</td>	
+
+						<td class="col-md-1"> 
+							<input type="checkbox" style="zoom: 1.7;" name="workout[5][sets][2][week_maximum_set][A]">
+						</td>				
+					  </tr>		
+					  
+											
+ 
+					  
+					</tbody>
+					</table>
+				</td>
+              </tr> 
+
+
+			  
+			 <tr class="wexgp_5">
+				<td colspan="1">Selection Priority</td>
+				<td colspan="5">
+					<div class="tagsly"><input type="text" style="width: 100%; display: none;" class="form-input" id="selection_priority5A" name="workout[5][selection_priority][A]" placeholder="A,B-C,1" value="a"><span class="tag" tabindex="-1">a<a href="http://54.144.212.170/panel/Workout/update?id=173#" tabindex="-1">x</a></span><input type="text" class="tag-textbox" placeholder="Enter Priority"><ul class="suggest" style="display: none; left: 275px;"></ul></div>
+				</td>
+              </tr> 
+			  
+			  
+			  
+			  
+			 <tr class="wexgp_5">
+				<td colspan="1">Logic Override Priority 1</td>
+				<td colspan="3">
+					 <select type="select" class="form-control" id="workout[5][logic_override_priority_1]" name="workout[5][logic_override_priority_1]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>					 </select>	
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[5][logic_override_priority_1_cat]" name="workout[5][logic_override_priority_1_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>				
+              </tr> 
+			  
+			 <tr class="wexgp_5">
+				<td colspan="1">Logic Override Priority 2</td>
+				<td colspan="3">
+				 <select type="select" class="form-control" id="workout[5][logic_override_priority_2]" name="workout[5][logic_override_priority_2]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				 </select>	
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[5][logic_override_priority_2_cat]" name="workout[5][logic_override_priority_2_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr> 
+			  
+			<tr class="wexgp_5">
+				<td colspan="1">Logic Override Priority 3</td>
+				<td colspan="3">
+				 <select type="select" class="form-control" id="workout[5][logic_override_priority_3]" name="workout[5][logic_override_priority_3]">
+						<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				  </select>
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[5][logic_override_priority_3_cat]" name="workout[5][logic_override_priority_3_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr>		
+			  
+			  <tr class="wexgp_5">
+				<td colspan="1">Logic Override Priority 4</td>
+				<td colspan="3">
+					<select type="select" class="form-control" id="workout[5][logic_override_priority_4]" name="workout[5][logic_override_priority_4]">
+					<option value=""> Select</option><option value="position">Position</option><option value="injury">Injury</option><option value="target1">Target1</option><option value="target2">Target2</option>				  </select>
+				</td>
+				<td colspan="2">
+					 <select type="select" class="form-control" id="workout[5][logic_override_priority_4_cat]" name="workout[5][logic_override_priority_4_cat]">
+						<option value=""> Select Category</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="O">O</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="T">T</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option>					 </select>	
+				</td>
+              </tr>
+			   			   
+			     
+					</tbody>
+				 
+			  <script>
+			  // for selection priority
+				$(function() {
+				$('#selection_priority5A').tagsly({
+				  suggestions: function(input, cb) {
+					cb(['A', 'B', 'C', 'D', '1', '2', '3']);
+				  },
+				  placeholder: 'Enter Priority',
+				 // maxItems: 5
+				});
+				});
+			  </script>
+			
+								
+							
+	
+            </table>
+          </div>
+        </div>
+            
+	  
+	  
+        <div class="row">
+          <div class="col-md-12 table-2-container">
+			<button type="button" id="add_exercise_group" data-exercise_grid="5" data-groupnumber="5" data-supersetchar="A" class="btn-add" style="width: 100%;">Add Exercise Group</button>     
+          </div>
+        </div>
+	  
+	<div class="row">
+	  <div class="col-md-12">
+		<h2 class="cycle-head">DESCRIPTION</h2>
+		<div class="txt-centent">
+		  <textarea class="form-control form-control" type="text" id="description" name="description" cols="50" rows="10"></textarea>
+		</div>
+	  </div>
+	</div>
+		
+	<!--upload image start--> 
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="cycle-head">Upload Image</h2>
+            <div class="txt-centent">
+              <input class="form-control form-control" type="file" id="image" name="image">
+
+              
+            </div>
+          </div>
+        </div>
+  <!--upload image end --> 	
+		
+	<div class="row">
+        <div class="form-group clearfix" id="fg_name">
+          <div class="col-md-12 table-2-container">
+            <h2 class="cycle-head">filter</h2>
+            <table class="table-bordered table-condensed table-border-color">
+              <thead class="cf">
+                <tr>
+                  <th class="tab-headings">Muscle(Primary)</th>
+                  <th class="tab-headings">Muscle (Secondary)</th>
+                  <th class="numeric tab-headings">Equipment</th>
+                  <th class="numeric tab-headings">Categeroy</th>
+                  <th class="numeric tab-headings">Injury</th>
+                </tr>
+              </thead>
+               <tbody>
+                <tr>
+                  <td valign="top">
+                    <ul class="cycle-filter-list">
+                                             <li>
+                        <input name="muscle_primary[]" value="1" type="checkbox"> 
+                        Chest
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="2" type="checkbox"> 
+                        Shoulder
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="3" type="checkbox"> 
+                        Biceps
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="4" type="checkbox"> 
+                        Triceps
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="5" type="checkbox"> 
+                        Forearms
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="6" type="checkbox"> 
+                        Back
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="7" type="checkbox"> 
+                        Lats
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="8" type="checkbox"> 
+                        Upper Back
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="9" type="checkbox"> 
+                        Lower Back
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="10" type="checkbox"> 
+                        Abdominals
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="11" type="checkbox"> 
+                        Obliques
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="12" type="checkbox"> 
+                        Glutes
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="13" type="checkbox"> 
+                        Hamstrings
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="14" type="checkbox"> 
+                        Quadriceps
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="15" type="checkbox"> 
+                        Calves
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="16" type="checkbox"> 
+                        Traps
+                        </li>
+                                             <li>
+                        <input name="muscle_primary[]" value="17" type="checkbox"> 
+                        Deltoids
+                        </li>
+                                         </ul>
+                  </td>
+                  <td valign="top">
+                    <ul class="cycle-filter-list">
+                                              <li><input name="muscle_secondary[]" value="1" type="checkbox"> Chest</li>
+                                              <li><input name="muscle_secondary[]" value="2" type="checkbox"> Shoulder</li>
+                                              <li><input name="muscle_secondary[]" value="3" type="checkbox"> Biceps</li>
+                                              <li><input name="muscle_secondary[]" value="4" type="checkbox"> Triceps</li>
+                                              <li><input name="muscle_secondary[]" value="5" type="checkbox"> Forearms</li>
+                                              <li><input name="muscle_secondary[]" value="6" type="checkbox"> Back</li>
+                                              <li><input name="muscle_secondary[]" value="7" type="checkbox"> Lats</li>
+                                              <li><input name="muscle_secondary[]" value="8" type="checkbox"> Upper Back</li>
+                                              <li><input name="muscle_secondary[]" value="9" type="checkbox"> Lower Back</li>
+                                              <li><input name="muscle_secondary[]" value="10" type="checkbox"> Abdominals</li>
+                                              <li><input name="muscle_secondary[]" value="11" type="checkbox"> Obliques</li>
+                                              <li><input name="muscle_secondary[]" value="12" type="checkbox"> Glutes</li>
+                                              <li><input name="muscle_secondary[]" value="13" type="checkbox"> Hamstrings</li>
+                                              <li><input name="muscle_secondary[]" value="14" type="checkbox"> Quadriceps</li>
+                                              <li><input name="muscle_secondary[]" value="15" type="checkbox"> Calves</li>
+                                              <li><input name="muscle_secondary[]" value="16" type="checkbox"> Traps</li>
+                                              <li><input name="muscle_secondary[]" value="17" type="checkbox"> Deltoids</li>
+                                          </ul>
+                  </td>
+                  <td valign="top">
+                     <ul class="cycle-filter-list">
+                                                  <li><input name="equipements[]" value="1" type="checkbox"> Equ one</li>
+                                                  <li><input name="equipements[]" value="2" type="checkbox"> Equ two</li>
+                                                  <li><input name="equipements[]" value="3" type="checkbox"> Equ Three</li>
+                                                  <li><input name="equipements[]" value="8" type="checkbox"> Stability Balls</li>
+                                                  <li><input name="equipements[]" value="9" type="checkbox"> Plyo Boxes</li>
+                                                  <li><input name="equipements[]" value="10" type="checkbox"> Medicine Balls</li>
+                                                  <li><input name="equipements[]" value="11" type="checkbox"> Machines</li>
+                                                  <li><input name="equipements[]" value="12" type="checkbox"> Kettlebells</li>
+                                                  <li><input name="equipements[]" value="13" type="checkbox"> Dumbbells</li>
+                                                  <li><input name="equipements[]" value="14" type="checkbox"> Cables</li>
+                                                  <li><input name="equipements[]" value="15" type="checkbox"> Body Weight</li>
+                                                  <li><input name="equipements[]" value="16" type="checkbox"> Barbells</li>
+                                                  <li><input name="equipements[]" value="17" type="checkbox"> Bands</li>
+                                                  <li><input name="equipements[]" value="18" type="checkbox"> Rings / TRX</li>
+                                                  <li><input name="equipements[]" value="19" type="checkbox"> Battle Rope</li>
+                                                  <li><input name="equipements[]" value="20" type="checkbox"> Foam Roll</li>
+                                                  <li><input name="equipements[]" value="21" type="checkbox"> Weight Sled</li>
+                                                  <li><input name="equipements[]" value="22" type="checkbox"> Chains</li>
+                                                  <li><input name="equipements[]" value="23" type="checkbox"> Ab Doll</li>
+                                                  <li><input name="equipements[]" value="24" type="checkbox"> new equipment</li>
+                                            </ul>
+                  </td>
+                  <td valign="top">
+                    <ul class="cycle-filter-list">
+                                              <li><input name="category[]" value="3" type="checkbox"> Strength</li>
+                                              <li><input name="category[]" value="2" type="checkbox"> Power</li>
+                                              <li><input name="category[]" value="1" type="checkbox"> Cardio</li>
+                                              <li><input name="category[]" value="4" type="checkbox"> Conditioning</li>
+                                              <li><input name="category[]" value="5" type="checkbox"> unilateral</li>
+                                              <li><input name="category[]" value="6" type="checkbox"> bilateral</li>
+                                              <li><input name="category[]" value="7" type="checkbox"> Mobility</li>
+                                              <li><input name="category[]" value="8" type="checkbox"> Plyometrics</li>
+                                              <li><input name="category[]" value="9" type="checkbox"> Mulit-Joint</li>
+                                              <li><input name="category[]" value="10" type="checkbox"> Single Joint</li>
+                                              <li><input name="category[]" value="11" type="checkbox"> Stretching</li>
+                                              <li><input name="category[]" value="12" type="checkbox"> Stabilization</li>
+                                              <li><input name="category[]" value="13" type="checkbox"> Isometric</li>
+                                              <li><input name="category[]" value="15" type="checkbox"> joe category</li>
+                                          </ul>
+                  </td>
+                  <td valign="top">
+                    <ul class="cycle-filter-list">
+                                              <li><input name="injuries[]" value="2" type="checkbox"> Knee</li>
+                                              <li><input name="injuries[]" value="1" type="checkbox"> Shoulder</li>
+                                              <li><input name="injuries[]" value="3" type="checkbox"> Hip</li>
+                                              <li><input name="injuries[]" value="4" type="checkbox"> Hamstring</li>
+                                              <li><input name="injuries[]" value="5" type="checkbox"> Groin</li>
+                                              <li><input name="injuries[]" value="6" type="checkbox"> Elbow</li>
+                                              <li><input name="injuries[]" value="7" type="checkbox"> Back</li>
+                                              <li><input name="injuries[]" value="9" type="checkbox"> Ankle</li>
+                                          </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+	
+	
+	
+	
+	  				  
+		<div class="row">
+          <div class="col-md-12 table-2-container">
+			<h2 class="cycle-head">Administration</h2>
+			<div class="txt-centent">
+				<table class="table-bordered table-condensed table-border-color">
+				<tbody>
+					<tr>
+					  <td class="col-md-8">
+						Post Workout In Library
+					  </td>	
+					  <td class="col-md-4">
+						<span class="switch" style="float:left;padding:8px 10px;">
+						  <input id="library_wo" class="cmn-toggle cmn-toggle-round-flat" type="checkbox" name="library_wo">
+						<label for="library_wo"></label>
+						</span>
+					  </td>
+					</tr>	
+					<tr>
+					  <td class="col-md-8">
+						Post Workout To Market
+					  </td>	
+					  <td class="col-md-4">
+						<span class="switch" style="float:left;padding:8px 10px;">
+						  <input id="market_wo" class="cmn-toggle cmn-toggle-round-flat workout_market_wo_class" type="checkbox" name="market_wo">
+						<label for="market_wo"></label>
+						</span>
+					  </td>
+					</tr>
+				  </tbody>
+				</table>		
+			</div>
+		  </div>
+		</div>
+	  
+	  
+    <div class="btn-add-container">
+        <input class="btn-add" type="submit" value="Update">
+      </div>
+    </div>
+    
+    </div>
+
+  </form>
+</div>
+
+
+
+<script>
+	
+// For Set Time and Max_Time
+	var total_time=0;
+	var max_time=0;
+
+	function toText(m){
+        var minutes = m % 60;
+        var hours = Math.floor(m / 60);
+        minutes = (minutes < 10 ? '0' : '') + minutes;
+        hours = (hours < 10 ? '0' : '') + hours;
+        return hours + ':' + minutes;
+    }
+	
+	function getminute(current_set_time){
+		var current_hour=0;
+		var current_min=0;
+		var totalminute=0;
+		var current_set_time_split=current_set_time.split(":");
+		var current_hour=current_set_time_split[0];
+		var current_min=current_set_time_split[1];
+		var current_hour_min=current_hour*60;
+		totalminute=Number(current_hour_min) + Number(current_min);
+		return totalminute;
+	}
+
+	function setmaxtime(thisdata){
+		var prev_set_time = thisdata.data('val');		
+		var current_set_time = thisdata.val();
+		var max_time= $("input[name='max_time'").val();
+		current_set_time=getminute(current_set_time);
+		prev_set_time=getminute(prev_set_time);		
+		max_time=getminute(max_time);
+		var calculate_delete_max_time=0;
+		var calculate_add_max_time=0;
+		var wexergrpNumber=thisdata.attr("data-groupid");		
+		var superalphabet=thisdata.attr("data-superalpchar");		
+		if(superalphabet=='A'){
+			if(prev_set_time>0){			
+					var totalrowCount = $('#workout_exgrp_'+wexergrpNumber+'_'+superalphabet+'>tbody>tr').length;	
+					totalrowCount=totalrowCount-1;
+					calculate_delete_max_time=prev_set_time*totalrowCount;
+					max_time= Number(max_time)-Number(calculate_delete_max_time);
+			}	
+
+			if(current_set_time>0){
+					var totalrowCount = $('#workout_exgrp_'+wexergrpNumber+'_'+superalphabet+'>tbody>tr').length;	
+					totalrowCount=totalrowCount-1;
+					calculate_add_max_time=current_set_time*totalrowCount;
+					max_time= Number(max_time) + Number(calculate_add_max_time);
+			}		
+
+			max_time=Math.round(max_time * 100) / 100;	
+			max_time=toText(max_time);
+			$("input[name='max_time'").val(max_time);
+		}
+	}
+
+$(document).ready(function() {	
+	$('.settime,.resttime').clockpicker({
+		 donetext: 'Done',
+		 autoclose: true,
+	});
+	$(document).on('focusin','.settime,.resttime',function(){
+		$(this).data('val', $(this).val());
+	}); 	
+	$(".settime,.resttime").on('change', function(){	
+		var thisdata=$(this);
+		setmaxtime(thisdata);
+	});
+});
+// For Set Time and Max_Time
+
+
+$(document).ready(function(){
+	
+// for group name auto complete
+  var availableTags = [
+    "program-test" , "SB3  Max Effort Upper" , "SB3 Supplemental ME Upper" , "SB3 Horizontal Pulling" , "SB3 Rear Delts" , "SB3 Traps" , "SB3" , "Sameep Test Group" , "Sameep Test Group - 2" , "r" , "test" , "Set Erasing" , "groupian 1" , "joltiest" , "joltiest - copy" , "another test" , "24" , "25" , "26" , "exercise group 1" , "Ex G 80" , "exercise group demo" , "NFL" , "groupian 1 - copy" , "Group 9: a27 b36 c09" , "Group 1: a1 b2 c3 d4 e5 f6 g7 h8 i90" , "Group 7: a87654 b90 (rep OR)" , "Group 8: a8 b790 c65 d4 (rep OR)" , "Group 2: a12 b34 c56 d78 e90" , "Group 10: a3 b76 c9 d0" , "Group 3: a45678 i90" , "Group 5: a1 b2 c3 d4 e5 f6 g7 h8 i9(rep OR)" , "Group 6: a8 b7 c6 d5 e4 f09" , "Group 4: a8 b567 c90(rep OR)" , "Target Chest A: a1357 b2468 c9" , "Target Shoulder A: a89 b67 c45 d123 (priority b)" , "Target Biceps B: a456789 b123" , "Target Shoulder B: a1234 b5678 c9 (priority b)" , "Target Chest B: a123 b4567 c89 (priority b)" , "Target Bicep A: a1679 b23458 (priority b)" , "Injury Hip B: a4 b8 c6 d2" , "Injury Ankle B: a2 b4 c6 d8" , "Injury Knee B: a6 b48 c2 " , "Injury Knee A: a37 b19 c5 (priority c)" , "Injury Hip A: a7 b5 c3 d1 e9 (priority b)" , "Injury Ankle A:  a97 b53 c1 (priority b)" ,     
+  ];
+  
+ var NoResultsLabel = "No Results Match";
+ $(".exercise_gid").autocomplete({
+    source: function(request, response) {
+      var results = $.ui.autocomplete.filter(availableTags, request.term);
+      if (!results.length) {
+          results = [NoResultsLabel];
+      }
+      response(results);
+    },
+    select: function (event, ui) {
+      if (ui.item.label === NoResultsLabel) {
+        event.preventDefault();
+      }
+    },
+    focus: function (event, ui) {
+      if (ui.item.label === NoResultsLabel) {
+        event.preventDefault();
+      }
+    }
+  });
+  
+// for group name auto complete
+  
+  
+
+  
+// add set in group
+ var scycleRowCount = 1 ;
+$(document).on('click','.addsets',function(e){	
+    var removeId = $(this).attr('id');
+    var temp = removeId.split('_');
+    var wexergrpNumber = temp[1];
+    var scycleRowCount = temp[2];
+    var superalphabet = temp[3];
+
+	cycleRowCount=wexergrpNumber;
+	
+	e.preventDefault();
+	scycleRowCount++;	
+	
+	
+	$(this).attr('id','workoutexgrp_'+wexergrpNumber+'_'+scycleRowCount+'_'+superalphabet);
+	cycleRowCount=wexergrpNumber;
+	
+	
+	var superchar= $(this).attr("data-superchar");
+
+		var html = 	
+		'<tr  id="workoutexgrpsets_'+cycleRowCount+'_'+scycleRowCount+'">'+
+		'<td  class="col-md-3"><span>'+scycleRowCount+'</span><button class="removewexergrpset btn-add" type="button" data-workout_exercise_group_set_id="0" id="wexgrpsetd_'+cycleRowCount+'_'+scycleRowCount+'_'+superchar+'">Delete</button></td>'+  
+
+		'<td  class="col-md-2" style="padding: 0;">'+  
+			'<table  width="100%" class="table-bordered" >'+	
+			 '<tr>'+
+				'<td><input type="number"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_1_set_reps]['+superchar+']" placeholder="5"></td>'+				
+				'<td><input type="number"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_1_set_weight]['+superchar+']" placeholder="70%"></td>'+				
+			 '</tr>'+	
+			'</table>'+							
+		'</td>'+	
+		
+		'<td  class="col-md-2" style="padding: 0;">'+  
+			'<table width="100%" class="table-bordered">'+	
+			 '<tr>'+
+				'<td><input type="number"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_2_set_reps]['+superchar+']" placeholder="5"></td>'+				
+				'<td><input type="number"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_2_set_weight]['+superchar+']" placeholder="70%"></td>'+				
+			 '</tr>'+	
+			'</table>'+							
+		'</td>'+	
+		
+		'<td  class="col-md-2" style="padding: 0;">'+  
+			'<table width="100%" class="table-bordered">'+	
+			 '<tr>'+
+				'<td><input type="number"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_3_set_reps]['+superchar+']" placeholder="5"></td>'+				
+				'<td><input type="number"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_3_set_weight]['+superchar+']" placeholder="70%"></td>'+				
+			 '</tr>'+	
+			'</table>'+							
+		'</td>'+	
+		
+		'<td  class="col-md-2" style="padding: 0;">'+  
+			'<table width="100%" class="table-bordered">'+	
+			 '<tr>'+
+				'<td><input type="number"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_4_set_reps]['+superchar+']" placeholder="5"></td>'+				
+				'<td><input type="number" style="width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_4_set_weight]['+superchar+']" placeholder="70%"></td>'+				
+			 '</tr>'+	
+			'</table>'+							
+		'</td>'+	
+
+		'<td  class="col-md-1">'+ 
+			'<input type="checkbox" style="zoom: 1.7;" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_maximum_set]['+superchar+']">'+
+		'</td>'+				
+	  '</tr>';
+	
+
+	
+	// For Set Time and Max_Time
+	if(superalphabet=='A'){
+		max_time= $("input[name='max_time'").val();
+		max_time=getminute(max_time);
+		var totalrowCount = $('#workout_exgrp_'+wexergrpNumber+'_'+superalphabet+'>tbody>tr').length;
+		var totalsets=totalrowCount;
+		var settimeofthegroup=$("input[name='workout["+wexergrpNumber+"][group_set_time]']").val();
+		settimeofthegroup=getminute(settimeofthegroup);
+		if(settimeofthegroup>0){
+			total_time=settimeofthegroup*1;
+			if(total_time>0){
+				max_time= Number(max_time) + Number(total_time);
+				max_time=Math.round(max_time * 100) / 100;	
+				max_time=toText(max_time);						
+				$("input[name='max_time'").val(max_time);
+			}			
+		}			
+	}
+	// For Set Time and Max_Time
+
+    $("#workout_exgrp_"+wexergrpNumber+"_"+superalphabet).append(html);
+
+
+	
+}); 
+
+  
+			  
+
+var logic_dropdown=null;
+	logic_dropdown+='<option value="">Select</option>';	
+	logic_dropdown+='<option value="position">Position</option>';	
+	logic_dropdown+='<option value="injury">Injury</option>';	
+	logic_dropdown+='<option value="target1">Target1</option>';	
+	logic_dropdown+='<option value="target2">Target2</option>';	
+
+var categorie=null;
+	categorie+='<option value="">Select Category</option>';	
+	categorie+='<option value="A">A</option>';	
+	categorie+='<option value="B">B</option>';	
+	categorie+='<option value="C">C</option>';	
+	categorie+='<option value="D">D</option>';	
+	categorie+='<option value="E">E</option>';	
+	categorie+='<option value="F">F</option>';	
+	categorie+='<option value="G">G</option>';	
+	categorie+='<option value="H">H</option>';	
+	categorie+='<option value="I">I</option>';	
+	categorie+='<option value="J">J</option>';	
+	categorie+='<option value="K">K</option>';	
+	categorie+='<option value="L">L</option>';	
+	categorie+='<option value="M">M</option>';	
+	categorie+='<option value="N">N</option>';	
+	categorie+='<option value="O">O</option>';	
+	categorie+='<option value="P">P</option>';	
+	categorie+='<option value="Q">Q</option>';	
+	categorie+='<option value="R">R</option>';	
+	categorie+='<option value="S">S</option>';	
+	categorie+='<option value="T">T</option>';	
+	categorie+='<option value="U">U</option>';	
+	categorie+='<option value="V">V</option>';	
+	categorie+='<option value="W">W</option>';	
+	categorie+='<option value="X">X</option>';	
+	categorie+='<option value="Y">Y</option>';	
+	categorie+='<option value="Z">Z</option>';	
+
+  
+// add group
+var cycleRowCount = 1 ;
+  
+  $(document).on('click','#add_exercise_group',function(e){
+					
+	var exercise_grid= $(this).attr("data-exercise_grid");	
+	var supersetchar= $(this).attr("data-supersetchar");	
+	e.preventDefault();
+	var tcycleRowCount=exercise_grid;
+	
+	 cycleRowCount = $(this).attr('data-groupnumber');
+	cycleRowCount++;
+	$(this).attr('data-groupnumber',cycleRowCount);
+	
+	
+
+  var html = '<tbody id="exergroupTable_'+cycleRowCount+'_A"><tr style="background: #e2e2e2;" class="wexgp_'+cycleRowCount+'" ><td  colspan="6"></td></tr>'+
+  
+			  '<tr  class="wexgp_'+cycleRowCount+'">'+
+			  
+			   '<td class="numeric txt-center-td">'+cycleRowCount+'</td>'+
+			   '<td class="numeric txt-center-td"><input class="cycle_auto form-input exercise_gid" style="width: 100%;" name="workout['+cycleRowCount+'][exer_group_id][A]" placeholder="Group Name"></td>'+
+			   '<td class="numeric txt-center-td">'+
+			   	 '<label class="btn btn-primary active">'+
+					// '<input type="checkbox" name="workout['+cycleRowCount+'][set_super_set]" autocomplete="off">Super Set'+
+					'<input type="checkbox" name="workout['+cycleRowCount+'][set_super_set]" class="addsuperset"  data-workout_exercise_group_id="0" data-exercise_gid="'+cycleRowCount+'" autocomplete="off">Super Set'+
+				  '</label>'+
+			   '</td>'+
+			   '<td class="numeric txt-center-td"><button class="removewexergrp  btn-add"  data-workout_exercise_group_id="0" type="button" id="exerdgrptr_'+cycleRowCount+'">Delete  <span class="glyphicon glyphicon-minus-sign"></span></button></td>'+
+              '</tr>'+ 
+
+			  '<tr  class="wexgp_'+cycleRowCount+'">'+
+			  '<td  colspan="6">'+
+			  
+				'<table width="100%" class="table-bordered table-first-top">'+
+					'<tr>'+     
+					  '<td>'+
+						'<span>Switch Weeks</span> '+
+						 '<select type="select" id="workout['+cycleRowCount+'][swap_week]" name="workout['+cycleRowCount+'][swap_week]"  class="form-control">';
+							
+						for(i=0;i<=5;i++){
+							$('<option></option>').val(i).html(i);
+							html+='<option value="'+i+'">'+i+'</option>';							
+						}
+											
+						  html+='</select>'+
+					  '</td>'+
+					  '<td>'+
+						'<span>Reset Time</span>'+ 
+						'<input type="text" class="form-control resttime" name="workout['+cycleRowCount+'][group_rest_time]" id="workout['+cycleRowCount+'][group_rest_time]" placeholder="2:00"  value="2.20" >'+			
+					  '</td>'+
+					  '<td>'+
+						'<span>Set Time</span>'+ 
+						'<input type="text" class="form-control settime"  data-groupid="'+cycleRowCount+'" data-superalpchar="A"  name="workout['+cycleRowCount+'][group_set_time]" id="workout['+cycleRowCount+'][group_set_time]" placeholder="00:00" value="00:00">'+			
+					  '</td>'+	
+					  '<td>'+
+						'<span>Drop Priority</span>'+ 
+						'<input type="number" class="form-input" name="workout['+cycleRowCount+'][group_priority]" placeholder="1">'+
+					  '</td>'+
+					'</tr>'+
+				  '</table>'+
+				 '</td>'+
+              '</tr>'+
+			  
+
+			  '<tr  class="wexgp_'+cycleRowCount+'">'+
+				'<td  colspan="6">'+			  
+					'<table   id="workout_exgrp_'+cycleRowCount+'_A"  width="100%" class="table-bordered table-first-top">'+
+					'<tr>'+
+						'<td  class="col-md-3">Set '+
+						'<button type="button" class="btn-add addsets"   data-superchar="A" id="workoutexgrp_'+cycleRowCount+'_1_A">Add Sets</button>'+
+						'</td>'+  
+
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+
+								'<tr><td  colspan="2"> Week 1</td></tr>'+			
+								 '<tr><td>resp</td><td>%1RM</td></tr>'+	
+							'</table>'+							
+						'</td>'+	
+						
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+
+								'<tr><td  colspan="2"> Week 2</td></tr>'+			
+								 '<tr><td>resp</td><td>%1RM</td></tr>'+	
+							'</table>'+							
+						'</td>'+	
+
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+
+								'<tr><td  colspan="2"> Week 3</td></tr>'+			
+								 '<tr><td>resp</td><td>%1RM</td></tr>'+	
+							'</table>'+							
+						'</td>'+	
+						
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+
+								'<tr><td  colspan="2"> Week 4</td></tr>'+			
+								 '<tr><td>resp</td><td>%1RM</td></tr>'+	
+							'</table>'+							
+						'</td>'+	
+
+						'<td  class="col-md-1"> Minimum Sets</td>'+				
+					  '</tr>'+	
+					  
+					  
+					'<tr>'+
+						'<td  class="col-md-3">1</td>'+  
+
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+	
+							 '<tr>'+
+								'<td><input type="text"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_1_set_reps][A]" placeholder="5"></td>'+				
+								'<td><input type="text"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_1_set_weight][A]" placeholder="70%"></td>'+				
+							 '</tr>'+	
+							'</table>'+							
+						'</td>'+	
+						
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+	
+							 '<tr>'+
+								'<td><input type="text"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_2_set_reps][A]" placeholder="5"></td>'+				
+								'<td><input type="text"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_2_set_weight][A]" placeholder="70%"></td>'+				
+							 '</tr>'+	
+							'</table>'+							
+						'</td>'+	
+						
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+	
+							 '<tr>'+
+								'<td><input type="text"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_3_set_reps][A]" placeholder="5"></td>'+				
+								'<td><input type="text"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_3_set_weight][A]" placeholder="70%"></td>'+				
+							 '</tr>'+	
+							'</table>'+							
+						'</td>'+	
+						
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+	
+							 '<tr>'+
+								'<td><input type="text"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_4_set_reps][A]" placeholder="5"></td>'+				
+								'<td><input type="text" style="width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_4_set_weight][A]" placeholder="70%"></td>'+				
+							 '</tr>'+	
+							'</table>'+							
+						'</td>'+	
+
+						'<td  class="col-md-1">'+ 
+							'<input type="checkbox" style="zoom: 1.7;" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_maximum_set][A]">'+
+						'</td>'+				
+					  '</tr>'+			  
+					'</table>'+
+				'</td>'+
+              '</tr> '+
+
+				  
+		   '<tr  class="wexgp_'+cycleRowCount+'">'+
+			'<td  colspan="1">Selection Priority</td>'+
+			'<td  colspan="5">'+
+				'<input type="text" style="width: 100%;" class="form-input"  id="selection_priority'+cycleRowCount+'A"  name="workout['+cycleRowCount+'][selection_priority][A]" placeholder="A,B-C,1">'+
+			'</td>'+
+		  '</tr>   '+
+			  
+			'<tr   class="wexgp_'+cycleRowCount+'">'+
+				'<td  colspan="1">Logic Override Priority 1</td>'+
+				'<td  colspan="3">'+
+					 '<select type="select" class="form-control" id="workout['+cycleRowCount+'][logic_override_priority_1]" name="workout['+cycleRowCount+'][logic_override_priority_1]">'+
+						logic_dropdown+					
+					 '</select>	'+
+				'</td>'+
+				'<td  colspan="2">'+
+					'<select type="select" class="form-control" id="workout['+cycleRowCount+'][logic_override_priority_1_cat]" name="workout['+cycleRowCount+'][logic_override_priority_1_cat]">'+
+						categorie+
+					 '</select>	'+
+				'</td>	'+			
+              '</tr> '+
+			  
+			  '<tr   class="wexgp_'+cycleRowCount+'">'+
+				'<td  colspan="1">Logic Override Priority 2</td>'+
+				'<td  colspan="3">'+
+				 '<select type="select" class="form-control" id="workout['+cycleRowCount+'][logic_override_priority_2]" name="workout['+cycleRowCount+'][logic_override_priority_2]">'+
+					logic_dropdown+
+				 '</select>	'+
+				'</td>'+
+				'<td  colspan="2">'+
+					 '<select type="select" class="form-control" id="workout['+cycleRowCount+'][logic_override_priority_2_cat]" name="workout['+cycleRowCount+'][logic_override_priority_2_cat]">'+
+						categorie+
+					 '</select>	'+
+				'</td>'+
+              '</tr> '+
+			  
+			  '<tr   class="wexgp_'+cycleRowCount+'">'+
+				'<td  colspan="1">Logic Override Priority 3</td>'+
+				'<td  colspan="3">'+
+				 '<select type="select" class="form-control" id="workout['+cycleRowCount+'][logic_override_priority_3]" name="workout['+cycleRowCount+'][logic_override_priority_3]">'+
+					logic_dropdown+
+				  '</select>'+
+				'</td>'+
+				'<td  colspan="2">'+
+					 '<select type="select" class="form-control" id="workout['+cycleRowCount+'][logic_override_priority_3_cat]" name="workout['+cycleRowCount+'][logic_override_priority_3_cat]">'+
+						categorie+
+					'</select>	'+
+				'</td>'+
+              '</tr>'+		
+			  
+			  '<tr  class="wexgp_'+cycleRowCount+'">'+
+				'<td  colspan="1">Logic Override Priority 4</td>'+
+				'<td  colspan="3">'+
+					'<select type="select" class="form-control" id="workout['+cycleRowCount+'][logic_override_priority_4]" name="workout['+cycleRowCount+'][logic_override_priority_4]">'+
+					logic_dropdown+
+				  '</select>'+
+				'</td>'+
+				'<td  colspan="2">'+
+					 '<select type="select" class="form-control" id="workout['+cycleRowCount+'][logic_override_priority_4_cat]" name="workout['+cycleRowCount+'][logic_override_priority_4_cat]">'+
+						categorie+
+					'</select>'+	
+				'</td>'+
+              '</tr></tbody>';
+
+
+
+	
+   //  $("#exergroupTable_1_A").append(html);
+	 $(html).insertAfter($('#exergroupTable_'+exercise_grid+'_'+supersetchar));
+	 $(this).attr("data-exercise_grid",cycleRowCount);
+	 $(this).attr("data-supersetchar",'A');
+
+		
+	 var NoResultsLabel = "No Results Match";
+	 $(".exercise_gid").autocomplete({
+		source: function(request, response) {
+		  var results = $.ui.autocomplete.filter(availableTags, request.term);
+		  if (!results.length) {
+			  results = [NoResultsLabel];
+		  }
+		  response(results);
+		},
+		select: function (event, ui) {
+		  if (ui.item.label === NoResultsLabel) {
+			event.preventDefault();
+		  }
+		},
+		focus: function (event, ui) {
+		  if (ui.item.label === NoResultsLabel) {
+			event.preventDefault();
+		  }
+		}
+	  });
+	
+	// selection priority	
+	$(function() {
+	$('#selection_priority'+cycleRowCount+'A').tagsly({
+	  suggestions: function(input, cb) {
+		cb(['A', 'B', 'C', 'D', '1', '2', '3']);
+	  },
+	  placeholder: 'Enter Priority',
+	//  maxItems: 5
+	});
+	});
+		
+	// Add set_time_picker
+	$('.settime,.resttime').clockpicker({
+		 donetext: 'Done',
+		 autoclose: true,
+	});
+	$(".settime,.resttime").on('change', function(){	
+		var thisdata=$(this);
+		setmaxtime(thisdata);
+	});
+	// Add set_time_picker
+	
+  });
+  
+  
+  
+  
+  $(document).on('change','.addsuperset',function(e){	  
+	e.preventDefault();
+//	cycleRowCount++;
+	var exercise_gids= $(this).attr("data-exercise_gid");	
+	var supersetchar= $(this).attr("data-supersetchar");	
+	if(exercise_gids==cycleRowCount){
+		$('#add_exercise_group').attr("data-supersetchar",'B');
+	}	
+	var cycleRowCount1=exercise_gids;
+	if($(this).is(':checked')){
+		addsupersetcontent(cycleRowCount1);
+	}else{
+		deletesupersetcontent(cycleRowCount1);
+		var workout_exercise_group_id= $(this).attr("data-workout_exercise_group_id");	
+		if(workout_exercise_group_id>0){
+			deletegroupfromtable(workout_exercise_group_id);
+		}
+	}
+ });
+  
+  
+function deletesupersetcontent(cycleRowCount){
+    $("#exergroupTable_"+cycleRowCount+"_B").remove();	
+}  
+
+
+function addsupersetcontent(cycleRowCount){	
+	
+  var html = '<tbody id="exergroupTable_'+cycleRowCount+'_B"><tr style="background: #e2e2e2;" class="wexgp_'+cycleRowCount+'" ><td  colspan="6"></td></tr>'+
+  
+			  '<tr  class="wexgp_'+cycleRowCount+'">'+
+			   '<td class="numeric txt-center-td">'+cycleRowCount+' B</td>'+
+			   '<td class="numeric txt-center-td" colspan="5"><input class="cycle_auto form-input exercise_gid" style="width: 100%;" name="workout['+cycleRowCount+'][exer_group_id][B]" placeholder="Group Name"></td>'+
+			  '</tr>'+ 
+
+
+			  '<tr  class="wexgp_'+cycleRowCount+'">'+
+				'<td  colspan="6">'+			  
+					'<table   id="workout_exgrp_'+cycleRowCount+'_B"  width="100%" class="table-bordered table-first-top">'+
+					'<tr>'+
+						'<td  class="col-md-3">Set '+
+							'<button type="button" class="btn-add addsets"  data-superchar="B" id="workoutexgrp_'+cycleRowCount+'_1_B">Add Sets</button>'+
+						'</td>'+  
+
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+
+								'<tr><td  colspan="2"> Week 1</td></tr>'+			
+								 '<tr><td>resp</td><td>%1RM</td></tr>'+	
+							'</table>'+							
+						'</td>'+	
+						
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+
+								'<tr><td  colspan="2"> Week 2</td></tr>'+			
+								 '<tr><td>resp</td><td>%1RM</td></tr>'+	
+							'</table>'+							
+						'</td>'+	
+
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+
+								'<tr><td  colspan="2"> Week 3</td></tr>'+			
+								 '<tr><td>resp</td><td>%1RM</td></tr>'+	
+							'</table>'+							
+						'</td>'+	
+						
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+
+								'<tr><td  colspan="2"> Week 4</td></tr>'+			
+								 '<tr><td>resp</td><td>%1RM</td></tr>'+	
+							'</table>'+							
+						'</td>'+	
+
+						'<td  class="col-md-1"> Minimum Sets</td>'+				
+					  '</tr>'+	
+					  
+					  
+					'<tr>'+
+						'<td  class="col-md-3">1</td>'+  
+
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+	
+							 '<tr>'+
+								'<td><input type="number"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_1_set_reps][B]" placeholder="5"></td>'+				
+								'<td><input type="number"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_1_set_weight][B]" placeholder="70%"></td>'+				
+							 '</tr>'+	
+							'</table>'+							
+						'</td>'+	
+						
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+	
+							 '<tr>'+
+								'<td><input type="number"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_2_set_reps][B]" placeholder="5"></td>'+				
+								'<td><input type="number"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_2_set_weight][B]" placeholder="70%"></td>'+				
+							 '</tr>'+	
+							'</table>'+							
+						'</td>'+	
+						
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+	
+							 '<tr>'+
+								'<td><input type="number"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_3_set_reps][B]" placeholder="5"></td>'+				
+								'<td><input type="number"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_3_set_weight][B]" placeholder="70%"></td>'+				
+							 '</tr>'+	
+							'</table>'+							
+						'</td>'+	
+						
+						'<td  class="col-md-2" style="padding: 0;">'+  
+							'<table width="100%" class="table-bordered">'+	
+							 '<tr>'+
+								'<td><input type="number"  style=" width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_4_set_reps][B]" placeholder="5"></td>'+				
+								'<td><input type="number" style="width: 100%;" class="form-input" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_4_set_weight][B]" placeholder="70%"></td>'+				
+							 '</tr>'+	
+							'</table>'+							
+						'</td>'+	
+
+						'<td  class="col-md-1">'+ 
+							'<input type="checkbox" style="zoom: 1.7;" name="workout['+cycleRowCount+'][sets]['+scycleRowCount+'][week_maximum_set][B]">'+
+						'</td>'+				
+					  '</tr>	'+
+					  
+					  
+					'</table>'+
+				'</td>'+
+              '</tr> '+
+				  
+		   '<tr  class="wexgp_'+cycleRowCount+'">'+
+			'<td  colspan="1">Selection Priority</td>'+
+			'<td  colspan="5">'+
+				'<input type="text" style="width: 100%;" class="form-input"  id="selection_priority'+cycleRowCount+'B"  name="workout['+cycleRowCount+'][selection_priority][B]" placeholder="A,B-C,1">'+
+			'</td>'+
+		  '</tr> </tbody>  ';
+
+		  
+	$(html).insertAfter($('#exergroupTable_'+cycleRowCount+'_A'));
+	
+	
+	
+			
+	 var NoResultsLabel = "No Results Match";
+	 $(".exercise_gid").autocomplete({
+		source: function(request, response) {
+		  var results = $.ui.autocomplete.filter(availableTags, request.term);
+		  if (!results.length) {
+			  results = [NoResultsLabel];
+		  }
+		  response(results);
+		},
+		select: function (event, ui) {
+		  if (ui.item.label === NoResultsLabel) {
+			event.preventDefault();
+		  }
+		},
+		focus: function (event, ui) {
+		  if (ui.item.label === NoResultsLabel) {
+			event.preventDefault();
+		  }
+		}
+	  });
+
+
+	  
+	// selection priority	
+	$(function() {
+	$('#selection_priority'+cycleRowCount+'B').tagsly({
+	  suggestions: function(input, cb) {
+		cb(['A', 'B', 'C', 'D', '1', '2', '3']);
+	  },
+	  placeholder: 'Enter Priority',
+	//  maxItems: 5
+	});
+	});
+	
+		
+	
+}
+
+  
+//remove workout_exer_group
+
+  $(document).on('click','.removewexergrp',function(){
+    var removeId = $(this).attr('id');
+    var temp = removeId.split('_');
+    var rowNumber = temp[1];
+
+    $(".wexgp_"+rowNumber).remove();
+    cycleRowCount--;
+	
+	var workout_exercise_group_id= $(this).attr("data-workout_exercise_group_id");	
+	if(workout_exercise_group_id>0){
+		deletegroupfromtable(workout_exercise_group_id);
+	}
+	
+  }); 
+  
+
+  
+//remove workout_exer_group_sets
+
+  $(document).on('click','.removewexergrpset',function(e){
+    var removeId = $(this).attr('id');
+    var temp = removeId.split('_');
+    var wexergrpNumber = temp[1];
+    var scycleRowCount = temp[2];
+    var superalph = temp[3];
+	 
+	
+	e.preventDefault();	
+	// $(this).attr('id','workoutexgrp_'+wexergrpNumber+'_'+scycleRowCount);
+	$("#workoutexgrpsets_"+wexergrpNumber+"_"+scycleRowCount).remove();
+	
+	var old_set_id='workoutexgrp_'+wexergrpNumber+'_'+scycleRowCount+'_'+superalph;
+
+	scycleRowCount--;
+	var new_set_id='workoutexgrp_'+wexergrpNumber+'_'+scycleRowCount+'_'+superalph;
+	$('.addsets').find('#'+old_set_id).attr('id', new_set_id);
+	 $('#'+old_set_id).attr('id', new_set_id);
+	 
+	// For Set Time and Max_Time
+	if(superalph=='A'){
+		max_time= $("input[name='max_time'").val();
+		max_time=getminute(max_time);
+		var totalrowCount = $('#workout_exgrp_'+wexergrpNumber+'_'+superalph+'>tbody>tr').length;
+		var totalsets=totalrowCount;
+		var settimeofthegroup=$("input[name='workout["+wexergrpNumber+"][group_set_time]']").val();
+		settimeofthegroup=getminute(settimeofthegroup);
+		if(settimeofthegroup>0){
+			total_time=settimeofthegroup*1;
+			if(total_time>0){
+				max_time= Number(max_time) - Number(total_time);				
+				max_time=Math.round(max_time * 100) / 100;	
+				max_time=toText(max_time);				
+				$("input[name='max_time'").val(max_time);	
+			}	
+		}		
+	}
+	// For Set Time and Max_Time
+		
+	var workout_exercise_group_set_id= $(this).attr("data-workout_exercise_group_set_id");	
+	if(workout_exercise_group_set_id>0){
+		deletegroupsetsfromtable(workout_exercise_group_set_id);
+	}
+	
+  }); 
+
+
+  function deletegroupfromtable(workout_exercise_group_id){
+	   $.ajax({
+		   type: 'POST',
+		   url : "deleteupdatedgroup",
+		   data:{id:workout_exercise_group_id},
+		   dataType:'html'
+	  });
+  }
+  
+  
+  function deletegroupsetsfromtable(workout_exercise_group_set_id){
+	   $.ajax({
+		   type: 'POST',
+		   url : "deleteupdatedgroupsets",
+		   data:{id:workout_exercise_group_set_id},
+		   dataType:'html'
+	  });
+  }
+  
+});
+</script>
+
+
+        </div>
+        </div>
+        <!-- /#page-wrapper -->
+
+    
+    <!-- /#wrapper -->
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="./Panel_files/bootstrap.min.js.download"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="./Panel_files/sb-admin-2.js.download"></script>
+
+    <!--script src="http://54.144.212.170/packages/zofe/rapyd/assets/redactor/jquery.browser.min.js"></script-->
+    <!--script src="http://54.144.212.170/packages/zofe/rapyd/assets/redactor/redactor.min.js"></script-->
+    <script src="./Panel_files/bootstrap-datepicker.js.download"></script>
+    <script src="./Panel_files/bootstrap-datepicker.it.js.download"></script>
+    <script src="./Panel_files/typeahead.bundle.min.js.download"></script>
+    <script src="./Panel_files/handlebars.js.download"></script>
+    <script src="./Panel_files/bootstrap-tagsinput.min.js.download"></script>
+    <script src="./Panel_files/bootstrap-colorpicker.min.js.download"></script>
+    <!--script src="http://54.144.212.170/packages/serverfireteam/rapyd-laravel/assets/colorpicker/js/bootstrap-colorpicker.min.js"></script-->
+
+
+    <script src="./Panel_files/cycle.js.download"></script>
+    <script src="./Panel_files/jquery-ui.js.download"></script>
+    <script src="./Panel_files/bootstrap-toggle.min.js.download"></script>
+    <script>
+      $(function() {
+        $('#toggle-one').bootstrapToggle();
+      })
+    </script>
+
+
+    
+
+
+
+
+
+<ul id="ui-id-1" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul><div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><ul id="ui-id-2" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul><div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><ul id="ui-id-3" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul><div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><ul id="ui-id-4" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul><div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><ul id="ui-id-5" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul><div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div></body></html>

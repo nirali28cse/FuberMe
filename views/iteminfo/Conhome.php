@@ -131,7 +131,7 @@ use yii\widgets\ListView;
 
 <?php
 
-function get_client_ip() {
+/* function get_client_ip() {
         $ipaddress = '';
         if (isset($_SERVER['HTTP_CLIENT_IP']))
             $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
@@ -152,10 +152,7 @@ function get_client_ip() {
  $PublicIP = get_client_ip(); 
  $json  = file_get_contents("https://freegeoip.net/json/$PublicIP");
  $json  =  json_decode($json ,true);
-/* 	echo '<pre>';
-	print_r($json);
-	exit;
- */
+
 
 function distance($lat1, $lon1, $lat2, $lon2, $unit) {
 
@@ -175,7 +172,9 @@ function distance($lat1, $lon1, $lat2, $lon2, $unit) {
   }
 }
 
-echo distance(32.9697, -96.80322, 29.46786, -98.53506, "M") . " Miles<br>";
+echo distance(32.9697, -96.80322, 29.46786, -98.53506, "M") . " Miles<br>"; */
+
+
 ?>
 				 <section  class="sky-form">
 					 <h4><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp; Near By You</h4>
