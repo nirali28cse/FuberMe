@@ -19,7 +19,8 @@ class Emailfunction extends Component
 		
 		try
 		{
-			
+		
+			echo $toemail.'<br/>';
 			$emailSend = Yii::$app->mailer->compose()
 				->setFrom([Yii::$app->params['adminemailid'] => 'FuberMe'])
 				->setTo($toemail)

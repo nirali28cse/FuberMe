@@ -43,7 +43,12 @@
 			 </div>
 		 <div class="sofas">
 
- <?php 	if(Yii::$app->user->isGuest){ ?>
+ <?php 
+
+echo phpinfo();
+exit;
+
+ if(Yii::$app->user->isGuest){ ?>
 
 			 <div class="col-md-6 sofa-grid">
 <?php /*		 <img src="../vendor/bower/fuberme/images/t2.jpg" alt=""/>
