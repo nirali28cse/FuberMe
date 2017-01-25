@@ -34,7 +34,8 @@ class Emailfunction extends Component
         }
         catch(\Swift_TransportException $exception)
         {
-            return 'Can sent mail due to the following exception'.print_r($exception);
+			 $response = $exception->getMessage() ;
+            return 'Can sent mail due to the following exception'.print_r($response);
 			exit;
         }		
 
