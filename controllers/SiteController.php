@@ -164,7 +164,7 @@ class SiteController extends Controller
 		$user = \app\modules\users\models\Userdetail::find()->where([
 		'id'=>$id,
 		'auth_key'=>$key,
-		'status'=>1,
+		'status'=>0,
 		])->one();
 		if(!empty($user)){
 		$user->status=1;

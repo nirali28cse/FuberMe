@@ -44,8 +44,6 @@
 		 <div class="sofas">
 
  <?php 
- 
-Yii::$app->emailcomponent->Userregistrationverification(1);
 
  if(Yii::$app->user->isGuest){ ?>
 
