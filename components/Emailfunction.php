@@ -45,8 +45,7 @@ class Emailfunction extends Component
 	{
 		$model=Userdetail::findOne($user_id);
 		$toemail = $model->email_id;
-		$toemail = 'nirali28cse@gmail.com';
-		
+
 		$subject = 'Signup Confirmation';
 		
 		$emailcontent = "Click this link ".\yii\helpers\Html::a('confirm',

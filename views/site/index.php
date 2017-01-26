@@ -44,9 +44,7 @@
 		 <div class="sofas">
 
  <?php 
-
- $send_email=Yii::$app->emailcomponent->Userregistrationverification(25);
-		exit;			
+	
  if(Yii::$app->user->isGuest){ ?>
 
 			 <div class="col-md-6 sofa-grid">
