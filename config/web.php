@@ -65,12 +65,20 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-           // 'useFileTransport' => false,
-			'transport' => [
+			//'useFileTransport' => false,
+/* 			'transport' => [
 				'class' => 'Swift_SmtpTransport',
 				'host' => 'smtp.1and1.com',
 				'username' => 'kuldip@icubes.us',
 				'password' => 'Kuldip@12345',
+				'port' => '587',
+				'encryption' => 'tls',
+			],	 */
+			'transport' => [
+				'class' => 'Swift_SmtpTransport',
+				'host' => 'smtp.gmail.com',
+				'username' => 'ernirali28@gmail.com',
+				'password' => 'n9510691',
 				'port' => '587',
 				'encryption' => 'tls',
 			],
