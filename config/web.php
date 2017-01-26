@@ -72,7 +72,7 @@ $config = [
 				'username' => 'kuldip@icubes.us',
 				'password' => 'Kuldip@12345',
 				'port' => '587',
-				'encryption' => 'tls',
+				'encryption' => null,
 			],
         ],
         'log' => [
