@@ -44,7 +44,7 @@
 		 <div class="sofas">
 
  <?php 
-	
+		
  if(Yii::$app->user->isGuest){ ?>
 
 			 <div class="col-md-6 sofa-grid">
