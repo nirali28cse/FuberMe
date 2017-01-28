@@ -75,7 +75,7 @@ if($model->image==null){
 					  <div class="cost">
 						 <div class="prdt-cost">
 							 <ul>								 							 
-								 <li><?php echo $model->cuisineTypeInfo->name.','.$model->itemCategoryInfo->name.','.$model->dietaryPreference->name; ?></li>
+								 <li><?php echo $model->itemCategoryInfo->name.','.$model->dietaryPreference->name; ?></li>
 								 <li>Order Price </li>
 								 <li class="active">$ <?php echo $model->price; ?></li>
 								 
