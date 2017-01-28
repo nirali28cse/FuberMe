@@ -896,6 +896,7 @@ ul.tabs-menu li.active a{
 }
 .item_add:hover {
 	background:#3ab638;
+	color: white;
 } 
 a:hover, a:focus {
     color: #38b662;
