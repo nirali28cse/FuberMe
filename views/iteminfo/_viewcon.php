@@ -71,7 +71,7 @@ $user_id=$model->chef_user_id;
 								
 								if($display_offline==1){  
 								?>
-									<?= yii\helpers\Html::a('Order Now <span class="glyphicon glyphicon-chevron-right"></span>','#',['class'=>'item_add items']) ?>
+									<?= yii\helpers\Html::a('Order Now <span class="glyphicon glyphicon-chevron-right"></span>',['/orderinfo/review','itemid'=>$model->id],['class'=>'item_add items']) ?>
 								<?php }else{ ?>								
 								   <?= yii\helpers\Html::a('<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;&nbsp;Currently Offline','#',['class'=>'item_add','style'=>'background: lightgray;color: red;']) ?>
 								  

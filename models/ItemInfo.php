@@ -3,6 +3,9 @@
 namespace app\models;
 
 use Yii;
+use app\models\DietaryPreference;
+use app\models\ItemCategoryInfo;
+use app\models\CuisineTypeInfo;
 
 
 
@@ -88,10 +91,6 @@ class ItemInfo extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getItemImages()
-    {
-        return $this->hasMany(ItemImages::className(), ['item_info_id' => 'id']);
-    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -99,15 +98,26 @@ class ItemInfo extends \yii\db\ActiveRecord
     public function getChefUser()
     {
         return $this->hasOne(Users::className(), ['id' => 'chef_user_id']);
+    }   
+
+	public function getItemCategoryInfo()
+    {
+        return $this->hasOne(ItemCategoryInfo::className(), ['id' => 'item_category_info_id']);
+    } 
+
+	public function getCuisineTypeInfo()
+    {
+        return $this->hasOne(CuisineTypeInfo::className(), ['id' => 'item_cuisine_type_info_id']);
+    }
+	
+	public function getDietaryPreference()
+    {
+        return $this->hasOne(DietaryPreference::className(), ['id' => 'item_dietary_preference']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOrderItemInfos()
-    {
-        return $this->hasMany(OrderItemInfo::className(), ['item_id' => 'id']);
-    }
 
 
 }
