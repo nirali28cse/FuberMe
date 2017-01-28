@@ -37,8 +37,7 @@ if($model->image==null){
 					 <div class="grid images_3_of_2">
 						 <ul id="etalage">
 							<li>
-								<a href="optionallink.html">
-									
+								<a href="#">									
 									<img class="etalage_thumb_image" src="<?php echo  $item_image; ?>" class="img-responsive" />
 									<img class="etalage_source_image" src="<?php echo  $item_image; ?>" class="img-responsive" title="" />
 								</a>
@@ -50,7 +49,7 @@ if($model->image==null){
 				  </div>
 				  <div class="single-right">
 					 <h3><?php echo $model->name; ?></h3>
-					 <div class="id"><h4><?php echo $model->chef_user_id; ?></h4></div>
+					 <div class="id"><h4><?php echo $model->chefUser->username; ?></h4></div>
 					 <?php /*
 					  <form action="" class="sky-form">
 						     <fieldset>					
@@ -76,10 +75,57 @@ if($model->image==null){
 					  <div class="cost">
 						 <div class="prdt-cost">
 							 <ul>								 							 
-								 <li><?php echo $model->item_cuisine_type_info_id.','.$model->item_category_info_id.','.$model->item_dietary_preference; ?></li>
-								 <li>Order Price:</li>
+								 <li><?php echo $model->cuisineTypeInfo->name.','.$model->itemCategoryInfo->name.','.$model->dietaryPreference->name; ?></li>
+								 <li>Order Price </li>
 								 <li class="active">$ <?php echo $model->price; ?></li>
-								 <a href="#">Order NOW</a>
+								 
+								<?php
+								// echo date_default_timezone_get(); 
+
+/* 								echo date("H:i:sa");
+								 echo '<br/>';
+								 echo $model->availability_from_time;
+								 echo '<br/>';
+								 echo $model->availability_to_time;  */
+								// echo $newhours = date("H");
+								$newdate = date("d-M-Y");
+								$newdates = strtotime($newdate);
+								$availability_to_date = strtotime($model->availability_to_date);
+								$availability_from_date = strtotime($model->availability_from_date);
+								$newhours = date("H");
+								$newminiute = date("i");		
+								//if($newminiute>=0 and $newminiute<=30) $newminiute = 00;
+								//if($newminiute>=30 and $newminiute<=60) $newminiute = 30;
+								$newTime = $newhours.':'.$newminiute;
+								$newTime = strtotime($newTime); 
+								$availability_from_time = strtotime($model->availability_from_time); 
+								$availability_to_time = strtotime($model->availability_to_time); 
+								
+								$display_offline=0;
+								if($availability_from_date<=$newdates and $newdates<=$availability_to_date){
+									if($availability_from_date!=$newdates and $newdates!=$availability_to_date){
+										$display_offline=1;
+									}elseif($availability_from_date==$newdates and $newdates!=$availability_to_date){
+										$display_offline=1;
+									}else{
+										if($availability_from_date==$newdates and ($newTime>=$availability_from_time and $availability_to_time>=$newTime)){
+											$display_offline=1;
+										}
+										if($availability_to_date==$newdates and $newTime>=$availability_from_time and $availability_to_time>=$newTime){
+											$display_offline=1;
+										}
+									}
+								}
+								
+								if($display_offline==1){  
+								?>
+									<?= yii\helpers\Html::a('Order Now <span class="glyphicon glyphicon-chevron-right"></span>',['/orderinfo/review','itemid'=>$model->id],['class'=>'item_add items']) ?>
+								<?php }else{ ?>								
+								   <?= yii\helpers\Html::a('<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;&nbsp;Currently Offline','#',['class'=>'item_add','style'=>'background: lightgray;color: red;']) ?>
+								  
+								<?php } ?>
+						
+								 
 							 </ul>
 						 </div>
 <!-- 						 <div class="check">
@@ -143,7 +189,9 @@ if($model->image==null){
 								 <div class="col-md-3 seller-grid">
 									 <a href="<?php echo $item_view; ?>"><img src="<?php echo $image_src; ?>" alt=""/></a>
 									 <h4><a href="products.html"><?php echo $random_chef_item->name; ?></a></h4>
-									<!--  <span>ID: DB4790</span> -->
+									 <span><?php echo $random_chef_item->cuisineTypeInfo->name.','.$random_chef_item->itemCategoryInfo->name.','.$random_chef_item->dietaryPreference->name; ?></span> 
+									 <br/>
+									 <span>Preparation Time : <?php echo Yii::$app->params['head_up_time'][$random_chef_item->head_up_time]; ?></span> 
 									 <p>$ <?php echo $random_chef_item->price; ?></p>
 								 </div>
 							<?php } ?> 							 
