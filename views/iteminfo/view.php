@@ -75,7 +75,7 @@ if($model->image==null){
 					  <div class="cost">
 						 <div class="prdt-cost">
 							 <ul>								 							 
-								 <li><?php echo $model->cuisineTypeInfo->name.','.$model->itemCategoryInfo->name.','.$model->dietaryPreference->name; ?></li>
+								 <li><?php echo $model->cuisineTypeInfo->name.','.$model->itemCategoryInfo->name; ?></li>
 								 <li>Order Price </li>
 								 <li class="active">$ <?php echo $model->price; ?></li>
 								 
@@ -189,7 +189,7 @@ if($model->image==null){
 								 <div class="col-md-3 seller-grid">
 									 <a href="<?php echo $item_view; ?>"><img src="<?php echo $image_src; ?>" alt=""/></a>
 									 <h4><a href="products.html"><?php echo $random_chef_item->name; ?></a></h4>
-									 <span><?php echo $random_chef_item->cuisineTypeInfo->name.','.$random_chef_item->itemCategoryInfo->name.','.$random_chef_item->dietaryPreference->name; ?></span> 
+									 <span><?php echo $random_chef_item->cuisineTypeInfo->name.','.$random_chef_item->itemCategoryInfo->name; ?></span> 
 									 <br/>
 									 <span>Preparation Time : <?php echo Yii::$app->params['head_up_time'][$random_chef_item->head_up_time]; ?></span> 
 									 <p>$ <?php echo $random_chef_item->price; ?></p>
