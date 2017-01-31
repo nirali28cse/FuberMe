@@ -32,6 +32,12 @@ class OrderinfoController extends Controller
             ],
         ];
     }
+	
+	
+	public function beforeAction($action) {
+		$this->enableCsrfValidation = false;
+		return parent::beforeAction($action);
+	}
 
     /**
      * Lists all OrderInfo models.
@@ -57,7 +63,43 @@ class OrderinfoController extends Controller
      */
 	 
 	 
+    public function actionCheckchef()
+    {
+		session_start();
+		$itemid=0;
+		$itemid=$_POST['item_id'];
+		$item_info = ItemInfo::find()->where([ 'id'=>$itemid,'status'=>1])->one();
+		if(count($item_info)>0){
+			$item_chef=$item_info->chef_user_id;
+			$item_quantity=$item_info->quantity;
+			if($item_quantity>0){
+				if(isset($_SESSION['master_chef']) and ($_SESSION['master_chef']>0)){
+					if($_SESSION['master_chef']!=$item_chef){
+						return false;
+					}
+				}
+				return true;
+			}else{
+				return 3;	
+			}
+			
+		}
+	}	
 	 
+	
+		 
+		 
+    public function Deleteitem($itemid)
+    {			
+		if(isset($_SESSION['order_array'])){
+			$old_session_items=$_SESSION['order_array']['order_item'];	
+			unset($old_session_items[$itemid]);
+			$_SESSION['order_array']['order_item']=$old_session_items;  
+
+			return $old_session_items;    
+		}	
+	}		
+	
     public function Additemtoorder($itemid)
     {
 		
@@ -65,18 +107,25 @@ class OrderinfoController extends Controller
 		$item_qty=0;
 		$item_price=0;
 		$item_chef=0;
+		$item_quantity=0;
 		$item_name=null;
 		$item_ingredients=null;
 		$item_cuisine_type=null;
-
+		
+		$item_array=array();
+		$old_session_items=array();
+		if(isset($_SESSION['order_array'])){
+			$old_session_items=$_SESSION['order_array']['order_item'];	
+		}		
 		$item_image=Url::to('@web/fuberme/images/default_item_image.jpg');
-		$item_info = ItemInfo::find()->where([ 'id'=>$itemid,'status'=>1 ])->one();
+		$item_info = ItemInfo::find()->where([ 'id'=>$itemid,'status'=>1])->one();
 		if(count($item_info)>0){
 			$item_id=$item_info->id;
 			$item_qty=1;
 			$item_price=$item_info->price;
 			$item_chef=$item_info->chef_user_id;
 			$item_name=$item_info->name;			
+			$item_chef_quantity=$item_info->quantity;			
 			$item_cuisine_type=$item_info->cuisineTypeInfo->name;
 
 			if($item_info->ingredients!=null) {
@@ -84,15 +133,25 @@ class OrderinfoController extends Controller
 			}
 			if($item_info->image!=null){
 			  $item_image=Url::to('@web/fuberme/'.$item_chef.'/item_images/'.$item_info->image);
-			}			
+			}	
+
+			$item_array=array($itemid=>array('item_id'=>$item_id,'item_name'=>$item_name,
+											'item_qty'=>$item_qty,'item_price'=>$item_price,
+											'item_ingredients'=>$item_ingredients,'item_cuisine_type'=>$item_cuisine_type,
+											'item_chef'=>$item_chef,'item_image'=>$item_image
+											,'item_chef_quantity'=>$item_chef_quantity
+										));			
+		}
+
+		if(count($old_session_items)>0){
+			$item_array=$old_session_items+$item_array;
+		}else{
+			if(count($item_array)>0){
+				unset($_SESSION['master_chef']);
+				$_SESSION['master_chef']=$item_array[$itemid]['item_chef'];
+			}
 		}		
-		
-		$item_array=array();
-		$item_array=array($itemid=>array('item_id'=>$item_id,'item_name'=>$item_name,
-										'item_qty'=>$item_qty,'item_price'=>$item_price,
-										'item_ingredients'=>$item_ingredients,'item_cuisine_type'=>$item_cuisine_type,
-										'item_chef'=>$item_chef,'item_image'=>$item_image
-									));
+	
 		return $item_array;    
 	}	
 	 
@@ -100,30 +159,48 @@ class OrderinfoController extends Controller
 	public function  UpdateAmount(){
 		
 		$order_array=$_SESSION['order_array'];
+
 		$order_item_array=null;
 		$order_item_array=$order_array['order_item'];
 		$tax_in_percent=$order_array['tax_in_percent'];
 		$get_price=array();
-		foreach($order_item_array as $value){
-			$get_price[]=$value['item_price']*$value['item_qty'];
-		}
-		
-		$total_amount=0;
-		$final_amount=0;			
-		$final_amount_per=0;			
-		$total_amount=array_sum($get_price);
-		
-		$final_amount=$total_amount;		
-		if($tax_in_percent>0){			
-			$final_amount_per=($total_amount*$tax_in_percent)/100;
-			$final_amount=$total_amount+$final_amount_per;
+		if(count($order_item_array)>0){
+			foreach($order_item_array as $value){
+				$get_price[]=$value['item_price']*$value['item_qty'];
+			}
+			
+			$total_amount=0;
+			$final_amount=0;			
+			$final_amount_per=0;			
+			$total_amount=array_sum($get_price);
+			
+			$final_amount=$total_amount;		
+			if($tax_in_percent>0){			
+				$final_amount_per=($total_amount*$tax_in_percent)/100;
+				$final_amount=$total_amount+$final_amount_per;
+			}
+
+			$_SESSION['order_array']['total_amount']=$total_amount;
+			$_SESSION['order_array']['final_amount']=$final_amount;
 		}
 
-		$_SESSION['order_array']['total_amount']=$total_amount;
-		$_SESSION['order_array']['final_amount']=$final_amount;
 		
 	}
 	 
+	 
+    public function actionChangeqty()
+    {
+		session_start();
+		$item_id=$_POST['item_id'];
+		$new_qty=$_POST['new_qty'];
+		if(isset($_SESSION['order_array'])){
+			$_SESSION['order_array']['order_item'][$item_id]['item_qty']=$new_qty;
+			$this->UpdateAmount();
+			$norder_array=array('total_amount'=>$_SESSION['order_array']['total_amount'],'final_amount'=>$_SESSION['order_array']['final_amount']);
+			echo $json = json_encode($norder_array);
+		}
+
+	}
 	 
     public function actionReview($itemid)
     {
@@ -172,6 +249,13 @@ class OrderinfoController extends Controller
 			$tax_in_percent=2;	
 		}
 
+		// delete item		
+		if(isset($_GET['ditem']) and $_GET['ditem']>0){
+			$ditem=$_GET['ditem'];
+			$item_info=$this->Deleteitem($ditem);
+		}
+		
+		
 		$order_array['customer_info']=array('customer_id'=>$customer_id,'customer_name'=>$customer_name,
 								'customer_email'=>$customer_email,'customer_address'=>$customer_address,
 								'customer_city'=>$customer_city,'customer_state'=>$customer_state,
@@ -186,6 +270,7 @@ class OrderinfoController extends Controller
 
 		$_SESSION['order_array'] = $order_array;
 
+
 		$item_info=$this->UpdateAmount();
 
         return $this->render('review', [
@@ -195,9 +280,11 @@ class OrderinfoController extends Controller
 	
 
  	public function actionView($id)
-    {
+    {	
+		$orderitems = OrderItemInfo::find()->where(['order_info_id'=>$id])->all(); 
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'orderitems' => $orderitems,
         ]);
     } 
 
@@ -236,8 +323,36 @@ class OrderinfoController extends Controller
 					 $model1->item_qty=$order_item['item_qty'];
 					 $model1->item_price=$order_item['item_price'];
 					 $model1->item_chef_user_id=$order_item['item_chef'];
-					 $model1->save();									
+					 if($model1->save()){
+						// update qty in item_info table		
+						$item_info = ItemInfo::find()->where([ 'id'=>$model1->item_id,'status'=>1])->one();
+						if(count($item_info)>0) {
+							$old_qty=$item_info->quantity;
+							$new_qty=0;
+							$new_qty=$old_qty-$model1->item_qty;
+							$item_info->quantity=$new_qty;
+							
+							if($new_qty<3){
+								// email to chef
+								$send_email=Yii::$app->emailcomponent->Chefinformlessqty($model1->item_chef_user_id);
+							}
+							if($new_qty==0){
+								// take offline item 
+								$newhours = date("H");
+								$newminiute = date("i");		
+								if($newminiute>=0 and $newminiute<=30) $newminiute = '00';
+								if($newminiute>=30 and $newminiute<=60) $newminiute = 30;
+								$newTime = $newhours.':'.$newminiute;
+								$item_info->availability_to_date=date('Y-m-d');
+								$item_info->availability_to_time=$newTime;
+							}
+							$item_info->save();
+						}
+					 }						
 				}
+						
+				unset($_SESSION['order_array']);
+				unset($_SESSION['master_chef']);
 				return $this->redirect(['view', 'id' =>$model->id]);
 			}		
            
@@ -249,6 +364,9 @@ class OrderinfoController extends Controller
         }
     }
 
+	
+	
+	
     /**
      * Updates an existing OrderInfo model.
      * If update is successful, the browser will be redirected to the 'view' page.

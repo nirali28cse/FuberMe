@@ -53,6 +53,7 @@ class IteminfoController extends Controller
     public function actionIndex2()
     {
         $searchModel = new ItemInfoSearch();
+		$searchModel->status = 1;	
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index2', [
@@ -96,8 +97,12 @@ class IteminfoController extends Controller
 		
 		
         $searchModel = new ItemInfoSearch();
+		$searchModel->status=1;	
+		//$searchModel->quantity=0;
+		
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+		
+		
         return $this->render('Conhome', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -348,19 +353,21 @@ exit;			 */
 		if($newminiute>=30 and $newminiute<=60) $newminiute = 30;
 		$newTime = $newhours.':'.$newminiute;
 		
+		// live
 		if($newstatus){
 		//	$newstatus=0;
-			$model->availability_from_date=date('d-M-Y');
+			$model->availability_from_date=date('Y-m-d');
 			$model->availability_from_time=$newTime;
 		}else{
 		//	$newstatus=1;
-			$model->availability_to_date=date('d-M-Y');
+			$model->availability_to_date=date('Y-m-d');
 			$model->availability_to_time=$newTime;
 		}	
 		
 		if ($model->load(Yii::$app->request->post())) {
 		}		
 		$model->status=$newstatus;
+
 		if ($model->save()) {
 			return $this->redirect(['index']);
 		}

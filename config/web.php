@@ -66,22 +66,22 @@ $config = [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
 			//'useFileTransport' => false,
-			'transport' => [
+/* 			'transport' => [
 				'class' => 'Swift_SmtpTransport',
 				'host' => 'md-95.webhostbox.net',
 				'username' => 'fuberme@rajwadiantiques.com',
 				'password' => 'fuberme!@#45',
 				'port' => '587',
 				'encryption' => 'tls',
-			],	
-/* 			'transport' => [
+			], */	
+			'transport' => [
 				'class' => 'Swift_SmtpTransport',
 				'host' => 'smtp.gmail.com',
 				'username' => 'ernirali28@gmail.com',
 				'password' => 'n9510691',
 				'port' => '587',
 				'encryption' => 'tls',
-			], */
+			],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

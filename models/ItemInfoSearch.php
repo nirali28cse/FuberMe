@@ -18,7 +18,7 @@ class ItemInfoSearch extends ItemInfo
     public function rules()
     {
         return [
-            [['id', 'chef_user_id', 'item_category_info_id', 'item_cuisine_type_info_id', 'status'], 'integer'],
+            [['id', 'chef_user_id', 'quantity', 'item_category_info_id', 'item_cuisine_type_info_id', 'status'], 'integer'],
             [['name', 'price', 'ingredients', 'description', 'delivery_method', 'head_up_time', 'availability_from_date', 'availability_to_date', 'availability_from_time', 'availability_to_time', 'date_time'], 'safe'],
         ];
     }
@@ -114,10 +114,12 @@ class ItemInfoSearch extends ItemInfo
             'item_cuisine_type_info_id' => $item_cuisine_type_info_id,
             'date_time' => $this->date_time,
             'status' => $this->status,
+            'quantity' => $this->quantity,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['=', 'chef_user_id',$this->chef_user_id])
+    //        ->andFilterWhere(['>', 'quantity',0])
             ->andFilterWhere(['like', 'ingredients', $this->ingredients])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'delivery_method', $this->delivery_method])

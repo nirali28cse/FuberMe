@@ -44,12 +44,12 @@ use kartik\date\DatePicker;
 												// 'name' => 'ItemInfo[availability_to_date]', 
 													
 													'type' => DatePicker::TYPE_COMPONENT_APPEND,
-													'options' => ['value' => date('d-M-Y'),'placeholder' => 'Select end date','style'=>'height: 50px;, font-size: 16px;'],
+													'options' => ['value' => date('Y-m-d'),'placeholder' => 'Select end date','style'=>'height: 50px;, font-size: 16px;'],
 													'pluginOptions' => [
-														'format' => 'dd-M-yyyy',
+														'format' => 'yyyy-mm-dd',
 														'todayHighlight' => true,
 														'autoclose'=>true,
-														'startDate'=> date('d-M-Y'),
+														'startDate'=> date('Y-m-d'),
 													]
 											]
 											);
@@ -63,6 +63,10 @@ use kartik\date\DatePicker;
 						['prompt'=>'Select Time','style'=>'height: 50px;']    // options
 					);
 				?>	
+			</div>
+			
+			<div class="col-sm-12" style="padding: 0;">	
+				<?= $form->field($model, 'quantity')->textInput(['maxlength' => true]) ?>
 			</div>
 		  </div>
 		

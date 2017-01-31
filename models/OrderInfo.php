@@ -87,4 +87,5 @@ class OrderInfo extends \yii\db\ActiveRecord
             'order_date_time' => 'Order Date Time',
         ];
     }
+
 }
