@@ -56,6 +56,18 @@ class Emailfunction extends Component
 		
 	}
 	
+	
+	public static function Chefinformlessqty($chef_user_id)
+	{
+		$model=Userdetail::findOne($chef_user_id);
+		$toemail = $model->email_id;
+
+		$subject = 'Less Qty Of Item';		
+		$emailcontent = "This Mail is for inform you that qty of your item is less then 2.";			
+		return $send_email=self::sendEmail($toemail,$subject,$emailcontent);
+		
+	}
+	
 }
 
    

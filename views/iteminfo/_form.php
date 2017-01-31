@@ -64,8 +64,21 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 		</div>
 	 </div>
 
-	<br/>
-	
+	<div class="row">
+		<div class="col-sm-6">	
+		    <?= $form->field($model, 'quantity')->textInput(['maxlength' => true]) ?>
+		</div>
+		<div class="col-sm-6">	
+			<?php $item_dietary_preference = yii\helpers\ArrayHelper::map(app\models\DietaryPreference::find()->where(['status'=>1])->all(), 'id', 'name'); ?>
+			<?= $form->field($model, 'item_dietary_preference')
+				->dropDownList(
+					$item_dietary_preference,           // Flat array ('id'=>'label')
+					['prompt'=>'Select Dietary Preference']    // options
+				);
+			?>	
+		</div>
+	 </div>
+
 	
 	<div class="row">
 		<div class="col-sm-6">	
@@ -88,17 +101,7 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 		</div>
 	 </div>
 
-	<div class="row">
-		<div class="col-sm-12">	
-			<?php $item_dietary_preference = yii\helpers\ArrayHelper::map(app\models\DietaryPreference::find()->where(['status'=>1])->all(), 'id', 'name'); ?>
-			<?= $form->field($model, 'item_dietary_preference')
-				->dropDownList(
-					$item_dietary_preference,           // Flat array ('id'=>'label')
-					['prompt'=>'Select Dietary Preference']    // options
-				);
-			?>	
-		</div>
-	 </div>
+	 
 
 
 	<div class="row">
@@ -136,10 +139,10 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 													'type' => DatePicker::TYPE_COMPONENT_APPEND,
 													'options' => ['placeholder' => 'Select start date','style'=>'height: 50px;, font-size: 16px;'],
 													'pluginOptions' => [
-														'format' => 'dd-M-yyyy',
+														'format' => 'yyyy-mm-dd',
 														'todayHighlight' => true,
 														'autoclose'=>true,
-														'startDate'=> date('d-M-Y'),														 
+														'startDate'=> date('Y-m-d'),														 
 													],
 																
 											]
@@ -165,14 +168,14 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 				<?= $form->field($model, 'availability_to_date')->widget(
 											DatePicker::className(), [
 												// 'name' => 'ItemInfo[availability_to_date]', 
-													'value' => date('d-M-Y'),
+													'value' => date('Y-m-d'),
 													'type' => DatePicker::TYPE_COMPONENT_APPEND,
 													'options' => ['placeholder' => 'Select end date','style'=>'height: 50px;, font-size: 16px;'],
 													'pluginOptions' => [
-														'format' => 'dd-M-yyyy',
+														'format' => 'yyyy-mm-dd',
 														'todayHighlight' => true,
 														'autoclose'=>true,
-														'startDate'=> date('d-M-Y'),
+														'startDate'=> date('Y-m-d'),
 													]
 											]
 											);

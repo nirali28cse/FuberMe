@@ -31,6 +31,11 @@ use yii\widgets\ListView;
     color: #E74C3C;
     text-decoration: underline;
 }
+.itemerrorclass{
+	font-size: 14px;
+    color: #ff1414;
+    padding: 10px 0px;
+}
 </style>
 
 <div class="product-model">	 
@@ -38,10 +43,57 @@ use yii\widgets\ListView;
 	 
 	 
 <?php 
-/* 		<ol class="breadcrumb">
-		  <li><a href="index.html">Home</a></li>
-		  <li class="active">Adipiscing Enfsjs</li>
-		</ol>  */
+
+
+		$swap_week=3;
+		$current_week=15;
+		$newselection_priority_array=array();
+		$counter=0;
+		$add_selectionprioriy=null;
+		$original_selection_array=array('a','b','c','d');
+	
+	
+		$couter=0;
+		$selecount=0;
+		$cha_array=array();
+		$selecount=count($original_selection_array)*$swap_week;
+		foreach($original_selection_array as $selectionpriority){
+			$cha_array[]=array_fill($couter,$swap_week,$selectionpriority);
+			$couter=$couter+$swap_week;
+		}
+		
+		$new_char_array=array();
+
+		$x = 1;		
+		do {
+			foreach($cha_array as $chkey=>$chavalue){
+				foreach($chavalue as $key=>$value){			
+					$new_char_array[$x]=$value;	
+					$x++;	
+					if($current_week>$selecount  and $x>$current_week){
+						break 2;
+					}		
+				}
+			}
+		} while ($x <= $current_week); 
+
+		$final_char_array=array();
+		$added_first=0;
+		$x1 = 1;	
+		do {
+			foreach($new_char_array as $key=>$value){	
+				if(($key ==$current_week)){
+					$final_char_array[$key]=$value;	
+					$added_first=1;
+					$x1++;	
+				}elseif($added_first==1){
+					$final_char_array[$key]=$value;	
+					$x1++;	
+				}
+			}
+		} while ($x1 <= $current_week); 
+
+		
  ?>
 		 
 		 
@@ -210,3 +262,34 @@ echo distance(32.9697, -96.80322, 29.46786, -98.53506, "M") . " Miles<br>"; */
 		</div>
 </div>	
 
+<script>
+$(document).ready(function(){
+	$(document).on("click",".placeorder",function(e){		
+		e.preventDefault();
+		var oldHref = $(this).attr('href');
+		var item_id=$(this).attr('id');
+		$.ajax({			
+			type: 'POST',
+			url: <?php Yii::$app->homeUrl; ?>'?r=orderinfo/checkchef',
+			data: {item_id:item_id},			
+			error: function (err) {
+			//	alert("error - " + err);
+				return false;
+			},
+			success: function (data1) {
+				// return false;
+				// alert(data1);
+				if(data1==0){	
+					$('.itemerror'+item_id).html('Sorry,This item cannot be added.');
+					return false;
+				}else if(data1==3){	
+					$('.itemerror'+item_id).html('Sorry,This item cannot be added,Due to less Qty.');
+					return false;
+				}else{					
+					 window.location.href = oldHref; // go to the new url
+				}				
+			}
+		});
+	});
+});
+</script>

@@ -105,7 +105,8 @@ class LoginController extends Controller
 	 public function actionLogout()
     {
         Yii::$app->user->logout();
-
+		unset($_SESSION['order_array']);
+		unset($_SESSION['master_chef']);
         return $this->goHome();
     }
 	

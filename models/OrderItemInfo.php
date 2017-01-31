@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\ItemInfo;
 
 /**
  * This is the model class for table "order_item_info".
@@ -53,4 +54,13 @@ class OrderItemInfo extends \yii\db\ActiveRecord
             'date_time' => 'Date Time',
         ];
     }
+	
+	
+	
+	public function getItemInfo()
+    {
+        return $this->hasOne(ItemInfo::className(), ['id' => 'item_id']);
+    }
+	
+	
 }
