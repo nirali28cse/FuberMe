@@ -76,9 +76,9 @@ $config = [
 			], */	
 			'transport' => [
 				'class' => 'Swift_SmtpTransport',
-				'host' => 'smtp.gmail.com',
-				'username' => 'ernirali28@gmail.com',
-				'password' => 'n9510691',
+				'host' => 'email-smtp.us-west-2.amazonaws.com',
+				'username' => 'AKIAJ4CJEN5TJGOUTCTQ',
+				'password' => 'AuDULwdOiaV0qRnBKho40g6lV7ZPeKQ119W1TMefXKtO',
 				'port' => '587',
 				'encryption' => 'tls',
 			],
