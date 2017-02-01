@@ -76,7 +76,8 @@ $config = [
 			], */	
 			'transport' => [
 				'class' => 'Swift_SmtpTransport',
-				'host' => 'email-smtp.us-west-2.amazonaws.com',
+				// 'host' => 'email-smtp.us-west-2.amazonaws.com',
+				'host' => 'email-smtp.us-east-1.amazonaws.com',
 				'username' => 'AKIAJ4CJEN5TJGOUTCTQ',
 				'password' => 'AuDULwdOiaV0qRnBKho40g6lV7ZPeKQ119W1TMefXKtO',
 				'port' => '587',
