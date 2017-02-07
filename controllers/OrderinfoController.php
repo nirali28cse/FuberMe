@@ -379,7 +379,7 @@ class OrderinfoController extends Controller
 					return $this->redirect(['view', 'id' =>$model->id]);
 				}
 				if($model->payment_method=='paypal' and isset($_SESSION['order_array'])){
-					return $this->redirect(['paypalorder','orderid' =>$model->id]);
+					return $this->redirect(['paypalinvoice','orderid' =>$model->id]);
 				}	
 			}		
            
@@ -396,10 +396,10 @@ class OrderinfoController extends Controller
     }
 
 	
-	public function actionPaypalorder($orderid)
+	public function actionPaypalinvoice($orderid)
     {
 		session_start();	
-		return $this->render('paypalorder', [
+		return $this->render('paypalinvoice', [
 			'order_array' => $_SESSION['order_array'],
 			'master_chef' => $_SESSION['master_chef'],
 			'orderid' => $orderid,
