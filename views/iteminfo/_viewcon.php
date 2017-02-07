@@ -3,7 +3,8 @@ use yii\helpers\Html;
 $user_id=$model->chef_user_id;
 ?>
 
-					<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/view&id=<?php echo $model->id; ?>"><div class="product-grid love-grid" style="width: auto;">
+					<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/view&id=<?php echo $model->id; ?>">
+						<div class="product-grid love-grid" style="width: auto;">
 						<div class="more-product"><span> </span></div>						
 						<div class="product-img b-link-stripe b-animate-go  thickbox">
 							<?php if($model->image==null){ ?>
@@ -19,7 +20,7 @@ $user_id=$model->chef_user_id;
 							</div> 
 						</div></a>						
 						<div class="product-info simpleCart_shelfItem">
-							<div class="product-info-cust" style="width: 100%;">
+							<div class="product-info-cust" style="width: 350px;">
 								<div class="col-md-6" style="padding: 0;">
 								<h4><?php echo $model->name; ?></h4>
 								<p><?php echo $model->chefUser->username; ?></p>

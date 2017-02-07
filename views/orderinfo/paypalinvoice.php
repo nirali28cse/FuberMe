@@ -7,12 +7,15 @@ use app\modules\users\models\Userdetail;
 $order_items=null;
 $order_items=$order_array['order_item'];
 $customer_info=$order_array['customer_info'];
-$master_chef_paypal_email=null;
+$master_chef_paypal_email='nirali28cse-facilitator-2@gmail.com';
 $user_info = Userdetail::find()->where([ 'id'=>$master_chef,'status'=>1 ])->one();
 if(count($user_info)>0){
 $master_chef_paypal_email=$user_info->paypal_email;	
 } 
 
+if($master_chef_paypal_email==null){
+	$master_chef_paypal_email='nirali28cse-facilitator-2@gmail.com';
+}
 /*  echo '<pre>';
 print_r($order_array);
 exit;
@@ -27,10 +30,10 @@ exit;
 <input type="hidden" name="upload" value="1">
 
 <?php 
-/*  <input type="hidden" name="business" value="<?php echo $master_chef_paypal_email; ?>"> */
+/* <input type="hidden" name="business" value="nirali28cse-facilitator-2@gmail.com"> */
 ?>
-<input type="hidden" name="business" value="nirali28cse-facilitator-2@gmail.com">
- 
+
+<input type="hidden" name="business" value="<?php echo $master_chef_paypal_email; ?>">
 <!--  customer info   -->
 <input type="hidden" name="orderid" value="<?php echo $orderid; ?>">
 <input type="hidden" name="userid" value="<?php echo $customer_info['customer_id']; ?>">

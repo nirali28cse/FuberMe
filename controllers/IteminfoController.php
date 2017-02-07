@@ -96,13 +96,14 @@ class IteminfoController extends Controller
 		}
 		
 		
-        $searchModel = new ItemInfoSearch();
-		$searchModel->status=1;	
-		//$searchModel->quantity=0;
 		
+		
+		
+        $searchModel = new ItemInfoSearch();
+		// $searchModel->status=1;					
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 		
-		
+		// $searchModel->quantity=0;
 		
 		
 		
@@ -361,10 +362,12 @@ exit;			 */
 		//	$newstatus=0;
 			$model->availability_from_date=date('Y-m-d');
 			$model->availability_from_time=$newTime;
+			$newstatus=1;
 		}else{
 		//	$newstatus=1;
 			$model->availability_to_date=date('Y-m-d');
 			$model->availability_to_time=$newTime;
+			$newstatus=0;
 		}	
 		
 		if ($model->load(Yii::$app->request->post())) {

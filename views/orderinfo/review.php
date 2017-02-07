@@ -85,12 +85,14 @@ $order_items=$order_array['order_item'];
 							 <h3>Price Details</h3>
 							 <span>Total</span>
 							 <span class="total tamount"><?php echo $order_array['total_amount']; ?></span>
-
-							 <span>Paypel Charges (%)</span>
+<?php
+/* 							 <span>Paypel Charges (%)</span>
 							 <span class="total"><?php echo $order_array['tax_in_percent']; ?></span>
-							 <div class="clearfix"></div>				 
+							 		 */		 
+							 ?>
+							 <div class="clearfix"></div>
 						 </div>	
-						 <h4 class="last-price">TOTAL</h4>
+						 <h4 class="last-price">Final Total</h4>
 						 <span class="total final ttfinal"><?php echo $order_array['final_amount']; ?></span>
 						 <div class="clearfix">&nbsp;</div>
 						 
