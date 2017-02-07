@@ -129,7 +129,9 @@ class ItemInfoSearch extends ItemInfo
             ->andFilterWhere(['like', 'availability_from_time', $this->availability_to_date])
             ->andFilterWhere(['like', 'availability_to_time', $this->availability_to_date]);
 	
-		$query->orderBy('status');
+
+		$query->orderBy(['(status)' => SORT_DESC]);
+		
         return $dataProvider;
     }
 }

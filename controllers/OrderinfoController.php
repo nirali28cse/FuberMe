@@ -173,11 +173,14 @@ class OrderinfoController extends Controller
 			$final_amount=0;			
 			$final_amount_per=0;			
 			$total_amount=array_sum($get_price);
+			$total_amount=number_format((float)$total_amount, 2, '.', '');
 			
 			$final_amount=$total_amount;		
 			if($tax_in_percent>0){			
 				$final_amount_per=($total_amount*$tax_in_percent)/100;
+				$final_amount_per=$final_amount_per+0.30;
 				$final_amount=$total_amount+$final_amount_per;
+				$final_amount=number_format((float)$final_amount, 2, '.', '');
 				$tax_in_percent_amount=$final_amount_per;
 			}
 
@@ -249,7 +252,7 @@ class OrderinfoController extends Controller
 		
 		
 		if($payment_method!=null and $payment_method='paypal'){
-			$tax_in_percent=2;	
+			$tax_in_percent=2.9;	
 		}
 
 		// delete item		
