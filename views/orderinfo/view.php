@@ -8,11 +8,11 @@
     		<div class="row">
     			<div class="col-xs-6">
     				<address>
-    				<strong>Billed To:</strong><br>
+    				<strong>Bill To:</strong><br>
     					<?php echo $model->customer_name; ?><br>
     					<?php echo $model->customer_address; ?><br>
-    					<?php echo $model->customer_city; ?>,<?php echo $model->customer_state; ?><br>
-    					zip : <?php echo $model->customer_zip; ?>,<br>
+    					<?php echo $model->customer_city; ?>,<?php echo $model->customer_zip; ?><br>
+    					
 						Email : <?php echo $model->customer_email; ?>,<br>
 						Mb No : <?php echo $model->customer_mobile_no; ?>
     				</address>

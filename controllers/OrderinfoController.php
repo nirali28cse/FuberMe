@@ -178,10 +178,12 @@ class OrderinfoController extends Controller
 			if($tax_in_percent>0){			
 				$final_amount_per=($total_amount*$tax_in_percent)/100;
 				$final_amount=$total_amount+$final_amount_per;
+				$tax_in_percent_amount=$final_amount_per;
 			}
 
 			$_SESSION['order_array']['total_amount']=$total_amount;
 			$_SESSION['order_array']['final_amount']=$final_amount;
+			$_SESSION['order_array']['tax_in_percent_amount']=$tax_in_percent_amount;
 		}
 
 		
@@ -218,6 +220,7 @@ class OrderinfoController extends Controller
 		$payment_method=null;
 		$delivery_method=null;
 		$tax_in_percent=0;
+		$tax_in_percent_amount=0;
 		$item_chef=0;
 		$customer_id=0;
 			
@@ -264,6 +267,7 @@ class OrderinfoController extends Controller
 		$order_array['payment_method']=$payment_method;
 		$order_array['delivery_method']=$delivery_method;
 		$order_array['tax_in_percent']=$tax_in_percent;
+		$order_array['tax_in_percent_amount']=$tax_in_percent_amount;
 		$order_array['total_amount']=0;			// Function for calculate total amount
 		$order_array['final_amount']=0;			// Function for calculate total amount
 		
@@ -288,6 +292,46 @@ class OrderinfoController extends Controller
         ]);
     } 
 
+	
+	
+
+	 public function Afterinvoiceupdateitemqty($item_id,$item_chef_id,$update_qty){
+		// update qty in item_info table		
+		$item_info = ItemInfo::find()->where([ 'id'=>$model1->item_id,'status'=>1])->one();
+		if(count($item_info)>0) {
+			
+			$old_qty=$item_info->quantity;
+			$new_qty=0;
+			$new_qty=$old_qty-$model1->item_qty;
+			$item_info->quantity=$new_qty;
+			
+			if($new_qty<3){
+				// email to chef
+				$send_email=Yii::$app->emailcomponent->Chefinformlessqty($model1->item_chef_user_id);
+			}
+			if($new_qty==0){
+				// take offline item 
+				$newhours = date("H");
+				$newminiute = date("i");		
+				if($newminiute>=0 and $newminiute<=30) $newminiute = '00';
+				if($newminiute>=30 and $newminiute<=60) $newminiute = 30;
+				$newTime = $newhours.':'.$newminiute;
+				$item_info->availability_to_date=date('Y-m-d');
+				$item_info->availability_to_time=$newTime;
+			}
+			
+			//For new Order place
+			$send_email_chef=Yii::$app->emailcomponent->Neworderinformchef($model1->item_chef_user_id);
+			$send_email_customer=Yii::$app->emailcomponent->Neworderinformcustomer($model->user_id);
+			$send_email_fuberadmin=Yii::$app->emailcomponent->Neworderinformfuberadmin();
+			$item_info->save();
+			
+			
+		}
+	}
+
+
+	
     /**
      * Creates a new OrderInfo model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -324,48 +368,62 @@ class OrderinfoController extends Controller
 					 $model1->item_price=$order_item['item_price'];
 					 $model1->item_chef_user_id=$order_item['item_chef'];
 					 if($model1->save()){
-						// update qty in item_info table		
-						$item_info = ItemInfo::find()->where([ 'id'=>$model1->item_id,'status'=>1])->one();
-						if(count($item_info)>0) {
-							$old_qty=$item_info->quantity;
-							$new_qty=0;
-							$new_qty=$old_qty-$model1->item_qty;
-							$item_info->quantity=$new_qty;
-							
-							if($new_qty<3){
-								// email to chef
-								$send_email=Yii::$app->emailcomponent->Chefinformlessqty($model1->item_chef_user_id);
-							}
-							if($new_qty==0){
-								// take offline item 
-								$newhours = date("H");
-								$newminiute = date("i");		
-								if($newminiute>=0 and $newminiute<=30) $newminiute = '00';
-								if($newminiute>=30 and $newminiute<=60) $newminiute = 30;
-								$newTime = $newhours.':'.$newminiute;
-								$item_info->availability_to_date=date('Y-m-d');
-								$item_info->availability_to_time=$newTime;
-							}
-							$item_info->save();
-						}
+						if($model->payment_method=='cod'){
+							$this->Afterinvoiceupdateitemqty($item_id,$item_chef_id,$update_qty); 	
+						}				
 					 }						
 				}
-						
-				unset($_SESSION['order_array']);
-				unset($_SESSION['master_chef']);
-				return $this->redirect(['view', 'id' =>$model->id]);
+				if($model->payment_method=='cod'){	
+					unset($_SESSION['order_array']);
+					unset($_SESSION['master_chef']);
+					return $this->redirect(['view', 'id' =>$model->id]);
+				}
+				if($model->payment_method=='paypal' and isset($_SESSION['order_array'])){
+					return $this->redirect(['paypalorder','orderid' =>$model->id]);
+				}	
 			}		
            
         } else {
-            return $this->render('create', [
-                'model' => $model,
-				'order_array' => $_SESSION['order_array'],
-            ]);
+			if(isset($_SESSION['order_array'])){
+				return $this->render('create', [
+					'model' => $model,
+					'order_array' => $_SESSION['order_array'],
+				]);
+			}else{
+			 return $this->redirect(['site/index']);
+			}
         }
     }
 
 	
+	public function actionPaypalorder($orderid)
+    {
+		session_start();	
+		return $this->render('paypalorder', [
+			'order_array' => $_SESSION['order_array'],
+			'master_chef' => $_SESSION['master_chef'],
+			'orderid' => $orderid,
+		]);
+	}
 	
+	
+	public function actionPaypalordersuccess()
+    {
+		echo '<pre>';
+		print_r($_GET);
+		exit;
+		return $this->render('paypalorderSuccess', [
+			// 'order_array' => $_SESSION['order_array'],
+		]);
+	}
+	
+	
+	public function actionPaypalorderfailer()
+    {
+		return $this->render('paypalorderFailer', [
+			// 'order_array' => $_SESSION['order_array'],
+		]);
+	}
 	
     /**
      * Updates an existing OrderInfo model.

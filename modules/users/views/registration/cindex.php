@@ -74,7 +74,7 @@ use yii\widgets\ActiveForm;
 					
 					<br/>
 					<p>Go Back to
-					<a href="<?php echo  Yii::$app->getHomeUrl(); ?>?r=users/login" class="green">Login</a> | 
+					<?php /* <a href="<?php echo  Yii::$app->getHomeUrl(); ?>?r=users/login" class="green">Login</a> |  */ ?>
 					<a href="<?php echo  Yii::$app->getHomeUrl(); ?>"  class="green">Home</a>
 					</p>
 
@@ -107,9 +107,11 @@ use yii\widgets\ActiveForm;
 					  <a href="#">Forgot Password ?</a>
 				 <?php ActiveForm::end(); ?>	
 			 <!-- /Form -->
-			 </div> */
+			 </div>
+			  <img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/foody.png'); ?>"alt="" style="float: right;" />
+			 */
 			 ?>
-			 <img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/foody.png'); ?>"alt="" style="float: right;" />
+			
 			 
 		 </div>
 		 <div class="clearfix"></div>

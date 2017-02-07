@@ -56,14 +56,50 @@ class Emailfunction extends Component
 		
 	}
 	
+
 	
 	public static function Chefinformlessqty($chef_user_id)
 	{
 		$model=Userdetail::findOne($chef_user_id);
 		$toemail = $model->email_id;
 
-		$subject = 'Less Qty Of Item';		
-		$emailcontent = "This Mail is for inform you that qty of your item is less then 2.";			
+		$subject = 'Less Item Qty';		
+		$emailcontent = "Item Qty is less then 2.";			
+		return $send_email=self::sendEmail($toemail,$subject,$emailcontent);
+		
+	}
+		
+	
+	public static function Neworderinformchef($chef_user_id)
+	{
+		$model=Userdetail::findOne($chef_user_id);
+		$toemail = $model->email_id;
+
+		$subject = 'New Order place for Your Item';		
+		$emailcontent = "There is one order place for your Item.";			
+		return $send_email=self::sendEmail($toemail,$subject,$emailcontent);
+		
+	}
+		
+	
+	public static function Neworderinformcustomer($customer_user_id)
+	{
+		$model=Userdetail::findOne($chef_user_id);
+		$toemail = $model->email_id;
+
+		$subject = 'Order Place Sucessfully';		
+		$emailcontent = "Your Order Place Sucessfully.Thank You.";			
+		return $send_email=self::sendEmail($toemail,$subject,$emailcontent);
+		
+	}	
+	
+	public static function Neworderinformfuberadmin()
+	{
+		
+		$toemail = Yii::$app->params['adminemailid'];
+
+		$subject = 'New Order place';		
+		$emailcontent = "New order place.";			
 		return $send_email=self::sendEmail($toemail,$subject,$emailcontent);
 		
 	}

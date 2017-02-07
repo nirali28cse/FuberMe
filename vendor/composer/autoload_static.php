@@ -68,6 +68,10 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
         array (
             'budyaga\\cropper\\' => 16,
         ),
+        'a' => 
+        array (
+            'ak\\' => 3,
+        ),
         'F' => 
         array (
             'Faker\\' => 6,
@@ -227,6 +231,10 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
         array (
             0 => __DIR__ . '/..' . '/budyaga/yii2-cropper',
         ),
+        'ak\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/marciocamello/yii2-paypal',
+        ),
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
@@ -234,6 +242,14 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
     );
 
     public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'PayPal' => 
+            array (
+                0 => __DIR__ . '/..' . '/paypal/sdk-core-php/lib',
+                1 => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib',
+            ),
+        ),
         'I' => 
         array (
             'Imagine' => 

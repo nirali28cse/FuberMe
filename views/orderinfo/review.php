@@ -43,9 +43,10 @@ $order_items=$order_array['order_item'];
 										   </div>
 
 										   <div class="clearfix"></div>
-											<div class="delivery">
+<?php /* 											<div class="delivery">
 												 <p>Service Charges:: Rs.50.00</p>							
-											</div>						
+											</div>	 */			
+?>											
 									  </div>
 								  </div>	
 							  </div>	
@@ -93,7 +94,7 @@ $order_items=$order_array['order_item'];
 						 <span class="total final ttfinal"><?php echo $order_array['final_amount']; ?></span>
 						 <div class="clearfix">&nbsp;</div>
 						 
-						 <a class="continue" href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/create">Continue to Order</a>
+						 <a class="continue" href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/create">CheckOut</a>
 
 						</div>
 				 </div>

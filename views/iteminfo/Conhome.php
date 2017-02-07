@@ -34,9 +34,10 @@ use yii\widgets\ListView;
 .itemerrorclass{
 	font-size: 14px;
     color: #ff1414;
-    padding: 10px 0px;
 }
 </style>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <div class="product-model">	 
 	 <div class="container">
@@ -136,23 +137,61 @@ use yii\widgets\ListView;
 					<section  class="sky-form">
 						 <h4><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>&nbsp; Cuisine</h4>
 						 <div class="row">
-							 <div class="col col-4">						 
-							 <?php foreach($item_cuisine_type_info_ids as $item_cuisine_type_info_id){ 
-									$activecous=null;
-									$removecous=null;
-									if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['cusion']>0 and $_SESSION['filetrsarray']['cusion']==$item_cuisine_type_info_id->id){
-										$activecous='class="active"';
-										$removecous='<a href="'.Yii::$app->homeUrl.'?r=iteminfo/conhome&dcusion=1" class="rclose">remove</a>';
-									} 
-							 ?>	
-									<label class="checkbox"><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&cusion=<?php echo $item_cuisine_type_info_id->id; ?>"  <?php echo $activecous; ?>><?php echo $item_cuisine_type_info_id->name; ?></a>
-									<?php echo $removecous; ?></label>								 
-							 <?php } ?>			
+							 <div class="col col-4">
+							 
+								 <?php 
+								 $counter=1;
+								 $collapse_array=array();
+								 foreach($item_cuisine_type_info_ids as $item_cuisine_type_info_id){ 
+										$activecous=null;
+										$removecous=null;
+										if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['cusion']>0 and $_SESSION['filetrsarray']['cusion']==$item_cuisine_type_info_id->id){
+											$activecous='class="active"';
+											$removecous='<a href="'.Yii::$app->homeUrl.'?r=iteminfo/conhome&dcusion=1" class="rclose">remove</a>';
+										} 
+										if($counter<6){
+								 ?>	
+										<label class="checkbox">
+										<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&cusion=<?php echo $item_cuisine_type_info_id->id; ?>"  <?php echo $activecous; ?>><?php echo $item_cuisine_type_info_id->name; ?></a>
+										<?php echo $removecous; ?>
+										</label>								 
+								 <?php 
+								 }else{
+									 $collapse_array[$counter]['item_cuisine_type_info_id']=$item_cuisine_type_info_id;
+									 $collapse_array[$counter]['activecous']=$activecous;
+									 $collapse_array[$counter]['removecous']=$removecous;
+								 }
+								 $counter++;
+								 }
+								 ?>	
+
+								<?php if(count($collapse_array)>0){ ?>
+									   <div id="collapse1" class="panel-collapse collapse">
+									<?php foreach($collapse_array as $collapse){ 
+											$item_cuisine_type_info_id=$collapse['item_cuisine_type_info_id'];
+											$activecous=$collapse['activecous'];
+											$removecous=$collapse['removecous'];
+									?>
+										<label class="checkbox">
+										<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&cusion=<?php echo $item_cuisine_type_info_id->id; ?>"  <?php echo $activecous; ?>><?php echo $item_cuisine_type_info_id->name; ?></a>
+										<?php echo $removecous; ?>
+										</label>										 
+									<?php } ?>
+									 </div>
+									  <div class="panel-heading">
+										<h4 class="panel-title">
+										  <a data-toggle="collapse" href="#collapse1">View More</a>
+										</h4>
+									  </div>
+								<?php } ?>
+								 
 							 </div>
 						 </div>
 					 </section> 	
 				<?php } ?>						 
-				 
+<?php
+
+/*
 				 <section  class="sky-form">
 					 <h4><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp; Price</h4>
 					 <div class="row row1 scroll-pane">
@@ -181,9 +220,7 @@ use yii\widgets\ListView;
 					 </div>
 				 </section> 
 
-<?php
-
-/* function get_client_ip() {
+ function get_client_ip() {
         $ipaddress = '';
         if (isset($_SERVER['HTTP_CLIENT_IP']))
             $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
@@ -226,7 +263,7 @@ function distance($lat1, $lon1, $lat2, $lon2, $unit) {
 
 echo distance(32.9697, -96.80322, 29.46786, -98.53506, "M") . " Miles<br>"; */
 
-
+/*
 ?>
 				 <section  class="sky-form">
 					 <h4><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp; Near By You</h4>
@@ -255,7 +292,8 @@ echo distance(32.9697, -96.80322, 29.46786, -98.53506, "M") . " Miles<br>"; */
 						 </div>
 					 </div>
 				 </section> 				 				 
-
+*/
+				 ?>
 		
 			 </div>				 
 	      </div>

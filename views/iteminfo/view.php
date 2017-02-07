@@ -1,3 +1,11 @@
+<style>
+.itemerrorclass{
+	font-size: 14px;
+    color: #ff1414;
+    padding: 10px 0px;
+}
+</style>
+
 <?php
 use yii\helpers\Html;
 use app\models\ItemInfo;
@@ -14,8 +22,8 @@ if($model->image==null){
 			jQuery(document).ready(function($){
 
 				$('#etalage').etalage({
-					thumb_image_width: 300,
-					thumb_image_height: 400,
+					thumb_image_width: 350,
+					thumb_image_height: 250,
 					source_image_width: 900,
 					source_image_height: 1200,
 					show_hint: true,
@@ -49,7 +57,7 @@ if($model->image==null){
 				  </div>
 				  <div class="single-right">
 					 <h3><?php echo $model->name; ?></h3>
-					 <div class="id"><h4><?php echo $model->chefUser->username; ?></h4></div>
+					 <div class="id"><h4><?php echo $model->chefUser->username; ?> From <?php echo $model->chefUser->city; ?></h4></div>
 					 <?php /*
 					  <form action="" class="sky-form">
 						     <fieldset>					
@@ -119,7 +127,8 @@ if($model->image==null){
 								
 								if($display_offline==1){  
 								?>
-									<?= yii\helpers\Html::a('Order Now <span class="glyphicon glyphicon-chevron-right"></span>',['/orderinfo/review','itemid'=>$model->id],['class'=>'item_add items']) ?>
+									<div class="itemerrorclass itemerror<?php echo $model->id; ?>"></div>
+									<?= yii\helpers\Html::a('Order Now <span class="glyphicon glyphicon-chevron-right"></span>',['/orderinfo/review','itemid'=>$model->id],['class'=>'item_add items placeorder','id'=>$model->id]) ?>
 								<?php }else{ ?>								
 								   <?= yii\helpers\Html::a('<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;&nbsp;Currently Offline','#',['class'=>'item_add','style'=>'background: lightgray;color: red;']) ?>
 								  
@@ -208,3 +217,34 @@ if($model->image==null){
 	  </div>	 
 </div>
 
+<script>
+$(document).ready(function(){
+	$(document).on("click",".placeorder",function(e){		
+		e.preventDefault();
+		var oldHref = $(this).attr('href');
+		var item_id=$(this).attr('id');
+		$.ajax({			
+			type: 'POST',
+			url: <?php Yii::$app->homeUrl; ?>'?r=orderinfo/checkchef',
+			data: {item_id:item_id},			
+			error: function (err) {
+			//	alert("error - " + err);
+				return false;
+			},
+			success: function (data1) {
+				// return false;
+				// alert(data1);
+				if(data1==0){	
+					$('.itemerror'+item_id).html('Sorry,This item cannot be added.');
+					return false;
+				}else if(data1==3){	
+					$('.itemerror'+item_id).html('Sorry,This item cannot be added,Due to less Qty.');
+					return false;
+				}else{					
+					 window.location.href = oldHref; // go to the new url
+				}				
+			}
+		});
+	});
+});
+</script>

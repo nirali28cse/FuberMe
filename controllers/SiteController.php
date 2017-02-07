@@ -62,6 +62,13 @@ class SiteController extends Controller
     {
 		$this->layout = '/fuber_me/homepage';
         return $this->render('index');
+    }  
+	
+    public function actionIndex2()
+    {
+		  echo '<pre/>';
+		  print_r(Yii::$app->paypal->payDemo());  
+		  exit();
     }   
 
 	public function actionThanku()

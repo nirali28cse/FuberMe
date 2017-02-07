@@ -91,7 +91,7 @@ use yii\widgets\ActiveForm;
 					
 					<br/>
 					<p>Go Back to
-					<a href="<?php echo  Yii::$app->getHomeUrl(); ?>?r=users/login" class="green">Login</a> | 
+					<?php /* <a href="<?php echo  Yii::$app->getHomeUrl(); ?>?r=users/login" class="green">Login</a> |  */ ?>
 					<a href="<?php echo  Yii::$app->getHomeUrl(); ?>"  class="green">Home</a>
 					</p>
 
