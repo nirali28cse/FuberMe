@@ -891,8 +891,10 @@ ul.tabs-menu li.active a{
 	float:none;
 }
 .items{
-	float:none;
-	margin: 0 0 16px 0px;
+    float: left;
+    margin: 0 0 16px 0px;
+    display: block;
+    clear: both;
 }
 .item_add:hover {
 	background:#3ab638;
