@@ -34,13 +34,16 @@ use yii\bootstrap\ActiveForm;
 					  <a href="<?php echo  Yii::$app->getHomeUrl(); ?>?r=users/forgotpassword">Forgot Password ?</a>
 				 <?php ActiveForm::end(); ?>		 
 		 </div>
-		  <div class="col-md-6 login-right">
+		 <?php
+/* 		  <div class="col-md-6 login-right">
 			  	<h3>NEW CHEF REGISTRATION</h3>
 				<p>
 					Home based chefs who want to sell their home-made food to foodies without leaving their home! Can’t get easier and the best part is doing it when you feel like and get rewarded $$$
 				</p>
 				<a class="acount-btn" href="<?php echo  Yii::$app->getHomeUrl(); ?>?r=users/registration">Create an Account</a>
-		 </div>
+		 </div> */
+		 ?>
+		 
 		 <div class="clearfix"></div>
 	 </div>
 

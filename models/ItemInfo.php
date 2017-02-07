@@ -51,6 +51,8 @@ class ItemInfo extends \yii\db\ActiveRecord
             [['chef_user_id', 'item_category_info_id', 'item_cuisine_type_info_id', 'status'], 'integer'],
             [['ingredients', 'description'], 'string'],
             [['date_time'], 'safe'],
+		//	[['price'], 'number'],
+			[['price'],'number','numberPattern' => '/^\d+(.\d{1,2})?$/','message'=>'Enter a valid Price up to two decimal places.'],
             [['name','ingredients', 'description'], 'string', 'max' => 500],
 			[['quantity'],'integer','message'=>'Enter a valid Quntity in number.'],
 			['price', 'compare', 'compareValue' => 100, 'operator' => '<=', 'type' => 'number','message'=>'Enter a valid Price up to $100'],

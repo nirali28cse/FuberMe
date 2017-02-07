@@ -19,15 +19,22 @@ $user_id=$model->chef_user_id;
 							</div> 
 						</div></a>						
 						<div class="product-info simpleCart_shelfItem">
-							<div class="product-info-cust">
+							<div class="product-info-cust" style="width: 100%;">
+								<div class="col-md-6" style="padding: 0;">
 								<h4><?php echo $model->name; ?></h4>
+								<p><?php echo $model->chefUser->username; ?></p>
+								</div>
+								
+								<div class="col-md-6" style="text-align: right;padding: 0;">
+								<span class="item_price">$<?php echo $model->price; ?></span><br/>
 								<p><?php if($model->delivery_method!='both') echo Yii::$app->params['delivery_method'][$model->delivery_method]; else echo 'Pickup,Home Delivery'; ?></p>
+								</div>
+								
+								
 								<?php /*
 								<p>Availability : <br/><?php echo $model->availability_from_date.' '.Yii::$app->params['time_piker'][$model->availability_from_time]; ?>
 								- <?php echo $model->availability_to_date.' '.Yii::$app->params['time_piker'][$model->availability_to_time]; ?></p>
 								*/ ?>
-								<span class="item_price">$ <?php echo $model->price; ?></span>
-								<br/>
 
 								<?php // yii\helpers\Html::a('<span class="glyphicon glyphicon-edit"></span>',['update','id'=>$model->id],['class'=>'item_add items','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Edit'] ) ?> 
 								<?php // yii\helpers\Html::a('<span class="glyphicon glyphicon-trash"></span>',['delete','id'=>$model->id], ['onclick' => 'return confirm("Are you sure you want to delete this '.$model->name.' ?");','class'=>'item_add items','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Delete']) ?>

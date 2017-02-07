@@ -103,6 +103,9 @@ class IteminfoController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 		
 		
+		
+		
+		
         return $this->render('Conhome', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

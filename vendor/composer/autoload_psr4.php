@@ -44,5 +44,6 @@ return array(
     'cozumel\\cropper\\' => array($vendorDir . '/cozumel/yii2-image-cropper'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'budyaga\\cropper\\' => array($vendorDir . '/budyaga/yii2-cropper'),
+    'ak\\' => array($vendorDir . '/marciocamello/yii2-paypal'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
 );

@@ -35,7 +35,7 @@
 			
 			<div class="top_right">
 				<ul>
-				<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=site/faq">FAQ</a></li>							
+				
 	<?php 	if(!Yii::$app->user->isGuest){
 		
 				$url=Yii::$app->homeUrl.'?r=users/registration/update';

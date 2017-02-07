@@ -24,7 +24,8 @@
         "karpoff/yii2-crop-image-upload": "*",
         "budyaga/yii2-cropper": "*",
         "cozumel/yii2-image-cropper": "*",
-        "sjaakp/yii2-illustrated-behavior": "*"
+        "sjaakp/yii2-illustrated-behavior": "*",
+        "marciocamello/yii2-paypal": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
