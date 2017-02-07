@@ -7,7 +7,6 @@ use yii\widgets\ActiveForm;
 /* @var $model app\modules\users\models\Userdetail */
 /* @var $form yii\widgets\ActiveForm */
 
-
 ?>
 
 <!---->
