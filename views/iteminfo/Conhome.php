@@ -189,9 +189,7 @@ use yii\widgets\ListView;
 						 </div>
 					 </section> 	
 				<?php } ?>						 
-<?php
 
-/*
 				 <section  class="sky-form">
 					 <h4><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp; Price</h4>
 					 <div class="row row1 scroll-pane">
@@ -219,6 +217,9 @@ use yii\widgets\ListView;
 						 </div>
 					 </div>
 				 </section> 
+<?php
+
+/*
 
  function get_client_ip() {
         $ipaddress = '';
@@ -263,7 +264,7 @@ function distance($lat1, $lon1, $lat2, $lon2, $unit) {
 
 echo distance(32.9697, -96.80322, 29.46786, -98.53506, "M") . " Miles<br>"; */
 
-/*
+
 ?>
 				 <section  class="sky-form">
 					 <h4><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp; Near By You</h4>
@@ -292,8 +293,7 @@ echo distance(32.9697, -96.80322, 29.46786, -98.53506, "M") . " Miles<br>"; */
 						 </div>
 					 </div>
 				 </section> 				 				 
-*/
-				 ?>
+
 		
 			 </div>				 
 	      </div>

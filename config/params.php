@@ -2,7 +2,7 @@
 
 return [
     'adminEmail' => 'nirali28cse@gmail.com',
-  //  'adminemailid' => 'contact@fuberme.com',
+  //  'adminemailid' => 'email@fuberme.com',
     'adminemailid' => 'nirali28cse@gmail.com',
     'delivery_method' => array('pickup'=>'Pickup','homedelivery'=>'Home Delivery','both'=>'Both'),
     'payment_method' => array('paypal'=>'PayPal','cod'=>'Cash On Delivery'),
