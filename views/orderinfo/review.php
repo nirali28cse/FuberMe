@@ -213,7 +213,42 @@ if(count($user_info)>0){
 				 
 				 
 			</div>
-			
+
+<script>
+$(document).ready(function(){
+	$(document).on("click",".placeorder",function(e){		
+		e.preventDefault();
+		var oldHref = $(this).attr('href');
+		var item_id=$(this).attr('id');
+		$.ajax({			
+			type: 'POST',
+			url: <?php Yii::$app->homeUrl; ?>'?r=orderinfo/checkchef',
+			data: {item_id:item_id},			
+			error: function (err) {
+			//	alert("error - " + err);
+				return false;
+			},
+			success: function (data1) {
+				// return false;
+				// alert(data1);
+				if(data1==0){	
+					$('.itemerror'+item_id).html('Sorry,This item cannot be added.');
+					return false;
+				}else if(data1==3){	
+					$('.itemerror'+item_id).html('Sorry,This item cannot be added,Due to less Qty.');
+					return false;
+				}else if(data1==4){	
+					$('.itemerror'+item_id).html('Sorry,you can not purchase your own item.');
+					return false;
+				}else{					
+					 window.location.href = oldHref; // go to the new url
+				}				
+			}
+		});
+	});
+});
+</script>
+
 <script>
 
 /* $(document).ready(function(c) {
