@@ -1,8 +1,23 @@
 
 <?php
 use yii\helpers\Html;
+use app\models\ItemInfo;
+use app\modules\users\models\Userdetail;
+
+
 $order_items=null;
 $order_items=$order_array['order_item'];
+$default_itemimage=yii\helpers\Url::to('@web/fuberme/images/default_item_image.jpg');
+
+$user_id=$master_chef;
+
+$user_info = Userdetail::find()->where([ 'id'=>$user_id,'status'=>1 ])->one();
+$master_chef_name=null;
+if(count($user_info)>0){
+	$master_chef_name=$user_info->username;	
+	$master_chef_city=$user_info->city;	
+	$master_chef_zipcode=$user_info->zipcode;	
+} 
 
 ?>	
 
@@ -14,6 +29,7 @@ $order_items=$order_array['order_item'];
 					
 					 <div class="cart-items">
 						 <h2>Review Your Order</h2>
+						 <p style="text-align:right;font-size: 15px;color: gray;">Chef City : <?php echo $master_chef_city.' ('.$master_chef_zipcode.')'; ?></p>
 
 						<?php foreach($order_items as $value){ ?>
 						
@@ -81,7 +97,7 @@ $order_items=$order_array['order_item'];
 					 
 					 <div class="cart-total">
 
-						 <div class="price-details">
+						 <div class="price-details" style="border-bottom: 0px solid;">
 							 <h3>Price Details</h3>
 							 <span>Total</span>
 							 <span class="total tamount"><?php echo $order_array['total_amount']; ?></span>
@@ -91,15 +107,111 @@ $order_items=$order_array['order_item'];
 							 		 */		 
 							 ?>
 							 <div class="clearfix"></div>
-						 </div>	
-						 <h4 class="last-price">Final Total</h4>
+							 
+						<?php
+						/* 	
+						 <h4 class="last-price">Final Total</h4> 
 						 <span class="total final ttfinal"><?php echo $order_array['final_amount']; ?></span>
+						  */		 
+							 ?>
 						 <div class="clearfix">&nbsp;</div>
 						 
 						 <a class="continue" href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/create">CheckOut</a>
 
 						</div>
 				 </div>
+				  <div class="clearfix"></div>
+				 
+	<?php
+
+
+				//get related item of this chef_user_id
+				$random_chef_items= ItemInfo::find()
+								->where(['chef_user_id' => $user_id])
+							//	->where(['status' => 1])
+								// ->andWhere(['!=','id',$model->id])
+								->orderBy(['status' => SORT_DESC])
+								->all();
+				
+				if(count($random_chef_items)>0){
+				?> 
+		  
+				  
+				<div class="sofaset-info" style="margin: 0px;">
+						 <h4>Other Dishes By Chef <?php  echo $master_chef_name; ?></h4>
+						<div class="seller-grids">						
+							<?php foreach($random_chef_items as $random_chef_item){
+									$image_src=$default_itemimage;
+									$item_view=Yii::$app->homeUrl.'?r=iteminfo/view&id='.$random_chef_item->id;
+									if($random_chef_item->image!=null){
+										$image_src=yii\helpers\Url::to('@web/fuberme/'.$random_chef_item->chef_user_id.'/item_images/'.$random_chef_item->image);
+									}
+							?>  
+								 <div class="col-md-3 seller-grid">
+									 <a href="<?php echo $item_view; ?>"><img src="<?php echo $image_src; ?>" alt=""/></a>
+									 <h4><a href="products.html"><?php echo $random_chef_item->name; ?></a></h4>
+									 <span><?php echo $random_chef_item->cuisineTypeInfo->name.','.$random_chef_item->itemCategoryInfo->name; ?></span> 
+									 <br/>
+									 <span>Preparation Time : <?php echo Yii::$app->params['head_up_time'][$random_chef_item->head_up_time]; ?></span> 
+									 <p>$ <?php echo $random_chef_item->price; ?></p>
+									 
+									 <div>
+ 
+								<?php
+			
+								$newdate = date("d-M-Y");
+								$newdates = strtotime($newdate);
+								$availability_to_date = strtotime($random_chef_item->availability_to_date);
+								$availability_from_date = strtotime($random_chef_item->availability_from_date);
+								$newhours = date("H");
+								$newminiute = date("i");		
+								//if($newminiute>=0 and $newminiute<=30) $newminiute = 00;
+								//if($newminiute>=30 and $newminiute<=60) $newminiute = 30;
+								$newTime = $newhours.':'.$newminiute;
+								$newTime = strtotime($newTime); 
+								$availability_from_time = strtotime($random_chef_item->availability_from_time); 
+								$availability_to_time = strtotime($random_chef_item->availability_to_time); 
+								
+								$display_offline=0;
+								if($availability_from_date<=$newdates and $newdates<=$availability_to_date){
+									if($availability_from_date!=$newdates and $newdates!=$availability_to_date){
+										$display_offline=1;
+									}elseif($availability_from_date==$newdates and $newdates!=$availability_to_date){
+										$display_offline=1;
+									}else{
+										if($availability_from_date==$newdates and ($newTime>=$availability_from_time and $availability_to_time>=$newTime)){
+											$display_offline=1;
+										}
+										if($availability_to_date==$newdates and $newTime>=$availability_from_time and $availability_to_time>=$newTime){
+											$display_offline=1;
+										}
+									}
+								}
+								
+								if($display_offline==1){  
+								?>
+									<div class="itemerrorclass itemerror<?php echo $random_chef_item->id; ?>"></div>
+									<?= yii\helpers\Html::a('Order Now <span class="glyphicon glyphicon-chevron-right"></span>',['/orderinfo/review','itemid'=>$random_chef_item->id],['class'=>'item_add items placeorder','style'=>'color: white;','id'=>$random_chef_item->id]) ?>
+								<?php }else{ ?>								
+								   <?= yii\helpers\Html::a('<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;&nbsp;Currently Offline','#',['class'=>'item_add','style'=>'background: lightgray;color: red;']) ?>
+								  
+								<?php } ?>
+						
+									 
+									 </div>
+									 
+								 </div>
+								
+								 
+								 
+							<?php } ?> 							 
+							 <div class="clearfix"></div>
+						</div>						 
+				</div>
+				<?php } ?>  
+				 
+				 
+				 
 			</div>
 			
 <script>

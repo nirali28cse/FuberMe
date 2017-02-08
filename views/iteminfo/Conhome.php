@@ -323,6 +323,9 @@ $(document).ready(function(){
 				}else if(data1==3){	
 					$('.itemerror'+item_id).html('Sorry,This item cannot be added,Due to less Qty.');
 					return false;
+				}else if(data1==4){	
+					$('.itemerror'+item_id).html('Sorry,you can not purchase your own item.');
+					return false;
 				}else{					
 					 window.location.href = oldHref; // go to the new url
 				}				

@@ -60,7 +60,7 @@ use yii\widgets\ActiveForm;
 	}
 	if($order_array['delivery_method']=='both'){
 		$delivery_method= array('pickup'=>'Pickup','homedelivery'=>'Home Delivery');
-		$delivery_method_value='pickup';
+	//	$delivery_method_value='pickup';
 	}
 	?>
 	
