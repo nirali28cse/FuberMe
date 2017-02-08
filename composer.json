@@ -25,7 +25,8 @@
         "budyaga/yii2-cropper": "*",
         "cozumel/yii2-image-cropper": "*",
         "sjaakp/yii2-illustrated-behavior": "*",
-        "marciocamello/yii2-paypal": "*"
+        "marciocamello/yii2-paypal": "*",
+        "fedemotta/yii2-aws-sdk": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
