@@ -70,7 +70,7 @@ class LoginController extends Controller
 				$user_id=Yii::$app->user->id;
 				Yii::$app->user->logout();					
 				Yii::$app->session->set('verify_email','<div class="alert alert-danger">Please Verify Your email and then try login.
-				<a href="'.Yii::$app->homeUrl.'?r=site/sendemail&uid='.$user_id.'" style="float:right;">Click Here To Get Conformation Email.</a>
+				<a href="'.Yii::$app->homeUrl.'?r=site/sendemail&uid='.$user_id.'" style="float:right;">Click Here To Get Subscription Email.</a>
 				</div>');				
 			}             
         }

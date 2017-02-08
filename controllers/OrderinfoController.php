@@ -78,6 +78,10 @@ class OrderinfoController extends Controller
 						return false;
 					}
 				}
+				if(Yii::$app->user->id==$item_chef){
+					return 4;
+				}
+				
 				return true;
 			}else{
 				return 3;	
@@ -283,6 +287,7 @@ class OrderinfoController extends Controller
 
         return $this->render('review', [
             'order_array' => $_SESSION['order_array'],
+            'master_chef' => $_SESSION['master_chef'],
         ]);
     }  
 	
@@ -299,19 +304,19 @@ class OrderinfoController extends Controller
 	
 	
 
-	 public function Afterinvoiceupdateitemqty($item_id,$item_chef_id,$update_qty){
+	 public function Afterinvoiceupdateitemqty($item_id,$item_chef_id,$update_qty,$customer_user_id){
 		// update qty in item_info table		
-		$item_info = ItemInfo::find()->where([ 'id'=>$model1->item_id,'status'=>1])->one();
+		$item_info = ItemInfo::find()->where([ 'id'=>$item_id,'status'=>1])->one();
 		if(count($item_info)>0) {
 			
 			$old_qty=$item_info->quantity;
 			$new_qty=0;
-			$new_qty=$old_qty-$model1->item_qty;
+			$new_qty=$old_qty-$update_qty;
 			$item_info->quantity=$new_qty;
 			
 			if($new_qty<3){
 				// email to chef
-				$send_email=Yii::$app->emailcomponent->Chefinformlessqty($model1->item_chef_user_id);
+				$send_email=Yii::$app->emailcomponent->Chefinformlessqty($item_chef_id);
 			}
 			if($new_qty==0){
 				// take offline item 
@@ -325,8 +330,8 @@ class OrderinfoController extends Controller
 			}
 			
 			//For new Order place
-			$send_email_chef=Yii::$app->emailcomponent->Neworderinformchef($model1->item_chef_user_id);
-			$send_email_customer=Yii::$app->emailcomponent->Neworderinformcustomer($model->user_id);
+			$send_email_chef=Yii::$app->emailcomponent->Neworderinformchef($item_chef_id);
+			$send_email_customer=Yii::$app->emailcomponent->Neworderinformcustomer($customer_user_id);
 			$send_email_fuberadmin=Yii::$app->emailcomponent->Neworderinformfuberadmin();
 			$item_info->save();
 			
@@ -373,7 +378,11 @@ class OrderinfoController extends Controller
 					 $model1->item_chef_user_id=$order_item['item_chef'];
 					 if($model1->save()){
 						if($model->payment_method=='cod'){
-							$this->Afterinvoiceupdateitemqty($item_id,$item_chef_id,$update_qty); 	
+							$item_id=$model1->item_id;
+							$item_chef_id=$model1->item_chef_user_id;
+							$update_qty=$model1->item_qty;
+							$customer_user_id=$model->user_id;
+							$this->Afterinvoiceupdateitemqty($item_id,$item_chef_id,$update_qty,$customer_user_id); 	
 						}				
 					 }						
 				}

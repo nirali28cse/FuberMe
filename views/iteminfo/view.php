@@ -186,7 +186,7 @@ if($model->image==null){
 		  
 				  
 				<div class="sofaset-info">
-						 <h4>Special Dishes By Chef</h4>
+						 <h4>Other Dishes By Chef <?php echo $model->cuisineTypeInfo->name; ?></h4>
 						<div class="seller-grids">						
 							<?php foreach($random_chef_items as $random_chef_item){
 									$image_src=$default_itemimage;
@@ -239,6 +239,9 @@ $(document).ready(function(){
 					return false;
 				}else if(data1==3){	
 					$('.itemerror'+item_id).html('Sorry,This item cannot be added,Due to less Qty.');
+					return false;
+				}else if(data1==4){	
+					$('.itemerror'+item_id).html('Sorry,you can not purchase your own item.');
 					return false;
 				}else{					
 					 window.location.href = oldHref; // go to the new url

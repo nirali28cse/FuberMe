@@ -3,7 +3,7 @@
 return [
     'adminEmail' => 'nirali28cse@gmail.com',
   //  'adminemailid' => 'email@fuberme.com',
-    'adminemailid' => 'nirali28cse@gmail.com',
+    'adminemailid' => 'fuberme@gmail.com',
     'delivery_method' => array('pickup'=>'Pickup','homedelivery'=>'Home Delivery','both'=>'Both'),
     'payment_method' => array('paypal'=>'PayPal','cod'=>'Cash On Delivery'),
     'head_up_time' => array('30'=>'30 Min','60'=>'1 Hour','120'=>'2 Hours','240'=>'4 Hours','720'=>'Half Day',

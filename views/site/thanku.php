@@ -10,6 +10,9 @@ use yii\widgets\ActiveForm;
 
 ?>
 
+
+<br/><br/><br/>
+
 <!---->
 <div class="container">
 
@@ -23,4 +26,6 @@ use yii\widgets\ActiveForm;
 	 </div>
 </div>
 
-
+<br/><br/><br/>
+<br/><br/><br/>
+<br/><br/><br/>
