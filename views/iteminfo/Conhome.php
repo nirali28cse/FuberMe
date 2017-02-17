@@ -80,8 +80,6 @@ use yii\widgets\ListView;
 
 						<?php	
 							echo $this->render('conhomeitem', [
-								'searchModel' => $searchModel,
-							  //  'searchModel1' => $searchModel1,
 								'livedataProvider' => $livedataProvider,
 								'offlinedataProvider' => $offlinedataProvider,
 							]);				

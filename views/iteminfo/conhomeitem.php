@@ -8,7 +8,7 @@ use yii\widgets\ListView;
 <?php
 
 
-						 echo  ListView::widget([
+					 	 echo  ListView::widget([
 								'layout' => "{sorter}\n{summary}\n{items}\n{pager}",								
 								'dataProvider' => $livedataProvider,
 								'summary'=>'', 		
@@ -19,9 +19,6 @@ use yii\widgets\ListView;
 								],
 								'emptyText' => '<center></center>',
 								'itemOptions' => ['class' => 'item'],
-						/*         'itemView' => function ($model, $key, $index, $widget) {
-										return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
-								}, */
 							//	'itemView' =>'view'	,
 										
 								'itemView' => function ($model) {
@@ -31,9 +28,9 @@ use yii\widgets\ListView;
 									// return $this->render('_view');
 								}
 								
-						]); 
+						]);  
 ?>
-
+<br/>
 
 						<?php					
 						 echo  ListView::widget([
@@ -49,10 +46,10 @@ use yii\widgets\ListView;
 									// return $this->render('_view');
 								}
 								
-						]); 
+						]);  
 						
-						$livecount = $livedataProvider->getCount();
-						$offlinecount = $offlinedataProvider->getCount();
+						 $livecount = $livedataProvider->getCount();
+						 $offlinecount = $offlinedataProvider->getCount();
 
 						if($livecount==0 and $offlinecount==0){
 						?>
