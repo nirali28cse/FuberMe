@@ -105,6 +105,10 @@ class SiteController extends Controller
 			 }
 
 		}else{
+			$newhours = date("H");
+			$newminiute = date("i");
+			$newTime = $newhours.':'.$newminiute;
+			
 			$query = ItemInfo::find()->andFilterWhere(['status' => 1])
 					->andFilterWhere(['<=', 'availability_from_date', date('Y-m-d')])
 				    ->andFilterWhere(['>=', 'availability_to_date', date('Y-m-d')]);
@@ -115,7 +119,7 @@ class SiteController extends Controller
 		$livedataProvider = new ActiveDataProvider([
 			'query' =>$query,
 			'pagination' => [
-				'pageSize' => 10,
+				'pageSize' => 6,
 			],
 		]);
 
