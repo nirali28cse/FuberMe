@@ -8,6 +8,9 @@ use yii\widgets\ListView;
 <style>
 // .list-view>.item{float:left; width:50%;}
 
+.product-info-cust {
+    float: none;
+}
 
 .sorterclass{
 	list-style-type: none;
