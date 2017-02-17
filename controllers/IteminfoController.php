@@ -245,13 +245,13 @@ print_r($chef_distance_array); */
 
         $searchModel = new ItemInfoSearch();
 		$searchModel->status=0;	
-	//	$_GET['offlineitem']=1;			
-	//	$_GET['liveitem']=0;			
+		$_GET['offlineitem']=1;			
+		$_GET['liveitem']=0;			
         $offlinedataProvider = $searchModel->search(Yii::$app->request->queryParams);
 		
 		$searchModel->status=1;	
-	//	$_GET['liveitem']=1;	
-	//	$_GET['offlineitem']=0;				
+		$_GET['liveitem']=1;	
+		$_GET['offlineitem']=0;				
         $livedataProvider = $searchModel->search(Yii::$app->request->queryParams);
 	//	$models  = $livedataProvider->getModels();
 

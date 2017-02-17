@@ -139,7 +139,14 @@ class RegistrationController extends Controller
 				$model->user_type=$user_type;	
 				$model->auth_key =  Yii::$app->getSecurity()->generateRandomString();
 			}
-
+		
+			if(isset($_GET['directorder']) and ($_GET['directorder']>0)){
+				$directorder=$_GET['directorder'];				
+				$model->status=1;	
+				$usend_email=0;	
+			}
+			
+			
 			if($model->save()){				
 				if($usend_email==1){
 		
@@ -151,24 +158,31 @@ class RegistrationController extends Controller
 						$this->findModel($model->id)->delete();
 						Yii::$app->session->set('email_error','<div class="alert alert-danger">This email id is not valid,please try again.</div>');
 					}	
-				}else{
+				}else{				
+					
 					 Yii::$app->user->switchIdentity($model); // log in
-					// if admin 
-					if(Yii::$app->user->identity->is_admin==1){
-						return $this->redirect(['//cuisinetypeinfo/index']);
-					}else{
-						//if only customer
-						if(Yii::$app->user->identity->user_type==1){
-							return $this->redirect(['//iteminfo/conhome']);
-						}
-						//if only chef
-						if(Yii::$app->user->identity->user_type==2){
-							return $this->redirect(['//iteminfo/index']);
-						}	
-						//if only chef
-						if(Yii::$app->user->identity->user_type==3){
-						//	return $this->goHome();
-							return $this->redirect(['//iteminfo/index']);
+					 
+					 if(isset($_GET['directorder']) and ($_GET['directorder']>0)){
+						$directorder=$_GET['directorder'];
+						return $this->redirect(['/orderinfo/review', 'itemid' =>$directorder]);
+					 }else{
+						// if admin 
+						if(Yii::$app->user->identity->is_admin==1){
+							return $this->redirect(['//cuisinetypeinfo/index']);
+						}else{
+							//if only customer
+							if(Yii::$app->user->identity->user_type==1){
+								return $this->redirect(['//iteminfo/conhome']);
+							}
+							//if only chef
+							if(Yii::$app->user->identity->user_type==2){
+								return $this->redirect(['//iteminfo/index']);
+							}	
+							//if only chef
+							if(Yii::$app->user->identity->user_type==3){
+							//	return $this->goHome();
+								return $this->redirect(['//iteminfo/index']);
+							}
 						}
 					}
 				}				
