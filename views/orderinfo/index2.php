@@ -1,3 +1,14 @@
+
+<style>
+.glyphicon-eye-open:before {
+    color: #38b662 !important;
+}
+
+.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td {
+    color: #38b662;
+}
+</style>
+
 <?php
 
 use yii\helpers\Html;
