@@ -146,9 +146,9 @@ class IteminfoController extends Controller
 						$ipaddress = 'UNKNOWN';
 					return $ipaddress;
 				}
-			 $PublicIP = get_client_ip(); 
+			 echo $PublicIP = get_client_ip(); 
 			 
-			 $PublicIP = '103.66.114.146'; 
+			//  $PublicIP = '103.66.114.146'; 
 			 $json  = file_get_contents("https://freegeoip.net/json/$PublicIP");
 			 $json  =  json_decode($json ,true);
 			 $my_latitude= $json['latitude'];

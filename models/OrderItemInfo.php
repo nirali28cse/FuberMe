@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use app\models\ItemInfo;
+use app\modules\users\models\Userdetail;
 
 /**
  * This is the model class for table "order_item_info".
@@ -61,6 +62,13 @@ class OrderItemInfo extends \yii\db\ActiveRecord
     {
         return $this->hasOne(ItemInfo::className(), ['id' => 'item_id']);
     }
+		
+
 	
+    public function getChefInfo()
+    {
+        return $this->hasOne(Userdetail::className(), ['id' => 'item_chef_user_id']);
+    }   
+
 	
 }

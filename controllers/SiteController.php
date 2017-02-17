@@ -11,6 +11,7 @@ use app\models\ContactForm;
 use app\models\ItemInfo;
 use app\models\ItemInfoSearch;
 use yii\data\ActiveDataProvider;
+use app\modules\users\models\Userdetail;
 
 class SiteController extends Controller
 {
@@ -76,9 +77,37 @@ class SiteController extends Controller
 		if(isset($_GET['search_by_item']) and ($_GET['search_by_item']!=null)){
 			$search_by_item=$_GET['search_by_item'];
 			$query = ItemInfo::find()->where(['status' => 1])
-			->Where(['LIKE', 'name', $search_by_item]);
+					->andFilterWhere(['<=', 'availability_from_date', date('Y-m-d')])
+				    ->andFilterWhere(['>=', 'availability_to_date', date('Y-m-d')])
+				    ->andFilterWhere(['LIKE', 'name', $search_by_item]);
+		}elseif(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){
+			$search_by_location=$_GET['search_by_location'];
+			
+			$allchef_info = Userdetail::find()->where(['status'=>1])
+							->Where(['or',
+								['LIKE','zipcode',$search_by_location],
+								['LIKE','state',$search_by_location],
+								['LIKE','city',$search_by_location]
+								])->all();;
+
+			 $query = ItemInfo::find();	
+			 $query->andFilterWhere(['=', 'status',1])
+					->andFilterWhere(['<=', 'availability_from_date', date('Y-m-d')])
+				    ->andFilterWhere(['>=', 'availability_to_date', date('Y-m-d')]);
+			 $chef_array=array();
+			 if(count($allchef_info)>0){
+				foreach($allchef_info as $allchef){
+					$chef_id=$allchef->id;
+					$chef_array[]=$chef_id;
+				//	$query->orFilterWhere(['=', 'chef_user_id', $chef_id]);
+				}
+				$query->andFilterWhere(['in','chef_user_id',$chef_array]);	
+			 }
+
 		}else{
-			$query = ItemInfo::find()->where(['status' => 1]);
+			$query = ItemInfo::find()->andFilterWhere(['status' => 1])
+					->andFilterWhere(['<=', 'availability_from_date', date('Y-m-d')])
+				    ->andFilterWhere(['>=', 'availability_to_date', date('Y-m-d')]);
 		}	
 
 

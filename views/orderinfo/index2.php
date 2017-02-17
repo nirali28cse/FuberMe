@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\OrderInfoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'All Pending Orders';
+$this->title = 'Your Orders';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-info-index">
@@ -41,7 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
 					return '$'.$model->final_amount;
 				},
 			],	
-			[
+			
+/* 			[
             'attribute' => 'customer',
             'label' => 'Customer Info',
 			'format' => 'html',
@@ -52,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						   $model->customer_city.",".
 						   $model->customer_zip.","; 
 				},
-			],
+			], */
 
             'delivery_method',		
             'payment_method',
@@ -67,8 +68,8 @@ $this->params['breadcrumbs'][] = $this->title;
 				},
 			],
 			
-			'order_notes:ntext',
-            // 'order_date_time',
+			// 'order_notes:ntext',
+           //  'order_date_time',
 
  			[
 				'class' => 'yii\grid\ActionColumn',

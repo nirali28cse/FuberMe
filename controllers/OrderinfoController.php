@@ -56,6 +56,19 @@ class OrderinfoController extends Controller
         ]);
     }
 
+	public function actionIndex2()
+    {
+        $searchModel = new OrderInfoSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index2', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+	
+	
     /**
      * Displays a single OrderInfo model.
      * @param integer $id
@@ -357,7 +370,16 @@ class OrderinfoController extends Controller
 			
 			$order_array=$_SESSION['order_array'];
 			$order_number=0;
-			$order_status=1;   // Order Place
+			
+			$payment_method=$_POST['OrderInfo']['payment_method'];
+			if($payment_method=='cod'){
+				$order_status=1;   // Order Place	
+			}	
+			
+			if($payment_method=='paypal'){
+				$order_status=2;   // Order Place	
+			}
+			
 			$userid=$order_array['customer_info']['customer_id'];
 			$order_number=substr(number_format(time() * rand(),0,'',''),0,10);
 			$model->order_number=$order_number;

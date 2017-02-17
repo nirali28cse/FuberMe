@@ -21,6 +21,9 @@
 .cart-sec {
     padding: 0;
 }
+.seller-grid {
+    padding-bottom: 3%;
+}
 </style>
 
 
