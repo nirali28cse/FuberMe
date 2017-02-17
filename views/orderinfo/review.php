@@ -153,8 +153,8 @@ if(count($user_info)>0){
 					//finished
 					// location.reload();
 					var myArray = jQuery.parseJSON(myArray);
-					var total_amount=myArray['total_amount'];
-					var final_amount=myArray['final_amount'];
+					var total_amount='$'+myArray['total_amount'];
+					var final_amount='$'+myArray['final_amount'];
 					$(".tamount").html(total_amount);
 					$(".ttfinal").html(final_amount);
 				}
@@ -172,7 +172,7 @@ if(count($user_info)>0){
 						 <div class="price-details" style="border-bottom: 0px solid;">
 							 <h3>Price Details</h3>
 							 <span>Total</span>
-							 <span class="total tamount"><?php echo $order_array['total_amount']; ?></span>
+							 <span class="total tamount">$ <?php echo $order_array['total_amount']; ?></span>
 <?php
 /* 							 <span>Paypel Charges (%)</span>
 							 <span class="total"><?php echo $order_array['tax_in_percent']; ?></span>

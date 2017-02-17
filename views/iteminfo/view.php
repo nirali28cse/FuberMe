@@ -176,7 +176,7 @@ if($model->image==null){
 				$random_chef_items= ItemInfo::find()
 								->where(['chef_user_id' => $user_id])
 								->andWhere(['!=','id',$model->id])
-								->orderBy(['rand()' => SORT_DESC])
+								->orderBy(['status' => SORT_DESC])
 								->all();
 				
 				if(count($random_chef_items)>0){

@@ -160,12 +160,13 @@ class ItemInfoSearch extends ItemInfo
             ->andFilterWhere(['like', 'ingredients', $this->ingredients])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'head_up_time', $this->head_up_time])
-            ->andFilterWhere(['like', 'availability_from_date', $this->availability_from_date])
-            ->andFilterWhere(['like', 'availability_from_time', $this->availability_to_date])
-            ->andFilterWhere(['like', 'availability_to_time', $this->availability_to_date]);
+       //     ->andFilterWhere(['like', 'availability_from_date', $this->availability_from_date])
+            ->andFilterWhere(['like', 'availability_from_time', $this->availability_from_time])
+            ->andFilterWhere(['like', 'availability_to_time', $this->availability_to_time]);
 		
-		
-		if(isset($_GET['liveitem']) and $_GET['liveitem']==1){			
+	//	$query->andFilterWhere(['=','status',$this->status]);
+	
+/* 		if(isset($_GET['liveitem']) and $_GET['liveitem']==1){			
 			$query->andFilterWhere(['<=', 'availability_from_date', date('Y-m-d')])
 				  ->andFilterWhere(['>=', 'availability_to_date', date('Y-m-d')]);
 		}
@@ -173,13 +174,13 @@ class ItemInfoSearch extends ItemInfo
 		if(isset($_GET['offlineitem']) and $_GET['offlineitem']==1){		
 			$query->andFilterWhere(['>=', 'availability_from_date', date('Y-m-d')])
 				  ->orFilterWhere(['<=', 'availability_to_date', date('Y-m-d')]);
-		}
+		} */
 
-		$query->orderBy(['(status)' => SORT_DESC]);
-		
-/* echo '<pre>';
+/*   echo '<pre>';
 print_r($query);
-exit; */
+exit;   */
+		$query->orderBy(['(status)' => SORT_DESC]);
+
         return $dataProvider;
     }
 }

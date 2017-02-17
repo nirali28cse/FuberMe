@@ -235,40 +235,29 @@ print_r($chef_distance_array); */
 										'location'=>$location,'dieta'=>$dieta);
 		}
 
-/*         $searchModel = new ItemInfoSearch();
-		$searchModel->status=1;	
-		$_GET['liveitem']=1;			
-        $livedataProvider = $searchModel->search(Yii::$app->request->queryParams);
- */
- 
- 
-
-        $searchModel = new ItemInfoSearch();
-		$searchModel->status=0;	
-		$_GET['offlineitem']=1;			
-		$_GET['liveitem']=0;			
-        $offlinedataProvider = $searchModel->search(Yii::$app->request->queryParams);
 		
-		$searchModel->status=1;	
-		$_GET['liveitem']=1;	
-		$_GET['offlineitem']=0;				
-        $livedataProvider = $searchModel->search(Yii::$app->request->queryParams);
-	//	$models  = $livedataProvider->getModels();
+		
+		$searchModel1 = new ItemInfoSearch();
+        $livedataProvider = $searchModel1->search(Yii::$app->request->queryParams);	
+		$livedataProvider->query->where(['status'=>'1']);
+		$livedataProvider->query->where(['<=', 'availability_from_date',date('Y-m-d')]);	
+		$livedataProvider->query->where(['>=','availability_to_date', date('Y-m-d')]); 
+		
 
-	
-	
-	
-	
-	
+        $searchModel = new ItemInfoSearch();        
+        $offlinedataProvider = $searchModel->search(Yii::$app->request->queryParams); 		
+ 		$offlinedataProvider->query->where(['or','availability_from_date <= '.date('Y-m-d'),'availability_to_date <= '.date('Y-m-d')]); 
+		$offlinedataProvider->query->where(['status'=>'0']);
+		
+		
+		
 		if (Yii::$app->request->isAjax){
 			return $this->renderAjax('conhomeitem', [
-					'searchModel' => $searchModel,
 					'livedataProvider' => $livedataProvider,
 					'offlinedataProvider' => $offlinedataProvider,
 				]);
 		}else{
 			return $this->render('Conhome', [
-				'searchModel' => $searchModel,
 				'livedataProvider' => $livedataProvider,
 				'offlinedataProvider' => $offlinedataProvider,
 			]);
