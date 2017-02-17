@@ -6,7 +6,7 @@ use yii\widgets\ListView;
 
 ?>
 <style>
-.list-view>.item{float:left; width:50%;}
+// .list-view>.item{float:left; width:50%;}
 
 
 .sorterclass{
