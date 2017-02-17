@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-
+use app\models\OrderItemInfo;
 /**
  * This is the model class for table "order_info".
  *
@@ -88,4 +88,10 @@ class OrderInfo extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getOrderItemInfo()
+    {
+        return $this->hasMany(OrderItemInfo::className(), ['order_info_id' => 'id']);
+    }   
+
+	
 }

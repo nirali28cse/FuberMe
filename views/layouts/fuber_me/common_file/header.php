@@ -62,9 +62,20 @@
 											</li>
 											<li class="divider navbar-login-session-bg"></li>
 											 <li><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome">Eat with FuberMe <span class="glyphicon glyphicon-cutlery  pull-right"></span></a></li>
-											<li class="divider"></li>				
-											<li><a href="<?php echo $url; ?>">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 											<li class="divider"></li>
+											
+											<?php if(Yii::$app->user->identity->user_type==2 or Yii::$app->user->identity->user_type==3){ ?>
+												<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index">All Pending Orders <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+												<li class="divider"></li>
+											<?php } ?>			
+											
+											<?php if(Yii::$app->user->identity->user_type==1 or Yii::$app->user->identity->user_type==3){ ?>
+												<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index2">All Invoice <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+												<li class="divider"></li>
+											<?php } ?>		
+											
+											<li><a href="<?php echo $url; ?>">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+											<li class="divider"></li>										
 											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login/logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
 										</ul>
 								</li>

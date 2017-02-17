@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\OrderInfo;
-
+use app\models\OrderItemInfo;
 /**
  * OrderInfoSearch represents the model behind the search form about `app\models\OrderInfo`.
  */
@@ -41,8 +41,15 @@ class OrderInfoSearch extends OrderInfo
      */
     public function search($params)
     {
-        $query = OrderInfo::find();
 
+		if(Yii::$app->controller->action->id=='index' and (Yii::$app->user->identity->user_type=2 or Yii::$app->user->identity->user_type=3)){
+			$query = OrderInfo::find()->joinWith(['orderItemInfo'=>function ($query) {  $query->Where(['item_chef_user_id'=>Yii::$app->user->id]); } ]);		  
+		}else{
+			$query = OrderInfo::find();
+		}
+		
+
+		
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -65,6 +72,10 @@ class OrderInfoSearch extends OrderInfo
             'order_date_time' => $this->order_date_time,
         ]);
 
+		if(Yii::$app->controller->action->id=='index2' and (Yii::$app->user->identity->user_type=1 or Yii::$app->user->identity->user_type=3)){
+			 $query->andFilterWhere(['=', 'user_id',Yii::$app->user->id]);
+		}
+		
         $query->andFilterWhere(['like', 'order_number', $this->order_number])
             ->andFilterWhere(['like', 'final_amount', $this->final_amount])
             ->andFilterWhere(['like', 'total_amount', $this->total_amount])
@@ -82,4 +93,5 @@ class OrderInfoSearch extends OrderInfo
 
         return $dataProvider;
     }
+
 }

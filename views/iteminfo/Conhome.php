@@ -6,6 +6,9 @@ use yii\widgets\ListView;
 
 ?>
 <style>
+.list-view>.item{float:left; width:50%;}
+
+
 .sorterclass{
 	list-style-type: none;
 	overflow: hidden;

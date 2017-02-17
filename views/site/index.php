@@ -4,6 +4,14 @@ use yii\widgets\ListView;
 
 
 <style>
+
+.list-view>.item{float:left; width:33.3%;}
+
+.product-grid {
+    width: 100%;
+}
+
+
 .sofa-grid h4 a{
     background: #38b662;
 	color: White;
@@ -377,14 +385,14 @@ use yii\widgets\ListView;
 
 			   <div class="search">
 				  <form>
-					<input type="text" name="search_by_item" value="" placeholder="Search Item...">
+					<input type="text" name="search_by_item" value="<?php if(isset($_GET['search_by_item']) and ($_GET['search_by_item']!=null)){ echo $_GET['search_by_item']; } ?>" placeholder="Search Item...">
 					<input type="submit" value="">
 				  </form>
 				</div>
 				
 			   <div class="search">
 				  <form>
-					<input type="text" value="" placeholder="Search By Location...">
+					<input type="text"  name="search_by_location"  value="<?php if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){ echo $_GET['search_by_location']; } ?>" placeholder="Search By Location...">
 					<input type="submit" value="">
 					</form>
 				</div>

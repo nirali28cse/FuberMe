@@ -24,7 +24,23 @@
     				<address>
     					<strong>Delivery Method:</strong><br>
     					<?php echo  Yii::$app->params['delivery_method'][$model->delivery_method]; ?><br>    					
+    				</address> 
+					
+					<address>
+					<?php if($model->delivery_method=='homedelivery'){ ?>
+						<strong>Delivery Address:</strong><br>
+    					<?php echo $model->customer_address; ?><br>
+    					<?php echo $model->customer_city; ?>,<?php echo $model->customer_zip; ?><br>    										
+					<?php } ?>
+					<?php if($model->delivery_method=='pickup'){ ?>
+						<strong>PickUp Address:</strong><br>
+    					<?php echo $model->orderItemInfo[0]->chefInfo->username; ?>,<br>  
+    					<?php echo $model->orderItemInfo[0]->chefInfo->address;  ?>,<br>    										
+    					<?php echo $model->orderItemInfo[0]->chefInfo->city;  ?>,<?php echo $model->orderItemInfo[0]->chefInfo->zipcode;  ?><br>    										
+					<?php } ?>
+    					
     				</address>
+					
     			</div>  
 				<div class="col-xs-3">
     				<address>
@@ -76,12 +92,7 @@
     								<td class="thick-line text-center"><strong>Subtotal</strong></td>
     								<td class="thick-line text-right">$ <?php echo $model->total_amount; ?></td>
     							</tr>
-    							<tr>
-    								<td class="no-line"></td>
-    								<td class="no-line"></td>
-    								<td class="no-line text-center"><strong>Paypal Tax (%)</strong></td>
-    								<td class="no-line text-right"><?php echo $model->tax_in_percent; ?></td>
-    							</tr>
+
     							<tr>
     								<td class="no-line"></td>
     								<td class="no-line"></td>
