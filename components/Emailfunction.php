@@ -84,7 +84,7 @@ class Emailfunction extends Component
 	
 	public static function Neworderinformcustomer($customer_user_id)
 	{
-		$model=Userdetail::findOne($chef_user_id);
+		$model=Userdetail::findOne($customer_user_id);
 		$toemail = $model->email_id;
 
 		$subject = 'Order Place Sucessfully';		

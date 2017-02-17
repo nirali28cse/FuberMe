@@ -16,6 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 .yellowactive{
     border-color:yellow !important;
     color: yellow!important;
+	border: 1px solid;
 }
 
 
@@ -76,7 +77,7 @@ body a{
 .top_left{
     float: left !important;
 	color:#fff;
-    width: 14%;
+    width: 50%;
 }
 .top_right{
 	float:right !important;
@@ -92,6 +93,9 @@ body a{
 	list-style:none;
 	display: inline-block;
 	  vertical-align: middle;
+}
+.top_link{
+margin-top: 2%;
 }
 .top_left ul li.top_link{
 	margin-right:10px;
@@ -275,7 +279,7 @@ a i.google:hover {
   position: relative;
   background: #f3f4f5;
   float: left;
-  width: 26%;
+  width: 50%;
   border-radius:3px;
 }
 .search input[type="text"] {
@@ -890,12 +894,7 @@ ul.tabs-menu li.active a{
 	padding: 0.8em 1.2em;
 	float:none;
 }
-.items{
-    float: left;
-    margin: 0 0 16px 0px;
-    display: block;
-    clear: both;
-}
+
 .item_add:hover {
 	background:#3ab638;
 	color: white;
@@ -1653,6 +1652,8 @@ a.continue:hover{
 	color:#333;
 	font-size:1em;
 	margin-bottom:1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #38b662;
 }
 .price-details span{
 	width:50%;

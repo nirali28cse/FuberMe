@@ -51,6 +51,7 @@ class FuberMeAsset  extends AssetBundle
 		'js/responsiveslides.min.js',
 		'js/simpleCart.min.js',
 		'js/jquery.flexisel.js',
+		'js/bootstrap.min.js',
 		// 'js/jquery.min.js',
 		//'js/jquery.imgareaselect.pack.js',
 		//'js/script.js',

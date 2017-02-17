@@ -8,6 +8,9 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\ItemInfo;
+use app\models\ItemInfoSearch;
+use yii\data\ActiveDataProvider;
 
 class SiteController extends Controller
 {
@@ -61,7 +64,44 @@ class SiteController extends Controller
     public function actionIndex()
     {
 		$this->layout = '/fuber_me/homepage';
-        return $this->render('index');
+		
+/*         $searchModel = new ItemInfoSearch();
+		$searchModel->status=1;	
+		$_GET['liveitem']=1;	 */
+		
+
+		
+     //   $livedataProvider = $searchModel->search(Yii::$app->request->queryParams);
+	 
+		if(isset($_GET['search_by_item']) and ($_GET['search_by_item']!=null)){
+			$search_by_item=$_GET['search_by_item'];
+			$query = ItemInfo::find()->where(['status' => 1])
+			->Where(['LIKE', 'name', $search_by_item]);
+		}else{
+			$query = ItemInfo::find()->where(['status' => 1]);
+		}	
+
+
+
+		$livedataProvider = new ActiveDataProvider([
+			'query' =>$query,
+			'pagination' => [
+				'pageSize' => 10,
+			],
+		]);
+
+		// get the posts in the current page
+		$models  = $livedataProvider->getModels();
+		// $count = $livedataProvider->getCount();
+		
+        return $this->render('index', [
+      //   'searchModel' => $searchModel,
+         //   'searchModel1' => $searchModel1,
+            'livedataProvider' => $livedataProvider,
+         //   'offlinedataProvider' => $offlinedataProvider,
+        ]);
+		
+      //  return $this->render('index');
     }  
 	
     public function actionIndex2()

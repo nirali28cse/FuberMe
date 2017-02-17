@@ -1,0 +1,111 @@
+$(document).ready(function(){
+ $(".cycle_workout").click(function(){
+    value = this.value;
+    if (value == "1_wpw_workout"){
+      if($(this).is(':checked')){
+      }else{
+        $('#1_wpw_workout_1 option[value="0"]').prop('selected', 'selected').change();
+      }
+      $("#div_1_wpw_workout").toggle();
+    }
+    else if (value == "2_wpw_workout"){
+      if($(this).is(':checked')){
+      }else{
+        $('#2_wpw_workout_1 option[value="0"]').prop('selected', 'selected').change();
+        $('#2_wpw_workout_2 option[value="0"]').prop('selected', 'selected').change();
+      }
+      $("#div_2_wpw_workout").toggle();
+    }
+    else if (value == "3_wpw_workout"){
+      if($(this).is(':checked')){
+      }else{
+        $('#3_wpw_workout_1 option[value="0"]').prop('selected', 'selected').change();
+        $('#3_wpw_workout_2 option[value="0"]').prop('selected', 'selected').change();
+        $('#3_wpw_workout_3 option[value="0"]').prop('selected', 'selected').change();
+      }
+      $("#div_3_wpw_workout").toggle();
+    }
+    else if (value == "4_wpw_workout"){
+      if($(this).is(':checked')){
+      }else{
+        $('#4_wpw_workout_1 option[value="0"]').prop('selected', 'selected').change();
+        $('#4_wpw_workout_2 option[value="0"]').prop('selected', 'selected').change();
+        $('#4_wpw_workout_3 option[value="0"]').prop('selected', 'selected').change();
+        $('#4_wpw_workout_4 option[value="0"]').prop('selected', 'selected').change();
+      }
+      $("#div_4_wpw_workout").toggle();
+    }
+    else if (value == "5_wpw_workout"){
+      if($(this).is(':checked')){
+      }else{
+        $('#5_wpw_workout_1 option[value="0"]').prop('selected', 'selected').change();
+        $('#5_wpw_workout_2 option[value="0"]').prop('selected', 'selected').change();
+        $('#5_wpw_workout_3 option[value="0"]').prop('selected', 'selected').change();
+        $('#5_wpw_workout_4 option[value="0"]').prop('selected', 'selected').change();
+        $('#5_wpw_workout_5 option[value="0"]').prop('selected', 'selected').change();
+      }
+      $("#div_5_wpw_workout").toggle();
+    }
+    else if (value == "6_wpw_workout"){
+      if($(this).is(':checked')){
+      }else{
+        $('#6_wpw_workout_1 option[value="0"]').prop('selected', 'selected').change();
+        $('#6_wpw_workout_2 option[value="0"]').prop('selected', 'selected').change();
+        $('#6_wpw_workout_3 option[value="0"]').prop('selected', 'selected').change();
+        $('#6_wpw_workout_4 option[value="0"]').prop('selected', 'selected').change();
+        $('#6_wpw_workout_5 option[value="0"]').prop('selected', 'selected').change();
+        $('#6_wpw_workout_6 option[value="0"]').prop('selected', 'selected').change();
+      }
+      $("#div_6_wpw_workout").toggle();
+    }
+    else if (value == "7_wpw_workout"){
+      if($(this).is(':checked')){
+      }else{
+        $('#7_wpw_workout_1 option[value="0"]').prop('selected', 'selected').change();
+        $('#7_wpw_workout_2 option[value="0"]').prop('selected', 'selected').change();
+        $('#7_wpw_workout_3 option[value="0"]').prop('selected', 'selected').change();
+        $('#7_wpw_workout_4 option[value="0"]').prop('selected', 'selected').change();
+        $('#7_wpw_workout_5 option[value="0"]').prop('selected', 'selected').change();
+        $('#7_wpw_workout_6 option[value="0"]').prop('selected', 'selected').change();
+        $('#7_wpw_workout_7 option[value="0"]').prop('selected', 'selected').change();
+      }
+      $("#div_7_wpw_workout").toggle();
+    }
+    else {}
+ });
+
+
+  $(".active_deactive_cycle").click(function(){
+    var is_active;
+    var cycle_id = $(this).parent().attr('id');
+    if($(this).is(':checked')){
+      is_active = 1;
+    }else{
+      is_active = 0;
+    }
+    $.ajax({
+      url: '/panel/Cycle/active_deactive_cycle',
+      type: "post",
+      data: {'id': cycle_id,'is_active':is_active ,'_token': $('meta[name="csrf-token"]').attr('content') },
+      success: function(data){
+        $("#flash-message").html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' + data.message +'</strong></div>');
+      }
+    }); 
+  });
+
+  $(".copy_cycle").click(function(){
+    $.ajax({
+      url: '/panel/Cycle/copy_cycle',
+      type: "post",
+      data: {'id': this.id,'_token': $('meta[name="csrf-token"]').attr('content') },
+      success: function(data){
+        $("#flash-message").html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' + data.message +'</strong></div>');
+        window.location = '/panel/Cycle/edit?id='+ data.id 
+      }
+    }); 
+  });
+  
+
+})
+
+

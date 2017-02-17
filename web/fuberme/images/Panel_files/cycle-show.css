@@ -1,0 +1,262 @@
+
+.form-input {
+  display: inline;
+  width: auto;
+  height: 31px;
+  padding: 6px 12px;
+  font-size: 12px;
+  line-height: 1.42857143;
+  color: #555555;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.btn-add-container{
+  text-align: center;
+  
+}
+.btn-add{
+  padding: 6px 20px;
+  background-color: #333333;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-bottom:10px;
+  margin-top: 10px;
+}
+
+.field_errors{
+  color: #a94442 !important;
+}
+
+.hide_class{
+  display: none;
+}
+.cycle-filter-list{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cycle-filter-list li{
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+}
+ .cycle-filter-list li:last-child{
+  border-bottom: none;
+}
+.cycle-filter-list li:first-child{
+  border-bottom: 1px solid #ddd;
+}
+
+.cycle-filter-list li input[type="checkbox"] {
+  vertical-align: top;
+}
+.rpd-dataform .form-horizontal .control-label{
+  text-align: left;
+}
+
+.main-container {
+    background-color: #ddd;
+    min-height: 500px;
+	width:100%;
+  margin-top: 30px;
+  padding: 0 10px;
+}
+.headings h1 {
+    font-family: arial;
+    font-size: 18px;
+    font-weight: bold;
+	text-align:center;
+}
+.select-box {
+    padding-top: 15px;
+}
+.table-first-top{
+	margin-top:10px;
+	background-color:#fff;
+}
+.select-box select {
+    padding: 6px 10px;
+	text-align:center;
+	margin-right:10px;
+	font-weight:600;
+}
+.table-first-top td {
+  text-align: center;
+}
+.table-first-top td span{
+	padding:4px 10px;
+	color:#666666;
+	font-weight:bold;
+  line-height: 30px;
+}
+.week-version-content{
+	border:1px solid red;
+}
+.col-md-12.version-copy-div {
+    padding-top: 20px;
+	padding-bottom:20px;
+}
+.col-md-12.version-copy-div select {
+    padding: 6px 10px;
+    text-align: center;
+	font-weight:600;
+}
+.copy-version {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(0, 0, 0);
+    font-size: 12px;
+    padding: 0 5px;
+    text-align: center;
+    width: 100px;
+	font-weight:600;
+}
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td
+{
+	border-color:#000;
+}
+.table-2-container table {
+    background-color: rgb(255, 255, 255);
+	width:100%;
+}
+.tab-headings
+{text-align:center;}
+.txt-center-td{
+	text-align:center;
+	font-weight:600;
+}
+h2.cycle-head{
+    color: #666666;
+    font-size: 16px;
+    font-weight:600;
+    text-align: center;
+	padding:10px;
+	text-transform:uppercase;
+}
+.txt-centent {
+	border:1px solid #666666;
+	background-color:#fff;
+}
+.bottom-contet-div {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(0, 0, 0);
+    min-height: 100px;
+    padding: 10px;
+}
+.txt-centent p {
+    font-size: 13px;
+    font-weight: 600;
+}
+.mid-td-txt{
+	text-align:center;
+	font-weight:600;
+}
+.bottom-contet-div p {
+    font-size: 14px;
+    font-weight: 600;
+}
+.cycle-name-head{
+	font-size:14px;
+	font-weight:600;
+}
+input[type="radio"], input[type="checkbox"]{
+	vertical-align:sub;
+}
+
+/*************css for active button*********************/
+  .cmn-toggle 
+{
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+
+.cmn-toggle + label 
+{
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+input.cmn-toggle-round-flat + label 
+{
+  padding: 2px;
+  width: 40px;
+  height: 25px;
+  background-color: #fff; /**change here circle**/
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
+  border-radius: 60px;
+  -webkit-transition: background 0.4s;
+  -moz-transition: background 0.4s;
+  -o-transition: background 0.4s;
+  transition: background 0.4s;
+}
+
+input.cmn-toggle-round-flat + label:before, input.cmn-toggle-round-flat + label:after 
+{
+  display: block;
+  position: absolute;
+  content: "";
+}
+
+input.cmn-toggle-round-flat + label:before 
+{
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  right: 2px;
+  background-color: #ddd; /***change circle bg*/
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
+  border-radius: 60px;
+  -webkit-transition: background 0.4s;
+  -moz-transition: background 0.4s;
+  -o-transition: background 0.4s;
+  transition: background 0.4s;
+}
+
+input.cmn-toggle-round-flat + label:after 
+{
+  top: 4px;
+  left: 4px;
+  bottom: 4px;
+  width: 16px;
+  background-color: #fff; /**chagge circle*/
+  -webkit-border-radius: 52px;
+  -moz-border-radius: 52px;
+  -ms-border-radius: 52px;
+  -o-border-radius: 52px;
+  border-radius: 52px;
+  -webkit-transition: margin 0.4s, background 0.4s;
+  -moz-transition: margin 0.4s, background 0.4s;
+  -o-transition: margin 0.4s, background 0.4s;
+  transition: margin 0.4s, background 0.4s;
+}
+
+input.cmn-toggle-round-flat:checked + label 
+{
+  background-color:#ddd;
+}
+
+input.cmn-toggle-round-flat:checked + label:after 
+{
+  margin-left: 16px;
+  background-color: #2FCCFF;
+}

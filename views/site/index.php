@@ -1,9 +1,29 @@
+<?php 
+use yii\widgets\ListView;
+?>
+
 
 <style>
 .sofa-grid h4 a{
     background: #38b662;
 	color: White;
 	border-radius: 0;
+}
+.itemerrorclass{
+    font-size: 14px;
+    color: #ff1414;
+    margin: 75px 15px;
+    display: block;
+    clear: both;
+    position: absolute;
+}
+
+
+.items{
+    float: left;
+    margin: 0 0 16px 0px;
+    display: block;
+    clear: both;
 }
 </style>
 
@@ -44,6 +64,126 @@
 		 <div class="sofas">
 
  <?php 
+ /* 
+		$custom_exercise_letter=null;
+		$custom_exercise_letter='a';
+		$swap_week=1;
+		$current_week=5;
+		$selection_priority_array=['a','b','c','d','e','f','g','h','i'];
+ 		if(array_key_exists($custom_exercise_id,$taken_selection_priority)){
+			$custom_exercise_letter=$taken_selection_priority[$custom_exercise_id];	
+		} 
+		
+		$selection_priority_array1=array();
+		if((count($selection_priority_array)>0) and ($swap_week>0)){
+		// rearrange selection priority array
+				$couter=0;
+				$selecount=0;
+				$cha_array=array();				
+				$selecount=count($selection_priority_array)*$swap_week;
+				foreach($selection_priority_array as $selectionpriority){
+					$cha_array[]=array_fill($couter,$swap_week,$selectionpriority);
+					$couter=$couter+$swap_week;
+				}
+				
+				$new_char_array=array();
+				$notaddedfinal_char_array=array();
+
+				$x = 1;		
+				do {
+					foreach($cha_array as $chkey=>$chavalue){
+						foreach($chavalue as $key=>$value){			
+							$new_char_array[$x]=$value;	
+							$x++;	
+							if($current_week>$selecount  and $x>$current_week){
+								break 2;
+							}		
+						}
+					}
+				} while ($x <= $current_week); 
+
+				$final_char_array=array();
+				$added_first=0;
+				$x1 = 1;	
+				do {
+					foreach($new_char_array as $key=>$value){	
+						if(($key ==$current_week)){
+							$final_char_array[$key]=$value;	
+							$added_first=1;
+							$x1++;	
+						}elseif($added_first==1){
+							$final_char_array[$key]=$value;	
+							$x1++;	
+						}else{
+							$notaddedfinal_char_array[$key]=$value;	
+							// $x1++;	
+						}
+					}
+				} while ($x1 <= $current_week); 
+				
+				
+			// rearrange selection priority array 
+			// From current week rearrange array
+			$selection_priority_array1=array_merge($final_char_array,$notaddedfinal_char_array);
+		
+		
+			// depend on privious week selection chnage in array
+		 	$finalselection_priority_array=array();
+			$middel_array=array();
+			$before_array=array();
+			$after_array=array();
+			$same_array=array();
+			if(($selection_priority_array1!=null) and ($custom_exercise_letter!=null)){
+				$find_index = array_search(strtolower($custom_exercise_letter), array_map('strtolower', $selection_priority_array1));
+				foreach($selection_priority_array1 as $key1=>$value1){	
+				// $value1='b'; ,$custom_exercise_letter='f'; 
+					//check $valuev > f
+					if( (strcmp( strtolower( $value1 ), strtolower( $custom_exercise_letter ) ) > 0) and ($find_index>$key1) ){
+							$middel_array[]=$value1;			
+					}elseif($find_index>$key1){						
+							$before_array[]=$value1;
+					}elseif($find_index<$key1 and (strcasecmp($custom_exercise_letter, $value1) != 0)){						
+							$after_array[]=$value1;
+					}elseif((strcasecmp($custom_exercise_letter, $value1) == 0)){
+							$same_array[]=$value1;
+					}						
+				}		
+		
+				// if privious selection priority is a then merge different way
+				$find_index1 = array_search(strtolower($custom_exercise_letter), array_map('strtolower', $selection_priority_array));			
+				if($find_index1==0){
+					$array_meged1 = array_merge($after_array, $middel_array);
+					$array_meged2 = array_merge($array_meged1, $same_array);
+					$finalselection_priority_array = array_merge($array_meged2, $before_array);
+				}else{
+					$array_meged1 = array_merge($middel_array, $after_array);
+					$array_meged2 = array_merge($array_meged1, $before_array);
+					$finalselection_priority_array = array_merge($array_meged2, $same_array);
+				}
+				
+
+			}else{
+				$finalselection_priority_array = $selection_priority_array1;
+			} 
+				
+		}
+
+		
+		echo '<pre>';
+		print_r($selection_priority_array);   // real array
+		print_r($selection_priority_array1);  // change array depend on current week 
+		echo 'after_array';
+		print_r($after_array);  // change array depend on current week 
+		echo 'middel_array';
+		print_r($middel_array);  // change array depend on current week 
+		echo 'before_array';
+		print_r($before_array);  // change array depend on current week 
+		echo 'same_array';
+		print_r($same_array);  // change array depend on current week 
+		print_r($finalselection_priority_array); //change in array from privious week selection
+		exit; */ 
+ 
+ 
 /*		
  if(Yii::$app->user->isGuest){ ?>
 
@@ -230,3 +370,101 @@
 <!---->
 */
 ?>
+
+<div class="mega_nav">
+	 <div class="container">
+		 <div class="menu_sec">
+
+			   <div class="search">
+				  <form>
+					<input type="text" name="search_by_item" value="" placeholder="Search Item...">
+					<input type="submit" value="">
+				  </form>
+				</div>
+				
+			   <div class="search">
+				  <form>
+					<input type="text" value="" placeholder="Search By Location...">
+					<input type="submit" value="">
+					</form>
+				</div>
+				
+	<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+
+<br/>
+<br/>
+		
+   <div class="product-model">	 
+	 <div class="container">
+		 <div class="col-md-12 product-model-sec">									
+				<div class="item-info-index">
+						<?php						
+						
+						 echo  ListView::widget([
+								'dataProvider' => $livedataProvider,	
+								'summary' => '',
+								'emptyText' => '<center><h2>No dishes found.</h2></center>',
+								'itemOptions' => ['class' => 'item'],
+								'itemView' => function ($model) {
+									 return $this->render('_view',['model' => $model]);
+								}
+								
+						]); 
+						
+/* 						 echo  ListView::widget([
+								'dataProvider' => $offlinedataProvider,	
+								'summary' => '',
+								'itemOptions' => ['class' => 'item'],
+								'itemView' => function ($model) {
+									 return $this->render('_view',['model' => $model]);
+								}
+								
+						]);  */
+
+						?>		
+						
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+
+<script>
+$(document).ready(function(){
+	$(document).on("click",".placeorder",function(e){		
+		e.preventDefault();
+		var oldHref = $(this).attr('href');
+		var item_id=$(this).attr('id');
+		$.ajax({			
+			type: 'POST',
+			url: <?php Yii::$app->homeUrl; ?>'?r=orderinfo/checkchef',
+			data: {item_id:item_id},			
+			error: function (err) {
+			//	alert("error - " + err);
+				return false;
+			},
+			success: function (data1) {
+				// return false;
+				// alert(data1);
+				if(data1==0){	
+					$('.itemerror'+item_id).html('Sorry,This item cannot be added.');
+					return false;
+				}else if(data1==3){	
+					$('.itemerror'+item_id).html('Sorry,This item cannot be added,Due to less Qty.');
+					return false;
+				}else if(data1==4){	
+					$('.itemerror'+item_id).html('Sorry,you can not purchase your own item.');
+					return false;
+				}else{					
+					 window.location.href = oldHref; // go to the new url
+				}				
+			}
+		});
+	});
+});
+</script>

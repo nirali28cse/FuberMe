@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-$user_id=Yii::$app->user->id;
+$user_id=$model->chef_user_id;
 ?>
 
 					<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/update&id=<?php echo $model->id; ?>"><div class="product-grid love-grid">
@@ -19,13 +19,24 @@ $user_id=Yii::$app->user->id;
 							</div>  -->
 						</div></a>						
 						<div class="product-info simpleCart_shelfItem">
-							<div class="product-info-cust">
+							<div class="product-info-cust" style="width: 350px;">
+								<div class="col-md-6" style="padding: 0;">
 								<h4><?php echo $model->name; ?></h4>
-								<span class="item_price">$ <?php echo $model->price; ?></span>
-								<br/>
+								<p><?php echo $model->chefUser->username; ?></p>
+								</div>
+								
+								<div class="col-md-6" style="text-align: right;padding: 0;">
+								<span class="item_price">$<?php echo $model->price; ?></span><br/>								
+								</div>
+								
+								
+								<?php /*
+								<p>Availability : <br/><?php echo $model->availability_from_date.' '.Yii::$app->params['time_piker'][$model->availability_from_time]; ?>
+								- <?php echo $model->availability_to_date.' '.Yii::$app->params['time_piker'][$model->availability_to_time]; ?></p>
+								*/ ?>
 
-								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-edit"></span>',['update','id'=>$model->id],['class'=>'item_add items','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Edit'] ) ?> 
-								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-trash"></span>',['delete','id'=>$model->id], ['onclick' => 'return confirm("Are you sure you want to delete this '.$model->name.' ?");','class'=>'item_add items','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Delete']) ?>
+								<?php // yii\helpers\Html::a('<span class="glyphicon glyphicon-edit"></span>',['update','id'=>$model->id],['class'=>'item_add items','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Edit'] ) ?> 
+								<?php // yii\helpers\Html::a('<span class="glyphicon glyphicon-trash"></span>',['delete','id'=>$model->id], ['onclick' => 'return confirm("Are you sure you want to delete this '.$model->name.' ?");','class'=>'item_add items','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Delete']) ?>
 								<?php
 								// echo date_default_timezone_get(); 
 
@@ -65,10 +76,17 @@ $user_id=Yii::$app->user->id;
 								}
 								
 								if($display_offline==1){  
-								?>
-								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-close"></span> Take Offline',['makeitemlive','id'=>$model->id,'status'=>0],['onclick' => 'return confirm("Are you sure you want to take '.$model->name.' offline? ");','class'=>'item_add','style'=>'background: lightgray;color: red;','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Make Offline']) ?>
-								<?php }else{ ?>
-								<?= yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-open"></span> Make Live',['getenddate','id'=>$model->id],['class'=>'item_add items','data-toggle'=>'modal','data-html'=>true,'data-target'=>'#myModal']) ?>
+								?>	
+									<div class="itemerrorclass itemerror<?php echo $model->id; ?>"></div>
+									<?php if(Yii::$app->user->isGuest){ ?>
+										<?= yii\helpers\Html::a('Order Now <span class="glyphicon glyphicon-chevron-right"></span>',['/users/registration/cindex','directorder'=>$model->id],['id'=>$model->id,'class'=>'item_add items placeorder']) ?>
+									<?php }else{ ?>
+										<?= yii\helpers\Html::a('Order Now <span class="glyphicon glyphicon-chevron-right"></span>',['/orderinfo/review','itemid'=>$model->id],['id'=>$model->id,'class'=>'item_add items placeorder']) ?>
+									<?php  } ?>
+									
+								<?php }else{ ?>								
+								   <?= yii\helpers\Html::a('<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;&nbsp;Currently Offline','#',['class'=>'item_add','style'=>'background: lightgray;color: red;']) ?>
+								  
 								<?php } ?>
 							</div>													
 							<div class="clearfix"> </div>

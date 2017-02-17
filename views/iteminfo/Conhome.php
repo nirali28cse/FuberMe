@@ -32,107 +32,103 @@ use yii\widgets\ListView;
     text-decoration: underline;
 }
 .itemerrorclass{
-	font-size: 14px;
+    font-size: 14px;
     color: #ff1414;
+    margin: 75px 15px;
+    display: block;
+    clear: both;
+    position: absolute;
+}
+
+
+.items{
+    float: left;
+    margin: 0 0 16px 0px;
+    display: block;
+    clear: both;
+}
+
+
+.glyphicon-map-marker:before{
+	    color: #38b662;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+    border: 1px solid #38b662!important;
+    background: #38b662!important;
 }
 </style>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<!--  Slider css and js -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!--  Slider css and js -->
+
+  
+  
+  
 <div class="product-model">	 
 	 <div class="container">
-	 
-	 
-<?php 
-
-
-		$swap_week=3;
-		$current_week=15;
-		$newselection_priority_array=array();
-		$counter=0;
-		$add_selectionprioriy=null;
-		$original_selection_array=array('a','b','c','d');
-	
-	
-		$couter=0;
-		$selecount=0;
-		$cha_array=array();
-		$selecount=count($original_selection_array)*$swap_week;
-		foreach($original_selection_array as $selectionpriority){
-			$cha_array[]=array_fill($couter,$swap_week,$selectionpriority);
-			$couter=$couter+$swap_week;
-		}
-		
-		$new_char_array=array();
-
-		$x = 1;		
-		do {
-			foreach($cha_array as $chkey=>$chavalue){
-				foreach($chavalue as $key=>$value){			
-					$new_char_array[$x]=$value;	
-					$x++;	
-					if($current_week>$selecount  and $x>$current_week){
-						break 2;
-					}		
-				}
-			}
-		} while ($x <= $current_week); 
-
-		$final_char_array=array();
-		$added_first=0;
-		$x1 = 1;	
-		do {
-			foreach($new_char_array as $key=>$value){	
-				if(($key ==$current_week)){
-					$final_char_array[$key]=$value;	
-					$added_first=1;
-					$x1++;	
-				}elseif($added_first==1){
-					$final_char_array[$key]=$value;	
-					$x1++;	
-				}
-			}
-		} while ($x1 <= $current_week); 
-
-		
- ?>
-		 
 		 
 		<h2>Order Your food</h2>			
 		 <div class="col-md-9 product-model-sec">
-						<?php					
-						 echo  ListView::widget([
-								'layout' => "{sorter}\n{summary}\n{items}\n{pager}",								
-								'dataProvider' => $dataProvider,
-							    'sorter' => [
-									'options' => [
-										'class' => 'sorterclass',
-									],
-								],
-								'emptyText' => '<center><h2>No dishes Found.</h2></center>',
-								'itemOptions' => ['class' => 'item'],
-						/*         'itemView' => function ($model, $key, $index, $widget) {
-										return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
-								}, */
-							//	'itemView' =>'view'	,
-										
-								'itemView' => function ($model) {
-								  // echo $id = $model->id;
-									
-									 return $this->render('_viewcon',['model' => $model]);
-									// return $this->render('_view');
-								}
-								
-						]); 
+		 
+
+						<?php	
+							echo $this->render('conhomeitem', [
+								'searchModel' => $searchModel,
+							  //  'searchModel1' => $searchModel1,
+								'livedataProvider' => $livedataProvider,
+								'offlinedataProvider' => $offlinedataProvider,
+							]);				
+						
 						?>
+
+
 		 </div>
 			
 			
 			
 			<div class="rsidebar span_1_of_left">
+				
+
+				 <section  class="sky-form" style="border-top: 0px solid #eee;">
+					 <h4><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+					 &nbsp; Price
+						  <input type="text" id="amount" readonly style="border:0; color:#38b662;text-align: right;">
+					 </h4>
+					 <div class="row scroll-pane">
+						 <div class="col col-4">
+								 
+
+						 
+						<div id="pslider-range"></div>
+
+						 </div>
+					 </div>
+				 </section> 
 			
-				 
-				<?php $item_cuisine_type_info_ids = app\models\CuisineTypeInfo::find()->where(['status'=>1])->all(); ?> 
+				 <section  class="sky-form">
+					 <h4><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+					 Location<input type="text" id="location" readonly style="border:0; color:#38b662;text-align: right;">
+					 </h4>
+					 <div class="row scroll-pane">
+						 <div class="col col-4">
+								 
+
+						 
+						<div id="locationslider-range"></div>
+
+						 </div>
+					 </div>
+				 </section> 
+			
+			
+
+				<?php 
+				$item_cuisine_type_info_ids = app\models\CuisineTypeInfo::find()->where(['status'=>1])->all(); 
+				?> 
 				<?php if(count($item_cuisine_type_info_ids)>0){ ?>							
 					<section  class="sky-form">
 						 <h4><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>&nbsp; Cuisine</h4>
@@ -141,25 +137,31 @@ use yii\widgets\ListView;
 							 
 								 <?php 
 								 $counter=1;
+								 $ccounter=6;
 								 $collapse_array=array();
 								 foreach($item_cuisine_type_info_ids as $item_cuisine_type_info_id){ 
 										$activecous=null;
 										$removecous=null;
+										$check_status=null;
 										if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['cusion']>0 and $_SESSION['filetrsarray']['cusion']==$item_cuisine_type_info_id->id){
 											$activecous='class="active"';
 											$removecous='<a href="'.Yii::$app->homeUrl.'?r=iteminfo/conhome&dcusion=1" class="rclose">remove</a>';
+											$check_status='checked';
+											$ccounter=$counter+1;
 										} 
-										if($counter<6){
+										if($counter<$ccounter){
 								 ?>	
 										<label class="checkbox">
+										<input type="checkbox" <?php echo $check_status; ?> name="checkbox"  onclick='window.location.assign("<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&cusion=<?php echo $item_cuisine_type_info_id->id; ?>")'><i></i>
 										<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&cusion=<?php echo $item_cuisine_type_info_id->id; ?>"  <?php echo $activecous; ?>><?php echo $item_cuisine_type_info_id->name; ?></a>
 										<?php echo $removecous; ?>
-										</label>								 
+										</label>						 
 								 <?php 
 								 }else{
 									 $collapse_array[$counter]['item_cuisine_type_info_id']=$item_cuisine_type_info_id;
 									 $collapse_array[$counter]['activecous']=$activecous;
 									 $collapse_array[$counter]['removecous']=$removecous;
+									 $collapse_array[$counter]['check_status']=$check_status;
 								 }
 								 $counter++;
 								 }
@@ -171,8 +173,10 @@ use yii\widgets\ListView;
 											$item_cuisine_type_info_id=$collapse['item_cuisine_type_info_id'];
 											$activecous=$collapse['activecous'];
 											$removecous=$collapse['removecous'];
+											$check_status=$collapse['check_status'];
 									?>
 										<label class="checkbox">
+										<input type="checkbox" <?php echo $check_status; ?> name="checkbox"  onclick='window.location.assign("<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&cusion=<?php echo $item_cuisine_type_info_id->id; ?>")'><i></i>
 										<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&cusion=<?php echo $item_cuisine_type_info_id->id; ?>"  <?php echo $activecous; ?>><?php echo $item_cuisine_type_info_id->name; ?></a>
 										<?php echo $removecous; ?>
 										</label>										 
@@ -188,12 +192,87 @@ use yii\widgets\ListView;
 							 </div>
 						 </div>
 					 </section> 	
-				<?php } ?>						 
+				<?php } ?>	
 
+
+				<?php $item_dietary_preference_ids = app\models\DietaryPreference::find()->where(['status'=>1])->all(); ?> 
+				<?php if(count($item_dietary_preference_ids)>0){ ?>							
+					<section  class="sky-form">
+						 <h4><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>&nbsp; Dietary Preference</h4>
+						 <div class="row">
+							 <div class="col col-4">
+							 
+								 <?php 
+								 $counter=1;
+								 $dcounter=6;
+								 $collapse_array=array();
+								 foreach($item_dietary_preference_ids as $item_dietary_preference_id){ 
+										$activecous=null;
+										$removecous=null;
+										$check_status=null;
+										if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['dieta']>0 and $_SESSION['filetrsarray']['dieta']==$item_dietary_preference_id->id){
+											$activecous='class="active"';
+											$removecous='<a href="'.Yii::$app->homeUrl.'?r=iteminfo/conhome&ddieta=1" class="rclose">remove</a>';
+											$check_status='checked';
+											$dcounter=$counter+1;
+										} 
+										if($counter<$dcounter){
+								 ?>	
+										<label class="checkbox">
+										<input type="checkbox" <?php echo $check_status; ?> name="checkbox"  onclick='window.location.assign("<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&dieta=<?php echo $item_dietary_preference_id->id; ?>")'><i></i>
+										<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&dieta=<?php echo $item_dietary_preference_id->id; ?>"  <?php echo $activecous; ?>><?php echo $item_dietary_preference_id->name; ?></a>
+										<?php echo $removecous; ?>
+										</label>						 
+								 <?php 
+								 }else{
+									 $collapse_array[$counter]['item_dietary_preference_id']=$item_dietary_preference_id;
+									 $collapse_array[$counter]['activecous']=$activecous;
+									 $collapse_array[$counter]['removecous']=$removecous;
+									 $collapse_array[$counter]['check_status']=$check_status;
+								 }
+								 $counter++;
+								 }
+								 ?>	
+
+								<?php if(count($collapse_array)>0){ ?>
+									   <div id="collapse2" class="panel-collapse collapse">
+									<?php foreach($collapse_array as $collapse){ 
+											$item_dietary_preference_id=$collapse['item_dietary_preference_id'];
+											$activecous=$collapse['activecous'];
+											$removecous=$collapse['removecous'];
+											$check_status=$collapse['check_status'];
+									?>
+										<label class="checkbox">
+										<input type="checkbox" <?php echo $check_status; ?> name="checkbox"  onclick='window.location.assign("<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&dieta=<?php echo $item_dietary_preference_id->id; ?>")'><i></i>
+										<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&dieta=<?php echo $item_dietary_preference_id->id; ?>"  <?php echo $activecous; ?>><?php echo $item_dietary_preference_id->name; ?></a>
+										<?php echo $removecous; ?>
+										</label>										 
+									<?php } ?>
+									 </div>
+									  <div class="panel-heading">
+										<h4 class="panel-title">
+										  <a data-toggle="collapse" href="#collapse2">View More</a>
+										</h4>
+									  </div>
+								<?php } ?>
+								 
+							 </div>
+						 </div>
+					 </section> 	
+				<?php } ?>	
+
+
+
+
+
+
+				
+				<?php /*
 				 <section  class="sky-form">
 					 <h4><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp; Price</h4>
 					 <div class="row row1 scroll-pane">
 						 <div class="col col-4">
+
 						 <?php
 						 $active75=null;
 						 $active57=null;
@@ -217,55 +296,11 @@ use yii\widgets\ListView;
 						 </div>
 					 </div>
 				 </section> 
-<?php
+				 */
+				 /*
+				 ?>
+				 
 
-/*
-
- function get_client_ip() {
-        $ipaddress = '';
-        if (isset($_SERVER['HTTP_CLIENT_IP']))
-            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
-            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        else if(isset($_SERVER['HTTP_X_FORWARDED']))
-            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
-            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-        else if(isset($_SERVER['HTTP_FORWARDED']))
-            $ipaddress = $_SERVER['HTTP_FORWARDED'];
-        else if(isset($_SERVER['REMOTE_ADDR']))
-            $ipaddress = $_SERVER['REMOTE_ADDR'];
-        else
-            $ipaddress = 'UNKNOWN';
-        return $ipaddress;
-    }
- $PublicIP = get_client_ip(); 
- $json  = file_get_contents("https://freegeoip.net/json/$PublicIP");
- $json  =  json_decode($json ,true);
-
-
-function distance($lat1, $lon1, $lat2, $lon2, $unit) {
-
-  $theta = $lon1 - $lon2;
-  $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-  $dist = acos($dist);
-  $dist = rad2deg($dist);
-  $miles = $dist * 60 * 1.1515;
-  $unit = strtoupper($unit);
-
-  if ($unit == "K") {
-      return ($miles * 1.609344);
-  } else if ($unit == "N") {
-      return ($miles * 0.8684);
-  } else {
-      return $miles;
-  }
-}
-
-echo distance(32.9697, -96.80322, 29.46786, -98.53506, "M") . " Miles<br>"; */
-
-
-?>
 				 <section  class="sky-form">
 					 <h4><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp; Near By You</h4>
 					 <div class="row row1 scroll-pane">
@@ -293,15 +328,83 @@ echo distance(32.9697, -96.80322, 29.46786, -98.53506, "M") . " Miles<br>"; */
 						 </div>
 					 </div>
 				 </section> 				 				 
-
+*/
+		?>
+		
 		
 			 </div>				 
 	      </div>
 		</div>
 </div>	
 
+
+
+ <script>
+ // price slider
+  $( function() {
+    $( "#pslider-range" ).slider({
+      range: true,
+      min: 1,
+      max: 99,
+      values: [ 20, 40 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+      },
+	stop: function( event, ui ) {
+            var min_price = ui.values[ 0 ];
+            var max_price = ui.values[ 1 ];
+            $.ajax({
+                type: "GET",
+                data: "min_price="+min_price+"&max_price="+max_price,
+                cache: false,
+				success: function(response) {
+                    $('.product-model-sec').html(response);
+                },
+            });
+        }
+    });
+    $( "#amount" ).val( "$" + $( "#pslider-range" ).slider( "values", 0 ) +
+      " - $" + $( "#pslider-range" ).slider( "values", 1 ) );
+  } );
+  </script>
+  
+  
+ <script>
+ // locationslider slider
+  $( function() {
+    $( "#locationslider-range" ).slider({
+      range: true,
+      min: 1,
+      max: 10000,
+      values: [ 5, 5000 ],
+      slide: function( event, ui ) {
+        $( "#location" ).val( "" + ui.values[ 0 ] + "M - " + ui.values[ 1 ] + "M" );
+      },
+	stop: function( event, ui ) {
+            var min_location = ui.values[ 0 ];
+            var max_location = ui.values[ 1 ];
+            $.ajax({
+                type: "GET",
+                data: "min_location="+min_location+"&max_location="+max_location,
+                cache: false,
+				success: function(response){
+                    $('.product-model-sec').html(response);
+                },
+            });
+        }
+    });
+    $( "#location" ).val( "" + $( "#locationslider-range" ).slider( "values", 0 ) +
+      "M - " + $( "#locationslider-range" ).slider( "values", 1 ) + "M" );
+  } );
+  </script>
+  
+  
+
+
 <script>
 $(document).ready(function(){
+	
+
 	$(document).on("click",".placeorder",function(e){		
 		e.preventDefault();
 		var oldHref = $(this).attr('href');
