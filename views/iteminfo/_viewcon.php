@@ -20,13 +20,13 @@ $user_id=$model->chef_user_id;
 							</div> 
 						</div></a>						
 						<div class="product-info simpleCart_shelfItem">
-							<div class="product-info-cust" style="width: 350px;">
+							<div class="product-info-cust">
 								<div class="col-md-6" style="padding: 0;">
 								<h4><?php echo $model->name; ?></h4>
 								<p><?php echo $model->chefUser->username; ?></p>
 								</div>
 								
-								<div class="col-md-6" style="text-align: right;padding: 0;width: 20%;">
+								<div class="col-md-6" style="text-align: right;padding: 0;">
 								<span class="item_price">$<?php echo $model->price; ?></span><br/>								
 								</div>
 								
