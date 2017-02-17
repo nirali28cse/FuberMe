@@ -59,15 +59,25 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 		<div class="col-sm-6">	
 		    <?= $form->field($model, 'name')->textInput(['maxlength' => true])  ?>
 		</div>	
-		<div class="col-sm-6">	
+		<div class="col-sm-3">	
 		    <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+		</div>
+		<div class="col-sm-3">	
+		    <?= $form->field($model, 'quantity')->textInput(['maxlength' => true]) ?>
 		</div>
 	 </div>
 
+	
 	<div class="row">
-		<div class="col-sm-6">	
-		    <?= $form->field($model, 'quantity')->textInput(['maxlength' => true]) ?>
-		</div>
+		
+		<?php 
+/* 	<div class="col-sm-6">		$item_cuisine_type_info_id = yii\helpers\ArrayHelper::map(app\models\CuisineTypeInfo::find()->where(['status'=>1])->all(), 'id', 'name'); ?>
+			<?= $form->field($model, 'item_cuisine_type_info_id')
+				->dropDownList(
+					$item_cuisine_type_info_id,           // Flat array ('id'=>'label')
+					['prompt'=>'Select Cuisine']    // options
+				); </div>	 */
+			?>	
 		<div class="col-sm-6">	
 			<?php $item_dietary_preference = yii\helpers\ArrayHelper::map(app\models\DietaryPreference::find()->where(['status'=>1])->all(), 'id', 'name'); ?>
 			<?= $form->field($model, 'item_dietary_preference')
@@ -77,19 +87,7 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 				);
 			?>	
 		</div>
-	 </div>
-
-	
-	<div class="row">
-		<div class="col-sm-6">	
-		<?php $item_cuisine_type_info_id = yii\helpers\ArrayHelper::map(app\models\CuisineTypeInfo::find()->where(['status'=>1])->all(), 'id', 'name'); ?>
-			<?= $form->field($model, 'item_cuisine_type_info_id')
-				->dropDownList(
-					$item_cuisine_type_info_id,           // Flat array ('id'=>'label')
-					['prompt'=>'Select Cuisine']    // options
-				);
-			?>	
-		</div>	
+		
 		<div class="col-sm-6">	
 			<?php $item_category_info_id = yii\helpers\ArrayHelper::map(app\models\ItemCategoryInfo::find()->where(['status'=>1])->all(), 'id', 'name'); ?>
 			<?= $form->field($model, 'item_category_info_id')
@@ -106,10 +104,17 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 
 	<div class="row">
 		<div class="col-sm-6">	
-			<?= $form->field($model, 'delivery_method')
+			<?php /*  $form->field($model, 'delivery_method')
 				->dropDownList(
 					Yii::$app->params['delivery_method'],           // Flat array ('id'=>'label')
 					['prompt'=>'Select Delivery Method']    // options
+				); */
+				
+			$item_cuisine_type_info_id = yii\helpers\ArrayHelper::map(app\models\CuisineTypeInfo::find()->where(['status'=>1])->all(), 'id', 'name'); ?>
+			<?= $form->field($model, 'item_cuisine_type_info_id')
+				->dropDownList(
+					$item_cuisine_type_info_id,           // Flat array ('id'=>'label')
+					['prompt'=>'Select Cuisine']    // options
 				);
 			?>
 		</div>	

@@ -4,12 +4,12 @@
 	 <div class="container">
 		 <div class="menu_sec">
 
-			  <div class="search">
+			   <div class="search">
 				 <form>
 					<input type="text" value="" placeholder="Search...">
 					<input type="submit" value="">
 					</form>
-			 </div>
+				</div>
 			 
 			 
 

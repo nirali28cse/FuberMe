@@ -1,3 +1,28 @@
+<style>
+.cart-item {
+    width: 10%;
+	padding: 0;
+	margin-right: 0;
+}
+.cart-item-info h3 {
+    margin-top: 0;
+}
+
+.cartprice{
+	font-size: 25px;
+    font-weight: 600;
+    color: #38b662;
+    font-family: monospace;
+}
+.cart-item-info {
+    border-bottom: 0px solid;
+	padding: 1em;
+}
+.cart-sec {
+    padding: 0;
+}
+</style>
+
 
 <?php
 use yii\helpers\Html;
@@ -28,42 +53,86 @@ if(count($user_info)>0){
 				 <div class="container">
 					
 					 <div class="cart-items">
-						 <h2>Review Your Order</h2>
-						 <p style="text-align:right;font-size: 15px;color: gray;">Chef City : <?php echo $master_chef_city.' ('.$master_chef_zipcode.')'; ?></p>
+					 
+					   <div class="row">
+						   <div class="col-sm-6"><h2>Review Your Order</h2>	</div>																			
+						   <div class="col-sm-6">
+							   <p style="text-align:right;font-size: 15px;color: gray;">
+							   Chef City : <?php echo $master_chef_city.' ('.$master_chef_zipcode.')'; ?>
+							   </p>
+						   </div>																			
+					   </div>
+					   
+						 					
+						
+
+					   <div class="row">
+						   <div class="col-sm-6"></div>																			
+						  <div class="col-sm-1" style="padding: 0;width: 6%;">Qty</div>
+						  <div class="col-sm-4" style="padding: 0;">Price</div>  
+					   </div>
+
+									  	  
 
 						<?php foreach($order_items as $value){ ?>
 						
 
 							 <div class="cart<?php echo $value['item_id']; ?>">
 								 <div class="cart-header2">
-									<a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/review&itemid=<?php echo $value['item_id']; ?>&ditem=<?php echo $value['item_id']; ?>"> <div class="close2"></div></a>
+								 
+
 									  <div class="cart-sec">
 											<div class="cart-item">
 												 <img src="<?php echo $value['item_image']; ?>"/>
 											</div>
+											
+											
 										   <div class="cart-item-info">
-												 <h3><?php echo $value['item_name']; ?><span><?php echo $value['item_cuisine_type']; ?><br/> <?php echo $value['item_ingredients']; ?> </span></h3>
-												 <h4><span>$ </span><?php echo $value['item_price']; ?></h4>
-												 <?php
-												 $item_chef_quantity=0;
-												 $item_quantity_array=array();
-												 $item_chef_quantity=$value['item_chef_quantity'];
-												 for($count=1;$count<=$item_chef_quantity;$count++){
-													$item_quantity_array[$count]=$count;	 
-												 }
-												 ?>
-												 <span>
-												 <?= Html::dropDownList('itemqty'.$value['item_id'], ['id'=>'itemqty'.$value['item_id']],
-													 $item_quantity_array); ?>
-												 </span>
-										   </div>
+											   <div class="row">
+											       <div class="col-sm-6">
+													 <h3><?php echo $value['item_name']; ?>
+													 <span>													 
+														<?php echo $value['item_cuisine_type']; ?>
+														<br/> <?php echo $value['item_ingredients']; ?>
+													 </span>
+													 <h3>
+													 </h3>
+												   </div>
+																									
+												  <div class="col-sm-1">													 
+													 <?php
+													 $item_chef_quantity=0;
+													 $item_quantity_array=array();
+													 $item_chef_quantity=$value['item_chef_quantity'];
+													 for($count=1;$count<=$item_chef_quantity;$count++){
+														$item_quantity_array[$count]=$count;	 
+													 }
+													 ?>
+													 <span>
 
-										   <div class="clearfix"></div>
-<?php /* 											<div class="delivery">
-												 <p>Service Charges:: Rs.50.00</p>							
-											</div>	 */			
-?>											
+														 
+													<?php 
+														echo  Html::dropDownList( 'itemqty'.$value['item_id'], 
+															 $value['item_qty'],  
+															 $item_quantity_array, 
+															 ['id'=>'itemqty'.$value['item_id'],'style'=>'margin-top: 5px;padding: 3px;']
+														)
+													?>
+
+													 </span>
+												  </div>
+												  <div class="col-sm-4 cartprice"><span>$</span><?php echo $value['item_price']; ?></div>  
+											   </div>
+										   </div>
+									  	  <div class="col-sm-1" style="padding: 1em;float: right;">									 
+												<a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/review&itemid=<?php echo $value['item_id']; ?>&ditem=<?php echo $value['item_id']; ?>">  <span class="glyphicon glyphicon-trash" style="font-size: 20px;color: red;"></span></a>
+										  </div>
+										   <div class="clearfix"></div>		
 									  </div>
+									  
+									  
+
+									
 								  </div>	
 							  </div>	
 
@@ -213,6 +282,7 @@ if(count($user_info)>0){
 				 
 				 
 			</div>
+		</div>
 
 <script>
 $(document).ready(function(){
@@ -249,41 +319,48 @@ $(document).ready(function(){
 });
 </script>
 
-<script>
-
-/* $(document).ready(function(c) {
-
-	// Remove item from cart
-	$('.close2').on('click', function(c){
-			var item_id= $(this).attr("data-item_id");		
-			$('.cart'+item_id).fadeOut('slow', function(c){
-			$('.cart'+item_id).remove();
-		});
-	});	  
-
-});	   */
-
-		
-
- </script>
 
 	 <?php }else{ 
 	 		unset($_SESSION['order_array']);
 			unset($_SESSION['master_chef']);
 	 ?>
-			 
-		<div class="container">
+	 
+			<div class="cart_main">
+				 <div class="container">
+					
+					 <div class="cart-items">
+						 <h2>Sorry Your plate is empty.</h2>
+						 
+							<div class="cart">
+								 <div class="cart-header2">									
+									  <div class="cart-sec" style="color: red;">
+											Your all dishes remove from your plate.
+										   <div class="clearfix"></div>	
+									  </div>
+								  </div>	
+							 </div>	
+							  
+							  
+						 <div class="cart-total">
+							 <div class="price-details" style="border-bottom: 0px solid;">
+								 <h3>Price Details</h3>
+								 <span>Total</span>
+								 <span class="total tamount">$ 0</span>
+								 <div class="clearfix"></div>
+							 <div class="clearfix">&nbsp;</div>
+							 
+							 <a class="continue" href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome"> Find your food here..</a>
 
-			 <div class="registration">
-							<br/><br/><br/><br/>
-							<center><h2>Sorry Your plat is empty. <br/> Find your food here..!! </h2></center>
-							<br/>
-							 <a class="continue" href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome">Hungry</a>
-				
-				 <div class="clearfix"></div>
-			 </div>
-		</div>
+							</div>
+							</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
 
 	 <?php } ?>
 	 
 	
+<br/>
+<br/>
+<br/>

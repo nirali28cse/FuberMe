@@ -150,9 +150,7 @@ if($model->image==null){
 					  </div>
 					  <div class="item-list">
 						 <ul>
-							 <li>Delivery Methods : 
-							 <?php if($model->delivery_method!='both') echo Yii::$app->params['delivery_method'][$model->delivery_method]; else echo 'Pickup,Home Delivery'; ?>
-							 </li>
+							
 							 <li>Preparation Time : <?php echo Yii::$app->params['head_up_time'][$model->head_up_time]; ?></li>
 							 <?php if($model->ingredients!=null){ ?>
 							 <li>Ingredients : <?php echo $model->ingredients; ?></li>

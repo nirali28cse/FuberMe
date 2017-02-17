@@ -47,22 +47,27 @@ class LoginController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {			
 			if(Yii::$app->user->identity->status==1){
 				
-				// if admin 
-				if(Yii::$app->user->identity->is_admin==1){
-					return $this->redirect(['//cuisinetypeinfo/index']);
+				if(isset($_GET['directorder']) and ($_GET['directorder']>0)){
+					$directorder=$_GET['directorder'];
+					return $this->redirect(['/orderinfo/review', 'itemid' =>$directorder]);
 				}else{
-					//if only customer
-					if(Yii::$app->user->identity->user_type==1){
-						return $this->redirect(['//iteminfo/conhome']);
-					}
-					//if only chef
-					if(Yii::$app->user->identity->user_type==2){
-						return $this->redirect(['//iteminfo/index']);
-					}	
-					//if only Both
-					if(Yii::$app->user->identity->user_type==3){
-					//	return $this->goHome();
-						return $this->redirect(['//iteminfo/index']);
+					// if admin 
+					if(Yii::$app->user->identity->is_admin==1){
+						return $this->redirect(['//cuisinetypeinfo/index']);
+					}else{
+						//if only customer
+						if(Yii::$app->user->identity->user_type==1){
+							return $this->redirect(['//iteminfo/conhome']);
+						}
+						//if only chef
+						if(Yii::$app->user->identity->user_type==2){
+							return $this->redirect(['//iteminfo/index']);
+						}	
+						//if only Both
+						if(Yii::$app->user->identity->user_type==3){
+						//	return $this->goHome();
+							return $this->redirect(['//iteminfo/index']);
+						}
 					}
 				}
 

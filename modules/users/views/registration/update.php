@@ -70,9 +70,9 @@ use yii\widgets\ActiveForm;
 
 					<?php } ?>
 	
-					<?php $model->is_aggree_with_terms_condition = true; 
+					<?php /* $model->is_aggree_with_terms_condition = true; 
 
-					 echo $form->field($model, 'is_aggree_with_terms_condition')->checkbox(['checked'=>true,'uncheck'=>'0','value'=>'1']); ?>
+					 echo $form->field($model, 'is_aggree_with_terms_condition')->checkbox(['checked'=>true,'uncheck'=>'0','value'=>'1']);  */  ?>
 					
 					<div>
 						<input type="submit" value="Update" id="register-submit">

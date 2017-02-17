@@ -27,8 +27,7 @@ $user_id=$model->chef_user_id;
 								</div>
 								
 								<div class="col-md-6" style="text-align: right;padding: 0;">
-								<span class="item_price">$<?php echo $model->price; ?></span><br/>
-								<p><?php if($model->delivery_method!='both') echo Yii::$app->params['delivery_method'][$model->delivery_method]; else echo 'Pickup,Home Delivery'; ?></p>
+								<span class="item_price">$<?php echo $model->price; ?></span><br/>								
 								</div>
 								
 								

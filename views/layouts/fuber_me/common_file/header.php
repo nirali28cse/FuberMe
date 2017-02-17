@@ -1,5 +1,121 @@
+<div class="top_bg">
+	<div class="container">
+		<div class="header_top-sec">
+			<!-- nav -->
+			<nav class="navbar navbar-inverse">
+			  <div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+				<div class="top_left">
+				<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome" class="top-sellers">
+					<img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/whitelogo.png'); ?>" style="width: 100%;" alt="FuberMe"> 
+				</a>
+				</div>	
+				</div>
+
+				<?php 
+				$append_url=null;								
+				if(isset($_GET['directorder']) and ($_GET['directorder']>0)){
+					$directorder=$_GET['directorder'];
+					$append_url='&directorder='.$directorder;
+				}
+				?>	
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				  <nav class="cl-effect-13" id="cl-effect-13">
+						<ul class="nav navbar-nav" style="width: 76%;">
+										
+						<?php 
+						if(!Yii::$app->user->isGuest){	
+						$url=Yii::$app->homeUrl.'?r=users/registration/update'; ?>					
 	
-			
+								<li class="top_link dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+											<span class="glyphicon glyphicon-user"></span>
+											<strong> &nbsp; 
+											<?php echo Yii::$app->user->identity->username; ?>
+											&nbsp; 
+											</strong>
+											<span class="glyphicon glyphicon-chevron-down"></span>
+										</a>
+										<ul class="dropdown-menu">
+											<li>
+												<div class="navbar-login">
+													<div class="row">
+														<div class="col-lg-4">
+															<p class="text-center">
+																<span class="glyphicon glyphicon-user icon-size" style="font-size: 35px;color: #38b662;"></span>
+															</p>
+														</div>
+														<div class="col-lg-8">
+															<p class="text-left"><strong><?php echo Yii::$app->user->identity->username; ?></strong></p>
+															<p class="text-left small"><?php echo Yii::$app->user->identity->email_id; ?></p>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li class="divider navbar-login-session-bg"></li>
+											 <li><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome">Eat with FuberMe <span class="glyphicon glyphicon-cutlery  pull-right"></span></a></li>
+											<li class="divider"></li>				
+											<li><a href="<?php echo $url; ?>">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+											<li class="divider"></li>
+											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login/logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+										</ul>
+								</li>
+	
+						<?php }else{  ?>
+								<?php 
+								 if(Yii::$app->controller->action->id!='thanku'){ ?>
+									<li class="top_link dropdown">
+										<a href="#" class="dropdown-toggle" style="border: 1px solid white;" data-toggle="dropdown">Registration <b class="caret"></b></a>
+										<ul class="dropdown-menu agile_short_dropdown">
+											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration">SignUp as a Chef <span class="glyphicon glyphicon-user  pull-right"></span></a></li>
+											<li class="divider"></li>		
+											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex<?php echo $append_url; ?>">Eat with FuberMe <span class="glyphicon glyphicon-cutlery  pull-right"></span></a></li>
+										</ul>
+									</li>	
+								<?php } ?>	
+								
+								<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login<?php echo $append_url; ?>">Login</a></li>							
+								
+						<?php } ?>
+
+						<?php 
+						if(!Yii::$app->user->isGuest){
+						if(Yii::$app->user->identity->user_type==2 or Yii::$app->user->identity->user_type==3){
+								$activeclass=null; if(Yii::$app->controller->id=='iteminfo') $activeclass='yellowactive';
+						?>
+
+							<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/index" class="<?php echo $activeclass; ?>">My Menu</a></li>	
+
+						<?php  } ?>
+						<?php  } ?>
+
+						
+
+						</ul>
+						
+					</nav>
+
+				</div>
+				<!-- /.navbar-collapse -->
+			  </div>
+			  <!-- /.container-fluid -->
+			</nav> 
+			<!-- //nav -->
+				<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+
+<?php 
+/*
 <!-- header -->
 <div class="top_bg">
 	<div class="container">
@@ -71,6 +187,8 @@
 
 
 <?php 
+*/
+
 
 /*
 
