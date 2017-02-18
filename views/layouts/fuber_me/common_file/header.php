@@ -55,7 +55,6 @@
 														</div>
 														<div class="col-lg-8">
 															<p class="text-left"><strong><?php echo Yii::$app->user->identity->username; ?></strong></p>
-															<p class="text-left small"><?php echo Yii::$app->user->identity->email_id; ?></p>
 														</div>
 													</div>
 												</div>
