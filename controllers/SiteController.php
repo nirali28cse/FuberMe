@@ -246,25 +246,38 @@ class SiteController extends Controller
 			'auth_key'=>$key,
 			'status'=>0,
 			])->one();
+			
+			
+			if($model->user_type==1){
+				$model = \app\modules\users\models\Cuserdetail::find()->where([
+				'id'=>$id,
+				'auth_key'=>$key,
+				'status'=>0,
+				])->one();
+			}
+			
+			
 			if(!empty($model)){
-			$model->status=1;
-			$model->save();
-			Yii::$app->user->switchIdentity($model); // log in
-			//if only customer
-			if(Yii::$app->user->identity->user_type==1){
-				return $this->redirect(['//iteminfo/conhome']);
-			}
-			//if only chef
-			if(Yii::$app->user->identity->user_type==2){
-				return $this->redirect(['//iteminfo/index']);
-			}	
-			//if only Both
-			if(Yii::$app->user->identity->user_type==3){
-			//	return $this->goHome();
-				return $this->redirect(['//iteminfo/index']);
-			}
+				$model->status=1;				
+				$model->save();
+				
 
-		}
+				Yii::$app->user->switchIdentity($model); // log in
+				//if only customer
+				if(Yii::$app->user->identity->user_type==1){
+					return $this->redirect(['//iteminfo/conhome']);
+				}
+				//if only chef
+				if(Yii::$app->user->identity->user_type==2){
+					return $this->redirect(['//iteminfo/index']);
+				}	
+				//if only Both
+				if(Yii::$app->user->identity->user_type==3){
+				//	return $this->goHome();
+					return $this->redirect(['//iteminfo/index']);
+				}
+
+			}
 		
 		return $this->goHome();
 	}

@@ -166,7 +166,7 @@ class ItemInfoSearch extends ItemInfo
 		
 	//	$query->andFilterWhere(['=','status',$this->status]);
 	
-/* 		if(isset($_GET['liveitem']) and $_GET['liveitem']==1){			
+ 		if(isset($_GET['liveitem']) and $_GET['liveitem']==1){			
 			$query->andFilterWhere(['<=', 'availability_from_date', date('Y-m-d')])
 				  ->andFilterWhere(['>=', 'availability_to_date', date('Y-m-d')]);
 		}
@@ -174,7 +174,7 @@ class ItemInfoSearch extends ItemInfo
 		if(isset($_GET['offlineitem']) and $_GET['offlineitem']==1){		
 			$query->andFilterWhere(['>=', 'availability_from_date', date('Y-m-d')])
 				  ->orFilterWhere(['<=', 'availability_to_date', date('Y-m-d')]);
-		} */
+		} 
 
 /*   echo '<pre>';
 print_r($query);

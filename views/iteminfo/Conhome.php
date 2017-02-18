@@ -8,6 +8,10 @@ use yii\widgets\ListView;
 <style>
 // .list-view>.item{float:left; width:50%;}
 
+span.item_price {
+    color: #38b662;
+}
+
 .product-info-cust {
     float: none;
 }
