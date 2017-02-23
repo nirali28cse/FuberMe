@@ -6,6 +6,10 @@ use yii\widgets\ListView;
 
 ?>
 <style>
+
+
+
+
 .list-view>.item{float:left; width:50%;}
 
 bug_solve8
@@ -47,7 +51,7 @@ span.item_price {
 .itemerrorclass{
     font-size: 14px;
     color: #ff1414;
-    margin: 75px 15px;
+    margin: 100px 15px;
     display: block;
     clear: both;
     position: absolute;
@@ -61,6 +65,11 @@ span.item_price {
     clear: both;
 }
 
+.product-info.simpleCart_shelfItem {
+    height: 160px;
+    min-height: 160px;
+}
+
 
 .glyphicon-map-marker:before{
 	    color: #38b662;
@@ -70,6 +79,15 @@ span.item_price {
     border: 1px solid #38b662!important;
     background: #38b662!important;
 }
+
+.rsidebar{
+	overflow: scroll;
+    height: 500px;
+}
+.rsidebar::-webkit-scrollbar { 
+    display: none; 
+}
+
 </style>
 
 
@@ -101,7 +119,7 @@ span.item_price {
 			
 			
 			
-			<div class="rsidebar span_1_of_left">
+			<div class="rsidebar span_1_of_left" id="fixed-floater">
 				
 
 				 <section  class="sky-form" style="border-top: 0px solid #eee;">
@@ -122,7 +140,7 @@ span.item_price {
 			
 				 <section  class="sky-form">
 					 <h4><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-					 Location<input type="text" id="location" readonly style="border:0; color:#38b662;text-align: right;">
+					 DISTANCE<input type="text" id="location" readonly style="border:0; color:#38b662;text-align: right;">
 					 </h4>
 					 <div class="row scroll-pane">
 						 <div class="col col-4">
@@ -154,9 +172,9 @@ span.item_price {
 										$activecous=null;
 										$removecous=null;
 										$check_status=null;
-										if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['cusion']>0 and $_SESSION['filetrsarray']['cusion']==$item_cuisine_type_info_id->id){
+										if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['cusion_array']!=null and in_array($item_cuisine_type_info_id->id,$_SESSION['filetrsarray']['cusion_array'])){
 											$activecous='class="active"';
-											$removecous='<a href="'.Yii::$app->homeUrl.'?r=iteminfo/conhome&dcusion=1" class="rclose">remove</a>';
+											$removecous='<a href="'.Yii::$app->homeUrl.'?r=iteminfo/conhome&dcusion='.$item_cuisine_type_info_id->id.'" class="rclose">remove</a>';
 											$check_status='checked';
 											$ccounter=$counter+1;
 										} 
@@ -214,6 +232,7 @@ span.item_price {
 							 <div class="col col-4">
 							 
 								 <?php 
+
 								 $counter=1;
 								 $dcounter=6;
 								 $collapse_array=array();
@@ -221,9 +240,9 @@ span.item_price {
 										$activecous=null;
 										$removecous=null;
 										$check_status=null;
-										if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['dieta']>0 and $_SESSION['filetrsarray']['dieta']==$item_dietary_preference_id->id){
+										if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['dieta_array']!=null and in_array($item_dietary_preference_id->id,$_SESSION['filetrsarray']['dieta_array'])){
 											$activecous='class="active"';
-											$removecous='<a href="'.Yii::$app->homeUrl.'?r=iteminfo/conhome&ddieta=1" class="rclose">remove</a>';
+											$removecous='<a href="'.Yii::$app->homeUrl.'?r=iteminfo/conhome&ddieta='.$item_dietary_preference_id->id.'" class="rclose">remove</a>';
 											$check_status='checked';
 											$dcounter=$counter+1;
 										} 
@@ -263,6 +282,73 @@ span.item_price {
 									  <div class="panel-heading">
 										<h4 class="panel-title">
 										  <a data-toggle="collapse" href="#collapse2">View More</a>
+										</h4>
+									  </div>
+								<?php } ?>
+								 
+							 </div>
+						 </div>
+					 </section> 	
+				<?php } ?>	
+
+
+				<?php $item_category_ids = app\models\ItemCategoryInfo::find()->where(['status'=>1])->all(); ?> 
+				<?php if(count($item_category_ids)>0){ ?>							
+					<section  class="sky-form">
+						 <h4><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>&nbsp; Category</h4>
+						 <div class="row">
+							 <div class="col col-4">
+							 
+								 <?php 
+								 $counter=1;
+								 $dcounter=6;
+								 $collapse_array=array();
+								 foreach($item_category_ids as $item_category_id){ 
+										$activecous=null;
+										$removecous=null;
+										$check_status=null;
+										if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['categ_array']!=null and in_array($item_category_id->id,$_SESSION['filetrsarray']['categ_array'])){
+											$activecous='class="active"';
+											$removecous='<a href="'.Yii::$app->homeUrl.'?r=iteminfo/conhome&dcateg='.$item_category_id->id.'" class="rclose">remove</a>';
+											$check_status='checked';
+											$dcounter=$counter+1;
+										} 
+										if($counter<$dcounter){
+								 ?>	
+										<label class="checkbox">
+										<input type="checkbox" <?php echo $check_status; ?> name="checkbox"  onclick='window.location.assign("<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&categ=<?php echo $item_category_id->id; ?>")'><i></i>
+										<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&categ=<?php echo $item_category_id->id; ?>"  <?php echo $activecous; ?>><?php echo $item_category_id->name; ?></a>
+										<?php echo $removecous; ?>
+										</label>						 
+								 <?php 
+								 }else{
+									 $collapse_array[$counter]['item_category_id']=$item_category_id;
+									 $collapse_array[$counter]['activecous']=$activecous;
+									 $collapse_array[$counter]['removecous']=$removecous;
+									 $collapse_array[$counter]['check_status']=$check_status;
+								 }
+								 $counter++;
+								 }
+								 ?>	
+
+								<?php if(count($collapse_array)>0){ ?>
+									   <div id="collapse3" class="panel-collapse collapse">
+									<?php foreach($collapse_array as $collapse){ 
+											$item_category_id=$collapse['item_category_id'];
+											$activecous=$collapse['activecous'];
+											$removecous=$collapse['removecous'];
+											$check_status=$collapse['check_status'];
+									?>
+										<label class="checkbox">
+										<input type="checkbox" <?php echo $check_status; ?> name="checkbox"  onclick='window.location.assign("<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&categ=<?php echo $item_category_id->id; ?>")'><i></i>
+										<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&categ=<?php echo $item_category_id->id; ?>"  <?php echo $activecous; ?>><?php echo $item_category_id->name; ?></a>
+										<?php echo $removecous; ?>
+										</label>										 
+									<?php } ?>
+									 </div>
+									  <div class="panel-heading">
+										<h4 class="panel-title">
+										  <a data-toggle="collapse" href="#collapse3">View More</a>
 										</h4>
 									  </div>
 								<?php } ?>
@@ -355,8 +441,8 @@ span.item_price {
   $( function() {
     $( "#pslider-range" ).slider({
       range: true,
-      min: 1,
-      max: 99,
+      min: 0,
+      max: 100,
       values: [ 20, 40 ],
       slide: function( event, ui ) {
         $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
@@ -385,9 +471,9 @@ span.item_price {
   $( function() {
     $( "#locationslider-range" ).slider({
       range: true,
-      min: 1,
-      max: 10000,
-      values: [ 5, 5000 ],
+      min: 0,
+      max: 100,
+      values: [ 5, 50 ],
       slide: function( event, ui ) {
         $( "#location" ).val( "" + ui.values[ 0 ] + "M - " + ui.values[ 1 ] + "M" );
       },
@@ -410,11 +496,31 @@ span.item_price {
   </script>
   
   
+<?php unset($_SESSION['filetrsarray']); ?>
+
+
 
 
 <script>
-$(document).ready(function(){
-	
+
+
+function scrollFunction() {
+    var scrollPos = document.body.scrollTop;
+	console.log(scrollPos);
+     if (scrollPos > 1100) {
+        document.getElementById("fixed-floater").style.position = "fixed";
+        document.getElementById("fixed-floater").style.top = "100px";
+        document.getElementById("fixed-floater").style.width = "18%";
+    } else {
+     //   document.getElementById("fixed-floater").style.position = "absolute";
+   //    document.getElementById("fixed-floater").style.top = "50px";
+    } 
+}
+
+window.onscroll = scrollFunction;
+
+/* 
+$(document).ready(function(){	
 
 	$(document).on("click",".placeorder",function(e){		
 		e.preventDefault();
@@ -446,5 +552,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-});
+}); */
+
+
 </script>

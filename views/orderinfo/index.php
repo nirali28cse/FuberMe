@@ -4,9 +4,6 @@
     color: #38b662 !important;
 }
 
-.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td {
-    color: #38b662;
-}
 </style>
 
 <?php
@@ -18,7 +15,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\OrderInfoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'All Pending Orders';
+$this->title = 'Received Orders History';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-info-index">
@@ -44,6 +41,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'customer_city',
             'customer_state',
             'customer_zip', */
+			[
+            'attribute' => 'invoice_item',
+            'label' => 'Invoice Item',
+			'format' => 'html',
+            'value' => function($model) { 
+					$invoice_items=array();
+					foreach($model->orderItemInfo as $iteminfo){
+						$invoice_items[]=$iteminfo->itemInfo->name;
+					}
+					$invoice_item=null;
+					$invoice_item=implode(',',$invoice_items);
+					return $invoice_item;
+				},
+			],	
 			[
             'attribute' => 'final_amount',
             'label' => 'Invoice Amount',

@@ -2,11 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\date\DatePicker;
-use kartik\time\TimePicker;
-use kartik\widgets\FileInput;
+// use kartik\time\TimePicker;
+// use kartik\date\DatePicker;
+// use kartik\widgets\FileInput;
 use yii\helpers\Url;
-use sjaakp\illustrated\Uploader;
+// use sjaakp\illustrated\Uploader;
+// use yii\jui\DatePicker;
+
 
 
 /* @var $this yii\web\View */
@@ -29,20 +31,33 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 
 
 <style>
-.datepicker table tr td.active:active:hover, .datepicker table tr td.active.highlighted:active:hover, .datepicker table tr td.active.active:hover, .datepicker table tr td.active.highlighted.active:hover, .datepicker table tr td.active:active:focus, .datepicker table tr td.active.highlighted:active:focus, .datepicker table tr td.active.active:focus, .datepicker table tr td.active.highlighted.active:focus, .datepicker table tr td.active:active.focus, .datepicker table tr td.active.highlighted:active.focus, .datepicker table tr td.active.active.focus, .datepicker table tr td.active.highlighted.active.focus{
-    background-color:#38b662;
-    border-color: #38b662;
+
+.ui-widget-content {
+    background: rgb(56, 182, 98);
+    color: rgb(255, 255, 255);
 }
 
-.datepicker table tr td.active:active, .datepicker table tr td.active.highlighted:active, .datepicker table tr td.active.active, .datepicker table tr td.active.highlighted.active{
-    background-color:#38b662;
-    border-color: #38b662;
+.ui-widget-header {
+    background: #ffffff;
+    color: #38b662/*{fcHeader}*/;
 }
-.input-group-addon{
-	 background-color:#38b662;
-	 border-color: green;
-	 color:white;
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: 0px solid #38b662/*{borderColorDefault}*/;
+    background: rgb(255, 255, 255);
+    font-weight: normal/*{fwDefault}*/;
+    color: rgb(56, 182, 98)/*{fcDefault}*/;
+    border-radius: 0;
+    outline: none;
+    width: 40px;
+    height: initial;
+    cursor: pointer;
 }
+
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+    background: #38b662;
+}
+
 </style>
 
 <div class="item-info-form">
@@ -135,9 +150,20 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 	<div class="row">
 		<div class="col-sm-6">	
 			<div class="col-sm-6" style="padding: 0;">
-			<?php // $form->field($model, 'availability_from_date')->textInput(['maxlength' => true]) ?>
+			<?php //echo  $form->field($model, 'availability_from_date')->textInput(['maxlength' => true]) ?>
 
-				<?= $form->field($model, 'availability_from_date')->widget(
+
+				<?= $form->field($model, 'availability_from_date')->widget(\yii\jui\DatePicker::classname(), [
+					'dateFormat' => 'php:d-m-Y',
+					'value'=>date('d-m-Y'),
+					'options' => ['placeholder' => 'Select end date',
+					'style'=>'height: 50px;width: 100%;padding: 10px;font-size: 16px;'],
+					'clientOptions' => [
+					 //   'autoclose' => true,     
+					],
+				]) ?>
+
+				<?php /*  $form->field($model, 'availability_from_date')->widget(
 											DatePicker::className(), [
 														//	'name' => 'ItemInfo[availability_to_date]', 
 													
@@ -151,7 +177,7 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 													],
 																
 											]
-											);
+											); */
 				 ?>
 
 			</div>
@@ -168,9 +194,23 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 
 		<div class="col-sm-6">
 			<div class="col-sm-6" style="padding: 0;">
-				<?php // $form->field($model, 'availability_to_date')->textInput(['maxlength' => true]) ?>
+				<?php // echo $form->field($model, 'availability_to_date')->textInput(['maxlength' => true]) ?>
 
-				<?= $form->field($model, 'availability_to_date')->widget(
+
+			<?= $form->field($model, 'availability_to_date')->widget(\yii\jui\DatePicker::classname(), [
+				'dateFormat' => 'php:d-m-Y',
+				'value'=>date('d-m-Y'),
+				'options' => ['placeholder' => 'Select end date',
+				'style'=>'height: 50px;width: 100%;padding: 10px;font-size: 16px;'],
+				'clientOptions' => [
+				 //   'autoclose' => true,   
+					'minDate'=>'0', 				 
+				],
+			]) ?>
+
+
+
+				<?php  /* $form->field($model, 'availability_to_date')->widget(
 											DatePicker::className(), [
 												// 'name' => 'ItemInfo[availability_to_date]', 
 													'value' => date('Y-m-d'),
@@ -183,7 +223,7 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 														'startDate'=> date('Y-m-d'),
 													]
 											]
-											);
+											); */
 				 ?>
 			</div>
 			<div class="col-sm-6" style="padding: 0;">

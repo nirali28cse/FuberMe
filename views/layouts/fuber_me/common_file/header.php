@@ -44,7 +44,7 @@
 											</strong>
 											<span class="glyphicon glyphicon-chevron-down"></span>
 										</a>
-										<ul class="dropdown-menu">
+										<ul class="dropdown-menu" style="min-width: 250px;" >
 											<li>
 												<div class="navbar-login">
 													<div class="row">
@@ -61,16 +61,33 @@
 											</li>
 											<li class="divider navbar-login-session-bg"></li>
 											 <li><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome">Eat with FuberMe <span class="glyphicon glyphicon-cutlery  pull-right"></span></a></li>
-											<li class="divider"></li>
-											
-											<?php if(Yii::$app->user->identity->user_type==2 or Yii::$app->user->identity->user_type==3){ ?>
-												<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index">All Pending Orders <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-												<li class="divider"></li>
+											<li class="divider"></li>											
+											<?php 
+											$display=1;
+											$display1=1;
+											if((Yii::$app->user->identity->user_type==2 or Yii::$app->user->identity->user_type==3)){ ?>
+												<?php
+												if((Yii::$app->controller->action->id=='index') and (Yii::$app->controller->id=='orderinfo') and (Yii::$app->user->identity->user_type==3)){
+													$display=0;
+												}
+												if($display==1){
+												?>
+													<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index">Received Orders History <span class="glyphicon glyphicon-tasks pull-right"></span></a></li>
+													<li class="divider"></li>
+												<?php } ?>			
 											<?php } ?>			
 											
-											<?php if(Yii::$app->user->identity->user_type==1 or Yii::$app->user->identity->user_type==3){ ?>
-												<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index2">All Invoice <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+											<?php if(Yii::$app->user->identity->user_type==1 or Yii::$app->user->identity->user_type==3){ 
+												
+												if((Yii::$app->controller->action->id=='index2') and (Yii::$app->controller->id=='orderinfo') and (Yii::$app->user->identity->user_type==3)){
+													$display1=0;
+												}
+
+												if($display1==1){
+											?>
+												<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index2">Your Orders <span class="glyphicon glyphicon-list-alt pull-right"></span></a></li>
 												<li class="divider"></li>
+												<?php } ?>		
 											<?php } ?>		
 											
 											<li><a href="<?php echo $url; ?>">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
@@ -90,16 +107,29 @@
 											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex<?php echo $append_url; ?>">Eat with FuberMe <span class="glyphicon glyphicon-cutlery  pull-right"></span></a></li>
 										</ul>
 									</li>	
-								<?php } ?>	
+								<?php } ?>									
 								
 								<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login<?php echo $append_url; ?>">Login</a></li>							
 								
 						<?php } ?>
-
+						
+						<?php if(isset($_SESSION['order_array']['order_item']) and $_SESSION['order_array']['order_item']!=null){
+								$item_id=0;
+								$totla_item=0;
+								$totla_item=count($_SESSION['order_array']['order_item']);
+								foreach($_SESSION['order_array']['order_item'] as $item){
+									$item_id=$item['item_id'];
+									if($item_id>0) break;
+								}
+								
+							?> 
+						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/review&itemid=<?php echo $item_id; ?>" class="yellowactive"><?php echo $totla_item; ?> Plate &nbsp;<span class="glyphicon glyphicon-cutlery  pull-right"></span> </a></li>							
+						<?php } ?>
+						
 						<?php 
 						if(!Yii::$app->user->isGuest){
 						if(Yii::$app->user->identity->user_type==2 or Yii::$app->user->identity->user_type==3){
-								$activeclass=null; if(Yii::$app->controller->id=='iteminfo') $activeclass='yellowactive';
+								$activeclass=null; if(Yii::$app->controller->id=='iteminfo' and Yii::$app->controller->action->id=='index') $activeclass='yellowactive';
 						?>
 
 							<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/index" class="<?php echo $activeclass; ?>">My Menu</a></li>	

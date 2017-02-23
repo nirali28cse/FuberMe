@@ -27,6 +27,8 @@ use yii\widgets\ActiveForm;
 
 					<?php $form = ActiveForm::begin(['id'=>'registrationform']); ?>
 
+					<?= $form->field($model, 'email_id')->textInput(['maxlength' => true, 'disabled'=>'true']) ?>
+					
 					<?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 		
 					<?= $form->field($model, 'mobile_number')->hint('e.g. 5085551234',['class'=>'green'])->textInput(['minlength' => '10','maxlength' => '10']) ?>

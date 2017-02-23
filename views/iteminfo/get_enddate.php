@@ -2,29 +2,45 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\date\DatePicker;
+// use kartik\date\DatePicker;
 
 ?>
 
 
 
 <style>
-.datepicker table tr td.active:active:hover, .datepicker table tr td.active.highlighted:active:hover, .datepicker table tr td.active.active:hover, .datepicker table tr td.active.highlighted.active:hover, .datepicker table tr td.active:active:focus, .datepicker table tr td.active.highlighted:active:focus, .datepicker table tr td.active.active:focus, .datepicker table tr td.active.highlighted.active:focus, .datepicker table tr td.active:active.focus, .datepicker table tr td.active.highlighted:active.focus, .datepicker table tr td.active.active.focus, .datepicker table tr td.active.highlighted.active.focus{
-    background-color:#38b662;
-    border-color: #38b662;
+
+.ui-widget-content {
+    background: rgb(56, 182, 98);
+    color: rgb(255, 255, 255);
 }
 
-.datepicker table tr td.active:active, .datepicker table tr td.active.highlighted:active, .datepicker table tr td.active.active, .datepicker table tr td.active.highlighted.active{
-    background-color:#38b662;
-    border-color: #38b662;
+.ui-widget-header {
+    background: #ffffff;
+    color: #38b662/*{fcHeader}*/;
 }
-.input-group-addon{
-	 background-color:#38b662;
-	 border-color: green;
-	 color:white;
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: 0px solid #38b662/*{borderColorDefault}*/;
+    background: rgb(255, 255, 255);
+    font-weight: normal/*{fwDefault}*/;
+    color: rgb(56, 182, 98)/*{fcDefault}*/;
+    border-radius: 0;
+    outline: none;
+    width: 40px;
+    height: initial;
+    cursor: pointer;
 }
+
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+    background: #38b662;
+}
+
+.ui-widget-content {
+    background: rgba(56, 182, 98, 0.54);
+}
+
 </style>
-
 
 <div class="item-info-form">
 
@@ -39,7 +55,7 @@ use kartik\date\DatePicker;
 				
 				<input type="hidden" name="ItemInfo[id]" value="<?php echo $model->id; ?>">
 				
-				<?= $form->field($model, 'availability_to_date')->label(false)->widget(
+				<?php /* $form->field($model, 'availability_to_date')->label(false)->widget(
 											DatePicker::className(), [
 												// 'name' => 'ItemInfo[availability_to_date]', 
 													
@@ -52,8 +68,19 @@ use kartik\date\DatePicker;
 														'startDate'=> date('Y-m-d'),
 													]
 											]
-											);
+											); */
 				 ?>
+				<?= $form->field($model, 'availability_to_date')->label(false)->widget(\yii\jui\DatePicker::classname(), [
+					'dateFormat' => 'php:d-m-Y',
+					'value'=>date('d-m-Y'),
+					'options' => ['placeholder' => 'Select end date',
+					'style'=>'height: 50px;width: 100%;padding: 10px;font-size: 16px;'],
+					'clientOptions' => [
+						'minDate'=>'0', 
+					],
+				]) ?>
+				 
+				 
 			</div>
 			<div class="col-sm-4" style="padding: 0;">
 				<?php // $form->field($model, 'availability_to_time')->textInput(['maxlength' => true]) ?>
