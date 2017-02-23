@@ -5,6 +5,8 @@ namespace app\controllers;
 use Yii;
 use app\models\ItemInfo;
 use app\models\ItemInfoSearch;
+use app\models\ItemInfoLiveSearch;
+use app\models\ItemInfoOfflineSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -68,43 +70,63 @@ class IteminfoController extends Controller
     public function actionConhome()
     {
 		session_start();
+		
+		$old_cusion_array=array();
+		$old_dieta_array=array();
+		$old_categ_array=array();
+		if(isset($_SESSION['filetrsarray']['cusion_array']) and $_SESSION['filetrsarray']['cusion_array']!=null){
+			$old_cusion_array=$_SESSION['filetrsarray']['cusion_array'];
+		}
+		
+		if(isset($_SESSION['filetrsarray']['dieta_array']) and $_SESSION['filetrsarray']['dieta_array']!=null){
+			$old_dieta_array=$_SESSION['filetrsarray']['dieta_array'];
+		}	
+		
+		if(isset($_SESSION['filetrsarray']['categ_array']) and $_SESSION['filetrsarray']['categ_array']!=null){
+			$old_categ_array=$_SESSION['filetrsarray']['categ_array'];
+		}
+		
 		unset($_SESSION['filetrsarray']);
-		$price=0;
-		$cusion=0;
-		$dieta=0;
-		$location=0;
-		
 
-		
-		if(isset($_GET['price']) and $_GET['price']>0){
-			$price=$_GET['price'];
-		}		
-		if(isset($_GET['cusion']) and $_GET['cusion']>0){
-			$cusion=$_GET['cusion'];
+		$new_cusion_array=array();		
+		$new_dieta_array=array();
+		$new_categ_array=array();
+	
+		if(isset($_GET['cusion']) and $_GET['cusion']>0){			
+			$new_cusion_array[]=$_GET['cusion'];
 		}	
 		if(isset($_GET['dieta']) and $_GET['dieta']>0){
-			$dieta=$_GET['dieta'];
+			$new_dieta_array[]=$_GET['dieta'];
 		}	
-		if(isset($_GET['location']) and $_GET['location']>0){
-			$location=$_GET['location'];
-		}
+		if(isset($_GET['categ']) and $_GET['categ']>0){
+			$new_categ_array[]=$_GET['categ'];
+		}	
+
+		$cusion_array=array();		
+		$dieta_array=array();
+		$categ_array=array();
 		
-		if(isset($_GET['dlocation']) and $_GET['dlocation']==1){
-			$location=0;
+		$cusion_array=array_merge($old_cusion_array,$new_cusion_array);		
+		$dieta_array=array_merge($old_dieta_array,$new_dieta_array);		
+		$categ_array=array_merge($old_categ_array,$new_categ_array);		
+
+		if(isset($_GET['dcusion']) and in_array($_GET['dcusion'],$cusion_array)){
+			if (($key = array_search($_GET['dcusion'], $cusion_array)) !== false) {
+				unset($cusion_array[$key]);
+			}
+		}			
+		
+		if(isset($_GET['ddieta']) and in_array($_GET['ddieta'],$dieta_array)){
+			if (($key = array_search($_GET['ddieta'], $dieta_array)) !== false) {
+				unset($dieta_array[$key]);
+			}
 		}	
 		
-		if(isset($_GET['ddieta']) and $_GET['ddieta']==1){
-			$dieta=0;
-		}		
-				
-		if(isset($_GET['dcusion']) and $_GET['dcusion']==1){
-			$cusion=0;
-		}		
-		
-		if(isset($_GET['dprice']) and $_GET['dprice']==1){
-			$price=0;
-		}
-		
+		if(isset($_GET['dcateg']) and in_array($_GET['dcateg'],$categ_array)){
+			if (($key = array_search($_GET['dcateg'], $categ_array)) !== false) {
+				unset($categ_array[$key]);
+			}
+		}	
 		
 		$min_price=0;
 		$max_price=0;		
@@ -146,7 +168,7 @@ class IteminfoController extends Controller
 						$ipaddress = 'UNKNOWN';
 					return $ipaddress;
 				}
-			 echo $PublicIP = get_client_ip(); 
+			$PublicIP = get_client_ip(); 
 			 
 			//  $PublicIP = '103.66.114.146'; 
 			 $json  = file_get_contents("https://freegeoip.net/json/$PublicIP");
@@ -227,33 +249,30 @@ class IteminfoController extends Controller
 print_r($chef_array);
 print_r($chef_distance_array); */
 
-		
-		if($cusion>0 or $price>0 or $location>0 or $dieta>0 or $min_price>0 or $max_location>0 or $min_location>0 or $max_price>0){
-			$_SESSION['filetrsarray']=array('price'=>$price,'cusion'=>$cusion,
-										'min_price'=>$min_price,'max_price'=>$max_price,
-			'min_location'=>$min_location,'max_location'=>$max_location,'chef_array'=>$chef_array,
-										'location'=>$location,'dieta'=>$dieta);
-		}
 
+		if($cusion_array!=null or $dieta_array!=null or $categ_array!=null or $min_price>0 or $max_location>0 or $min_location>0 or $max_price>0){
+			$_SESSION['filetrsarray']=array(
+										'min_price'=>$min_price,
+										'max_price'=>$max_price,
+										'min_location'=>$min_location,
+										'max_location'=>$max_location,
+										'chef_array'=>$chef_array,
+										'cusion_array'=>$cusion_array,
+										'dieta_array'=>$dieta_array,
+										'categ_array'=>$categ_array,
+										'search_by_item'=>null,
+										);
+		}
 		
+/* echo '<pre>';
+print_r($_SESSION['filetrsarray']);
+exit; */
 		
-		$_GET['liveitem']=1;
-		$_GET['offlineitem']=0;
-		$searchModel1 = new ItemInfoSearch();
-		$searchModel1->status=1;
-        $livedataProvider = $searchModel1->search(Yii::$app->request->queryParams);	
-/* 		$livedataProvider->query->where(['status'=>'1']);
-		$livedataProvider->query->where(['<=', 'availability_from_date',date('Y-m-d')]);	
-		$livedataProvider->query->where(['>=','availability_to_date', date('Y-m-d')]);  */
-		
-		$_GET['liveitem']=0;
-		$_GET['offlineitem']=1;
-        $searchModel = new ItemInfoSearch(); 
-		$searchModel->status=0;		
-        $offlinedataProvider = $searchModel->search(Yii::$app->request->queryParams); 		
-/*  		$offlinedataProvider->query->where(['or','availability_from_date <= '.date('Y-m-d'),'availability_to_date <= '.date('Y-m-d')]); 
-		$offlinedataProvider->query->where(['status'=>'0']); */
-		
+        $livesearchModel = new ItemInfoLiveSearch(); 
+        $livedataProvider = $livesearchModel->search(Yii::$app->request->queryParams); 
+				
+        $offlinesearchModel = new ItemInfoOfflineSearch(); 
+        $offlinedataProvider = $offlinesearchModel->search(Yii::$app->request->queryParams); 
 		
 		
 		if (Yii::$app->request->isAjax){

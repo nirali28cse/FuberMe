@@ -1,5 +1,129 @@
+
+<style>
+.sorterclass{
+	list-style-type: none;
+	overflow: hidden;
+}
+.sorterclass a{
+	color: #38b662;
+    text-decoration: none;
+    float: left;
+    padding: 10px;
+}	
+</style>
+
 <?php 
 use yii\widgets\ListView;
+
+/* 
+
+		$custom_exercise_letter='g';
+	//	$selection_priority_array=array('a','b','c','d','e','f','g','h');
+	//	$selection_priority_array=array('i','h','g','f','e','d','c','b','a');
+		$selection_priority_array=array('b','a','g','f','e','d','c','i','h');
+		$current_week=4;
+		$swap_week=2;
+		
+
+		$selection_priority_array1=array();
+		if((count($selection_priority_array)>0) and ($swap_week>0)){
+		// rearrange selection priority array
+				$couter=0;
+				$selecount=0;
+				$cha_array=array();				
+				$selecount=count($selection_priority_array)*$swap_week;
+				foreach($selection_priority_array as $selectionpriority){
+					$cha_array[]=array_fill($couter,$swap_week,$selectionpriority);
+					$couter=$couter+$swap_week;
+				}
+				
+				$new_char_array=array();
+				$notaddedfinal_char_array=array();
+
+				$x = 1;		
+				do {
+					foreach($cha_array as $chkey=>$chavalue){
+						foreach($chavalue as $key=>$value){			
+							$new_char_array[$x]=$value;	
+							$x++;	
+							if($current_week>$selecount  and $x>$current_week){
+								break 2;
+							}		
+						}
+					}
+				} while ($x <= $current_week); 
+
+				$final_char_array=array();
+				$added_first=0;
+				$x1 = 1;	
+				do {
+					foreach($new_char_array as $key=>$value){	
+						if(($key ==$current_week)){
+							$final_char_array[$key]=$value;	
+							$added_first=1;
+							$x1++;	
+						}elseif($added_first==1){
+							$final_char_array[$key]=$value;	
+							$x1++;	
+						}else{
+							$notaddedfinal_char_array[$key]=$value;	
+							// $x1++;	
+						}
+					}
+				} while ($x1 <= $current_week); 
+				
+				
+			// rearrange selection priority array 
+			// From current week rearrange array
+			// $selection_priority_array1=array_merge($final_char_array,$notaddedfinal_char_array);
+			
+			$selection_priority_array1 = $final_char_array + $notaddedfinal_char_array;
+		
+			// depend on privious week selection chnage in array
+			$finalselection_priority_array=array();
+			$middel_array=array();
+			$before_array=array();
+			$after_array=array();
+			$same_array=array();
+			if(($selection_priority_array1!=null) and ($custom_exercise_letter!=null)){
+
+				$current_index = array_search(strtolower($custom_exercise_letter), array_map('strtolower', $selection_priority_array1));
+				if($swap_week>1){
+					$swap_week1=$swap_week-1;
+					$current_index=$current_index+$swap_week1;
+				}
+
+				$counter=0;
+				foreach($selection_priority_array1 as $key2=>$value2){	
+				
+					if($key2==$current_index){
+						$middel_array[$key2]=$value2;
+						$counter=1;
+					}elseif($counter==0){
+						$before_array[$key2]=$value2;
+					}elseif($counter==1){
+						$after_array[$key2]=$value2;
+					}
+			
+				}				
+				$array_meged1 = $after_array + $before_array;
+				$finalselection_priority_array = $array_meged1 + $middel_array;
+				
+			}else{
+				$finalselection_priority_array = $selection_priority_array1;
+			}
+				
+		}
+
+		
+		echo '<pre>';
+		print_r($selection_priority_array);   // real array
+		print_r($selection_priority_array1);  // change array depend on current week 
+		print_r($finalselection_priority_array);  // change array depend on current week 
+		
+		exit;  */
+
+
 ?>
 
 
@@ -20,7 +144,7 @@ use yii\widgets\ListView;
 .itemerrorclass{
     font-size: 14px;
     color: #ff1414;
-    margin: 75px 15px;
+    margin: 95px 15px;
     display: block;
     clear: both;
     position: absolute;
@@ -382,21 +506,19 @@ use yii\widgets\ListView;
 <div class="mega_nav">
 	 <div class="container">
 		 <div class="menu_sec">
-
-			   <div class="search">
-				  <form>
+		 
+			<form>
+			   <div class="search">				 
 					<input type="text" name="search_by_item" value="<?php if(isset($_GET['search_by_item']) and ($_GET['search_by_item']!=null)){ echo $_GET['search_by_item']; } ?>" placeholder="Search Item...">
-					<input type="submit" value="">
-				  </form>
 				</div>
 				
 			   <div class="search">
-				  <form>
 					<input type="text"  name="search_by_location"  value="<?php if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){ echo $_GET['search_by_location']; } ?>" placeholder="Search By Location...">
-					<input type="submit" value="">
-					</form>
+				<input type="submit" value="">
 				</div>
-				
+			
+			</form>
+					
 	<div class="clearfix"> </div>
 		</div>
 	</div>
@@ -409,28 +531,15 @@ use yii\widgets\ListView;
 	 <div class="container">
 		 <div class="col-md-12 product-model-sec">									
 				<div class="item-info-index">
-						<?php						
+						<?php	
+
 						
-						 echo  ListView::widget([
-								'dataProvider' => $livedataProvider,	
-								'summary' => '',
-								'emptyText' => '<center><h2>No dishes found.</h2></center>',
-								'itemOptions' => ['class' => 'item'],
-								'itemView' => function ($model) {
-									 return $this->render('_view',['model' => $model]);
-								}
+						        echo $this->render('/iteminfo/conhomeitem', [
+									'livedataProvider' => $livedataProvider,
+									'offlinedataProvider' => $offlinedataProvider,
+								]);
 								
-						]); 
-						
-/* 						 echo  ListView::widget([
-								'dataProvider' => $offlinedataProvider,	
-								'summary' => '',
-								'itemOptions' => ['class' => 'item'],
-								'itemView' => function ($model) {
-									 return $this->render('_view',['model' => $model]);
-								}
-								
-						]);  */
+
 
 						?>		
 						
@@ -443,6 +552,7 @@ use yii\widgets\ListView;
 	
 
 <script>
+/* 
 $(document).ready(function(){
 	$(document).on("click",".placeorder",function(e){		
 		e.preventDefault();
@@ -474,5 +584,6 @@ $(document).ready(function(){
 			}
 		});
 	});
-});
+}); */
+
 </script>

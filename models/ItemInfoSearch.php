@@ -71,8 +71,7 @@ class ItemInfoSearch extends ItemInfo
 					],		 */			
 				],
 			],
-        ]);
-		
+        ]);		
 		
 
         $this->load($params);
@@ -83,72 +82,14 @@ class ItemInfoSearch extends ItemInfo
             return $dataProvider;
         }
 		
-		
-		$item_category_info_id=$this->item_category_info_id;
-		$item_cuisine_type_info_id=$this->item_cuisine_type_info_id;
-		$item_dietary_preference=$this->item_dietary_preference;
-		if(isset($_SESSION['filetrsarray'])){
-			
-			$min_price=0;
-			$max_price=0;
-			if($_SESSION['filetrsarray']['cusion']>0){
-				$item_cuisine_type_info_id=$_SESSION['filetrsarray']['cusion'];
-			}	
-					
-			if($_SESSION['filetrsarray']['dieta']>0){
-				$item_dietary_preference=$_SESSION['filetrsarray']['dieta'];
-			}	
-			
-			if($_SESSION['filetrsarray']['price']>0){
-				$price=$_SESSION['filetrsarray']['price'];
-				if($price==75){ $min_price=75; $max_price=100; }
-				if($price==57){ $min_price=50; $max_price=75; }
-				if($price==25){ $min_price=25; $max_price=50; }
-				if($price==02){ $min_price=5; $max_price=25; }
-				$query->andFilterWhere(['between', 'price', $min_price, $max_price]);	
-			}	
-			
-			if($_SESSION['filetrsarray']['min_price']>0 and $_SESSION['filetrsarray']['max_price']>0){
-				$min_price=$_SESSION['filetrsarray']['min_price'];
-				$max_price=$_SESSION['filetrsarray']['max_price'];
-				$query->andFilterWhere(['between', 'price', $min_price, $max_price]);	
-			}	
-			
-			if($_SESSION['filetrsarray']['min_location']>0 and $_SESSION['filetrsarray']['max_location']>0){
-				$min_location=$_SESSION['filetrsarray']['min_location'];
-				$max_location=$_SESSION['filetrsarray']['max_location'];
-				$chef_array=$_SESSION['filetrsarray']['chef_array'];
-				// $query->andFilterWhere(['in','chef_user_id',$chef_array]);	
-				if($chef_array!=null){
-					foreach($chef_array as $key => $value) {
-							$query->orFilterWhere(['=', 'chef_user_id', $value]);
-					}
-				}else{
-					$query->andFilterWhere(['=', 'chef_user_id',0]);
-				}
-			}else{
-				$query->andFilterWhere(['=', 'chef_user_id',$this->chef_user_id]);
-			}				
-		}else{
-			$query->andFilterWhere(['like', 'price', $this->price]);
-			$query->andFilterWhere(['=', 'chef_user_id',$this->chef_user_id]);
-		}
-		
-
-
-
-/* 		if(Yii::$app->controller->action->id=='conhome'){
-			if($this->status==1){ $_GET['liveitem']=1; }
-			if($this->status==0){ $_GET['offlineitem']=1; }
-		} */
 
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-        //    'chef_user_id' => $this->chef_user_id,
-            'item_category_info_id' => $item_category_info_id,
-            'item_cuisine_type_info_id' => $item_cuisine_type_info_id,
-            'item_dietary_preference' => $item_dietary_preference,
+            'chef_user_id' => $this->chef_user_id,
+            'item_category_info_id' => $this->item_category_info_id,
+            'item_cuisine_type_info_id' => $this->item_cuisine_type_info_id,
+            'item_dietary_preference' => $this->item_dietary_preference,
             'date_time' => $this->date_time,
             'status' => $this->status,
             'quantity' => $this->quantity,
@@ -157,6 +98,7 @@ class ItemInfoSearch extends ItemInfo
         $query->andFilterWhere(['like', 'name', $this->name])
        //     ->andFilterWhere(['=', 'chef_user_id',$this->chef_user_id])
     //        ->andFilterWhere(['>', 'quantity',0])
+            ->andFilterWhere(['like', 'price', $this->price])
             ->andFilterWhere(['like', 'ingredients', $this->ingredients])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'head_up_time', $this->head_up_time])

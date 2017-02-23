@@ -10,6 +10,8 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\ItemInfo;
 use app\models\ItemInfoSearch;
+use app\models\ItemInfoLiveSearch;
+use app\models\ItemInfoOfflineSearch;
 use yii\data\ActiveDataProvider;
 use app\modules\users\models\Userdetail;
 
@@ -66,14 +68,68 @@ class SiteController extends Controller
     {
 		$this->layout = '/fuber_me/homepage';
 		
-/*         $searchModel = new ItemInfoSearch();
-		$searchModel->status=1;	
-		$_GET['liveitem']=1;	 */
+		$min_location=0;
+		$max_location=0;
+		$search_by_item=null;
+		$chef_array=array();
+		
+		if(isset($_GET['search_by_item']) and ($_GET['search_by_item']!=null)){
+			$search_by_item=$_GET['search_by_item'];			
+		}	
+		if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){
+			$search_by_location=$_GET['search_by_location'];			
+			$allchef_info = Userdetail::find()->where(['status'=>1])
+							->Where(['or',
+								['LIKE','zipcode',$search_by_location],
+								['LIKE','city',$search_by_location]
+								])->all();;
+
+			 if(count($allchef_info)>0){
+				foreach($allchef_info as $allchef){
+					$chef_id=$allchef->id;
+					$chef_array[]=$chef_id;
+				}
+				$min_location=1;
+				$max_location=1;
+			 }
+		}
+										
+		if($chef_array!=null or $search_by_item!=null){
+			$_SESSION['filetrsarray']=array(
+										'min_location'=>$min_location,
+										'max_location'=>$max_location,
+										'chef_array'=>$chef_array,
+										'search_by_item'=>$search_by_item,
+										'min_price'=>0,
+										'max_price'=>0,
+										'cusion_array'=>array(),
+										'dieta_array'=>array(),
+										'categ_array'=>array(),
+										);
+		}
+
+        $livesearchModel = new ItemInfoLiveSearch(); 
+        $livedataProvider = $livesearchModel->search(Yii::$app->request->queryParams); 
+				
+        $offlinesearchModel = new ItemInfoOfflineSearch(); 
+        $offlinedataProvider = $offlinesearchModel->search(Yii::$app->request->queryParams); 
+
+
+        return $this->render('index', [
+            'livedataProvider' => $livedataProvider,
+            'offlinedataProvider' => $offlinedataProvider,
+        ]);
+		
+      //  return $this->render('index');
+    }  
+	
+	
+	/* 
+    public function actionIndex()
+    {
+		$this->layout = '/fuber_me/homepage';
 		
 
-		
-     //   $livedataProvider = $searchModel->search(Yii::$app->request->queryParams);
-	 
 		if(isset($_GET['search_by_item']) and ($_GET['search_by_item']!=null)){
 			$search_by_item=$_GET['search_by_item'];
 			$query = ItemInfo::find()->where(['status' => 1])
@@ -135,7 +191,7 @@ class SiteController extends Controller
         ]);
 		
       //  return $this->render('index');
-    }  
+    }   */
 	
     public function actionIndex2()
     {
@@ -154,6 +210,13 @@ class SiteController extends Controller
     {
 		$this->layout = '/fuber_me/homepage';
         return $this->render('faq');
+    }
+	
+	
+	public function actionTou()
+    {
+		$this->layout = '/fuber_me/homepage';
+        return $this->render('tou');
     }
 	
     public function actionProducts()

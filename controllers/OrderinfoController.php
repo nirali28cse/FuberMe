@@ -127,6 +127,7 @@ class OrderinfoController extends Controller
 		$item_quantity=0;
 		$item_name=null;
 		$item_ingredients=null;
+		$item_chef_name=null;
 		$item_cuisine_type=null;
 		
 		$item_array=array();
@@ -141,6 +142,7 @@ class OrderinfoController extends Controller
 			$item_qty=1;
 			$item_price=$item_info->price;
 			$item_chef=$item_info->chef_user_id;
+			$item_chef_name=$item_info->chefUser->username;
 			$item_name=$item_info->name;			
 			$item_chef_quantity=$item_info->quantity;			
 			$item_cuisine_type=$item_info->cuisineTypeInfo->name;
@@ -155,7 +157,7 @@ class OrderinfoController extends Controller
 			$item_array=array($itemid=>array('item_id'=>$item_id,'item_name'=>$item_name,
 											'item_qty'=>$item_qty,'item_price'=>$item_price,
 											'item_ingredients'=>$item_ingredients,'item_cuisine_type'=>$item_cuisine_type,
-											'item_chef'=>$item_chef,'item_image'=>$item_image
+											'item_chef_name'=>$item_chef_name,'item_chef'=>$item_chef,'item_image'=>$item_image
 											,'item_chef_quantity'=>$item_chef_quantity
 										));			
 		}
@@ -165,7 +167,9 @@ class OrderinfoController extends Controller
 		}else{
 			if(count($item_array)>0){
 				unset($_SESSION['master_chef']);
+				unset($_SESSION['master_chef_name']);
 				$_SESSION['master_chef']=$item_array[$itemid]['item_chef'];
+				$_SESSION['master_chef_name']=$item_array[$itemid]['item_chef_name'];
 			}
 		}		
 	

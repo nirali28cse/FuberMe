@@ -184,7 +184,7 @@ if($model->image==null){
 		  
 				  
 				<div class="sofaset-info">
-						 <h4>Other Dishes By Chef <?php echo $model->cuisineTypeInfo->name; ?></h4>
+						 <h4>Other Dishes By Chef <?php echo $model->chefUser->username; ?></h4>
 						<div class="seller-grids">						
 							<?php foreach($random_chef_items as $random_chef_item){
 									$image_src=$default_itemimage;
@@ -214,38 +214,3 @@ if($model->image==null){
 		     <div class="clearfix"></div>
 	  </div>	 
 </div>
-
-<script>
-$(document).ready(function(){
-	$(document).on("click",".placeorder",function(e){		
-		e.preventDefault();
-		var oldHref = $(this).attr('href');
-		var item_id=$(this).attr('id');
-		$.ajax({			
-			type: 'POST',
-			url: <?php Yii::$app->homeUrl; ?>'?r=orderinfo/checkchef',
-			data: {item_id:item_id},			
-			error: function (err) {
-			//	alert("error - " + err);
-				return false;
-			},
-			success: function (data1) {
-				// return false;
-				// alert(data1);
-				if(data1==0){	
-					$('.itemerror'+item_id).html('Sorry,This item cannot be added.');
-					return false;
-				}else if(data1==3){	
-					$('.itemerror'+item_id).html('Sorry,This item cannot be added,Due to less Qty.');
-					return false;
-				}else if(data1==4){	
-					$('.itemerror'+item_id).html('Sorry,you can not purchase your own item.');
-					return false;
-				}else{					
-					 window.location.href = oldHref; // go to the new url
-				}				
-			}
-		});
-	});
-});
-</script>
