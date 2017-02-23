@@ -30,56 +30,8 @@ use yii\widgets\ListView;
 								
 						]);  
 ?>
-<?php
 
 
-					 	 echo  ListView::widget([
-								'layout' => "{sorter}\n{summary}\n{items}\n{pager}",								
-								'dataProvider' => $livedataProvider,
-								'summary'=>'', 		
-							    'sorter' => [
-									'options' => [
-										'class' => 'sorterclass',
-									],
-								],
-								'emptyText' => '<center></center>',
-								'itemOptions' => ['class' => 'item'],
-							//	'itemView' =>'view'	,
-										
-								'itemView' => function ($model) {
-								  // echo $id = $model->id;
-									
-									 return $this->render('_viewcon',['model' => $model]);
-									// return $this->render('_view');
-								}
-								
-						]);  
-?>
-<?php
-
-
-					 	 echo  ListView::widget([
-								'layout' => "{sorter}\n{summary}\n{items}\n{pager}",								
-								'dataProvider' => $livedataProvider,
-								'summary'=>'', 		
-							    'sorter' => [
-									'options' => [
-										'class' => 'sorterclass',
-									],
-								],
-								'emptyText' => '<center></center>',
-								'itemOptions' => ['class' => 'item'],
-							//	'itemView' =>'view'	,
-										
-								'itemView' => function ($model) {
-								  // echo $id = $model->id;
-									
-									 return $this->render('_viewcon',['model' => $model]);
-									// return $this->render('_view');
-								}
-								
-						]);  
-?>
 				<div class="clearfix"></div>
 
 						<?php					
