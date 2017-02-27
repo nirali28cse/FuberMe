@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'customer_zip', */
 			[
             'attribute' => 'invoice_item',
-            'label' => 'Invoice Item',
+            'label' => 'Order Item',
 			'format' => 'html',
             'value' => function($model) { 
 					$invoice_items=array();

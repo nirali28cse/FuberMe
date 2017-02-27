@@ -41,6 +41,21 @@ class Emailfunction extends Component
 
 	}	
 
+	public static function Forgetpasswordresetlink($user_id)
+	{
+		$model=Userdetail::findOne($user_id);
+		$toemail = $model->email_id;
+
+		$subject = 'Reset Password';
+		
+		$emailcontent = "Click this link to reset Your Password ".\yii\helpers\Html::a('resetpassword',
+						Yii::$app->urlManager->createAbsoluteUrl(
+						['/users/forgotpassword/index2','resetid'=>$model->id,'key'=>$model->auth_key]
+						));			
+		return $send_email=self::sendEmail($toemail,$subject,$emailcontent);
+		
+	}
+	
 	public static function Userregistrationverification($user_id)
 	{
 		$model=Userdetail::findOne($user_id);

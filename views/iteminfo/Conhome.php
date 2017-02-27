@@ -437,6 +437,24 @@ span.item_price {
 
 
  <script>
+ 
+ 
+
+$('#collapse3,#collapse2,#collapse1').on('show.bs.collapse', function () {
+       //call a service here 
+	   var aid=$(this).attr("id");
+	   $('a[href*="'+aid+'"]').text('View Less');
+}); 
+
+$('#collapse3,#collapse2,#collapse1').on('hide.bs.collapse', function () {
+       //call a service here 
+	    var aid=$(this).attr("id");
+	   $('a[href*="'+aid+'"]').text('View More');
+});  
+
+
+
+
  // price slider
   $( function() {
     $( "#pslider-range" ).slider({
@@ -506,7 +524,7 @@ span.item_price {
 
 function scrollFunction() {
     var scrollPos = document.body.scrollTop;
-	console.log(scrollPos);
+	// console.log(scrollPos);
      if (scrollPos > 1100) {
         document.getElementById("fixed-floater").style.position = "fixed";
         document.getElementById("fixed-floater").style.top = "100px";

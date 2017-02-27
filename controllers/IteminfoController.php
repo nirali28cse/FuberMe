@@ -383,7 +383,21 @@ exit; */
 					return $this->redirect(['index']);
 				}
 			} */
-
+			
+			$availability_from_date = strtotime($_POST['ItemInfo']['availability_from_date']);
+			$availability_to_date = strtotime($_POST['ItemInfo']['availability_to_date']);
+			$todays_date = strtotime(date('Y-m-d'));
+			
+			if ($availability_from_date <= $todays_date and $availability_to_date >= $todays_date) { 
+				$model->status=1;
+				$status=1;
+			}	
+			elseif ($availability_from_date >= $todays_date or $availability_to_date <= $todays_date) { 
+				$model->status=0;
+				$status=0;
+			}
+			
+			
 			if ($model->save()) {
 				return $this->redirect(['index']);
 			}else {
@@ -414,10 +428,7 @@ exit; */
 
 			$folder_name='item_images';
 			$user_id=Yii::$app->user->id;
-						
-/* 			echo '<pre>';
-			print_r($_FILES);
-exit;			 */
+
 			// image upload			
 			$valid_exts = array('jpeg', 'jpg', 'png', 'gif');
 			$max_file_size =$_FILES['image']['size']; //  200 * 1024; #200kb
@@ -482,9 +493,18 @@ exit;			 */
 				$model->image=$old_file_name;
 			}
 			
+
+			$availability_from_date = strtotime($_POST['ItemInfo']['availability_from_date']);
+			$availability_to_date = strtotime($_POST['ItemInfo']['availability_to_date']);
+			$todays_date = strtotime(date('Y-m-d'));
 			
-			
-			
+			if ($availability_from_date <= $todays_date and $availability_to_date >= $todays_date) { 
+				$model->status=1;
+			}	
+			elseif ($availability_from_date >= $todays_date or $availability_to_date <= $todays_date) { 
+				$model->status=0;
+			}
+						
 			
 			
 			

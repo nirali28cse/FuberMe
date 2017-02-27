@@ -6,9 +6,36 @@ use yii\widgets\ListView;
 ?>
 
 <?php
+/* 
+ $pjax = \yii\widgets\Pjax::begin();
+
+echo \yii\widgets\ListView::widget([
+    'dataProvider' => $livedataProvider,
+    'options' => [
+        'class' => '.list-view',
+    ],
+	'itemView' => function ($model) {
+		 return $this->render('_viewcon',['model' => $model]);
+	},
+    'summary' => false,
+    'layout' => '{sorter}{summary}{items}<div class="pagination-wrap">{pager}</div>',
+    'pager' => [
+        'class' => \darkcs\infinitescroll\InfiniteScrollPager::className(),
+        'paginationSelector' => '.pagination-wrap',
+        'pjaxContainer' => $pjax->id,
+    ],
+	'sorter' => [
+		'options' => [
+			'class' => 'sorterclass',
+		],
+	],
+	'emptyText' => '<center></center>',
+]);
+\yii\widgets\Pjax::end();  */
 
 
-					 	 echo  ListView::widget([
+
+ 					 	 echo  ListView::widget([
 								'layout' => "{sorter}\n{summary}\n{items}\n{pager}",								
 								'dataProvider' => $livedataProvider,
 								'summary'=>'', 		
@@ -32,7 +59,7 @@ use yii\widgets\ListView;
 ?>
 
 
-				<div class="clearfix"></div>
+					<br/><div class="clearfix">&nbsp;</div>
 
 						<?php					
 						 echo  ListView::widget([

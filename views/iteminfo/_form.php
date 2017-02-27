@@ -154,8 +154,8 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 
 
 				<?= $form->field($model, 'availability_from_date')->widget(\yii\jui\DatePicker::classname(), [
-					'dateFormat' => 'php:d-m-Y',
-					'value'=>date('d-m-Y'),
+					'dateFormat' => 'php:Y-m-d',
+					'value'=>date('Y-m-d'),
 					'options' => ['placeholder' => 'Select end date',
 					'style'=>'height: 50px;width: 100%;padding: 10px;font-size: 16px;'],
 					'clientOptions' => [
@@ -198,8 +198,8 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 
 
 			<?= $form->field($model, 'availability_to_date')->widget(\yii\jui\DatePicker::classname(), [
-				'dateFormat' => 'php:d-m-Y',
-				'value'=>date('d-m-Y'),
+				'dateFormat' => 'php:Y-m-d',
+				'value'=>date('Y-m-d'),
 				'options' => ['placeholder' => 'Select end date',
 				'style'=>'height: 50px;width: 100%;padding: 10px;font-size: 16px;'],
 				'clientOptions' => [

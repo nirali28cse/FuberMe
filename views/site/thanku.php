@@ -26,6 +26,13 @@ use yii\widgets\ActiveForm;
 	 </div>
 </div>
 
-<br/><br/><br/>
-<br/><br/><br/>
-<br/><br/><br/>
+
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
