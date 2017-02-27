@@ -124,10 +124,8 @@ class ItemInfoOfflineSearch extends ItemInfo
 			if($_SESSION['filetrsarray']['min_price']>0 and $_SESSION['filetrsarray']['max_price']>0){
 				$min_price=$_SESSION['filetrsarray']['min_price'];
 				$max_price=$_SESSION['filetrsarray']['max_price'];
-				$query->andFilterWhere(['OR',
-								['>=', 'price', $min_price],
-							 	['<=', 'price', $max_price]
-								]);		
+				$query->andFilterWhere(['between','price',$min_price,$max_price]);									
+
 			}	
 			
 			if($_SESSION['filetrsarray']['min_location']>0 and $_SESSION['filetrsarray']['max_location']>0){
@@ -166,7 +164,7 @@ class ItemInfoOfflineSearch extends ItemInfo
             'item_cuisine_type_info_id' => $item_cuisine_type_info_id,
             'item_dietary_preference' => $item_dietary_preference, */
             'date_time' => $this->date_time,
-            'status' => $this->status,
+        //    'status' => $this->status,
             'quantity' => $this->quantity,
         ]);
 
@@ -186,7 +184,7 @@ class ItemInfoOfflineSearch extends ItemInfo
 
 /* echo '<pre>';
 print_r($query);
-exit;   */
+exit;    */
 
 
 		$query->orderBy(['(status)' => SORT_DESC]);

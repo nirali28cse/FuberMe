@@ -65,9 +65,12 @@
 											<?php 
 											$display=1;
 											$display1=1;
-											if((Yii::$app->user->identity->user_type==2 or Yii::$app->user->identity->user_type==3)){ ?>
+											$userinfo=app\modules\users\models\Userdetail::findOne(Yii::$app->user->id);
+											$user_type=0;
+											$user_type=$userinfo->user_type;
+											if(($user_type==2 or $user_type==3)){ ?>
 												<?php
-												if((Yii::$app->controller->action->id=='index') and (Yii::$app->controller->id=='orderinfo') and (Yii::$app->user->identity->user_type==3)){
+												if((Yii::$app->controller->action->id=='index') and (Yii::$app->controller->id=='orderinfo') and ($user_type==3)){
 													$display=0;
 												}
 												if($display==1){
@@ -77,9 +80,9 @@
 												<?php } ?>			
 											<?php } ?>			
 											
-											<?php if(Yii::$app->user->identity->user_type==1 or Yii::$app->user->identity->user_type==3){ 
+											<?php if($user_type==1 or $user_type==3){ 
 												
-												if((Yii::$app->controller->action->id=='index2') and (Yii::$app->controller->id=='orderinfo') and (Yii::$app->user->identity->user_type==3)){
+												if((Yii::$app->controller->action->id=='index2') and (Yii::$app->controller->id=='orderinfo') and ($user_type==3)){
 													$display1=0;
 												}
 

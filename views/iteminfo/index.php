@@ -44,7 +44,25 @@ $this->params['breadcrumbs'][] = $this->title;
 						
 						 echo  ListView::widget([
 								'dataProvider' => $dataProvider,	
-								 'emptyText' => '<center><h2>Start adding your dishes.</h2></center>',
+								 'emptyText' => '
+									<div class="clearfix">&nbsp;</div>
+									<div class="clearfix">&nbsp;</div>
+									<div class="clearfix">&nbsp;</div>
+									<div class="clearfix">&nbsp;</div>
+									<div class="clearfix">&nbsp;</div>
+									<div class="clearfix">&nbsp;</div>
+									<div class="clearfix">&nbsp;</div>
+									<div class="clearfix">&nbsp;</div>
+								    <center><h2>Start adding your dishes.</h2></center>
+									<div class="clearfix">&nbsp;</div>
+									<div class="clearfix">&nbsp;</div>
+									<div class="clearfix">&nbsp;</div>
+									<div class="clearfix">&nbsp;</div>
+									<div class="clearfix">&nbsp;</div>
+									<div class="clearfix">&nbsp;</div>
+									<div class="clearfix">&nbsp;</div>
+									<div class="clearfix">&nbsp;</div>
+								 ',
 								'itemOptions' => ['class' => 'item'],
 						/*         'itemView' => function ($model, $key, $index, $widget) {
 										return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);

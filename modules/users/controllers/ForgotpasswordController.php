@@ -9,6 +9,8 @@ use app\modules\users\models\UserdetailSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\LoginForm;
+use app\modules\users\models\Cuserdetail;
 
 /**
  * ForgetpasswordController implements the CRUD actions for Userdetail model.
@@ -34,7 +36,108 @@ class ForgotpasswordController extends Controller
      * Lists all Userdetail models.
      * @return mixed
      */
+	 
+	 
+
     public function actionIndex()
+    {   
+	
+	    $model = new Cuserdetail();
+		Yii::$app->session->set('forget_password', null);
+		
+        if ($model->load(Yii::$app->request->post())) {
+				$model1=Cuserdetail::find()->where(['email_id'=>$_POST['Cuserdetail']['email_id']])->one();			
+				if(count($model1)>0){
+					$model=$model1;
+					if ($model->save()) {	
+						$send_email=Yii::$app->emailcomponent->Forgetpasswordresetlink($model->id);
+						return $this->redirect(['/site/thankupass']);
+					}
+				}else{
+					Yii::$app->session->set('forget_password','<div class="alert alert-danger">
+					This email does not exists,Please try again.
+					</div>');	
+				}
+		}
+		
+        return $this->render('index', [
+            'model' => $model,
+        ]);
+	}
+	
+	 
+    public function actionIndex2($resetid, $key)
+    {   
+		Yii::$app->session->set('reset_password', null);
+		$model = \app\modules\users\models\Cuserdetail::find()->where([
+		'id'=>$resetid,
+		'auth_key'=>$key,
+		'status'=>1,
+		])->one();		
+
+        if(count($model)>0){
+		
+		}else{
+			Yii::$app->session->set('reset_password','<div class="alert alert-danger">
+			This Link is wrong,Please try again.
+			</div>');	
+		}	
+		
+		return $this->redirect(['resetpass', 'id' =>$model->id]);
+	}	 
+	
+    public function actionResetpass($id)
+    {   
+
+		$model =  Cuserdetail::findOne($id);		
+		$password_errormesg=null;
+		
+        if(count($model)>0){
+
+			 if (Yii::$app->request->post()){
+				$new_password=$_POST['new_password'];
+				$reenter_password=$_POST['reenter_password'];
+				if(($new_password==$reenter_password) and ($new_password!=null) and ($reenter_password!=null)){	
+					$model->password=MD5($new_password);	
+					if($model->save()){
+						 Yii::$app->user->switchIdentity($model); // log in
+						// if admin 
+						if(Yii::$app->user->identity->is_admin==1){
+							return $this->redirect(['//cuisinetypeinfo/index']);
+						}else{
+							//if only customer
+							if(Yii::$app->user->identity->user_type==1){
+								return $this->redirect(['//iteminfo/conhome']);
+							}
+							//if only chef
+							if(Yii::$app->user->identity->user_type==2){
+								return $this->redirect(['//iteminfo/index']);
+							}	
+							//if only chef
+							if(Yii::$app->user->identity->user_type==3){
+							//	return $this->goHome();
+								return $this->redirect(['//iteminfo/index']);
+							}
+						}
+					}
+				}else{					
+					Yii::$app->session->set('reset_password','<div class="alert alert-danger">
+					Enter Password Again.
+					</div>');
+				}		
+			}
+			
+			return $this->render('resetpass', [
+				'model' => $model,
+			]);
+				
+		}
+
+	}	 
+	
+	
+	
+/* 	public function actionIndex()
     {
 
         $model = new Userdetail();
@@ -76,6 +179,6 @@ class ForgotpasswordController extends Controller
 				'password_errormesg' =>$password_errormesg,
             ]);
 
-    } 
+    }  */
 	
 }

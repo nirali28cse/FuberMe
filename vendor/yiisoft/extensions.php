@@ -309,4 +309,31 @@ return array (
       '@ak' => $vendorDir . '/marciocamello/yii2-paypal',
     ),
   ),
+  'kop/yii2-scroll-pager' => 
+  array (
+    'name' => 'kop/yii2-scroll-pager',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kop/y2sp' => $vendorDir . '/kop/yii2-scroll-pager',
+    ),
+  ),
+  'fedemotta/yii2-aws-sdk' => 
+  array (
+    'name' => 'fedemotta/yii2-aws-sdk',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@fedemotta/awssdk' => $vendorDir . '/fedemotta/yii2-aws-sdk',
+    ),
+  ),
+  'darkcs/yii2-infinite-scroll' => 
+  array (
+    'name' => 'darkcs/yii2-infinite-scroll',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@darkcs/infinitescroll' => $vendorDir . '/darkcs/yii2-infinite-scroll',
+    ),
+  ),
 );

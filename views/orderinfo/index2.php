@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			
 			[
             'attribute' => 'invoice_item',
-            'label' => 'Invoice Item',
+            'label' => 'Order Item',
 			'format' => 'html',
             'value' => function($model) { 
 					$invoice_items=array();
