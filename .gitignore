@@ -13,22 +13,9 @@ nbproject
 Thumbs.db
 
 # composer vendor dir
-!vendor/bower/fuberme
-vendor/budyaga/
-vendor/cozumel/
-vendor/imagine/
-vendor/karpoff/
-vendor/marciocamello/
-vendor/mongosoft/
-vendor/paypal/
-vendor/sjaakp/
-vendor/yiisoft/yii2-imagine/
-vendor/yiisoft/yii2-jui/
 /web/assets
 /config/db.php
-vendor/bower/simple-ajax-uploader/
-vendor/bower/jquery-ui/
-vendor/bower/jcrop/
+
 
 
 # composer itself is not needed
