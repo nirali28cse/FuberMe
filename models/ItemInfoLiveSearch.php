@@ -51,7 +51,8 @@ class ItemInfoLiveSearch extends ItemInfo
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-			'pagination' => array('page' => $page_number,'pageSize' =>Yii::$app->params['pagination_item_count']),
+			'pagination' => array('pageSize' =>Yii::$app->params['pagination_item_count']),
+		//	'pagination' => array('page' => $page_number,'pageSize' =>Yii::$app->params['pagination_item_count']),
 		//	'pagination' => false,
 			'sort' => [
 /* 				'defaultOrder' => [
@@ -131,11 +132,11 @@ class ItemInfoLiveSearch extends ItemInfo
 			if($_SESSION['filetrsarray']['min_price']>0 and $_SESSION['filetrsarray']['max_price']>0){
 				$min_price=$_SESSION['filetrsarray']['min_price'];
 				$max_price=$_SESSION['filetrsarray']['max_price'];
-/* 				$query->andFilterWhere(['OR',
+ 				$query->andFilterWhere(['AND',
 								['>=', 'price', $min_price],
 							 	['<=', 'price', $max_price]
-								]);		 */
-				$query->andFilterWhere(['between','price',$min_price,$max_price]);									
+								]);		
+			//	$query->andFilterWhere(['between','price',$min_price,$max_price]);									
 			}	
 			
 			if($_SESSION['filetrsarray']['min_location']>0 and $_SESSION['filetrsarray']['max_location']>0){

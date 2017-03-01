@@ -309,6 +309,8 @@ print_r($chef_distance_array); */
 										);
 		}
 
+		
+		//update offline live items
 		$alloffline_liveitems = ItemInfo::find()
 		 ->where(['AND',
 				['<=', 'availability_from_date',Yii::$app->params['today_date']],
@@ -330,7 +332,7 @@ print_r($chef_distance_array); */
 			}
 
 		}		
-
+		//update offline live items
 		
 		
         $livesearchModel = new ItemInfoLiveSearch(); 

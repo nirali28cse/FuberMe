@@ -51,7 +51,7 @@ class ItemInfoOfflineSearch extends ItemInfo
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
 		//	'pagination' => false,
-			'pagination' => array('page' => $page_number,'pageSize' =>Yii::$app->params['pagination_item_count']),
+			'pagination' => array('pageSize' =>Yii::$app->params['pagination_item_count']),
 			'sort' => [
 /* 				'defaultOrder' => [
 					'price' => SORT_DESC,
@@ -129,7 +129,11 @@ class ItemInfoOfflineSearch extends ItemInfo
 			if($_SESSION['filetrsarray']['min_price']>0 and $_SESSION['filetrsarray']['max_price']>0){
 				$min_price=$_SESSION['filetrsarray']['min_price'];
 				$max_price=$_SESSION['filetrsarray']['max_price'];
-				$query->andFilterWhere(['between','price',$min_price,$max_price]);									
+				$query->andFilterWhere(['AND',
+								['>=', 'price', $min_price],
+							 	['<=', 'price', $max_price]
+								]);		
+			//	$query->andFilterWhere(['between','price',$min_price,$max_price]);									
 
 			}	
 			
@@ -181,13 +185,13 @@ class ItemInfoOfflineSearch extends ItemInfo
             ->andFilterWhere(['like', 'availability_to_time', $this->availability_to_time]);
 		
 			$query->andFilterWhere(['=','status',0]);
- 			$query->andFilterWhere(['or',
-								['>=', 'availability_from_date',Yii::$app->params['today_date']],
+ 			$query->andFilterWhere(['AND',
+								['<=', 'availability_from_date',Yii::$app->params['today_date']],
 							 	['<=', 'availability_to_date',Yii::$app->params['today_date']]
 								]); 
 
 
-/* echo '<pre>';
+/*  echo '<pre>';
 print_r($query);
 exit;    */
 

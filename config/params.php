@@ -4,7 +4,7 @@ return [
     'adminEmail' => 'nirali28cse@gmail.com',
   //  'adminemailid' => 'email@fuberme.com',
     'today_date' => date('Y-m-d'),
-    'pagination_item_count' => '3',
+    'pagination_item_count' => '2',
     'adminemailid' => 'fuberme@gmail.com',
     'delivery_method' => array('pickup'=>'Pickup','homedelivery'=>'Home Delivery','both'=>'Both'),
     'payment_method' => array('paypal'=>'PayPal','cod'=>'Cash On Delivery'),
