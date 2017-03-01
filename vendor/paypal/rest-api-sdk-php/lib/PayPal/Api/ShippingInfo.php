@@ -1,165 +1,158 @@
 <?php
+
 namespace PayPal\Api;
 
-use PayPal\Common\PPModel;
-use PayPal\Rest\ApiContext;
+use PayPal\Common\PayPalModel;
 
-class ShippingInfo extends PPModel {
-	/**
-	 * First name of the invoice recipient. 30 characters max.
-	 *
-	 * @param string $first_name
-	 */
-	public function setFirstName($first_name) {
-		$this->first_name = $first_name;
-		return $this;
-	}
+/**
+ * Class ShippingInfo
+ *
+ * Shipping information for the invoice recipient.
+ *
+ * @package PayPal\Api
+ *
+ * @property string first_name
+ * @property string last_name
+ * @property string business_name
+ * @property \PayPal\Api\Phone phone
+ * @property \PayPal\Api\InvoiceAddress address
+ */
+class ShippingInfo extends PayPalModel
+{
+    /**
+     * The invoice recipient first name. Maximum length is 30 characters.
+     *
+     * @param string $first_name
+     * 
+     * @return $this
+     */
+    public function setFirstName($first_name)
+    {
+        $this->first_name = $first_name;
+        return $this;
+    }
 
-	/**
-	 * First name of the invoice recipient. 30 characters max.
-	 *
-	 * @return string
-	 */
-	public function getFirstName() {
-		return $this->first_name;
-	}
+    /**
+     * The invoice recipient first name. Maximum length is 30 characters.
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->first_name;
+    }
 
-	/**
-	 * First name of the invoice recipient. 30 characters max.
-	 *
-	 * @param string $first_name
-	 * @deprecated. Instead use setFirstName
-	 */
-	public function setFirst_name($first_name) {
-		$this->first_name = $first_name;
-		return $this;
-	}
-	/**
-	 * First name of the invoice recipient. 30 characters max.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getFirstName
-	 */
-	public function getFirst_name() {
-		return $this->first_name;
-	}
+    /**
+     * The invoice recipient last name. Maximum length is 30 characters.
+     *
+     * @param string $last_name
+     * 
+     * @return $this
+     */
+    public function setLastName($last_name)
+    {
+        $this->last_name = $last_name;
+        return $this;
+    }
 
-	/**
-	 * Last name of the invoice recipient. 30 characters max.
-	 *
-	 * @param string $last_name
-	 */
-	public function setLastName($last_name) {
-		$this->last_name = $last_name;
-		return $this;
-	}
+    /**
+     * The invoice recipient last name. Maximum length is 30 characters.
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->last_name;
+    }
 
-	/**
-	 * Last name of the invoice recipient. 30 characters max.
-	 *
-	 * @return string
-	 */
-	public function getLastName() {
-		return $this->last_name;
-	}
+    /**
+     * The invoice recipient company business name. Maximum length is 100 characters.
+     *
+     * @param string $business_name
+     * 
+     * @return $this
+     */
+    public function setBusinessName($business_name)
+    {
+        $this->business_name = $business_name;
+        return $this;
+    }
 
-	/**
-	 * Last name of the invoice recipient. 30 characters max.
-	 *
-	 * @param string $last_name
-	 * @deprecated. Instead use setLastName
-	 */
-	public function setLast_name($last_name) {
-		$this->last_name = $last_name;
-		return $this;
-	}
-	/**
-	 * Last name of the invoice recipient. 30 characters max.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getLastName
-	 */
-	public function getLast_name() {
-		return $this->last_name;
-	}
+    /**
+     * The invoice recipient company business name. Maximum length is 100 characters.
+     *
+     * @return string
+     */
+    public function getBusinessName()
+    {
+        return $this->business_name;
+    }
 
-	/**
-	 * Company business name of the invoice recipient. 100 characters max.
-	 *
-	 * @param string $business_name
-	 */
-	public function setBusinessName($business_name) {
-		$this->business_name = $business_name;
-		return $this;
-	}
+    /**
+     *
+     *
+     * @param \PayPal\Api\Phone $phone
+     * @return $this
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+        return $this;
+    }
 
-	/**
-	 * Company business name of the invoice recipient. 100 characters max.
-	 *
-	 * @return string
-	 */
-	public function getBusinessName() {
-		return $this->business_name;
-	}
+    /**
+     *
+     *
+     * @return \PayPal\Api\Phone
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
 
-	/**
-	 * Company business name of the invoice recipient. 100 characters max.
-	 *
-	 * @param string $business_name
-	 * @deprecated. Instead use setBusinessName
-	 */
-	public function setBusiness_name($business_name) {
-		$this->business_name = $business_name;
-		return $this;
-	}
-	/**
-	 * Company business name of the invoice recipient. 100 characters max.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getBusinessName
-	 */
-	public function getBusiness_name() {
-		return $this->business_name;
-	}
+    /**
+     * @deprecated Not used anymore
+     *
+     * @param string $email
+     * @return $this
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
 
-	/**
-	 * 
-	 *
-	 * @param PayPal\Api\Phone $phone
-	 */
-	public function setPhone($phone) {
-		$this->phone = $phone;
-		return $this;
-	}
+    /**
+     * @deprecated Not used anymore
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
-	/**
-	 * 
-	 *
-	 * @return PayPal\Api\Phone
-	 */
-	public function getPhone() {
-		return $this->phone;
-	}
+    /**
+     * Address of the invoice recipient.
+     *
+     * @param \PayPal\Api\InvoiceAddress $address
+     * 
+     * @return $this
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+        return $this;
+    }
 
-
-	/**
-	 * Address of the invoice recipient.
-	 *
-	 * @param PayPal\Api\Address $address
-	 */
-	public function setAddress($address) {
-		$this->address = $address;
-		return $this;
-	}
-
-	/**
-	 * Address of the invoice recipient.
-	 *
-	 * @return PayPal\Api\Address
-	 */
-	public function getAddress() {
-		return $this->address;
-	}
-
+    /**
+     * The invoice recipient address.
+     *
+     * @return \PayPal\Api\InvoiceAddress
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
 
 }

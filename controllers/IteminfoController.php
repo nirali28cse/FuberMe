@@ -74,6 +74,8 @@ class IteminfoController extends Controller
 		$old_cusion_array=array();
 		$old_dieta_array=array();
 		$old_categ_array=array();
+		$old_delivery_array=array();
+		
 		if(isset($_SESSION['filetrsarray']['cusion_array']) and $_SESSION['filetrsarray']['cusion_array']!=null){
 			$old_cusion_array=$_SESSION['filetrsarray']['cusion_array'];
 		}
@@ -84,6 +86,10 @@ class IteminfoController extends Controller
 		
 		if(isset($_SESSION['filetrsarray']['categ_array']) and $_SESSION['filetrsarray']['categ_array']!=null){
 			$old_categ_array=$_SESSION['filetrsarray']['categ_array'];
+		}		
+		
+		if(isset($_SESSION['filetrsarray']['delivery_array']) and $_SESSION['filetrsarray']['delivery_array']!=null){
+			$old_delivery_array=$_SESSION['filetrsarray']['delivery_array'];
 		}
 		
 		unset($_SESSION['filetrsarray']);
@@ -91,6 +97,7 @@ class IteminfoController extends Controller
 		$new_cusion_array=array();		
 		$new_dieta_array=array();
 		$new_categ_array=array();
+		$new_delivery_array=array();	
 	
 		if(isset($_GET['cusion']) and $_GET['cusion']>0){			
 			$new_cusion_array[]=$_GET['cusion'];
@@ -101,14 +108,21 @@ class IteminfoController extends Controller
 		if(isset($_GET['categ']) and $_GET['categ']>0){
 			$new_categ_array[]=$_GET['categ'];
 		}	
+		if(isset($_GET['delivery']) and $_GET['delivery']!=null){
+			$new_delivery_array[0]='both';
+			$new_delivery_array[1]=$_GET['delivery'];			
+		}	
+
 
 		$cusion_array=array();		
 		$dieta_array=array();
 		$categ_array=array();
+		$delivery_array=array();
 		
 		$cusion_array=array_merge($old_cusion_array,$new_cusion_array);		
 		$dieta_array=array_merge($old_dieta_array,$new_dieta_array);		
 		$categ_array=array_merge($old_categ_array,$new_categ_array);		
+		$delivery_array=array_merge($old_delivery_array,$new_delivery_array);		
 
 		if(isset($_GET['dcusion']) and in_array($_GET['dcusion'],$cusion_array)){
 			if (($key = array_search($_GET['dcusion'], $cusion_array)) !== false) {
@@ -127,6 +141,15 @@ class IteminfoController extends Controller
 				unset($categ_array[$key]);
 			}
 		}	
+				
+		if(isset($_GET['ddelivery']) and in_array($_GET['ddelivery'],$delivery_array)){
+			if (($key = array_search($_GET['ddelivery'], $delivery_array)) !== false) {
+				unset($delivery_array[$key]);
+			}
+		}	
+		
+
+
 		
 		$min_price=0;
 		$max_price=0;		
@@ -142,6 +165,28 @@ class IteminfoController extends Controller
 		$max_location=0;	
 		$chef_array=array();	
 		$chef_distance_array=array();
+		
+		
+		//Chef array from delivery type
+		
+		// get the all chef  locations latitude and longitude from zip code
+		if($delivery_array!=null){
+			$allchef_info = Userdetail::find()
+			 ->where(['status'=>1])
+			 ->where(['or','user_type=2','user_type=3'])
+			 ->where(['in','delivery_method',$delivery_array])
+			 ->all();
+			 
+			 if(count($allchef_info)>0){
+				foreach($allchef_info as $allchef){
+					$chef_id=$allchef->id;
+					$chef_array[]=$chef_id;	
+				}
+			 }
+		}
+
+				 
+				 
 		
 		if(isset($_GET['min_location']) and $_GET['min_location']>0){
 			$min_location=$_GET['min_location'];
@@ -249,8 +294,7 @@ class IteminfoController extends Controller
 print_r($chef_array);
 print_r($chef_distance_array); */
 
-
-		if($cusion_array!=null or $dieta_array!=null or $categ_array!=null or $min_price>0 or $max_location>0 or $min_location>0 or $max_price>0){
+		if($cusion_array!=null or $dieta_array!=null or $delivery_array!=null or $categ_array!=null or $min_price>0 or $max_location>0 or $min_location>0 or $max_price>0){
 			$_SESSION['filetrsarray']=array(
 										'min_price'=>$min_price,
 										'max_price'=>$max_price,
@@ -260,13 +304,34 @@ print_r($chef_distance_array); */
 										'cusion_array'=>$cusion_array,
 										'dieta_array'=>$dieta_array,
 										'categ_array'=>$categ_array,
+										'delivery_array'=>$delivery_array,
 										'search_by_item'=>null,
 										);
 		}
+
+		$alloffline_liveitems = ItemInfo::find()
+		 ->where(['AND',
+				['<=', 'availability_from_date',Yii::$app->params['today_date']],
+				['<=', 'availability_to_date',Yii::$app->params['today_date']],
+				['status'=>1]
+				])
+		 ->all();
+
+		if(count($alloffline_liveitems)>0){
+			$update_itemid_array=array();
+			foreach($alloffline_liveitems as $alloffline_liveitem){
+				$update_itemid_array[]=$alloffline_liveitem->id;
+			}
+
+			if($update_itemid_array!=null){
+				$update_item=ItemInfo::updateAll( 
+					 array('status' =>0),['id' =>  $update_itemid_array]
+				);
+			}
+
+		}		
+
 		
-/* echo '<pre>';
-print_r($_SESSION['filetrsarray']);
-exit; */
 		
         $livesearchModel = new ItemInfoLiveSearch(); 
         $livedataProvider = $livesearchModel->search(Yii::$app->request->queryParams); 
@@ -386,7 +451,7 @@ exit; */
 			
 			$availability_from_date = strtotime($_POST['ItemInfo']['availability_from_date']);
 			$availability_to_date = strtotime($_POST['ItemInfo']['availability_to_date']);
-			$todays_date = strtotime(date('Y-m-d'));
+			$todays_date = strtotime(Yii::$app->params['today_date']);
 			
 			if ($availability_from_date <= $todays_date and $availability_to_date >= $todays_date) { 
 				$model->status=1;
@@ -496,7 +561,7 @@ exit; */
 
 			$availability_from_date = strtotime($_POST['ItemInfo']['availability_from_date']);
 			$availability_to_date = strtotime($_POST['ItemInfo']['availability_to_date']);
-			$todays_date = strtotime(date('Y-m-d'));
+			$todays_date = strtotime(Yii::$app->params['today_date']);
 			
 			if ($availability_from_date <= $todays_date and $availability_to_date >= $todays_date) { 
 				$model->status=1;
@@ -557,12 +622,12 @@ exit; */
 		// live
 		if($newstatus){
 		//	$newstatus=0;
-			$model->availability_from_date=date('Y-m-d');
+			$model->availability_from_date=Yii::$app->params['today_date'];
 			$model->availability_from_time=$newTime;
 			$newstatus=1;
 		}else{
 		//	$newstatus=1;
-			$model->availability_to_date=date('Y-m-d');
+			$model->availability_to_date=Yii::$app->params['today_date'];
 			$model->availability_to_time=$newTime;
 			$newstatus=0;
 		}	

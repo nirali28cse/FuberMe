@@ -1,673 +1,498 @@
 <?php
+
 namespace PayPal\Api;
 
-use PayPal\Common\PPModel;
-use PayPal\Rest\ApiContext;
+use PayPal\Common\PayPalModel;
 
-class Search extends PPModel {
-	/**
-	 * Initial letters of the email address.
-	 *
-	 * @param string $email
-	 */
-	public function setEmail($email) {
-		$this->email = $email;
-		return $this;
-	}
+/**
+ * Class Search
+ *
+ * Invoice search parameters.
+ *
+ * @package PayPal\Api
+ *
+ * @property string email
+ * @property string recipient_first_name
+ * @property string recipient_last_name
+ * @property string recipient_business_name
+ * @property string number
+ * @property string status
+ * @property \PayPal\Api\Currency lower_total_amount
+ * @property \PayPal\Api\Currency upper_total_amount
+ * @property string start_invoice_date
+ * @property string end_invoice_date
+ * @property string start_due_date
+ * @property string end_due_date
+ * @property string start_payment_date
+ * @property string end_payment_date
+ * @property string start_creation_date
+ * @property string end_creation_date
+ * @property \PayPal\Api\number page
+ * @property \PayPal\Api\number page_size
+ * @property bool total_count_required
+ * @property bool archived
+ */
+class Search extends PayPalModel
+{
+    /**
+     * The initial letters of the email address.
+     *
+     * @param string $email
+     * 
+     * @return $this
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
 
-	/**
-	 * Initial letters of the email address.
-	 *
-	 * @return string
-	 */
-	public function getEmail() {
-		return $this->email;
-	}
+    /**
+     * The initial letters of the email address.
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
+    /**
+     * The initial letters of the recipient's first name.
+     *
+     * @param string $recipient_first_name
+     * 
+     * @return $this
+     */
+    public function setRecipientFirstName($recipient_first_name)
+    {
+        $this->recipient_first_name = $recipient_first_name;
+        return $this;
+    }
 
-	/**
-	 * Initial letters of the recipient's first name.
-	 *
-	 * @param string $recipient_first_name
-	 */
-	public function setRecipientFirstName($recipient_first_name) {
-		$this->recipient_first_name = $recipient_first_name;
-		return $this;
-	}
+    /**
+     * The initial letters of the recipient's first name.
+     *
+     * @return string
+     */
+    public function getRecipientFirstName()
+    {
+        return $this->recipient_first_name;
+    }
 
-	/**
-	 * Initial letters of the recipient's first name.
-	 *
-	 * @return string
-	 */
-	public function getRecipientFirstName() {
-		return $this->recipient_first_name;
-	}
+    /**
+     * The initial letters of the recipient's last name.
+     *
+     * @param string $recipient_last_name
+     * 
+     * @return $this
+     */
+    public function setRecipientLastName($recipient_last_name)
+    {
+        $this->recipient_last_name = $recipient_last_name;
+        return $this;
+    }
 
-	/**
-	 * Initial letters of the recipient's first name.
-	 *
-	 * @param string $recipient_first_name
-	 * @deprecated. Instead use setRecipientFirstName
-	 */
-	public function setRecipient_first_name($recipient_first_name) {
-		$this->recipient_first_name = $recipient_first_name;
-		return $this;
-	}
-	/**
-	 * Initial letters of the recipient's first name.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getRecipientFirstName
-	 */
-	public function getRecipient_first_name() {
-		return $this->recipient_first_name;
-	}
+    /**
+     * The initial letters of the recipient's last name.
+     *
+     * @return string
+     */
+    public function getRecipientLastName()
+    {
+        return $this->recipient_last_name;
+    }
 
-	/**
-	 * Initial letters of the recipient's last name.
-	 *
-	 * @param string $recipient_last_name
-	 */
-	public function setRecipientLastName($recipient_last_name) {
-		$this->recipient_last_name = $recipient_last_name;
-		return $this;
-	}
+    /**
+     * The initial letters of the recipient's business name.
+     *
+     * @param string $recipient_business_name
+     * 
+     * @return $this
+     */
+    public function setRecipientBusinessName($recipient_business_name)
+    {
+        $this->recipient_business_name = $recipient_business_name;
+        return $this;
+    }
 
-	/**
-	 * Initial letters of the recipient's last name.
-	 *
-	 * @return string
-	 */
-	public function getRecipientLastName() {
-		return $this->recipient_last_name;
-	}
+    /**
+     * The initial letters of the recipient's business name.
+     *
+     * @return string
+     */
+    public function getRecipientBusinessName()
+    {
+        return $this->recipient_business_name;
+    }
 
-	/**
-	 * Initial letters of the recipient's last name.
-	 *
-	 * @param string $recipient_last_name
-	 * @deprecated. Instead use setRecipientLastName
-	 */
-	public function setRecipient_last_name($recipient_last_name) {
-		$this->recipient_last_name = $recipient_last_name;
-		return $this;
-	}
-	/**
-	 * Initial letters of the recipient's last name.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getRecipientLastName
-	 */
-	public function getRecipient_last_name() {
-		return $this->recipient_last_name;
-	}
+    /**
+     * The invoice number.
+     *
+     * @param string $number
+     * 
+     * @return $this
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+        return $this;
+    }
 
-	/**
-	 * Initial letters of the recipient's business name.
-	 *
-	 * @param string $recipient_business_name
-	 */
-	public function setRecipientBusinessName($recipient_business_name) {
-		$this->recipient_business_name = $recipient_business_name;
-		return $this;
-	}
+    /**
+     * The invoice number.
+     *
+     * @return string
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
 
-	/**
-	 * Initial letters of the recipient's business name.
-	 *
-	 * @return string
-	 */
-	public function getRecipientBusinessName() {
-		return $this->recipient_business_name;
-	}
+    /**
+     * The invoice status.
+     * Valid Values: ["DRAFT", "SENT", "PAID", "MARKED_AS_PAID", "CANCELLED", "REFUNDED", "PARTIALLY_REFUNDED", "MARKED_AS_REFUNDED"]
+     *
+     * @param string $status
+     * 
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
 
-	/**
-	 * Initial letters of the recipient's business name.
-	 *
-	 * @param string $recipient_business_name
-	 * @deprecated. Instead use setRecipientBusinessName
-	 */
-	public function setRecipient_business_name($recipient_business_name) {
-		$this->recipient_business_name = $recipient_business_name;
-		return $this;
-	}
-	/**
-	 * Initial letters of the recipient's business name.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getRecipientBusinessName
-	 */
-	public function getRecipient_business_name() {
-		return $this->recipient_business_name;
-	}
+    /**
+     * The invoice status.
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 
-	/**
-	 * The invoice number that appears on the invoice.
-	 *
-	 * @param string $number
-	 */
-	public function setNumber($number) {
-		$this->number = $number;
-		return $this;
-	}
+    /**
+     * The lower limit of the total amount.
+     *
+     * @param \PayPal\Api\Currency $lower_total_amount
+     * 
+     * @return $this
+     */
+    public function setLowerTotalAmount($lower_total_amount)
+    {
+        $this->lower_total_amount = $lower_total_amount;
+        return $this;
+    }
 
-	/**
-	 * The invoice number that appears on the invoice.
-	 *
-	 * @return string
-	 */
-	public function getNumber() {
-		return $this->number;
-	}
+    /**
+     * The lower limit of the total amount.
+     *
+     * @return \PayPal\Api\Currency
+     */
+    public function getLowerTotalAmount()
+    {
+        return $this->lower_total_amount;
+    }
 
+    /**
+     * The upper limit of total amount.
+     *
+     * @param \PayPal\Api\Currency $upper_total_amount
+     * 
+     * @return $this
+     */
+    public function setUpperTotalAmount($upper_total_amount)
+    {
+        $this->upper_total_amount = $upper_total_amount;
+        return $this;
+    }
 
-	/**
-	 * Status of the invoice.
-	 *
-	 * @param string $status
-	 */
-	public function setStatus($status) {
-		$this->status = $status;
-		return $this;
-	}
+    /**
+     * The upper limit of total amount.
+     *
+     * @return \PayPal\Api\Currency
+     */
+    public function getUpperTotalAmount()
+    {
+        return $this->upper_total_amount;
+    }
 
-	/**
-	 * Status of the invoice.
-	 *
-	 * @return string
-	 */
-	public function getStatus() {
-		return $this->status;
-	}
+    /**
+     * The start date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @param string $start_invoice_date
+     * 
+     * @return $this
+     */
+    public function setStartInvoiceDate($start_invoice_date)
+    {
+        $this->start_invoice_date = $start_invoice_date;
+        return $this;
+    }
 
+    /**
+     * The start date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @return string
+     */
+    public function getStartInvoiceDate()
+    {
+        return $this->start_invoice_date;
+    }
 
-	/**
-	 * Lower limit of total amount.
-	 *
-	 * @param PayPal\Api\Currency $lower_total_amount
-	 */
-	public function setLowerTotalAmount($lower_total_amount) {
-		$this->lower_total_amount = $lower_total_amount;
-		return $this;
-	}
+    /**
+     * The end date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @param string $end_invoice_date
+     * 
+     * @return $this
+     */
+    public function setEndInvoiceDate($end_invoice_date)
+    {
+        $this->end_invoice_date = $end_invoice_date;
+        return $this;
+    }
 
-	/**
-	 * Lower limit of total amount.
-	 *
-	 * @return PayPal\Api\Currency
-	 */
-	public function getLowerTotalAmount() {
-		return $this->lower_total_amount;
-	}
+    /**
+     * The end date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @return string
+     */
+    public function getEndInvoiceDate()
+    {
+        return $this->end_invoice_date;
+    }
 
-	/**
-	 * Lower limit of total amount.
-	 *
-	 * @param PayPal\Api\Currency $lower_total_amount
-	 * @deprecated. Instead use setLowerTotalAmount
-	 */
-	public function setLower_total_amount($lower_total_amount) {
-		$this->lower_total_amount = $lower_total_amount;
-		return $this;
-	}
-	/**
-	 * Lower limit of total amount.
-	 *
-	 * @return PayPal\Api\Currency
-	 * @deprecated. Instead use getLowerTotalAmount
-	 */
-	public function getLower_total_amount() {
-		return $this->lower_total_amount;
-	}
+    /**
+     * The start due date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @param string $start_due_date
+     * 
+     * @return $this
+     */
+    public function setStartDueDate($start_due_date)
+    {
+        $this->start_due_date = $start_due_date;
+        return $this;
+    }
 
-	/**
-	 * Upper limit of total amount.
-	 *
-	 * @param PayPal\Api\Currency $upper_total_amount
-	 */
-	public function setUpperTotalAmount($upper_total_amount) {
-		$this->upper_total_amount = $upper_total_amount;
-		return $this;
-	}
+    /**
+     * The start due date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @return string
+     */
+    public function getStartDueDate()
+    {
+        return $this->start_due_date;
+    }
 
-	/**
-	 * Upper limit of total amount.
-	 *
-	 * @return PayPal\Api\Currency
-	 */
-	public function getUpperTotalAmount() {
-		return $this->upper_total_amount;
-	}
+    /**
+     * The end due date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @param string $end_due_date
+     * 
+     * @return $this
+     */
+    public function setEndDueDate($end_due_date)
+    {
+        $this->end_due_date = $end_due_date;
+        return $this;
+    }
 
-	/**
-	 * Upper limit of total amount.
-	 *
-	 * @param PayPal\Api\Currency $upper_total_amount
-	 * @deprecated. Instead use setUpperTotalAmount
-	 */
-	public function setUpper_total_amount($upper_total_amount) {
-		$this->upper_total_amount = $upper_total_amount;
-		return $this;
-	}
-	/**
-	 * Upper limit of total amount.
-	 *
-	 * @return PayPal\Api\Currency
-	 * @deprecated. Instead use getUpperTotalAmount
-	 */
-	public function getUpper_total_amount() {
-		return $this->upper_total_amount;
-	}
+    /**
+     * The end due date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @return string
+     */
+    public function getEndDueDate()
+    {
+        return $this->end_due_date;
+    }
 
-	/**
-	 * Start invoice date.
-	 *
-	 * @param string $start_invoice_date
-	 */
-	public function setStartInvoiceDate($start_invoice_date) {
-		$this->start_invoice_date = $start_invoice_date;
-		return $this;
-	}
+    /**
+     * The start payment date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @param string $start_payment_date
+     * 
+     * @return $this
+     */
+    public function setStartPaymentDate($start_payment_date)
+    {
+        $this->start_payment_date = $start_payment_date;
+        return $this;
+    }
 
-	/**
-	 * Start invoice date.
-	 *
-	 * @return string
-	 */
-	public function getStartInvoiceDate() {
-		return $this->start_invoice_date;
-	}
+    /**
+     * The start payment date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @return string
+     */
+    public function getStartPaymentDate()
+    {
+        return $this->start_payment_date;
+    }
 
-	/**
-	 * Start invoice date.
-	 *
-	 * @param string $start_invoice_date
-	 * @deprecated. Instead use setStartInvoiceDate
-	 */
-	public function setStart_invoice_date($start_invoice_date) {
-		$this->start_invoice_date = $start_invoice_date;
-		return $this;
-	}
-	/**
-	 * Start invoice date.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getStartInvoiceDate
-	 */
-	public function getStart_invoice_date() {
-		return $this->start_invoice_date;
-	}
+    /**
+     * The end payment date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @param string $end_payment_date
+     * 
+     * @return $this
+     */
+    public function setEndPaymentDate($end_payment_date)
+    {
+        $this->end_payment_date = $end_payment_date;
+        return $this;
+    }
 
-	/**
-	 * End invoice date.
-	 *
-	 * @param string $end_invoice_date
-	 */
-	public function setEndInvoiceDate($end_invoice_date) {
-		$this->end_invoice_date = $end_invoice_date;
-		return $this;
-	}
+    /**
+     * The end payment date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @return string
+     */
+    public function getEndPaymentDate()
+    {
+        return $this->end_payment_date;
+    }
 
-	/**
-	 * End invoice date.
-	 *
-	 * @return string
-	 */
-	public function getEndInvoiceDate() {
-		return $this->end_invoice_date;
-	}
+    /**
+     * The start creation date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @param string $start_creation_date
+     * 
+     * @return $this
+     */
+    public function setStartCreationDate($start_creation_date)
+    {
+        $this->start_creation_date = $start_creation_date;
+        return $this;
+    }
 
-	/**
-	 * End invoice date.
-	 *
-	 * @param string $end_invoice_date
-	 * @deprecated. Instead use setEndInvoiceDate
-	 */
-	public function setEnd_invoice_date($end_invoice_date) {
-		$this->end_invoice_date = $end_invoice_date;
-		return $this;
-	}
-	/**
-	 * End invoice date.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getEndInvoiceDate
-	 */
-	public function getEnd_invoice_date() {
-		return $this->end_invoice_date;
-	}
+    /**
+     * The start creation date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @return string
+     */
+    public function getStartCreationDate()
+    {
+        return $this->start_creation_date;
+    }
 
-	/**
-	 * Start invoice due date.
-	 *
-	 * @param string $start_due_date
-	 */
-	public function setStartDueDate($start_due_date) {
-		$this->start_due_date = $start_due_date;
-		return $this;
-	}
+    /**
+     * The end creation date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @param string $end_creation_date
+     * 
+     * @return $this
+     */
+    public function setEndCreationDate($end_creation_date)
+    {
+        $this->end_creation_date = $end_creation_date;
+        return $this;
+    }
 
-	/**
-	 * Start invoice due date.
-	 *
-	 * @return string
-	 */
-	public function getStartDueDate() {
-		return $this->start_due_date;
-	}
+    /**
+     * The end creation date for the invoice. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @return string
+     */
+    public function getEndCreationDate()
+    {
+        return $this->end_creation_date;
+    }
 
-	/**
-	 * Start invoice due date.
-	 *
-	 * @param string $start_due_date
-	 * @deprecated. Instead use setStartDueDate
-	 */
-	public function setStart_due_date($start_due_date) {
-		$this->start_due_date = $start_due_date;
-		return $this;
-	}
-	/**
-	 * Start invoice due date.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getStartDueDate
-	 */
-	public function getStart_due_date() {
-		return $this->start_due_date;
-	}
+    /**
+     * The offset for the search results.
+     *
+     * @param \PayPal\Api\number $page
+     * 
+     * @return $this
+     */
+    public function setPage($page)
+    {
+        $this->page = $page;
+        return $this;
+    }
 
-	/**
-	 * End invoice due date.
-	 *
-	 * @param string $end_due_date
-	 */
-	public function setEndDueDate($end_due_date) {
-		$this->end_due_date = $end_due_date;
-		return $this;
-	}
+    /**
+     * The offset for the search results.
+     *
+     * @return \PayPal\Api\number
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
 
-	/**
-	 * End invoice due date.
-	 *
-	 * @return string
-	 */
-	public function getEndDueDate() {
-		return $this->end_due_date;
-	}
+    /**
+     * The page size for the search results.
+     *
+     * @param \PayPal\Api\number $page_size
+     * 
+     * @return $this
+     */
+    public function setPageSize($page_size)
+    {
+        $this->page_size = $page_size;
+        return $this;
+    }
 
-	/**
-	 * End invoice due date.
-	 *
-	 * @param string $end_due_date
-	 * @deprecated. Instead use setEndDueDate
-	 */
-	public function setEnd_due_date($end_due_date) {
-		$this->end_due_date = $end_due_date;
-		return $this;
-	}
-	/**
-	 * End invoice due date.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getEndDueDate
-	 */
-	public function getEnd_due_date() {
-		return $this->end_due_date;
-	}
+    /**
+     * The page size for the search results.
+     *
+     * @return \PayPal\Api\number
+     */
+    public function getPageSize()
+    {
+        return $this->page_size;
+    }
 
-	/**
-	 * Start invoice payment date.
-	 *
-	 * @param string $start_payment_date
-	 */
-	public function setStartPaymentDate($start_payment_date) {
-		$this->start_payment_date = $start_payment_date;
-		return $this;
-	}
+    /**
+     * Indicates whether the total count appears in the response. Default is `false`.
+     *
+     * @param bool $total_count_required
+     * 
+     * @return $this
+     */
+    public function setTotalCountRequired($total_count_required)
+    {
+        $this->total_count_required = $total_count_required;
+        return $this;
+    }
 
-	/**
-	 * Start invoice payment date.
-	 *
-	 * @return string
-	 */
-	public function getStartPaymentDate() {
-		return $this->start_payment_date;
-	}
+    /**
+     * Indicates whether the total count appears in the response. Default is `false`.
+     *
+     * @return bool
+     */
+    public function getTotalCountRequired()
+    {
+        return $this->total_count_required;
+    }
 
-	/**
-	 * Start invoice payment date.
-	 *
-	 * @param string $start_payment_date
-	 * @deprecated. Instead use setStartPaymentDate
-	 */
-	public function setStart_payment_date($start_payment_date) {
-		$this->start_payment_date = $start_payment_date;
-		return $this;
-	}
-	/**
-	 * Start invoice payment date.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getStartPaymentDate
-	 */
-	public function getStart_payment_date() {
-		return $this->start_payment_date;
-	}
+    /**
+     * A flag indicating whether search is on invoices archived by merchant. true - returns archived / false returns unarchived / null returns all.
+     *
+     * @param bool $archived
+     * 
+     * @return $this
+     */
+    public function setArchived($archived)
+    {
+        $this->archived = $archived;
+        return $this;
+    }
 
-	/**
-	 * End invoice payment date.
-	 *
-	 * @param string $end_payment_date
-	 */
-	public function setEndPaymentDate($end_payment_date) {
-		$this->end_payment_date = $end_payment_date;
-		return $this;
-	}
-
-	/**
-	 * End invoice payment date.
-	 *
-	 * @return string
-	 */
-	public function getEndPaymentDate() {
-		return $this->end_payment_date;
-	}
-
-	/**
-	 * End invoice payment date.
-	 *
-	 * @param string $end_payment_date
-	 * @deprecated. Instead use setEndPaymentDate
-	 */
-	public function setEnd_payment_date($end_payment_date) {
-		$this->end_payment_date = $end_payment_date;
-		return $this;
-	}
-	/**
-	 * End invoice payment date.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getEndPaymentDate
-	 */
-	public function getEnd_payment_date() {
-		return $this->end_payment_date;
-	}
-
-	/**
-	 * Start invoice creation date.
-	 *
-	 * @param string $start_creation_date
-	 */
-	public function setStartCreationDate($start_creation_date) {
-		$this->start_creation_date = $start_creation_date;
-		return $this;
-	}
-
-	/**
-	 * Start invoice creation date.
-	 *
-	 * @return string
-	 */
-	public function getStartCreationDate() {
-		return $this->start_creation_date;
-	}
-
-	/**
-	 * Start invoice creation date.
-	 *
-	 * @param string $start_creation_date
-	 * @deprecated. Instead use setStartCreationDate
-	 */
-	public function setStart_creation_date($start_creation_date) {
-		$this->start_creation_date = $start_creation_date;
-		return $this;
-	}
-	/**
-	 * Start invoice creation date.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getStartCreationDate
-	 */
-	public function getStart_creation_date() {
-		return $this->start_creation_date;
-	}
-
-	/**
-	 * End invoice creation date.
-	 *
-	 * @param string $end_creation_date
-	 */
-	public function setEndCreationDate($end_creation_date) {
-		$this->end_creation_date = $end_creation_date;
-		return $this;
-	}
-
-	/**
-	 * End invoice creation date.
-	 *
-	 * @return string
-	 */
-	public function getEndCreationDate() {
-		return $this->end_creation_date;
-	}
-
-	/**
-	 * End invoice creation date.
-	 *
-	 * @param string $end_creation_date
-	 * @deprecated. Instead use setEndCreationDate
-	 */
-	public function setEnd_creation_date($end_creation_date) {
-		$this->end_creation_date = $end_creation_date;
-		return $this;
-	}
-	/**
-	 * End invoice creation date.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getEndCreationDate
-	 */
-	public function getEnd_creation_date() {
-		return $this->end_creation_date;
-	}
-
-	/**
-	 * Offset of the search results.
-	 *
-	 * @param PayPal\Api\number $page
-	 */
-	public function setPage($page) {
-		$this->page = $page;
-		return $this;
-	}
-
-	/**
-	 * Offset of the search results.
-	 *
-	 * @return PayPal\Api\number
-	 */
-	public function getPage() {
-		return $this->page;
-	}
-
-
-	/**
-	 * Page size of the search results.
-	 *
-	 * @param PayPal\Api\number $page_size
-	 */
-	public function setPageSize($page_size) {
-		$this->page_size = $page_size;
-		return $this;
-	}
-
-	/**
-	 * Page size of the search results.
-	 *
-	 * @return PayPal\Api\number
-	 */
-	public function getPageSize() {
-		return $this->page_size;
-	}
-
-	/**
-	 * Page size of the search results.
-	 *
-	 * @param PayPal\Api\number $page_size
-	 * @deprecated. Instead use setPageSize
-	 */
-	public function setPage_size($page_size) {
-		$this->page_size = $page_size;
-		return $this;
-	}
-	/**
-	 * Page size of the search results.
-	 *
-	 * @return PayPal\Api\number
-	 * @deprecated. Instead use getPageSize
-	 */
-	public function getPage_size() {
-		return $this->page_size;
-	}
-
-	/**
-	 * A flag indicating whether total count is required in the response.
-	 *
-	 * @param boolean $total_count_required
-	 */
-	public function setTotalCountRequired($total_count_required) {
-		$this->total_count_required = $total_count_required;
-		return $this;
-	}
-
-	/**
-	 * A flag indicating whether total count is required in the response.
-	 *
-	 * @return boolean
-	 */
-	public function getTotalCountRequired() {
-		return $this->total_count_required;
-	}
-
-	/**
-	 * A flag indicating whether total count is required in the response.
-	 *
-	 * @param boolean $total_count_required
-	 * @deprecated. Instead use setTotalCountRequired
-	 */
-	public function setTotal_count_required($total_count_required) {
-		$this->total_count_required = $total_count_required;
-		return $this;
-	}
-	/**
-	 * A flag indicating whether total count is required in the response.
-	 *
-	 * @return boolean
-	 * @deprecated. Instead use getTotalCountRequired
-	 */
-	public function getTotal_count_required() {
-		return $this->total_count_required;
-	}
+    /**
+     * A flag indicating whether search is on invoices archived by merchant. true - returns archived / false returns unarchived / null returns all.
+     *
+     * @return bool
+     */
+    public function getArchived()
+    {
+        return $this->archived;
+    }
 
 }

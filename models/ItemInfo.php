@@ -57,7 +57,7 @@ class ItemInfo extends \yii\db\ActiveRecord
 			['price', 'compare', 'compareValue' => 100, 'operator' => '<=', 'type' => 'number','message'=>'Enter a valid Price up to $100'],
 			// [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg,jpeg,gif,png', 'maxSize' => 1024 * 1024 * 1024],
 			['image', 'image', 'maxWidth' => 250,'minHeight' => 250, 'maxHeight' => 250, 'extensions' => 'jpg, gif, png', 'maxSize' => 1024 * 1024 * 2],
-            [['head_up_time', 'availability_from_date', 'availability_to_date', 'availability_from_time', 'availability_to_time'], 'string', 'max' => 100],
+            [['head_up_time', 'availability_from_time', 'availability_to_time'], 'string', 'max' => 100],
             [['chef_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['chef_user_id' => 'id']],
 			[['availability_to_date', 'availability_from_date'], 'date', 'format' => 'php:Y-m-d'],
 			['availability_to_date', 'compare', 'compareAttribute' => 'availability_from_date','message'=>'Enter a valid end date that is after the start date.', 'operator' => '>='],

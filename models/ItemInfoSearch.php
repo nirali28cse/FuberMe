@@ -109,13 +109,13 @@ class ItemInfoSearch extends ItemInfo
 	//	$query->andFilterWhere(['=','status',$this->status]);
 	
  		if(isset($_GET['liveitem']) and $_GET['liveitem']==1){			
-			$query->andFilterWhere(['<=', 'availability_from_date', date('Y-m-d')])
-				  ->andFilterWhere(['>=', 'availability_to_date', date('Y-m-d')]);
+			$query->andFilterWhere(['<=', 'availability_from_date', Yii::$app->params['today_date']])
+				  ->andFilterWhere(['>=', 'availability_to_date', Yii::$app->params['today_date']]);
 		}
 		
 		if(isset($_GET['offlineitem']) and $_GET['offlineitem']==1){		
-			$query->andFilterWhere(['>=', 'availability_from_date', date('Y-m-d')])
-				  ->orFilterWhere(['<=', 'availability_to_date', date('Y-m-d')]);
+			$query->andFilterWhere(['>=', 'availability_from_date',Yii::$app->params['today_date']])
+				  ->orFilterWhere(['<=', 'availability_to_date',Yii::$app->params['today_date']]);
 		} 
 
 /*   echo '<pre>';

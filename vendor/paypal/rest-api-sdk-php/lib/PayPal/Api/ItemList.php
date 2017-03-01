@@ -2,52 +2,39 @@
 
 namespace PayPal\Api;
 
-use PayPal\Common\PPModel;
-use PayPal\Rest\ApiContext;
+use PayPal\Common\PayPalModel;
 
 /**
  * Class ItemList
  *
- * @property array|\PayPal\Api\Item      items
+ * List of items being paid for.
+ *
+ * @package PayPal\Api
+ *
+ * @property \PayPal\Api\Item[] items
  * @property \PayPal\Api\ShippingAddress shipping_address
+ * @property string shipping_method
+ * @property string shipping_phone_number
  */
-class ItemList extends PPModel
+class ItemList extends PayPalModel
 {
-
     /**
-     * Construct an empty list.
-     */
-    function __construct() {
-        $this->items = array();
-    }
-
-    /** 
-     * Is this list empty?
-     */
-    public function isEmpty() {
-        return empty($this->items);
-    }
-
-    /**
-     * Set Items
-     * List of Items
+     * List of items.
      *
-     * @param array|\PayPal\Api\Item $items
-     *
+     * @param \PayPal\Api\Item[] $items
+     * 
      * @return $this
      */
     public function setItems($items)
     {
         $this->items = $items;
-
         return $this;
     }
 
     /**
-     * Get Items
-     * List of items
+     * List of items.
      *
-     * @return \PayPal\Api\Item
+     * @return \PayPal\Api\Item[]
      */
     public function getItems()
     {
@@ -55,10 +42,40 @@ class ItemList extends PPModel
     }
 
     /**
-     * Set Shipping Address
+     * Append Items to the list.
+     *
+     * @param \PayPal\Api\Item $item
+     * @return $this
+     */
+    public function addItem($item)
+    {
+        if (!$this->getItems()) {
+            return $this->setItems(array($item));
+        } else {
+            return $this->setItems(
+                array_merge($this->getItems(), array($item))
+            );
+        }
+    }
+
+    /**
+     * Remove Items from the list.
+     *
+     * @param \PayPal\Api\Item $item
+     * @return $this
+     */
+    public function removeItem($item)
+    {
+        return $this->setItems(
+            array_diff($this->getItems(), array($item))
+        );
+    }
+
+    /**
+     * Shipping address.
      *
      * @param \PayPal\Api\ShippingAddress $shipping_address
-     *
+     * 
      * @return $this
      */
     public function setShippingAddress($shipping_address)
@@ -67,29 +84,8 @@ class ItemList extends PPModel
         return $this;
     }
 
-	/**
-	 * Append an item to the list.
-	 * @return PayPal\Api\Item
-	 */
-	public function addItem($item) {
-		return $this->setItems(
-			array_merge($this->items, array($item))
-		);
-	}
-
-	/**
-	 * Remove an item from the list.
-	 * Items are compared using === comparision (PHP.net)
-	 * @return PayPal\Api\Item
-	 */
-	public function removeItem($item) {
-		return $this->setItems(
-			array_diff($this->items, array($item))
-		);
-	}
-
     /**
-     * Get Shipping Address
+     * Shipping address.
      *
      * @return \PayPal\Api\ShippingAddress
      */
@@ -99,30 +95,49 @@ class ItemList extends PPModel
     }
 
     /**
-     * Set Shipping Address
+     * Shipping method used for this payment like USPSParcel etc.
      *
-     * @param \PayPal\Api\ShippingAddress $shipping_address
-     *
-     * @deprecated Use setShippingAddress
-     *
+     * @param string $shipping_method
+     * 
      * @return $this
      */
-    public function setShipping_address($shipping_address)
+    public function setShippingMethod($shipping_method)
     {
-        $this->shipping_address = $shipping_address;
-
+        $this->shipping_method = $shipping_method;
         return $this;
     }
 
     /**
-     * Get Shipping Address
+     * Shipping method used for this payment like USPSParcel etc.
      *
-     * @deprecated Use getShippingAddress
-     *
-     * @return \PayPal\Api\ShippingAddress
+     * @return string
      */
-    public function getShipping_address()
+    public function getShippingMethod()
     {
-        return $this->shipping_address;
+        return $this->shipping_method;
     }
+
+    /**
+     * Allows merchant's to share payer’s contact number with PayPal for the current payment. Final contact number of payer associated with the transaction might be same as shipping_phone_number or different based on Payer’s action on PayPal. The phone number must be represented in its canonical international format, as defined by the E.164 numbering plan
+     *
+     * @param string $shipping_phone_number
+     * 
+     * @return $this
+     */
+    public function setShippingPhoneNumber($shipping_phone_number)
+    {
+        $this->shipping_phone_number = $shipping_phone_number;
+        return $this;
+    }
+
+    /**
+     * Allows merchant's to share payer’s contact number with PayPal for the current payment. Final contact number of payer associated with the transaction might be same as shipping_phone_number or different based on Payer’s action on PayPal. The phone number must be represented in its canonical international format, as defined by the E.164 numbering plan
+     *
+     * @return string
+     */
+    public function getShippingPhoneNumber()
+    {
+        return $this->shipping_phone_number;
+    }
+
 }

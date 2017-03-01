@@ -2,39 +2,41 @@
 
 namespace PayPal\Api;
 
-use PayPal\Common\PPModel;
-use PayPal\Rest\ApiContext;
+use PayPal\Common\PayPalModel;
 
 /**
  * Class HyperSchema
  *
- * @property \PayPal\Api\Links links
- * @property string            fragmentResolution
- * @property bool              readonly
- * @property string            contentEncoding
- * @property string            pathStart
- * @property string            mediaType
+ * 
+ *
+ * @package PayPal\Api
+ *
+ * @property \PayPal\Api\Links[] links
+ * @property string fragmentResolution
+ * @property bool readonly
+ * @property string contentEncoding
+ * @property string pathStart
+ * @property string mediaType
  */
-class HyperSchema extends PPModel
+class HyperSchema extends PayPalModel
 {
     /**
-     * Set Links
+     * Sets Links
      *
-     * @param \PayPal\Api\Links $links
-     *
+     * @param \PayPal\Api\Links[] $links
+     * 
      * @return $this
      */
     public function setLinks($links)
     {
         $this->links = $links;
-
         return $this;
     }
 
     /**
-     * Get Links
+     * Gets Links
      *
-     * @return \PayPal\Api\Links
+     * @return \PayPal\Api\Links[]
      */
     public function getLinks()
     {
@@ -42,21 +44,50 @@ class HyperSchema extends PPModel
     }
 
     /**
-     * Set Fragment Resolution
+     * Append Links to the list.
+     *
+     * @param \PayPal\Api\Links $links
+     * @return $this
+     */
+    public function addLink($links)
+    {
+        if (!$this->getLinks()) {
+            return $this->setLinks(array($links));
+        } else {
+            return $this->setLinks(
+                array_merge($this->getLinks(), array($links))
+            );
+        }
+    }
+
+    /**
+     * Remove Links from the list.
+     *
+     * @param \PayPal\Api\Links $links
+     * @return $this
+     */
+    public function removeLink($links)
+    {
+        return $this->setLinks(
+            array_diff($this->getLinks(), array($links))
+        );
+    }
+
+    /**
+     * Sets FragmentResolution
      *
      * @param string $fragmentResolution
-     *
+     * 
      * @return $this
      */
     public function setFragmentResolution($fragmentResolution)
     {
         $this->fragmentResolution = $fragmentResolution;
-
         return $this;
     }
 
     /**
-     * Get Fragment Resolution
+     * Gets FragmentResolution
      *
      * @return string
      */
@@ -66,21 +97,20 @@ class HyperSchema extends PPModel
     }
 
     /**
-     * Set Read Only
+     * Sets Readonly
      *
      * @param bool $readonly
-     *
+     * 
      * @return $this
      */
     public function setReadonly($readonly)
     {
         $this->readonly = $readonly;
-
         return $this;
     }
 
     /**
-     * Get Read Only
+     * Gets Readonly
      *
      * @return bool
      */
@@ -90,21 +120,20 @@ class HyperSchema extends PPModel
     }
 
     /**
-     * Set Content Encoding
+     * Sets ContentEncoding
      *
      * @param string $contentEncoding
-     *
+     * 
      * @return $this
      */
     public function setContentEncoding($contentEncoding)
     {
         $this->contentEncoding = $contentEncoding;
-
         return $this;
     }
 
     /**
-     * Get Content Encoding
+     * Gets ContentEncoding
      *
      * @return string
      */
@@ -114,21 +143,20 @@ class HyperSchema extends PPModel
     }
 
     /**
-     * Set Path Start
+     * Sets PathStart
      *
      * @param string $pathStart
-     *
+     * 
      * @return $this
      */
     public function setPathStart($pathStart)
     {
         $this->pathStart = $pathStart;
-
         return $this;
     }
 
     /**
-     * Get Path Start
+     * Gets PathStart
      *
      * @return string
      */
@@ -138,21 +166,20 @@ class HyperSchema extends PPModel
     }
 
     /**
-     * Set Media Type
+     * Sets MediaType
      *
      * @param string $mediaType
-     *
+     * 
      * @return $this
      */
     public function setMediaType($mediaType)
     {
         $this->mediaType = $mediaType;
-
         return $this;
     }
 
     /**
-     * Get Media Type
+     * Gets MediaType
      *
      * @return string
      */
@@ -160,4 +187,5 @@ class HyperSchema extends PPModel
     {
         return $this->mediaType;
     }
+
 }

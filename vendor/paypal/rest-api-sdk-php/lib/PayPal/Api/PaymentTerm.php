@@ -1,86 +1,66 @@
 <?php
+
 namespace PayPal\Api;
 
-use PayPal\Common\PPModel;
-use PayPal\Rest\ApiContext;
+use PayPal\Common\PayPalModel;
 
-class PaymentTerm extends PPModel {
-	/**
-	 * Terms by which the invoice payment is due.
-	 *
-	 * @param string $term_type
-	 */
-	public function setTermType($term_type) {
-		$this->term_type = $term_type;
-		return $this;
-	}
+/**
+ * Class PaymentTerm
+ *
+ * The payment term of the invoice. If you specify `term_type`, you cannot specify `due_date` and vice versa.
+ *
+ * @package PayPal\Api
+ *
+ * @property string term_type
+ * @property string due_date
+ */
+class PaymentTerm extends PayPalModel
+{
+    /**
+     * The terms by which the invoice payment is due.
+     * Valid Values: ["DUE_ON_RECEIPT", "DUE_ON_DATE_SPECIFIED", "NET_10", "NET_15", "NET_30", "NET_45", "NET_60", "NET_90", "NO_DUE_DATE"]
+     *
+     * @param string $term_type
+     * 
+     * @return $this
+     */
+    public function setTermType($term_type)
+    {
+        $this->term_type = $term_type;
+        return $this;
+    }
 
-	/**
-	 * Terms by which the invoice payment is due.
-	 *
-	 * @return string
-	 */
-	public function getTermType() {
-		return $this->term_type;
-	}
+    /**
+     * The terms by which the invoice payment is due.
+     *
+     * @return string
+     */
+    public function getTermType()
+    {
+        return $this->term_type;
+    }
 
-	/**
-	 * Terms by which the invoice payment is due.
-	 *
-	 * @param string $term_type
-	 * @deprecated. Instead use setTermType
-	 */
-	public function setTerm_type($term_type) {
-		$this->term_type = $term_type;
-		return $this;
-	}
-	/**
-	 * Terms by which the invoice payment is due.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getTermType
-	 */
-	public function getTerm_type() {
-		return $this->term_type;
-	}
+    /**
+     * The date when the invoice payment is due. This date must be a future date. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @param string $due_date
+     * 
+     * @return $this
+     */
+    public function setDueDate($due_date)
+    {
+        $this->due_date = $due_date;
+        return $this;
+    }
 
-	/**
-	 * Date on which invoice payment is due. It must be always a future date. Date format: yyyy-MM-dd z. For example, 2014-02-27 PST
-	 *
-	 * @param string $due_date
-	 */
-	public function setDueDate($due_date) {
-		$this->due_date = $due_date;
-		return $this;
-	}
-
-	/**
-	 * Date on which invoice payment is due. It must be always a future date. Date format: yyyy-MM-dd z. For example, 2014-02-27 PST
-	 *
-	 * @return string
-	 */
-	public function getDueDate() {
-		return $this->due_date;
-	}
-
-	/**
-	 * Date on which invoice payment is due. It must be always a future date. Date format: yyyy-MM-dd z. For example, 2014-02-27 PST
-	 *
-	 * @param string $due_date
-	 * @deprecated. Instead use setDueDate
-	 */
-	public function setDue_date($due_date) {
-		$this->due_date = $due_date;
-		return $this;
-	}
-	/**
-	 * Date on which invoice payment is due. It must be always a future date. Date format: yyyy-MM-dd z. For example, 2014-02-27 PST
-	 *
-	 * @return string
-	 * @deprecated. Instead use getDueDate
-	 */
-	public function getDue_date() {
-		return $this->due_date;
-	}
+    /**
+     * The date when the invoice payment is due. This date must be a future date. Date format is *yyyy*-*MM*-*dd* *z*, as defined in [Internet Date/Time Format](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @return string
+     */
+    public function getDueDate()
+    {
+        return $this->due_date;
+    }
 
 }

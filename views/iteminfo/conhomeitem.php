@@ -3,42 +3,17 @@
 use yii\helpers\Html;
 use yii\widgets\ListView;
 
+$livecount = $livedataProvider->getCount();
+$offlinecount = $offlinedataProvider->getCount();
 ?>
 
 <?php
-/* 
- $pjax = \yii\widgets\Pjax::begin();
-
-echo \yii\widgets\ListView::widget([
-    'dataProvider' => $livedataProvider,
-    'options' => [
-        'class' => '.list-view',
-    ],
-	'itemView' => function ($model) {
-		 return $this->render('_viewcon',['model' => $model]);
-	},
-    'summary' => false,
-    'layout' => '{sorter}{summary}{items}<div class="pagination-wrap">{pager}</div>',
-    'pager' => [
-        'class' => \darkcs\infinitescroll\InfiniteScrollPager::className(),
-        'paginationSelector' => '.pagination-wrap',
-        'pjaxContainer' => $pjax->id,
-    ],
-	'sorter' => [
-		'options' => [
-			'class' => 'sorterclass',
-		],
-	],
-	'emptyText' => '<center></center>',
-]);
-\yii\widgets\Pjax::end();  */
-
-
 
  					 	 echo  ListView::widget([
-								'layout' => "{sorter}\n{summary}\n{items}\n{pager}",								
+						//		'layout' => "{sorter}\n{summary}\n{items}\n{pager}",								
+								'layout' => "{summary}\n{items}\n{pager}",								
 								'dataProvider' => $livedataProvider,
-								'summary'=>'', 		
+								'summary'=>'', 			
 							    'sorter' => [
 									'options' => [
 										'class' => 'sorterclass',
@@ -46,50 +21,90 @@ echo \yii\widgets\ListView::widget([
 								],
 								'emptyText' => '<center></center>',
 								'itemOptions' => ['class' => 'item'],
-							//	'itemView' =>'view'	,
-										
 								'itemView' => function ($model) {
-								  // echo $id = $model->id;
-									
 									 return $this->render('_viewcon',['model' => $model]);
 									// return $this->render('_view');
-								}
-								
+								},
+ 	/* 							 'pager' => [
+									'class' => \kop\y2sp\ScrollPager::className(),
+									'triggerText' => 'Load More Items',
+								 ]  */				 
+
 						]);  
+
+						if($livecount>0 and $offlinecount>0){
 ?>
+					<div class="clearfix">&nbsp;</div>
+					<div style="border: 1px solid #38b662;"></div>
+					<div class="clearfix">&nbsp;</div>
+					
+						<?php
+						}
 
-
-					<br/><div class="clearfix">&nbsp;</div>
-
-						<?php					
-						 echo  ListView::widget([
-							//	'layout' => "{sorter}\n{summary}\n{items}\n{pager}",
-								'summary'=>'', 							
+ 					 	 echo  ListView::widget([
+								'layout' => "{summary}\n{items}\n{pager}",								
 								'dataProvider' => $offlinedataProvider,
+								'summary'=>'', 			
+							    'sorter' => [
+									'options' => [
+										'class' => 'sorterclass',
+									],
+								],
 								'emptyText' => '<center></center>',
-								'itemOptions' => ['class' => 'item'],	
+								'itemOptions' => ['class' => 'item'],
 								'itemView' => function ($model) {
-								  // echo $id = $model->id;
-									
 									 return $this->render('_viewcon',['model' => $model]);
 									// return $this->render('_view');
-								}
-								
-						]);  
-						
-						 $livecount = $livedataProvider->getCount();
-						 $offlinecount = $offlinedataProvider->getCount();
+								},
+ 	/* 							 'pager' => [
+									'class' => \kop\y2sp\ScrollPager::className(),
+									'triggerText' => 'Load More Items',
+								 ]  */				 
 
-						if($livecount==0 and $offlinecount==0){
+						]);  
+
+
+						if($livecount<Yii::$app->params['pagination_item_count'] or $offlinecount<Yii::$app->params['pagination_item_count']){
 						?>
+						 
+						 <script type="text/javascript">
+							noresult = true;
+						</script>	
 						
-					 <div class="registration">
-									<br/><br/><br/><br/>
-									<center><h2>
-									No Dishes Found.	
-									</h2></center>
+						<?php
+						}else{
+
+						?>
+								
+						<!-- this will hold all the data -->
+						<div id="results"></div>
+						<!-- loading image -->
+						<div id="loader_image">
+						<img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/loader.gif'); ?>" style="display: none;margin: auto;"/>
+						</div>
+
+				<?php
+						}
 						
-						 <div class="clearfix"></div>
-					 </div>
-						
+						if (!Yii::$app->request->isAjax){
+ 						if($livecount==0 and $offlinecount==0){
+						?>						
+							
+						 <div class="registration">
+										<br/><br/><br/><br/>
+										<center><h2>
+										No Dishes Found.	
+										</h2></center>
+							
+							 <div class="clearfix"></div>
+						 </div> 
+						 <script type="text/javascript">
+						  noresult = true;
+						</script>
+
 						<?php } ?>
+						<?php } ?>
+						
+
+
+				

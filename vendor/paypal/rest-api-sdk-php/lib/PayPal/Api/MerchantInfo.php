@@ -1,303 +1,281 @@
 <?php
+
 namespace PayPal\Api;
 
-use PayPal\Common\PPModel;
-use PayPal\Rest\ApiContext;
+use PayPal\Common\PayPalModel;
 
-class MerchantInfo extends PPModel {
-	/**
-	 * Email address of the merchant. 260 characters max.
-	 *
-	 * @param string $email
-	 */
-	public function setEmail($email) {
-		$this->email = $email;
-		return $this;
-	}
+/**
+ * Class MerchantInfo
+ *
+ * Merchant business information that appears on the invoice.
+ *
+ * @package PayPal\Api
+ *
+ * @property string email
+ * @property string first_name
+ * @property string last_name
+ * @property \PayPal\Api\InvoiceAddress address
+ * @property string business_name
+ * @property \PayPal\Api\Phone phone
+ * @property \PayPal\Api\Phone fax
+ * @property string website
+ * @property string tax_id
+ * @property string additional_info_label
+ * @property string additional_info
+ */
+class MerchantInfo extends PayPalModel
+{
+    /**
+     * The merchant email address. Maximum length is 260 characters.
+     *
+     * @param string $email
+     * 
+     * @return $this
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
 
-	/**
-	 * Email address of the merchant. 260 characters max.
-	 *
-	 * @return string
-	 */
-	public function getEmail() {
-		return $this->email;
-	}
+    /**
+     * The merchant email address. Maximum length is 260 characters.
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
+    /**
+     * The merchant first name. Maximum length is 30 characters.
+     *
+     * @param string $first_name
+     * 
+     * @return $this
+     */
+    public function setFirstName($first_name)
+    {
+        $this->first_name = $first_name;
+        return $this;
+    }
 
-	/**
-	 * First name of the merchant. 30 characters max.
-	 *
-	 * @param string $first_name
-	 */
-	public function setFirstName($first_name) {
-		$this->first_name = $first_name;
-		return $this;
-	}
+    /**
+     * The merchant first name. Maximum length is 30 characters.
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->first_name;
+    }
 
-	/**
-	 * First name of the merchant. 30 characters max.
-	 *
-	 * @return string
-	 */
-	public function getFirstName() {
-		return $this->first_name;
-	}
+    /**
+     * The merchant last name. Maximum length is 30 characters.
+     *
+     * @param string $last_name
+     * 
+     * @return $this
+     */
+    public function setLastName($last_name)
+    {
+        $this->last_name = $last_name;
+        return $this;
+    }
 
-	/**
-	 * First name of the merchant. 30 characters max.
-	 *
-	 * @param string $first_name
-	 * @deprecated. Instead use setFirstName
-	 */
-	public function setFirst_name($first_name) {
-		$this->first_name = $first_name;
-		return $this;
-	}
-	/**
-	 * First name of the merchant. 30 characters max.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getFirstName
-	 */
-	public function getFirst_name() {
-		return $this->first_name;
-	}
+    /**
+     * The merchant last name. Maximum length is 30 characters.
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->last_name;
+    }
 
-	/**
-	 * Last name of the merchant. 30 characters max.
-	 *
-	 * @param string $last_name
-	 */
-	public function setLastName($last_name) {
-		$this->last_name = $last_name;
-		return $this;
-	}
+    /**
+     * The merchant address.
+     *
+     * @param \PayPal\Api\InvoiceAddress $address
+     * 
+     * @return $this
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+        return $this;
+    }
 
-	/**
-	 * Last name of the merchant. 30 characters max.
-	 *
-	 * @return string
-	 */
-	public function getLastName() {
-		return $this->last_name;
-	}
+    /**
+     * The merchant address.
+     *
+     * @return \PayPal\Api\InvoiceAddress
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
 
-	/**
-	 * Last name of the merchant. 30 characters max.
-	 *
-	 * @param string $last_name
-	 * @deprecated. Instead use setLastName
-	 */
-	public function setLast_name($last_name) {
-		$this->last_name = $last_name;
-		return $this;
-	}
-	/**
-	 * Last name of the merchant. 30 characters max.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getLastName
-	 */
-	public function getLast_name() {
-		return $this->last_name;
-	}
+    /**
+     * The merchant company business name. Maximum length is 100 characters.
+     *
+     * @param string $business_name
+     * 
+     * @return $this
+     */
+    public function setBusinessName($business_name)
+    {
+        $this->business_name = $business_name;
+        return $this;
+    }
 
-	/**
-	 * Address of the merchant.
-	 *
-	 * @param PayPal\Api\Address $address
-	 */
-	public function setAddress($address) {
-		$this->address = $address;
-		return $this;
-	}
+    /**
+     * The merchant company business name. Maximum length is 100 characters.
+     *
+     * @return string
+     */
+    public function getBusinessName()
+    {
+        return $this->business_name;
+    }
 
-	/**
-	 * Address of the merchant.
-	 *
-	 * @return PayPal\Api\Address
-	 */
-	public function getAddress() {
-		return $this->address;
-	}
+    /**
+     * The merchant phone number.
+     *
+     * @param \PayPal\Api\Phone $phone
+     * 
+     * @return $this
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+        return $this;
+    }
 
+    /**
+     * The merchant phone number.
+     *
+     * @return \PayPal\Api\Phone
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
 
-	/**
-	 * Company business name of the merchant. 100 characters max.
-	 *
-	 * @param string $business_name
-	 */
-	public function setBusinessName($business_name) {
-		$this->business_name = $business_name;
-		return $this;
-	}
+    /**
+     * The merchant fax number.
+     *
+     * @param \PayPal\Api\Phone $fax
+     * 
+     * @return $this
+     */
+    public function setFax($fax)
+    {
+        $this->fax = $fax;
+        return $this;
+    }
 
-	/**
-	 * Company business name of the merchant. 100 characters max.
-	 *
-	 * @return string
-	 */
-	public function getBusinessName() {
-		return $this->business_name;
-	}
+    /**
+     * The merchant fax number.
+     *
+     * @return \PayPal\Api\Phone
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
 
-	/**
-	 * Company business name of the merchant. 100 characters max.
-	 *
-	 * @param string $business_name
-	 * @deprecated. Instead use setBusinessName
-	 */
-	public function setBusiness_name($business_name) {
-		$this->business_name = $business_name;
-		return $this;
-	}
-	/**
-	 * Company business name of the merchant. 100 characters max.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getBusinessName
-	 */
-	public function getBusiness_name() {
-		return $this->business_name;
-	}
+    /**
+     * The merchant website. Maximum length is 2048 characters.
+     *
+     * @param string $website
+     * 
+     * @return $this
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+        return $this;
+    }
 
-	/**
-	 * Phone number of the merchant.
-	 *
-	 * @param PayPal\Api\Phone $phone
-	 */
-	public function setPhone($phone) {
-		$this->phone = $phone;
-		return $this;
-	}
+    /**
+     * The merchant website. Maximum length is 2048 characters.
+     *
+     * @return string
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
 
-	/**
-	 * Phone number of the merchant.
-	 *
-	 * @return PayPal\Api\Phone
-	 */
-	public function getPhone() {
-		return $this->phone;
-	}
+    /**
+     * The merchant tax ID. Maximum length is 100 characters.
+     *
+     * @param string $tax_id
+     * 
+     * @return $this
+     */
+    public function setTaxId($tax_id)
+    {
+        $this->tax_id = $tax_id;
+        return $this;
+    }
 
+    /**
+     * The merchant tax ID. Maximum length is 100 characters.
+     *
+     * @return string
+     */
+    public function getTaxId()
+    {
+        return $this->tax_id;
+    }
 
-	/**
-	 * Fax number of the merchant.
-	 *
-	 * @param PayPal\Api\Phone $fax
-	 */
-	public function setFax($fax) {
-		$this->fax = $fax;
-		return $this;
-	}
+    /**
+     * Option to provide a label to the additional_info field. 40 characters max.
+     *
+     * @param string $additional_info_label
+     * 
+     * @return $this
+     */
+    public function setAdditionalInfoLabel($additional_info_label)
+    {
+        $this->additional_info_label = $additional_info_label;
+        return $this;
+    }
 
-	/**
-	 * Fax number of the merchant.
-	 *
-	 * @return PayPal\Api\Phone
-	 */
-	public function getFax() {
-		return $this->fax;
-	}
+    /**
+     * Option to provide a label to the additional_info field. 40 characters max.
+     *
+     * @return string
+     */
+    public function getAdditionalInfoLabel()
+    {
+        return $this->additional_info_label;
+    }
 
+    /**
+     * Additional information, such as business hours. Maximum length is 40 characters.
+     *
+     * @param string $additional_info
+     * 
+     * @return $this
+     */
+    public function setAdditionalInfo($additional_info)
+    {
+        $this->additional_info = $additional_info;
+        return $this;
+    }
 
-	/**
-	 * Website of the merchant. 2048 characters max.
-	 *
-	 * @param string $website
-	 */
-	public function setWebsite($website) {
-		$this->website = $website;
-		return $this;
-	}
-
-	/**
-	 * Website of the merchant. 2048 characters max.
-	 *
-	 * @return string
-	 */
-	public function getWebsite() {
-		return $this->website;
-	}
-
-
-	/**
-	 * Tax ID of the merchant. 100 characters max.
-	 *
-	 * @param string $tax_id
-	 */
-	public function setTaxId($tax_id) {
-		$this->tax_id = $tax_id;
-		return $this;
-	}
-
-	/**
-	 * Tax ID of the merchant. 100 characters max.
-	 *
-	 * @return string
-	 */
-	public function getTaxId() {
-		return $this->tax_id;
-	}
-
-	/**
-	 * Tax ID of the merchant. 100 characters max.
-	 *
-	 * @param string $tax_id
-	 * @deprecated. Instead use setTaxId
-	 */
-	public function setTax_id($tax_id) {
-		$this->tax_id = $tax_id;
-		return $this;
-	}
-	/**
-	 * Tax ID of the merchant. 100 characters max.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getTaxId
-	 */
-	public function getTax_id() {
-		return $this->tax_id;
-	}
-
-	/**
-	 * Option to display additional information such as business hours. 40 characters max.
-	 *
-	 * @param string $additional_info
-	 */
-	public function setAdditionalInfo($additional_info) {
-		$this->additional_info = $additional_info;
-		return $this;
-	}
-
-	/**
-	 * Option to display additional information such as business hours. 40 characters max.
-	 *
-	 * @return string
-	 */
-	public function getAdditionalInfo() {
-		return $this->additional_info;
-	}
-
-	/**
-	 * Option to display additional information such as business hours. 40 characters max.
-	 *
-	 * @param string $additional_info
-	 * @deprecated. Instead use setAdditionalInfo
-	 */
-	public function setAdditional_info($additional_info) {
-		$this->additional_info = $additional_info;
-		return $this;
-	}
-	/**
-	 * Option to display additional information such as business hours. 40 characters max.
-	 *
-	 * @return string
-	 * @deprecated. Instead use getAdditionalInfo
-	 */
-	public function getAdditional_info() {
-		return $this->additional_info;
-	}
+    /**
+     * Additional information, such as business hours. Maximum length is 40 characters.
+     *
+     * @return string
+     */
+    public function getAdditionalInfo()
+    {
+        return $this->additional_info;
+    }
 
 }

@@ -2,59 +2,47 @@
 
 namespace PayPal\Api;
 
-use PayPal\Common\PPModel;
+use PayPal\Common\PayPalResourceModel;
+use PayPal\Transport\PayPalRestCall;
+use PayPal\Validation\ArgumentValidator;
 use PayPal\Rest\ApiContext;
-use PayPal\Rest\IResource;
-use PayPal\Api\Refund;
-use PayPal\Transport\PPRestCall;
 
 /**
  * Class Capture
  *
- * @property string             id
- * @property string             create_time
- * @property string             update_time
+ * A capture transaction.
+ *
+ * @package PayPal\Api
+ *
+ * @property string id
  * @property \PayPal\Api\Amount amount
- * @property bool               is_final_capture
- * @property string             state
- * @property string             parent_payment
- * @property \PayPal\Api\Links  links
+ * @property bool is_final_capture
+ * @property string state
+ * @property string reason_code
+ * @property string parent_payment
+ * @property string invoice_number
+ * @property \PayPal\Api\Currency transaction_fee
+ * @property string create_time
+ * @property string update_time
+ * @property \PayPal\Api\Links[] links
  */
-class Capture extends PPModel implements IResource
+class Capture extends PayPalResourceModel
 {
     /**
-     * @var
-     */
-    private static $credential;
-
-    /**
-     * @param $credential
-     *
-     * @deprecated Pass ApiContext to create/get methods instead
-     */
-    public static function setCredential($credential)
-    {
-        self::$credential = $credential;
-    }
-
-    /**
-     * Set ID
-     * Identifier of the Capture transaction
+     * The ID of the capture transaction.
      *
      * @param string $id
-     *
+     * 
      * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
-
         return $this;
     }
 
     /**
-     * Get ID
-     * Identifier of the Capture transaction
+     * The ID of the capture transaction.
      *
      * @return string
      */
@@ -64,141 +52,20 @@ class Capture extends PPModel implements IResource
     }
 
     /**
-     * Set Create Time
-     * Time the resource was created
-     *
-     * @param string $create_time
-     *
-     * @return $this
-     */
-    public function setCreateTime($create_time)
-    {
-        $this->create_time = $create_time;
-
-        return $this;
-    }
-
-    /**
-     * Get Create Time
-     * Time the resource was created
-     *
-     * @return string
-     */
-    public function getCreateTime()
-    {
-        return $this->create_time;
-    }
-
-    /**
-     * Set Create Time
-     * Time the resource was created
-     *
-     * @param string $create_time
-     *
-     * @deprecated Use setCreateTime
-     *
-     * @return $this
-     */
-    public function setCreate_time($create_time)
-    {
-        $this->create_time = $create_time;
-
-        return $this;
-    }
-
-    /**
-     * Get Create Time
-     * Time the resource was created
-     *
-     * @deprecated Use getCreateTime
-     *
-     * @return string
-     */
-    public function getCreate_time()
-    {
-        return $this->create_time;
-    }
-
-    /**
-     * Set Update Time
-     * Time the resource was last updated
-     *
-     * @param string $update_time
-     *
-     * @return $this
-     */
-    public function setUpdateTime($update_time)
-    {
-        $this->update_time = $update_time;
-
-        return $this;
-    }
-
-    /**
-     * Get Update Time
-     * Time the resource was last updated
-     *
-     * @return string
-     */
-    public function getUpdateTime()
-    {
-        return $this->update_time;
-    }
-
-    /**
-     * Set Update Time
-     * Time the resource was last updated
-     *
-     * @param string $update_time
-     *
-     * @deprecated Use setUpdateTime
-     *
-     * @return $this
-     */
-    public function setUpdate_time($update_time)
-    {
-        $this->update_time = $update_time;
-
-        return $this;
-    }
-
-    /**
-     * Get Update Time
-     * Time the resource was last updated
-     *
-     * @deprecated Use getUpdateTime
-     *
-     * @return string
-     */
-    public function getUpdate_time()
-    {
-        return $this->update_time;
-    }
-
-    /**
-     * Set Amount
-     * Amount being captured
-     * If no amount is specified, amount is used from the authorization being captured
-     * If amount is same as the amount that's authorized for, the state of the authorization changes to captured
-     * If not, the state of the authorization changes to partially_captured. Alternatively, you could indicate a final capture by seting the is_final_capture flag to true
+     * The amount to capture. If the amount matches the orginally authorized amount, the state of the authorization changes to `captured`. If not, the state of the authorization changes to `partially_captured`.
      *
      * @param \PayPal\Api\Amount $amount
-     *
+     * 
      * @return $this
      */
     public function setAmount($amount)
     {
         $this->amount = $amount;
-
         return $this;
     }
 
     /**
-     * Get Amount
-     * Amount being captured
-     * If no amount is specified, amount is used from the authorization being captured
-     * If amount is same as the amount that's authorized for, the state of the authorization changes to captured
-     * If not, the state of the authorization changes to partially_captured. Alternatively, you could indicate a final capture by seting the is_final_capture flag to true
+     * The amount to capture. If the amount matches the orginally authorized amount, the state of the authorization changes to `captured`. If not, the state of the authorization changes to `partially_captured`.
      *
      * @return \PayPal\Api\Amount
      */
@@ -208,27 +75,22 @@ class Capture extends PPModel implements IResource
     }
 
     /**
-     * Set Is Final Capture
-     * Whether this is a final capture for the given authorization or not
-     * If it's final, all the remaining funds held by the authorization, will be released in the funding instrument
+     * Indicates whether to release all remaining funds that the authorization holds in the funding instrument. Default is `false`.
      *
-     * @param boolean $is_final_capture
-     *
+     * @param bool $is_final_capture
+     * 
      * @return $this
      */
     public function setIsFinalCapture($is_final_capture)
     {
         $this->is_final_capture = $is_final_capture;
-
         return $this;
     }
 
     /**
-     * Get Is Final Capture
-     * Whether this is a final capture for the given authorization or not
-     * If it's final, all the remaining funds held by the authorization, will be released in the funding instrument
+     * Indicates whether to release all remaining funds that the authorization holds in the funding instrument. Default is `false`.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsFinalCapture()
     {
@@ -236,55 +98,21 @@ class Capture extends PPModel implements IResource
     }
 
     /**
-     * Set Is Final Capture
-     * Whether this is a final capture for the given authorization or not
-     * If it's final, all the remaining funds held by the authorization, will be released in the funding instrument
-     *
-     * @param boolean $is_final_capture
-     *
-     * @deprecated Use setIsFinalCapture
-     *
-     * @return $this
-     */
-    public function setIs_final_capture($is_final_capture)
-    {
-        $this->is_final_capture = $is_final_capture;
-
-        return $this;
-    }
-
-    /**
-     * Get Is Final Capture
-     * Whether this is a final capture for the given authorization or not
-     * If it's final, all the remaining funds held by the authorization, will be released in the funding instrument
-     *
-     * @deprecated Use getIsFinalCapture
-     *
-     * @return boolean
-     */
-    public function getIs_final_capture()
-    {
-        return $this->is_final_capture;
-    }
-
-    /**
-     * Set State
-     * State of the capture transaction
+     * The state of the capture.
+     * Valid Values: ["pending", "completed", "refunded", "partially_refunded"]
      *
      * @param string $state
-     *
+     * 
      * @return $this
      */
     public function setState($state)
     {
         $this->state = $state;
-
         return $this;
     }
 
     /**
-     * Get State
-     * State of the capture transaction
+     * The state of the capture.
      *
      * @return string
      */
@@ -294,23 +122,44 @@ class Capture extends PPModel implements IResource
     }
 
     /**
-     * Set Parent Payment
-     * ID of the Payment resource that this transaction is based on
+     * The reason code that describes why the transaction state is pending or reversed.
+     * Valid Values: ["CHARGEBACK", "GUARANTEE", "BUYER_COMPLAINT", "REFUND", "UNCONFIRMED_SHIPPING_ADDRESS", "ECHECK", "INTERNATIONAL_WITHDRAWAL", "RECEIVING_PREFERENCE_MANDATES_MANUAL_ACTION", "PAYMENT_REVIEW", "REGULATORY_REVIEW", "UNILATERAL", "VERIFICATION_REQUIRED", "TRANSACTION_APPROVED_AWAITING_FUNDING"]
+     *
+     * @param string $reason_code
+     * 
+     * @return $this
+     */
+    public function setReasonCode($reason_code)
+    {
+        $this->reason_code = $reason_code;
+        return $this;
+    }
+
+    /**
+     * The reason code that describes why the transaction state is pending or reversed.
+     *
+     * @return string
+     */
+    public function getReasonCode()
+    {
+        return $this->reason_code;
+    }
+
+    /**
+     * The ID of the payment on which this transaction is based.
      *
      * @param string $parent_payment
-     *
+     * 
      * @return $this
      */
     public function setParentPayment($parent_payment)
     {
         $this->parent_payment = $parent_payment;
-
         return $this;
     }
 
     /**
-     * Get Parent Payment
-     * ID of the Payment resource that this transaction is based on
+     * The ID of the payment on which this transaction is based.
      *
      * @return string
      */
@@ -320,120 +169,173 @@ class Capture extends PPModel implements IResource
     }
 
     /**
-     * Set Parent Payment
-     * ID of the Payment resource that this transaction is based on
+     * The invoice number to track this payment.
      *
-     * @param string $parent_payment
-     *
-     * @deprecated Use setParentPayment
-     *
+     * @param string $invoice_number
+     * 
      * @return $this
      */
-    public function setParent_payment($parent_payment)
+    public function setInvoiceNumber($invoice_number)
     {
-        $this->parent_payment = $parent_payment;
-
+        $this->invoice_number = $invoice_number;
         return $this;
     }
 
     /**
-     * Get Parent Payment
-     * ID of the Payment resource that this transaction is based on
-     *
-     * @deprecated Use getParentPayment
+     * The invoice number to track this payment.
      *
      * @return string
      */
-    public function getParent_payment()
+    public function getInvoiceNumber()
     {
-        return $this->parent_payment;
+        return $this->invoice_number;
     }
 
     /**
-     * Set Links
+     * The transaction fee for this payment.
      *
-     * @param \PayPal\Api\Links $links
-     *
+     * @param \PayPal\Api\Currency $transaction_fee
+     * 
      * @return $this
      */
-    public function setLinks($links)
+    public function setTransactionFee($transaction_fee)
     {
-        $this->links = $links;
-
+        $this->transaction_fee = $transaction_fee;
         return $this;
     }
 
     /**
-     * Get Links
+     * The transaction fee for this payment.
      *
-     * @return \PayPal\Api\Links
+     * @return \PayPal\Api\Currency
      */
-    public function getLinks()
+    public function getTransactionFee()
     {
-        return $this->links;
+        return $this->transaction_fee;
     }
 
     /**
-     * Get
+     * The date and time of capture, as defined in [RFC 3339 Section 5.6](http://tools.ietf.org/html/rfc3339#section-5.6).
      *
-     * @param int                          $captureId
-     * @param \PayPal\Rest\ApiContext|null $apiContext
-     *
-     * @return Capture
-     * @throws \InvalidArgumentException
+     * @param string $create_time
+     * 
+     * @return $this
      */
-    public static function get($captureId, $apiContext = null)
+    public function setCreateTime($create_time)
     {
-        if (($captureId == null) || (strlen($captureId) <= 0)) {
-            throw new \InvalidArgumentException("captureId cannot be null or empty");
-        }
+        $this->create_time = $create_time;
+        return $this;
+    }
 
+    /**
+     * The date and time of capture, as defined in [RFC 3339 Section 5.6](http://tools.ietf.org/html/rfc3339#section-5.6).
+     *
+     * @return string
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    /**
+     * The date and time when the resource was last updated.
+     *
+     * @param string $update_time
+     * 
+     * @return $this
+     */
+    public function setUpdateTime($update_time)
+    {
+        $this->update_time = $update_time;
+        return $this;
+    }
+
+    /**
+     * The date and time when the resource was last updated.
+     *
+     * @return string
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    /**
+     * Shows details for a captured payment, by ID.
+     *
+     * @param string $captureId
+     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @return Capture
+     */
+    public static function get($captureId, $apiContext = null, $restCall = null)
+    {
+        ArgumentValidator::validate($captureId, 'captureId');
         $payLoad = "";
-
-        if ($apiContext == null) {
-            $apiContext = new ApiContext(self::$credential);
-        }
-
-        $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/capture/$captureId", "GET", $payLoad);
-
+        $json = self::executeCall(
+            "/v1/payments/capture/$captureId",
+            "GET",
+            $payLoad,
+            null,
+            $apiContext,
+            $restCall
+        );
         $ret = new Capture();
         $ret->fromJson($json);
-
         return $ret;
     }
 
     /**
-     * Refund
+     * Refund a captured payment by passing the capture_id in the request URI. In addition, include an amount object in the body of the request JSON.
      *
-     * @param \Paypal\Api\Refund           $refund
-     * @param \PayPal\Rest\ApiContext|null $apiContext
-     *
+     * @deprecated Please use #refundCapturedPayment instead.
+     * @param Refund         $refund
+     * @param ApiContext     $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall $restCall   is the Rest Call Service that is used to make rest calls
      * @return Refund
-     * @throws \InvalidArgumentException
      */
-    public function refund($refund, $apiContext = null)
+    public function refund($refund, $apiContext = null, $restCall = null)
     {
-        if ($this->getId() == null) {
-            throw new \InvalidArgumentException("Id cannot be null");
-        }
-
-        if (($refund == null)) {
-            throw new \InvalidArgumentException("refund cannot be null or empty");
-        }
-
+        ArgumentValidator::validate($this->getId(), "Id");
+        ArgumentValidator::validate($refund, 'refund');
         $payLoad = $refund->toJSON();
-
-        if ($apiContext == null) {
-            $apiContext = new ApiContext(self::$credential);
-        }
-
-        $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/capture/{$this->getId()}/refund", "POST", $payLoad);
-
+        $json = self::executeCall(
+            "/v1/payments/capture/{$this->getId()}/refund",
+            "POST",
+            $payLoad,
+            null,
+            $apiContext,
+            $restCall
+        );
         $ret = new Refund();
         $ret->fromJson($json);
-
         return $ret;
     }
+
+    /**
+     * Refunds a captured payment, by ID. Include an `amount` object in the JSON request body.
+     *
+     * @param RefundRequest $refundRequest
+     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @return DetailedRefund
+     */
+    public function refundCapturedPayment($refundRequest, $apiContext = null, $restCall = null)
+    {
+        ArgumentValidator::validate($this->getId(), "Id");
+        ArgumentValidator::validate($refundRequest, 'refundRequest');
+        $payLoad = $refundRequest->toJSON();
+        $json = self::executeCall(
+            "/v1/payments/capture/{$this->getId()}/refund",
+            "POST",
+            $payLoad,
+            null,
+            $apiContext,
+            $restCall
+        );
+        $ret = new DetailedRefund();
+        $ret->fromJson($json);
+        return $ret;
+    }
+
 }

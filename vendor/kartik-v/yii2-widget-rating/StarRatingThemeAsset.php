@@ -23,13 +23,15 @@ class StarRatingThemeAsset extends AssetBundle
      * @inheritdoc
      */
     public $sourcePath = '@vendor/kartik-v/bootstrap-star-rating';
-
+ 
     /**
      * @inheritdoc
      */
-    public $depends = [
-        'kartik\rating\StarRatingAsset'
-    ];
+    public function init()
+    {
+        $this->depends = array_merge($this->depends, ['kartik\rating\StarRatingAsset']);
+        parent::init();
+    }
     
     /**
      * Add star rating theme file
@@ -38,6 +40,7 @@ class StarRatingThemeAsset extends AssetBundle
      */
     public function addTheme($theme) 
     {
-        $this->css[] = "css/theme-{$theme}." . (YII_DEBUG ? "css" : "min.css");
+        $this->js[] = "themes/{$theme}/theme." . (YII_DEBUG ? "js" : "min.js");
+        $this->css[] = "themes/{$theme}/theme." . (YII_DEBUG ? "css" : "min.css");
     }
 }

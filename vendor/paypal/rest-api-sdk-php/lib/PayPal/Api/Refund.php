@@ -2,60 +2,48 @@
 
 namespace PayPal\Api;
 
-use PayPal\Common\PPModel;
+use PayPal\Common\PayPalResourceModel;
+use PayPal\Validation\ArgumentValidator;
 use PayPal\Rest\ApiContext;
-use PayPal\Rest\IResource;
-use PayPal\Transport\PPRestCall;
 
 /**
  * Class Refund
  *
- * @property string             id
- * @property string             create_time
+ * A refund transaction.
+ *
+ * @package PayPal\Api
+ *
+ * @property string id
  * @property \PayPal\Api\Amount amount
- * @property string             state
- * @property string             sale_id
- * @property string             capture_id
- * @property string             parent_payment
- * @property \PayPal\Api\Links  links
+ * @property string state
+ * @property string reason
+ * @property string invoice_number
+ * @property string sale_id
+ * @property string capture_id
+ * @property string parent_payment
+ * @property string description
+ * @property string create_time
+ * @property string update_time
+ * @property string reason_code
+ * @property \PayPal\Api\Links[] links
  */
-class Refund extends PPModel implements IResource
+class Refund extends PayPalResourceModel
 {
     /**
-     * @var
-     */
-    private static $credential;
-
-    /**
-     * Set Credential
-     *
-     * @param $credential
-     *
-     * @deprecated Pass ApiContext to create/get methods instead
-     */
-    public static function setCredential($credential)
-    {
-        self::$credential = $credential;
-    }
-
-    /**
-     * Set ID
-     * Identifier of the refund transaction
+     * ID of the refund transaction. 17 characters max.
      *
      * @param string $id
-     *
+     * 
      * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
-
         return $this;
     }
 
     /**
-     * Get ID
-     * Identifier of the refund transaction
+     * ID of the refund transaction. 17 characters max.
      *
      * @return string
      */
@@ -65,81 +53,20 @@ class Refund extends PPModel implements IResource
     }
 
     /**
-     * Set Create Time
-     * Time the resource was created
-     *
-     * @param string $create_time
-     *
-     * @return $this
-     */
-    public function setCreateTime($create_time)
-    {
-        $this->create_time = $create_time;
-
-        return $this;
-    }
-
-    /**
-     * Get Create Time
-     * Time the resource was created
-     *
-     * @return string
-     */
-    public function getCreateTime()
-    {
-        return $this->create_time;
-    }
-
-    /**
-     * Set Create Time
-     * Time the resource was created
-     *
-     * @param string $create_time
-     *
-     * @deprecated Use setCreateTime
-     *
-     * @return $this
-     */
-    public function setCreate_time($create_time)
-    {
-        $this->create_time = $create_time;
-
-        return $this;
-    }
-
-    /**
-     * Get Create Time
-     * Time the resource was created
-     *
-     * @deprecated Use getCreateTime
-     *
-     * @return string
-     */
-    public function getCreate_time()
-    {
-        return $this->create_time;
-    }
-
-    /**
-     * Set Amount
-     * Details including both refunded amount (to Payer) and refunded fee (to Payee)
-     * If amount is not specified, it's assumed to be full refund
+     * Details including both refunded amount (to payer) and refunded fee (to payee). 10 characters max.
      *
      * @param \PayPal\Api\Amount $amount
-     *
+     * 
      * @return $this
      */
     public function setAmount($amount)
     {
         $this->amount = $amount;
-
         return $this;
     }
 
     /**
-     * Get Amount
-     * Details including both refunded amount (to Payer) and refunded fee (to Payee)
-     * If amount is not specified, it's assumed to be full refund
+     * Details including both refunded amount (to payer) and refunded fee (to payee). 10 characters max.
      *
      * @return \PayPal\Api\Amount
      */
@@ -149,23 +76,21 @@ class Refund extends PPModel implements IResource
     }
 
     /**
-     * Set State
-     * State of the refund transaction
+     * State of the refund.
+     * Valid Values: ["pending", "completed", "failed"]
      *
      * @param string $state
-     *
+     * 
      * @return $this
      */
     public function setState($state)
     {
         $this->state = $state;
-
         return $this;
     }
 
     /**
-     * Get State
-     * State of the refund transaction
+     * State of the refund.
      *
      * @return string
      */
@@ -175,23 +100,66 @@ class Refund extends PPModel implements IResource
     }
 
     /**
-     * Set Sale ID
-     * ID of the Sale transaction being refunded
+     * Reason description for the Sale transaction being refunded.
+     *
+     * @param string $reason
+     * 
+     * @return $this
+     */
+    public function setReason($reason)
+    {
+        $this->reason = $reason;
+        return $this;
+    }
+
+    /**
+     * Reason description for the Sale transaction being refunded.
+     *
+     * @return string
+     */
+    public function getReason()
+    {
+        return $this->reason;
+    }
+
+    /**
+     * Your own invoice or tracking ID number. Character length and limitations: 127 single-byte alphanumeric characters.
+     *
+     * @param string $invoice_number
+     * 
+     * @return $this
+     */
+    public function setInvoiceNumber($invoice_number)
+    {
+        $this->invoice_number = $invoice_number;
+        return $this;
+    }
+
+    /**
+     * Your own invoice or tracking ID number. Character length and limitations: 127 single-byte alphanumeric characters.
+     *
+     * @return string
+     */
+    public function getInvoiceNumber()
+    {
+        return $this->invoice_number;
+    }
+
+    /**
+     * ID of the Sale transaction being refunded. 
      *
      * @param string $sale_id
-     *
+     * 
      * @return $this
      */
     public function setSaleId($sale_id)
     {
         $this->sale_id = $sale_id;
-
         return $this;
     }
 
     /**
-     * Get Sale ID
-     * ID of the Sale transaction being refunded
+     * ID of the Sale transaction being refunded. 
      *
      * @return string
      */
@@ -201,53 +169,20 @@ class Refund extends PPModel implements IResource
     }
 
     /**
-     * Set Sale ID
-     * ID of the Sale transaction being refunded
-     *
-     * @param string $sale_id
-     *
-     * @deprecated Use setSaleId
-     *
-     * @return $this
-     */
-    public function setSale_id($sale_id)
-    {
-        $this->sale_id = $sale_id;
-
-        return $this;
-    }
-
-    /**
-     * Get Sale ID
-     * ID of the Sale transaction being refunded
-     *
-     * @deprecated Use getSaleId
-     *
-     * @return string
-     */
-    public function getSale_id()
-    {
-        return $this->sale_id;
-    }
-
-    /**
-     * Set Capture ID
-     * ID of the Capture transaction being refunded
+     * ID of the sale transaction being refunded.
      *
      * @param string $capture_id
-     *
+     * 
      * @return $this
      */
     public function setCaptureId($capture_id)
     {
         $this->capture_id = $capture_id;
-
         return $this;
     }
 
     /**
-     * Get Capture ID
-     * ID of the Capture transaction being refunded
+     * ID of the sale transaction being refunded.
      *
      * @return string
      */
@@ -257,53 +192,20 @@ class Refund extends PPModel implements IResource
     }
 
     /**
-     * Set Capture ID
-     * ID of the Capture transaction being refunded
-     *
-     * @param string $capture_id
-     *
-     * @deprecated Use setCaptureId
-     *
-     * @return $this
-     */
-    public function setCapture_id($capture_id)
-    {
-        $this->capture_id = $capture_id;
-
-        return $this;
-    }
-
-    /**
-     * Get Capture ID
-     * ID of the Capture transaction being refunded
-     *
-     * @deprecated Use getCaptureId
-     *
-     * @return string
-     */
-    public function getCapture_id()
-    {
-        return $this->capture_id;
-    }
-
-    /**
-     * Set Parent Payment
-     * ID of the Payment resource that this transaction is based on
+     * ID of the payment resource on which this transaction is based.
      *
      * @param string $parent_payment
-     *
+     * 
      * @return $this
      */
     public function setParentPayment($parent_payment)
     {
         $this->parent_payment = $parent_payment;
-
         return $this;
     }
 
     /**
-     * Get Parent Payment
-     * ID of the Payment resource that this transaction is based on
+     * ID of the payment resource on which this transaction is based.
      *
      * @return string
      */
@@ -313,86 +215,121 @@ class Refund extends PPModel implements IResource
     }
 
     /**
-     * Set Parent Payment
-     * ID of the Payment resource that this transaction is based on
+     * Description of what is being refunded for.
      *
-     * @param string $parent_payment
-     *
-     * @deprecated Use setParentPayment
-     *
+     * @param string $description
+     * 
      * @return $this
      */
-    public function setParent_payment($parent_payment)
+    public function setDescription($description)
     {
-        $this->parent_payment = $parent_payment;
-
+        $this->description = $description;
         return $this;
     }
 
     /**
-     * Get Parent Payment
-     * ID of the Payment resource that this transaction is based on
-     *
-     * @deprecated Use getParentPayment
+     * Description of what is being refunded for.
      *
      * @return string
      */
-    public function getParent_payment()
+    public function getDescription()
     {
-        return $this->parent_payment;
+        return $this->description;
     }
 
     /**
-     * Set Links
+     * Time of refund as defined in [RFC 3339 Section 5.6](http://tools.ietf.org/html/rfc3339#section-5.6).
      *
-     * @param \PayPal\Api\Links $links
-     *
+     * @param string $create_time
+     * 
      * @return $this
      */
-    public function setLinks($links)
+    public function setCreateTime($create_time)
     {
-        $this->links = $links;
-
+        $this->create_time = $create_time;
         return $this;
     }
 
     /**
-     * Get Links
+     * Time of refund as defined in [RFC 3339 Section 5.6](http://tools.ietf.org/html/rfc3339#section-5.6).
      *
-     * @return \PayPal\Api\Links
+     * @return string
      */
-    public function getLinks()
+    public function getCreateTime()
     {
-        return $this->links;
+        return $this->create_time;
     }
 
     /**
-     * Get
+     * Time that the resource was last updated.
      *
-     * @param      $refundId
-     * @param null $apiContext
-     *
-     * @return Refund
-     * @throws \InvalidArgumentException
+     * @param string $update_time
+     * 
+     * @return $this
      */
-    public static function get($refundId, $apiContext = null)
+    public function setUpdateTime($update_time)
     {
-        if (($refundId == null) || (strlen($refundId) <= 0)) {
-            throw new \InvalidArgumentException("refundId cannot be null or empty");
-        }
+        $this->update_time = $update_time;
+        return $this;
+    }
 
+    /**
+     * Time that the resource was last updated.
+     *
+     * @return string
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    /**
+     * The reason code for the refund state being pending
+     * Valid Values: ["ECHECK"]
+     *
+     * @param string $reason_code
+     * 
+     * @return $this
+     */
+    public function setReasonCode($reason_code)
+    {
+        $this->reason_code = $reason_code;
+        return $this;
+    }
+
+    /**
+     * The reason code for the refund state being pending
+     *
+     * @return string
+     */
+    public function getReasonCode()
+    {
+        return $this->reason_code;
+    }
+
+    /**
+     * Shows details for a refund, by ID.
+     *
+     * @param string $refundId
+     * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
+     * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
+     * @return Refund
+     */
+    public static function get($refundId, $apiContext = null, $restCall = null)
+    {
+        ArgumentValidator::validate($refundId, 'refundId');
         $payLoad = "";
-
-        if ($apiContext == null) {
-            $apiContext = new ApiContext(self::$credential);
-        }
-
-        $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/refund/$refundId", "GET", $payLoad);
-
+        $json = self::executeCall(
+            "/v1/payments/refund/$refundId",
+            "GET",
+            $payLoad,
+            null,
+            $apiContext,
+            $restCall
+        );
         $ret = new Refund();
         $ret->fromJson($json);
-
         return $ret;
     }
+
 }

@@ -34,9 +34,14 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
         array (
             'sjaakp\\illustrated\\' => 19,
         ),
+        'n' => 
+        array (
+            'nirvana\\infinitescroll\\' => 23,
+        ),
         'm' => 
         array (
             'mongosoft\\file\\' => 15,
+            'marciocamello\\' => 14,
         ),
         'k' => 
         array (
@@ -82,12 +87,9 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
         array (
             'budyaga\\cropper\\' => 16,
         ),
-        'a' => 
-        array (
-            'ak\\' => 3,
-        ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
         ),
         'J' => 
@@ -155,9 +157,17 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
         array (
             0 => __DIR__ . '/..' . '/sjaakp/yii2-illustrated-behavior',
         ),
+        'nirvana\\infinitescroll\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nirvana-msu/yii2-infinite-scroll',
+        ),
         'mongosoft\\file\\' => 
         array (
             0 => __DIR__ . '/..' . '/mongosoft/yii2-upload-behavior',
+        ),
+        'marciocamello\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/marciocamello/yii2-paypal',
         ),
         'kop\\y2sp\\' => 
         array (
@@ -275,9 +285,9 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
         array (
             0 => __DIR__ . '/..' . '/budyaga/yii2-cropper',
         ),
-        'ak\\' => 
+        'Psr\\Log\\' => 
         array (
-            0 => __DIR__ . '/..' . '/marciocamello/yii2-paypal',
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -314,8 +324,7 @@ class ComposerStaticInitdba785d1a9fc7bc99e7068d29e160aeb
         array (
             'PayPal' => 
             array (
-                0 => __DIR__ . '/..' . '/paypal/sdk-core-php/lib',
-                1 => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib',
+                0 => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib',
             ),
         ),
         'I' => 

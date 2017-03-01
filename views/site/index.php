@@ -10,6 +10,9 @@
     float: left;
     padding: 10px;
 }	
+.pagination {
+    display: none;
+}
 </style>
 
 <?php 
@@ -548,7 +551,65 @@ use yii\widgets\ListView;
 		</div>
 	</div>
 	
+
+
 	
+	
+<script type="text/javascript">
+
+// infinite scroll 
+var noresult = false;
+var busy = false;
+var limit = 5
+var offset = 1;
+
+function displayRecords(lim, off) {
+        $.ajax({
+          type: "GET",
+          async: false,
+          url: <?php Yii::$app->homeUrl; ?>'?r=iteminfo/conhome',
+          data: "per-page=" + lim + "&page=" + off,
+          cache: false,
+          beforeSend: function() {
+            $("#loader_message").html("").hide();
+            $('#loader_image').show();
+          },
+          success: function(html) {
+			//  alert(html);
+            $("#results").append(html);
+            $('#loader_image').hide();
+            if (html == "") {
+              $("#loader_message").html('<button data-atr="nodata" class="btn btn-default" type="button">No more records.</button>').show()
+            } else {
+              $("#loader_message").html('<button class="btn btn-default" type="button">Loading please wait...</button>').show();
+            }
+            window.busy = false;
+
+          }
+        });
+}
+
+$(document).ready(function() {
+
+$(window).scroll(function() {
+          // make sure u give the container id of the data to be loaded in.
+          if ($(window).scrollTop() + $(window).height() > $("#results").height() && !busy) {
+            busy = true;
+       //     offset = limit + offset;
+			offset=offset+1;
+				
+			if(!noresult){
+				displayRecords(limit, offset);	
+			}	
+            
+
+          }
+});
+
+});
+// infinite scroll 
+</script>
+
 	
 
 <script>

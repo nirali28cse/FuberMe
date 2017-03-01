@@ -78,7 +78,7 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 		    <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 		</div>
 		<div class="col-sm-3">	
-		    <?= $form->field($model, 'quantity')->textInput(['maxlength' => true]) ?>
+		    <?= $form->field($model, 'quantity')->textInput(['type' =>'number','maxlength' => true]) ?>
 		</div>
 	 </div>
 
@@ -155,7 +155,7 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 
 				<?= $form->field($model, 'availability_from_date')->widget(\yii\jui\DatePicker::classname(), [
 					'dateFormat' => 'php:Y-m-d',
-					'value'=>date('Y-m-d'),
+					'value'=>Yii::$app->params['today_date'],
 					'options' => ['placeholder' => 'Select end date',
 					'style'=>'height: 50px;width: 100%;padding: 10px;font-size: 16px;'],
 					'clientOptions' => [
@@ -199,7 +199,7 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 
 			<?= $form->field($model, 'availability_to_date')->widget(\yii\jui\DatePicker::classname(), [
 				'dateFormat' => 'php:Y-m-d',
-				'value'=>date('Y-m-d'),
+				'value'=>Yii::$app->params['today_date'],
 				'options' => ['placeholder' => 'Select end date',
 				'style'=>'height: 50px;width: 100%;padding: 10px;font-size: 16px;'],
 				'clientOptions' => [
