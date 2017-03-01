@@ -50,7 +50,7 @@ $user_id=$model->chef_user_id;
 								 echo '<br/>';
 								 echo $model->availability_to_time;  */
 								// echo $newhours = date("H");
-								$newdate = date("d-M-Y");
+								$newdate =Yii::$app->params['today_date'];
 								$newdates = strtotime($newdate);
 								$availability_to_date = strtotime($model->availability_to_date);
 								$availability_from_date = strtotime($model->availability_from_date);

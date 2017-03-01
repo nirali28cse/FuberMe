@@ -2,35 +2,35 @@
 
 namespace PayPal\Api;
 
-use PayPal\Common\PPModel;
-use PayPal\Rest\ApiContext;
+use PayPal\Common\PayPalModel;
 
 /**
  * Class PaymentExecution
  *
- * @property string                   payer_id
- * @property \PayPal\Api\Transactions transactions
+ * Let's you execute a PayPal Account based Payment resource with the payer_id obtained from web approval url.
+ *
+ * @package PayPal\Api
+ *
+ * @property string payer_id
+ * @property \PayPal\Api\Transaction[] transactions
  */
-class PaymentExecution extends PPModel
+class PaymentExecution extends PayPalModel
 {
     /**
-     * Set Payer ID
-     * PayPal assigned Payer ID returned in the approval return url
+     * The ID of the Payer, passed in the `return_url` by PayPal.
      *
      * @param string $payer_id
-     *
+     * 
      * @return $this
      */
     public function setPayerId($payer_id)
     {
         $this->payer_id = $payer_id;
-
         return $this;
     }
 
     /**
-     * Get Payer ID
-     * PayPal assigned Payer ID returned in the approval return url
+     * The ID of the Payer, passed in the `return_url` by PayPal.
      *
      * @return string
      */
@@ -40,41 +40,33 @@ class PaymentExecution extends PPModel
     }
 
     /**
-     * Set Payer ID
-     * PayPal assigned Payer ID returned in the approval return url
-     *
-     * @param string $payer_id
-     *
-     * @deprecated Use setPayerId
-     *
+     * Carrier account id for a carrier billing payment. For a carrier billing payment, payer_id is not applicable.
+     * @deprecated Not publicly available
+     * @param string $carrier_account_id
+     * 
      * @return $this
      */
-    public function setPayer_id($payer_id)
+    public function setCarrierAccountId($carrier_account_id)
     {
-        $this->payer_id = $payer_id;
-
+        $this->carrier_account_id = $carrier_account_id;
         return $this;
     }
 
     /**
-     * Get Payer ID
-     * PayPal assigned Payer ID returned in the approval return url
-     *
-     * @deprecated Use getPayerId
-     *
+     * Carrier account id for a carrier billing payment. For a carrier billing payment, payer_id is not applicable.
+     * @deprecated Not publicly available
      * @return string
      */
-    public function getPayer_id()
+    public function getCarrierAccountId()
     {
-        return $this->payer_id;
+        return $this->carrier_account_id;
     }
 
     /**
-     * Set Transactions
-     * If the amount needs to be updated after obtaining the PayPal Payer info (eg. shipping address), it can be updated using this element
+     * Transactional details including the amount and item details.
      *
-     * @param \PayPal\Api\Transactions $transactions
-     *
+     * @param \PayPal\Api\Transaction[] $transactions
+     * 
      * @return $this
      */
     public function setTransactions($transactions)
@@ -84,13 +76,43 @@ class PaymentExecution extends PPModel
     }
 
     /**
-     * Get Transactions
-     * If the amount needs to be updated after obtaining the PayPal Payer info (eg. shipping address), it can be updated using this element
+     * Transactional details including the amount and item details.
      *
-     * @return \PayPal\Api\Transactions
+     * @return \PayPal\Api\Transaction[]
      */
     public function getTransactions()
     {
         return $this->transactions;
     }
+
+    /**
+     * Append Transactions to the list.
+     *
+     * @param \PayPal\Api\Transaction $transaction
+     * @return $this
+     */
+    public function addTransaction($transaction)
+    {
+        if (!$this->getTransactions()) {
+            return $this->setTransactions(array($transaction));
+        } else {
+            return $this->setTransactions(
+                array_merge($this->getTransactions(), array($transaction))
+            );
+        }
+    }
+
+    /**
+     * Remove Transactions from the list.
+     *
+     * @param \PayPal\Api\Transaction $transaction
+     * @return $this
+     */
+    public function removeTransaction($transaction)
+    {
+        return $this->setTransactions(
+            array_diff($this->getTransactions(), array($transaction))
+        );
+    }
+
 }

@@ -9,9 +9,8 @@
 // payments list.
 // API used: GET /v1/payments/payments
 
-require __DIR__ . '/../bootstrap.php';
+require 'CreatePayment.php';
 use PayPal\Api\Payment;
-
 
 // ### Retrieve payment
 // Retrieve the PaymentHistory object by calling the
@@ -21,20 +20,14 @@ use PayPal\Api\Payment;
 // Refer the method doc for valid values for keys
 // (See bootstrap.php for more on `ApiContext`)
 try {
-	$payments = Payment::all(array('count' => 10, 'start_index' => 5), $apiContext);	
-} catch (PayPal\Exception\PPConnectionException $ex) {
-	echo "Exception:" . $ex->getMessage() . PHP_EOL;
-	var_dump($ex->getData());
-	exit(1);
+    $params = array('count' => 10, 'start_index' => 5);
+
+    $payments = Payment::all($params, $apiContext);
+} catch (Exception $ex) {
+    // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+    ResultPrinter::printError("List Payments", "Payment", null, $params, $ex);
+    exit(1);
 }
-?>
-<html>
-<head>
-	<title>Lookup payment history</title>
-</head>
-<body>
-	<div>Got <?php echo $payments->getCount(); ?> matching payments </div>
-	<pre><?php var_dump($payments->toArray());?></pre>
-	<a href='../index.html'>Back</a>
-</body>
-</html>
+
+// NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+ ResultPrinter::printResult("List Payments", "Payment", null, $params, $payments);

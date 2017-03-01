@@ -1,68 +1,54 @@
 # REST API SDK for PHP
 
-[![Build Status](https://travis-ci.org/paypal/rest-api-sdk-php.png?branch=master)](https://travis-ci.org/paypal/rest-api-sdk-php) [![Coverage Status](https://coveralls.io/repos/paypal/rest-api-sdk-php/badge.png?branch=master)](https://coveralls.io/r/paypal/rest-api-sdk-php?branch=master) [![Latest Stable Version](https://poser.pugx.org/paypal/rest-api-sdk-php/v/stable.png)](https://packagist.org/packages/paypal/rest-api-sdk-php) [![Total Downloads](https://poser.pugx.org/paypal/rest-api-sdk-php/downloads.png)](https://packagist.org/packages/paypal/rest-api-sdk-php)
+![Home Image](https://raw.githubusercontent.com/wiki/paypal/PayPal-PHP-SDK/images/homepage.jpg)
 
-This repository contains PayPal's PHP SDK and samples for REST API.
+[![Build Status](https://travis-ci.org/paypal/PayPal-PHP-SDK.svg?branch=master)](https://travis-ci.org/paypal/PayPal-PHP-SDK)
+[![Coverage Status](https://coveralls.io/repos/paypal/PayPal-PHP-SDK/badge.svg?branch=master)](https://coveralls.io/r/paypal/PayPal-PHP-SDK?branch=master)
 
-> **Before starting to use the sdk, please be aware of the [existing issues and currently unavailable or upcoming features](https://github.com/paypal/rest-api-sdk-python/wiki/Existing-Issues-and-Unavailable%5CUpcoming-features) for the REST APIs. (which the sdks are based on)** 
+__Welcome to PayPal PHP SDK__. This repository contains PayPal's PHP SDK and samples for REST API.
+
+## Please Note
+> **The Payment Card Industry (PCI) Council has [mandated](http://blog.pcisecuritystandards.org/migrating-from-ssl-and-early-tls) that early versions of TLS be retired from service.  All organizations that handle credit card information are required to comply with this standard. As part of this obligation, PayPal is updating its services to require TLS 1.2 for all HTTPS connections. At this time, PayPal will also require HTTP/1.1 for all connections. [Click here](https://github.com/paypal/tls-update) for more information**
+
+> **Connections to the sandbox environment use only TLS 1.2.**
+
+## SDK Documentation
+
+[ Our PayPal-PHP-SDK Page ](http://paypal.github.io/PayPal-PHP-SDK/) includes all the documentation related to PHP SDK. Everything from SDK Wiki, to Sample Codes, to Releases. Here are few quick links to get you there faster.
+
+* [ PayPal-PHP-SDK Home Page ](http://paypal.github.io/PayPal-PHP-SDK/)
+* [ Wiki ](https://github.com/paypal/PayPal-PHP-SDK/wiki)
+* [ Samples ](http://paypal.github.io/PayPal-PHP-SDK/sample/)
+* [ Installation ](https://github.com/paypal/PayPal-PHP-SDK/wiki/Installation)
+* [ Make your First SDK Call](https://github.com/paypal/PayPal-PHP-SDK/wiki/Making-First-Call)
+* [ PayPal Developer Docs] (https://developer.paypal.com/docs/)
+
+## Latest Updates
+
+- SDK now allows injecting your logger implementation. Please read [documentation](https://github.com/paypal/PayPal-PHP-SDK/wiki/Custom-Logger) for more details.
+- If you are running into SSL Connect Error talking to sandbox or live, please update your SDK to latest version or, follow instructions as shown [here](https://github.com/paypal/PayPal-PHP-SDK/issues/474)
+- Checkout the latest 1.0.0 release. Here are all the [ breaking Changes in v1.0.0 ](https://github.com/paypal/PayPal-PHP-SDK/wiki/Breaking-Changes---1.0.0) if you are migrating from older versions.
+- Now we have a [Github Page](http://paypal.github.io/PayPal-PHP-SDK/), that helps you find all helpful resources building applications using PayPal-PHP-SDK.
+
 
 ## Prerequisites
 
-   * PHP 5.3 or above
-   * curl, json & openssl extensions must be enabled
-   * composer for fetching dependencies (See http://getcomposer.org)
+   - PHP 5.3 or above
+   - [curl](http://php.net/manual/en/book.curl.php), [json](http://php.net/manual/en/book.json.php) & [openssl](http://php.net/manual/en/book.openssl.php) extensions must be enabled
 
+## License
 
-
-## Running the sample
-
-   * Clone the repo and navigate to the samples folder.
-   * Samples have dependency on the sdk and you can use `Composer` to get the dependencies. Ensure that you have composer installed on your machine, navigate to the samples folder and run 'composer update --no-dev' to fetch the SDK.
-   * Optionally, update the bootstrap.php file with your own client Id and client secret.
-   * Run any of the samples in the 'samples' folder to see what the APIs can do.
-    
-    
-## Usage
-
-To write an app that uses the SDK 
-
-   * Copy the composer.json file from the sample folder over to your project and run 'composer update --no-dev' to fetch all dependencies.
-   * Copy the sample configuration file sdk_config.ini to a location of your choice and let the SDK know your config path using the following define directive.
-
-```php
-    define('PP_CONFIG_PATH', /path/to/your/sdk_config.ini);
-```
-    
-   * Obtain your clientId and client secret from the [developer portal](https://developer.paypal.com). You will use them to create a `OAuthTokenCredential` object.
-   * Now you are all set to make your first API call. Create a resource object as per your need and call the relevant operation or invoke one of the static methods on your resource class.
-    
-```php
-
-    $apiContext = new ApiContext(new OAuthTokenCredential('<clientId>', '<clientSecret>'));
-		
-    $payment = new Payment();
-
-    $payment->setIntent("Sale");
-
-    ...
-
-    $payment->create($apiContext);
-
-      *OR*
-
-    $payment = Payment::get('payment_id', $apiContext);
-```
-
-## SDK Configuration
-
-The samples in this repo pick the SDK configuration from the sdk_config.ini file. If you do not want to use an ini file or want to pick your configuration dynamically, you can use the `$apiContext->setConfig()` method to pass in the configuration as a hashmap. See the `sample/bootstrap.php` file for an example.
-	
+Read [License](LICENSE) for more licensing information.
 
 ## Contributing
 
-## More help
+Read [here](CONTRIBUTING.md) for more information.
 
+## More help
+   * [Going Live](https://github.com/paypal/PayPal-PHP-SDK/wiki/Going-Live)
+   * [PayPal-PHP-SDK Home Page](http://paypal.github.io/PayPal-PHP-SDK/)
+   * [SDK Documentation](https://github.com/paypal/PayPal-PHP-SDK/wiki)
+   * [Sample Source Code](http://paypal.github.io/PayPal-PHP-SDK/sample/)
    * [API Reference](https://developer.paypal.com/webapps/developer/docs/api/)
-   * [Reporting issues / feature requests] (https://github.com/paypal/rest-api-sdk-php/issues)
-   
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/paypal/rest-api-sample-app-php/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+   * [Reporting Issues / Feature Requests] (https://github.com/paypal/PayPal-PHP-SDK/issues)
+   * [Pizza App Using Paypal REST API] (https://github.com/paypal/rest-api-sample-app-php)

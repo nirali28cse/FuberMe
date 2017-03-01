@@ -2,36 +2,38 @@
 
 namespace PayPal\Api;
 
-use PayPal\Common\PPModel;
-use PayPal\Rest\ApiContext;
+use PayPal\Common\PayPalModel;
+use PayPal\Converter\FormatConverter;
+use PayPal\Validation\NumericValidator;
 
 /**
  * Class Amount
  *
- * @property string               currency
- * @property string               total
- * @property \PayPal\Api\Details  details
+ * payment amount with break-ups.
+ *
+ * @package PayPal\Api
+ *
+ * @property string currency
+ * @property string total
+ * @property \PayPal\Api\Details details
  */
-class Amount extends PPModel
+class Amount extends PayPalModel
 {
     /**
-     * Set Currency
-     * Three Letter Currency Code
+     * 3-letter [currency code](https://developer.paypal.com/docs/integration/direct/rest_api_payment_country_currency_support/). PayPal does not support all currencies.
      *
      * @param string $currency
-     *
+     * 
      * @return $this
      */
     public function setCurrency($currency)
     {
         $this->currency = $currency;
-
         return $this;
     }
 
     /**
-     * Get Currency
-     * Three Letter Currency Code
+     * 3-letter [currency code](https://developer.paypal.com/docs/integration/direct/rest_api_payment_country_currency_support/). PayPal does not support all currencies.
      *
      * @return string
      */
@@ -41,25 +43,22 @@ class Amount extends PPModel
     }
 
     /**
-     * Set Total
-     * Amount charged from the Payer account (or card) to Payee
-     * In case of a refund, this is the refunded amount to the original Payer from Payee account
+     * Total amount charged from the payer to the payee. In case of a refund, this is the refunded amount to the original payer from the payee. 10 characters max with support for 2 decimal places.
      *
-     * @param string $total
-     *
+     * @param string|double $total
+     * 
      * @return $this
      */
     public function setTotal($total)
     {
+        NumericValidator::validate($total, "Total");
+        $total = FormatConverter::formatToPrice($total, $this->getCurrency());
         $this->total = $total;
-
         return $this;
     }
 
     /**
-     * Get Total
-     * Amount charged from the Payer account (or card) to Payee
-     * In case of a refund, this is the refunded amount to the original Payer from Payee account
+     * Total amount charged from the payer to the payee. In case of a refund, this is the refunded amount to the original payer from the payee. 10 characters max with support for 2 decimal places.
      *
      * @return string
      */
@@ -69,11 +68,10 @@ class Amount extends PPModel
     }
 
     /**
-     * Set Details
-     * Additional Details of Payment Amount
+     * Additional details of the payment amount.
      *
      * @param \PayPal\Api\Details $details
-     *
+     * 
      * @return $this
      */
     public function setDetails($details)
@@ -83,8 +81,7 @@ class Amount extends PPModel
     }
 
     /**
-     * Get Details
-     * Additional Details of Payment Amount
+     * Additional details of the payment amount.
      *
      * @return \PayPal\Api\Details
      */
@@ -92,4 +89,5 @@ class Amount extends PPModel
     {
         return $this->details;
     }
+
 }

@@ -3,68 +3,31 @@
 // This sample code demonstrates how you can
 // process a refund on a Captured transaction.
 // API used: /v1/payments/capture/{<captureID>}/refund
+/** @var Capture $capture */
+$capture = require 'AuthorizationCapture.php';
 
-require __DIR__ . '/../bootstrap.php';
-
-use PayPal\Api\Authorization;
 use PayPal\Api\Capture;
 use PayPal\Api\Refund;
-use PayPal\Api\Amount;
-use PayPal\Rest\ApiContext;
-
-
-try {
-	// Create a mock authorization to get authorization Id
-	$authId = createAuthorization($apiContext);
-
-	// Get the authorization
-	$authorization = Authorization::get($authId, $apiContext);
-	
-	
-	// ### Capture
-	
-	$amt = new Amount();
-	$amt->setCurrency("USD")
-		->setTotal("1.00");
-	
-	// Create a capture
-	$captureInfo = new Capture();
-	$captureInfo->setAmount($amt);
-
-	$capture = $authorization->capture($captureInfo, $apiContext);
-} catch (PayPal\Exception\PPConnectionException $ex) {
-	echo "Exception: " . $ex->getMessage() . PHP_EOL;
-	var_dump($ex->getData());
-	exit(1);
-}
+use PayPal\Api\RefundRequest;
 
 // ### Refund
 // Create a refund object indicating
 // refund amount and call the refund method
 
-$refund = new Refund();
-$refund->setAmount($amt);
+$refundRequest = new RefundRequest();
+$refundRequest->setAmount($amt);
 
 try {
-	// Create a new apiContext object so we send a new
-	// PayPal-Request-Id (idempotency) header for this resource
-	$apiContext = getApiContext();
+    // Create a new apiContext object so we send a new
+    // PayPal-Request-Id (idempotency) header for this resource
+    $apiContext = getApiContext($clientId, $clientSecret);
 
-	$captureRefund = $capture->refund($refund, $apiContext);
-} catch (PayPal\Exception\PPConnectionException $ex) {
-	echo "Exception: " . $ex->getMessage() . PHP_EOL;
-	var_dump($ex->getData());
-	exit(1);
+    $captureRefund = $capture->refundCapturedPayment($refundRequest, $apiContext);
+} catch (Exception $ex) {
+    // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+    ResultPrinter::printError("Refund Capture", "Capture", null, $refundRequest, $ex);
+    exit(1);
 }
-?>
 
-<html>
-<head>
-	<title>Refund a captured payment</title>
-</head>
-<body>
-	<div>Refund Capture:</div>
-	<pre><?php var_dump($captureRefund);?></pre>
-	<a href='../index.html'>Back</a>
-</body>
-</html>
+// NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+ResultPrinter::printResult("Refund Capture", "Capture", $captureRefund->getId(), $refundRequest, $captureRefund);

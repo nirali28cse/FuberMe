@@ -8,10 +8,11 @@
 // payments list.
 // API used: GET /v1/payments/payments
 
-require __DIR__ . '/../bootstrap.php';
+/** @var Payment $createdPayment */
+$createdPayment = require 'CreatePayment.php';
 use PayPal\Api\Payment;
 
-$paymentId = "PAY-0XL713371A312273YKE2GCNI";
+$paymentId = $createdPayment->getId();
 
 // ### Retrieve payment
 // Retrieve the payment object by calling the
@@ -20,20 +21,14 @@ $paymentId = "PAY-0XL713371A312273YKE2GCNI";
 // Payment ID
 // (See bootstrap.php for more on `ApiContext`)
 try {
-	$payment = Payment::get($paymentId, $apiContext);
-} catch (PayPal\Exception\PPConnectionException $ex) {
-	echo "Exception:" . $ex->getMessage() . PHP_EOL;
-	var_dump($ex->getData());
-	exit(1);
+    $payment = Payment::get($paymentId, $apiContext);
+} catch (Exception $ex) {
+    // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+    ResultPrinter::printError("Get Payment", "Payment", null, null, $ex);
+    exit(1);
 }
-?>
-<html>
-<head>
-	<title>Lookup a payment</title>
-</head>
-<body>
-	<div>Retrieving Payment ID: <?php echo $paymentId;?></div>
-	<pre><?php var_dump($payment->toArray());?></pre>
-	<a href='../index.html'>Back</a>
-</body>
-</html>
+
+// NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+ ResultPrinter::printResult("Get Payment", "Payment", $payment->getId(), null, $payment);
+
+return $payment;

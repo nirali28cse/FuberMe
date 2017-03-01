@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\ListView;
+use yii\helpers\Url;
 
 ?>
 <style>
@@ -88,16 +89,28 @@ span.item_price {
     display: none; 
 }
 
+
+.pagination {
+    display: none;
+}
 </style>
 
-
+  <?php
+/* $this->registerJsFile(Url::to('@web/fuberme/js/jquery.min.js'),array(
+		'position' => \yii\web\View::POS_HEAD
+	));
+  
+  $this->registerJsFile(Url::to('@web/fuberme/js/jquery.jscroll.js'),array(
+		'position' => \yii\web\View::POS_HEAD
+	)); */
+  ?>
+  
 <!--  Slider css and js -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!--  Slider css and js -->
 
-  
-  
+
   
 <div class="product-model">	 
 	 <div class="container">
@@ -155,6 +168,45 @@ span.item_price {
 			
 			
 
+				<?php 
+				$delivery_type = Yii::$app->params['delivery_method']; 
+				?> 
+				<?php if(count($delivery_type)>0){ ?>							
+					<section  class="sky-form">
+						 <h4><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp; Delivery Type</h4>
+						 <div class="row">
+							 <div class="col col-4">							 
+								 <?php 
+
+								 foreach($delivery_type as $deliverykey=>$deliverytype){ 
+								 if($deliverykey!='both'){
+										$activecous=null;
+										$removecous=null;
+										$check_status=null;
+										if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['delivery_array']!=null and in_array($deliverykey,$_SESSION['filetrsarray']['delivery_array'])){
+											$activecous='class="active"';
+											$removecous='<a href="'.Yii::$app->homeUrl.'?r=iteminfo/conhome&ddelivery='.$deliverykey.'" class="rclose">remove</a>';
+											$check_status='checked';
+										} 
+										
+
+								 ?>	
+										<label class="checkbox">
+										<input type="checkbox" <?php echo $check_status; ?> name="checkbox"  onclick='window.location.assign("<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&delivery=<?php echo $deliverykey; ?>")'><i></i>
+										<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&delivery=<?php echo $deliverykey; ?>"  <?php echo $deliverytype; ?>><?php echo $deliverykey; ?></a>
+										<?php echo $removecous; ?>
+										</label>						 
+								 <?php 
+								 }
+								 }
+								 ?>	
+								 
+							 </div>
+						 </div>
+					 </section> 	
+				<?php } ?>	
+				
+				
 				<?php 
 				$item_cuisine_type_info_ids = app\models\CuisineTypeInfo::find()->where(['status'=>1])->all(); 
 				?> 
@@ -435,10 +487,65 @@ span.item_price {
 </div>	
 
 
+<script type="text/javascript">
+
+// infinite scroll 
+var noresult = false;
+var busy = false;
+var limit = 5
+var offset = 1;
+
+function displayRecords(lim, off) {
+        $.ajax({
+          type: "GET",
+          async: false,
+          url: <?php Yii::$app->homeUrl; ?>'?r=iteminfo/conhome',
+          data: "per-page=" + lim + "&page=" + off,
+          cache: false,
+          beforeSend: function() {
+            $("#loader_message").html("").hide();
+            $('#loader_image').show();
+          },
+          success: function(html) {
+			//  alert(html);
+            $("#results").append(html);
+            $('#loader_image').hide();
+            if (html == "") {
+              $("#loader_message").html('<button data-atr="nodata" class="btn btn-default" type="button">No more records.</button>').show()
+            } else {
+              $("#loader_message").html('<button class="btn btn-default" type="button">Loading please wait...</button>').show();
+            }
+            window.busy = false;
+
+          }
+        });
+}
+
+$(document).ready(function() {
+
+$(window).scroll(function() {
+          // make sure u give the container id of the data to be loaded in.
+          if ($(window).scrollTop() + $(window).height() > $("#results").height() && !busy) {
+            busy = true;
+       //     offset = limit + offset;
+			offset=offset+1;
+				
+			if(!noresult){
+				displayRecords(limit, offset);	
+			}	
+            
+
+          }
+});
+
+});
+// infinite scroll 
+</script>
+
+
 
  <script>
- 
- 
+
 
 $('#collapse3,#collapse2,#collapse1').on('show.bs.collapse', function () {
        //call a service here 

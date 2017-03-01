@@ -1,48 +1,69 @@
 <?php
+
 namespace PayPal\Api;
 
-use PayPal\Common\PPModel;
-use PayPal\Rest\ApiContext;
+use PayPal\Common\PayPalModel;
+use PayPal\Converter\FormatConverter;
+use PayPal\Validation\NumericValidator;
 
-class Cost extends PPModel {
-	/**
-	 * Cost in percent. Range of 0 to 100.
-	 *
-	 * @param PayPal\Api\number $percent
-	 */
-	public function setPercent($percent) {
-		$this->percent = $percent;
-		return $this;
-	}
+/**
+ * Class Cost
+ *
+ * Cost as a percent or an amount. For example, to specify 10%, enter `10`. Alternatively, to specify an amount of 5, enter `5`.
+ *
+ * @package PayPal\Api
+ *
+ * @property string percent
+ * @property \PayPal\Api\Currency amount
+ */
+class Cost extends PayPalModel
+{
+    /**
+     * Cost in percent. Range of 0 to 100.
+     *
+     * @param string $percent
+     * 
+     * @return $this
+     */
+    public function setPercent($percent)
+    {
+        NumericValidator::validate($percent, "Percent");
+        $percent = FormatConverter::formatToNumber($percent);
+        $this->percent = $percent;
+        return $this;
+    }
 
-	/**
-	 * Cost in percent. Range of 0 to 100.
-	 *
-	 * @return PayPal\Api\number
-	 */
-	public function getPercent() {
-		return $this->percent;
-	}
+    /**
+     * Cost in percent. Range of 0 to 100.
+     *
+     * @return string
+     */
+    public function getPercent()
+    {
+        return $this->percent;
+    }
 
+    /**
+     * The cost, as an amount. Valid range is from 0 to 1,000,000.
+     *
+     * @param \PayPal\Api\Currency $amount
+     * 
+     * @return $this
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+        return $this;
+    }
 
-	/**
-	 * Cost in amount. Range of 0 to 999999.99.
-	 *
-	 * @param PayPal\Api\Currency $amount
-	 */
-	public function setAmount($amount) {
-		$this->amount = $amount;
-		return $this;
-	}
-
-	/**
-	 * Cost in amount. Range of 0 to 999999.99.
-	 *
-	 * @return PayPal\Api\Currency
-	 */
-	public function getAmount() {
-		return $this->amount;
-	}
-
+    /**
+     * The cost, as an amount. Valid range is from 0 to 1,000,000.
+     *
+     * @return \PayPal\Api\Currency
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
 
 }

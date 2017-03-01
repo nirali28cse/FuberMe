@@ -2,80 +2,131 @@
 /**
  * File Paypal.php.
  *
- * @author Andrey Klimenko <andrey.iemail@gmail.com>
+ * @author Marcio Camello <marciocamello@outlook.com>
  * @see https://github.com/paypal/rest-api-sdk-php/blob/master/sample/
  * @see https://developer.paypal.com/webapps/developer/applications/accounts
  */
 
-namespace ak;
+namespace marciocamello\yii2-paypal;
+
+define('PP_CONFIG_PATH', __DIR__);
+
+use Yii;
+use yii\base\ErrorException;
+use yii\helpers\ArrayHelper;
+use yii\base\Component;
 
 use PayPal\Api\Address;
-use PayPal\Api\Amount;
 use PayPal\Api\CreditCard;
-use PayPal\Api\FundingInstrument;
+use PayPal\Api\Amount;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
 use PayPal\Api\Transaction;
-use PayPal\Rest\ApiContext;
-use yii\helpers\VarDumper;
-
-use yii\base\Component;
+use PayPal\Api\FundingInstrument;
 use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Api\Details;
+use PayPal\Api\Item;
+use PayPal\Api\ItemList;
+use PayPal\Api\RedirectUrls;
+use PayPal\Rest\ApiContext;
 
-function D($object, $exit = false)
-{
-    VarDumper::dump($object, 20, 1);
-    echo '<br />';
-
-    if ($exit) {
-        exit();
-    }
-
-    return null;
-}
-
-/**
- * Class Paypal.
- *
- * @package ak
- * @author Andrey Klimenko <andrey.iemail@gmail.com>
- */
 class Paypal extends Component
 {
+    //region Mode (production/development)
+    const MODE_SANDBOX = 'sandbox';
+    const MODE_LIVE    = 'live';
+    //endregion
+
+    //region Log levels
+    /*
+     * Logging level can be one of FINE, INFO, WARN or ERROR.
+     * Logging is most verbose in the 'FINE' level and decreases as you proceed towards ERROR.
+     */
+    const LOG_LEVEL_FINE  = 'FINE';
+    const LOG_LEVEL_INFO  = 'INFO';
+    const LOG_LEVEL_WARN  = 'WARN';
+    const LOG_LEVEL_ERROR = 'ERROR';
+    //endregion
+
     //region API settings
     public $clientId;
     public $clientSecret;
     public $isProduction = false;
     public $currency = 'USD';
+    public $config = [];
 
-    private $version = '3.0';
-    //endregion
-
-    private $_token = null;
     /** @var ApiContext */
     private $_apiContext = null;
 
-    protected $errors = [];
-
-    public function initDemo()
+    /**
+     * @setConfig 
+     * _apiContext in init() method
+     */
+    public function init()
     {
-        $this->clientId     = 'AbtvThBiEwaAysJbhOyI6VST02vs1mLCdJv8F8oCmZJUZNzLwQeHLuZiOF7r';
-        $this->clientSecret = 'ENM9BhCEllRx5CpmZdfb0dOnM4FAwGR42XXfYqKEQhv4KhuuJyeXFBeN2gQz';
+        $this->setConfig();
     }
 
-    public function authorize()
+    /**
+     * @inheritdoc
+     */
+    private function setConfig()
     {
-        $credentials = new OAuthTokenCredential($this->clientId, $this->clientSecret);
-        if (is_null($this->_token)) {
-            $credentials->getAccessToken(['mode' => 'sandbox']);
+        // ### Api context
+        // Use an ApiContext object to authenticate
+        // API calls. The clientId and clientSecret for the
+        // OAuthTokenCredential class can be retrieved from
+        // developer.paypal.com
+
+        $this->_apiContext = new ApiContext(
+            new OAuthTokenCredential(
+                $this->clientId,
+                $this->clientSecret
+            )
+        );
+
+        // #### SDK configuration
+
+        // Comment this line out and uncomment the PP_CONFIG_PATH
+        // 'define' block if you want to use static file
+        // based configuration
+        $this->_apiContext->setConfig(ArrayHelper::merge(
+            [
+                'mode'                      => self::MODE_SANDBOX, // development (sandbox) or production (live) mode
+                'http.ConnectionTimeOut'    => 30,
+                'http.Retry'                => 1,
+                'log.LogEnabled'            => YII_DEBUG ? 1 : 0,
+                'log.FileName'              => Yii::getAlias('@runtime/logs/paypal.log'),
+                'log.LogLevel'              => self::LOG_LEVEL_FINE,
+                'validation.level'          => 'log',
+                'cache.enabled'             => 'true'
+            ],$this->config)
+        );
+
+        // Set file name of the log if present
+        if (isset($this->config['log.FileName'])
+            && isset($this->config['log.LogEnabled'])
+            && ((bool)$this->config['log.LogEnabled'] == true)
+        ) {
+            $logFileName = \Yii::getAlias($this->config['log.FileName']);
+
+            if ($logFileName) {
+                if (!file_exists($logFileName)) {
+                    if (!touch($logFileName)) {
+                        throw new ErrorException('Can\'t create paypal.log file at: ' . $logFileName);
+                    }
+                }
+            }
+
+            $this->config['log.FileName'] = $logFileName;
         }
-        $this->_apiContext = new ApiContext($credentials);
+
+        return $this->_apiContext;
     }
 
+    //Demo
     public function payDemo()
     {
-        $this->authorize();
-
         $addr = new Address();
         $addr->setLine1('52 N Main ST');
         $addr->setCity('Johnstown');
@@ -100,8 +151,8 @@ class Paypal extends Component
         $payer->setPaymentMethod('credit_card');
         $payer->setFundingInstruments(array($fi));
 
-        $amountDetails = new \PayPal\Api\Details();
-        $amountDetails->setSubtotal('7.41');
+        $amountDetails = new Details();
+        $amountDetails->setSubtotal('15.99');
         $amountDetails->setTax('0.03');
         $amountDetails->setShipping('0.03');
 
@@ -119,6 +170,6 @@ class Paypal extends Component
         $payment->setPayer($payer);
         $payment->setTransactions(array($transaction));
 
-        $payment->create($this->_apiContext);
+        return $payment->create($this->_apiContext);
     }
-} 
+}

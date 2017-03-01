@@ -646,6 +646,7 @@ ul#flexiselDemo1 p{
     left: 0px;
     bottom: 0px;
     width: 100%;
+	position: relative;
 }
 .ftr-grid h4{
   color: #646464;

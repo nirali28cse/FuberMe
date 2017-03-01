@@ -28,7 +28,8 @@
         "marciocamello/yii2-paypal": "*",
         "fedemotta/yii2-aws-sdk": "*",
         "kop/yii2-scroll-pager": "dev-master",
-        "darkcs/yii2-infinite-scroll": "*"
+        "darkcs/yii2-infinite-scroll": "*",
+		"nirvana-msu/yii2-infinite-scroll": "1.0.*@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

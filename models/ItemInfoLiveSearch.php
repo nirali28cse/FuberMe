@@ -44,10 +44,15 @@ class ItemInfoLiveSearch extends ItemInfo
         $query = ItemInfo::find();
 
         // add conditions that should always apply here
+		
+
+		$page_number=0;
+		if(isset($_GET['page'])) $page_number=$_GET['page'];
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-			'pagination' => array('pageSize' => 5),
+			'pagination' => array('page' => $page_number,'pageSize' =>Yii::$app->params['pagination_item_count']),
+		//	'pagination' => false,
 			'sort' => [
 /* 				'defaultOrder' => [
 					'price' => SORT_DESC,
@@ -175,13 +180,13 @@ class ItemInfoLiveSearch extends ItemInfo
 		
 			$query->andFilterWhere(['=','status',1]);	
  			$query->andFilterWhere(['AND',
-								['<=', 'availability_from_date', date('Y-m-d')],
-							 	['>=', 'availability_to_date', date('Y-m-d')]
+								['<=', 'availability_from_date',Yii::$app->params['today_date']],
+							 	['>=', 'availability_to_date',Yii::$app->params['today_date']]
 								]); 
 
-/* echo '<pre>';
+/*  echo '<pre>';
 print_r($query);
-exit;   */
+exit;    */
  
 		$query->orderBy(['(status)' => SORT_DESC]);
 

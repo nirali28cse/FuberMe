@@ -338,8 +338,8 @@ $(document).ready(function(){
 						 
 							<div class="cart">
 								 <div class="cart-header2">									
-									  <div class="cart-sec" style="color: red;">
-											Your all dishes remove from your plate.
+									  <div class="cart-sec" style="color: red;padding: 10px;">
+											There is no food left in your plate.
 										   <div class="clearfix"></div>	
 									  </div>
 								  </div>	

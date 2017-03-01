@@ -2,36 +2,39 @@
 
 namespace PayPal\Api;
 
-use PayPal\Common\PPModel;
-use PayPal\Rest\ApiContext;
+use PayPal\Common\PayPalModel;
 
 /**
  * Class Payer
  *
- * @property string                              payment_method
- * @property array|\PayPal\Api\FundingInstrument funding_instruments
- * @property \PayPal\Api\PayerInfo               payer_info
+ * A resource representing a Payer that funds a payment.
+ *
+ * @package PayPal\Api
+ *
+ * @property string payment_method
+ * @property string status
+ * @property \PayPal\Api\FundingInstrument[] funding_instruments
+ * @property string external_selected_funding_instrument_type
+ * @property \PayPal\Api\PayerInfo payer_info
  */
-class Payer extends PPModel
+class Payer extends PayPalModel
 {
     /**
-     * Set Payment Method
-     * Payment method being used - PayPal Wallet payment or Direct Credit card
+     * Payment method being used - PayPal Wallet payment, Bank Direct Debit  or Direct Credit card.
+     * Valid Values: ["credit_card", "bank", "paypal", "pay_upon_invoice", "carrier", "alternate_payment"]
      *
      * @param string $payment_method
-     *
+     * 
      * @return $this
      */
     public function setPaymentMethod($payment_method)
     {
         $this->payment_method = $payment_method;
-
         return $this;
     }
 
     /**
-     * Get Payment Method
-     * Payment method being used - PayPal Wallet payment or Direct Credit card
+     * Payment method being used - PayPal Wallet payment, Bank Direct Debit  or Direct Credit card.
      *
      * @return string
      */
@@ -41,54 +44,93 @@ class Payer extends PPModel
     }
 
     /**
-     * Set Payment Method
-     * Payment method being used - PayPal Wallet payment or Direct Credit card
+     * Status of payer's PayPal Account.
+     * Valid Values: ["VERIFIED", "UNVERIFIED"]
      *
-     * @param string $payment_method
-     *
-     * @deprecated Use setPaymentMethod
-     *
+     * @param string $status
+     * 
      * @return $this
      */
-    public function setPayment_method($payment_method)
+    public function setStatus($status)
     {
-        $this->payment_method = $payment_method;
-
+        $this->status = $status;
         return $this;
     }
 
     /**
-     * Get Payment Method
-     * Payment method being used - PayPal Wallet payment or Direct Credit card
-     *
-     * @deprecated Use getPaymentMethod
+     * Status of payer's PayPal Account.
      *
      * @return string
      */
-    public function getPayment_method()
+    public function getStatus()
     {
-        return $this->payment_method;
+        return $this->status;
     }
 
     /**
-     * Set Funding Instruments
-     * List of funding instruments from where the funds of the current payment come from. Typically a credit card
+     * Type of account relationship payer has with PayPal.
+     * Valid Values: ["BUSINESS", "PERSONAL", "PREMIER"]
+     * @deprecated Not publicly available
+     * @param string $account_type
+     * 
+     * @return $this
+     */
+    public function setAccountType($account_type)
+    {
+        $this->account_type = $account_type;
+        return $this;
+    }
+
+    /**
+     * Type of account relationship payer has with PayPal.
+     * @deprecated Not publicly available
+     * @return string
+     */
+    public function getAccountType()
+    {
+        return $this->account_type;
+    }
+
+    /**
+     * Duration since the payer established account relationship with PayPal in days.
+     * @deprecated Not publicly available
+     * @param string $account_age
+     * 
+     * @return $this
+     */
+    public function setAccountAge($account_age)
+    {
+        $this->account_age = $account_age;
+        return $this;
+    }
+
+    /**
+     * Duration since the payer established account relationship with PayPal in days.
+     * @deprecated Not publicly available
+     * @return string
+     */
+    public function getAccountAge()
+    {
+        return $this->account_age;
+    }
+
+    /**
+     * List of funding instruments to fund the payment. 'OneOf' funding_instruments,funding_option_id to be used to identify the specifics of payment method passed.
      *
-     * @param \PayPal\Api\FundingInstrument|array $funding_instruments
-     *
+     * @param \PayPal\Api\FundingInstrument[] $funding_instruments
+     * 
      * @return $this
      */
     public function setFundingInstruments($funding_instruments)
     {
         $this->funding_instruments = $funding_instruments;
-
         return $this;
     }
 
     /**
-     * Get Funding Instruments
+     * List of funding instruments to fund the payment. 'OneOf' funding_instruments,funding_option_id to be used to identify the specifics of payment method passed.
      *
-     * @return \PayPal\Api\FundingInstrument|array
+     * @return \PayPal\Api\FundingInstrument[]
      */
     public function getFundingInstruments()
     {
@@ -96,52 +138,143 @@ class Payer extends PPModel
     }
 
     /**
-     * Set Funding Instruments
-     * List of funding instruments from where the funds of the current payment come from. Typically a credit card
+     * Append FundingInstruments to the list.
      *
-     * @param \PayPal\Api\FundingInstrument $funding_instruments
-     *
-     * @deprecated Use setFundingInstruments
-     *
+     * @param \PayPal\Api\FundingInstrument $fundingInstrument
      * @return $this
      */
-    public function setFunding_instruments($funding_instruments)
+    public function addFundingInstrument($fundingInstrument)
     {
-        $this->funding_instruments = $funding_instruments;
+        if (!$this->getFundingInstruments()) {
+            return $this->setFundingInstruments(array($fundingInstrument));
+        } else {
+            return $this->setFundingInstruments(
+                array_merge($this->getFundingInstruments(), array($fundingInstrument))
+            );
+        }
+    }
 
+    /**
+     * Remove FundingInstruments from the list.
+     *
+     * @param \PayPal\Api\FundingInstrument $fundingInstrument
+     * @return $this
+     */
+    public function removeFundingInstrument($fundingInstrument)
+    {
+        return $this->setFundingInstruments(
+            array_diff($this->getFundingInstruments(), array($fundingInstrument))
+        );
+    }
+
+    /**
+     * Id of user selected funding option for the payment.'OneOf' funding_instruments,funding_option_id to be used to identify the specifics of payment method passed.
+     * @deprecated Not publicly available
+     * @param string $funding_option_id
+     * 
+     * @return $this
+     */
+    public function setFundingOptionId($funding_option_id)
+    {
+        $this->funding_option_id = $funding_option_id;
         return $this;
     }
 
     /**
-     * Get Funding Instruments
-     *
-     * @deprecated Use getFundingInstruments
-     *
-     * @return \PayPal\Api\FundingInstrument
+     * Id of user selected funding option for the payment.'OneOf' funding_instruments,funding_option_id to be used to identify the specifics of payment method passed.
+     * @deprecated Not publicly available
+     * @return string
      */
-    public function getFunding_instruments()
+    public function getFundingOptionId()
     {
-        return $this->funding_instruments;
+        return $this->funding_option_id;
     }
 
     /**
-     * Set Payer Info
-     * Information related to the Payer
-     * In case of PayPal Wallet payment, this information will be filled in by PayPal after the user approves the payment using their PayPal Wallet
+     * Default funding option available for the payment 
+     * @deprecated Not publicly available
+     * @param \PayPal\Api\FundingOption $funding_option
+     * 
+     * @return $this
+     */
+    public function setFundingOption($funding_option)
+    {
+        $this->funding_option = $funding_option;
+        return $this;
+    }
+
+    /**
+     * Default funding option available for the payment 
+     * @deprecated Not publicly available
+     * @return \PayPal\Api\FundingOption
+     */
+    public function getFundingOption()
+    {
+        return $this->funding_option;
+    }
+
+    /**
+     * Instrument type pre-selected by the user outside of PayPal and passed along the payment creation. This param is used in cases such as PayPal Credit Second Button
+     * Valid Values: ["CREDIT", "PAY_UPON_INVOICE"]
+     *
+     * @param string $external_selected_funding_instrument_type
+     * 
+     * @return $this
+     */
+    public function setExternalSelectedFundingInstrumentType($external_selected_funding_instrument_type)
+    {
+        $this->external_selected_funding_instrument_type = $external_selected_funding_instrument_type;
+        return $this;
+    }
+
+    /**
+     * Instrument type pre-selected by the user outside of PayPal and passed along the payment creation. This param is used in cases such as PayPal Credit Second Button
+     *
+     * @return string
+     */
+    public function getExternalSelectedFundingInstrumentType()
+    {
+        return $this->external_selected_funding_instrument_type;
+    }
+
+    /**
+     * Funding option related to default funding option.
+     * @deprecated Not publicly available
+     * @param \PayPal\Api\FundingOption $related_funding_option
+     * 
+     * @return $this
+     */
+    public function setRelatedFundingOption($related_funding_option)
+    {
+        $this->related_funding_option = $related_funding_option;
+        return $this;
+    }
+
+    /**
+     * Funding option related to default funding option.
+     * @deprecated Not publicly available
+     * @return \PayPal\Api\FundingOption
+     */
+    public function getRelatedFundingOption()
+    {
+        return $this->related_funding_option;
+    }
+
+    /**
+     * Information related to the Payer. 
      *
      * @param \PayPal\Api\PayerInfo $payer_info
-     *
+     * 
      * @return $this
      */
     public function setPayerInfo($payer_info)
     {
         $this->payer_info = $payer_info;
-
         return $this;
     }
 
     /**
-     * Get Payer Info
+     * Information related to the Payer. 
      *
      * @return \PayPal\Api\PayerInfo
      */
@@ -150,33 +283,4 @@ class Payer extends PPModel
         return $this->payer_info;
     }
 
-    /**
-     * Set Payer Info
-     * Information related to the Payer
-     * In case of PayPal Wallet payment, this information will be filled in by PayPal after the user approves the payment using their PayPal Wallet
-     *
-     * @param \PayPal\Api\PayerInfo $payer_info
-     *
-     * @deprecated Use setPayerInfo
-     *
-     * @return $this
-     */
-    public function setPayer_info($payer_info)
-    {
-        $this->payer_info = $payer_info;
-
-        return $this;
-    }
-
-    /**
-     * Get Payer Info
-     *
-     * @deprecated Use getPayerInfo
-     *
-     * @return \PayPal\Api\PayerInfo
-     */
-    public function getPayer_info()
-    {
-        return $this->payer_info;
-    }
 }

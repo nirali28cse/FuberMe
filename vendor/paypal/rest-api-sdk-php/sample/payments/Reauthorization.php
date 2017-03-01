@@ -3,10 +3,10 @@
 // This sample code demonstrates how you can reauthorize a PayPal
 // account payment.
 // API used: v1/payments/authorization/{authorization_id}/reauthorize
-
-require __DIR__ . '/../bootstrap.php';
-use PayPal\Api\Authorization;
+/** @var Authorization $authorization */
+$authorization = require 'AuthorizePayment.php';
 use PayPal\Api\Amount;
+use PayPal\Api\Authorization;
 
 // ### Reauthorization
 // Reauthorization is available only for PayPal account payments
@@ -17,35 +17,19 @@ use PayPal\Api\Amount;
 // has expired.
 
 try {
-	
-	// ### Lookup authorization using the authorization id
-	$authorization = Authorization::get('7GH53639GA425732B', $apiContext);
+    $amount = new Amount();
+    $amount->setCurrency("USD");
+    $amount->setTotal(1);
 
-	$amount = new Amount();
-	$amount->setCurrency("USD");
-	$amount->setTotal("1.00");
+    // ### Reauthorize with amount being reauthorized
+    $authorization->setAmount($amount);
 
-	// ### Reauthorize with amount being reauthorized
-	$authorization->setAmount($amount);
-	$reauthorization = $authorization->reauthorize($apiContext);
-} catch (PayPal\Exception\PPConnectionException $ex) {
-	echo "Exception: " . $ex->getMessage() . PHP_EOL;
-	var_dump($ex->getData());
-	exit(1);
+    $reAuthorization = $authorization->reauthorize($apiContext);
+} catch (Exception $ex) {
+    // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+    ResultPrinter::printError("Reauthorize Payment", "Payment", null, null, $ex);
+    exit(1);
 }
-?>
-<html>
-<head>
-	<title>Reauthorize a payment</title>
-</head>
-<body>
-	<div>
-		Reauthorization Id:
-		<?php echo $reauthorization->getId();?>
-	</div>
-	<pre>
-		<?php var_dump($reauthorization->toArray());?>
-	</pre>
-	<a href='../index.html'>Back</a>
-</body>
-</html>
+
+// NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+ResultPrinter::printResult("Reauthorize Payment", "Payment", $authorization->getId(), null, $reAuthorization);
