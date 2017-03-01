@@ -386,7 +386,8 @@ print_r($chef_distance_array); */
 			
 			
 			
-			// image upload			
+			// image upload		
+
 			$valid_exts = array('jpeg', 'jpg', 'png', 'gif');
 			$max_file_size = $_FILES['image']['size']; #200kb
 			$nw = 350;# image with # height			
@@ -501,7 +502,7 @@ print_r($chef_distance_array); */
 			$max_file_size =$_FILES['image']['size']; //  200 * 1024; #200kb
 			$nw = 350;# image with # height			
 			$nh = 250; 
-			
+
 			if ( isset($_FILES['image']) ) {
 				if (! $_FILES['image']['error'] && $_FILES['image']['size'] <= $max_file_size) {
 					
