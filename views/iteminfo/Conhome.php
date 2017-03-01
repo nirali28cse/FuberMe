@@ -500,7 +500,7 @@ function displayRecords(lim, off) {
           type: "GET",
           async: false,
           url: <?php Yii::$app->homeUrl; ?>'?r=iteminfo/conhome',
-          data: "per-page=" + lim + "&page=" + off,
+          data: "per-page=" + <?php echo Yii::$app->params['pagination_item_count']; ?> + "&page=" + off,
           cache: false,
           beforeSend: function() {
             $("#loader_message").html("").hide();
@@ -637,8 +637,9 @@ function scrollFunction() {
         document.getElementById("fixed-floater").style.top = "100px";
         document.getElementById("fixed-floater").style.width = "18%";
     } else {
-     //   document.getElementById("fixed-floater").style.position = "absolute";
-   //    document.getElementById("fixed-floater").style.top = "50px";
+/*        document.getElementById("fixed-floater").style.position = "absolute";
+		document.getElementById("fixed-floater").style.top = "100px";
+		 document.getElementById("fixed-floater").style.width = "18%"; */
     } 
 }
 
