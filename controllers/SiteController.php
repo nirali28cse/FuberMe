@@ -342,18 +342,17 @@ class SiteController extends Controller
 			'auth_key'=>$key,
 			'status'=>0,
 			])->one();
-			
-			
-			if($model->user_type==1){
-				$model = \app\modules\users\models\Cuserdetail::find()->where([
-				'id'=>$id,
-				'auth_key'=>$key,
-				'status'=>0,
-				])->one();
-			}
-			
-			
+
 			if(!empty($model)){
+				
+				if($model->user_type==1){
+					$model = \app\modules\users\models\Cuserdetail::find()->where([
+					'id'=>$id,
+					'auth_key'=>$key,
+					'status'=>0,
+					])->one();
+				}				
+			
 				$model->status=1;				
 				$model->save();
 				
