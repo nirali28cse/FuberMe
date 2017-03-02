@@ -17,6 +17,11 @@ use yii\grid\GridView;
 
 $this->title = 'Received Orders History';
 $this->params['breadcrumbs'][] = $this->title;
+
+
+$dataProvidercount = $dataProvider->getCount();
+
+
 ?>
 <div class="order-info-index">
 
@@ -98,5 +103,21 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
         ],
 		
-    ]); ?>
+    ]); 
+
+	if($dataProvidercount==0){ 
+	?>
+		<div class="clearfix">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
+	<?php } ?>
+	
 </div>
