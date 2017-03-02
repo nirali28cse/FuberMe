@@ -3,6 +3,7 @@
 return [
     'adminEmail' => 'nirali28cse@gmail.com',
   //  'adminemailid' => 'email@fuberme.com',
+    'http_url' => 'http://34.195.26.140',
     'today_date' => date('Y-m-d'),
     'pagination_item_count' => '20',
     'adminemailid' => 'fuberme@gmail.com',
