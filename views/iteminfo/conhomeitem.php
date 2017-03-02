@@ -70,7 +70,7 @@ $offlinecount = $offlinedataProvider->getCount();
 						]);  
 
 
-						if($livecount<Yii::$app->params['pagination_item_count'] or $offlinecount<Yii::$app->params['pagination_item_count']){
+						if($livecount<Yii::$app->params['pagination_item_count'] and $offlinecount<Yii::$app->params['pagination_item_count']){
 						?>
 						 
 						 <script type="text/javascript">
