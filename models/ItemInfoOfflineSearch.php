@@ -51,7 +51,8 @@ class ItemInfoOfflineSearch extends ItemInfo
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
 		//	'pagination' => false,
-			'pagination' => array('pageSize' =>Yii::$app->params['pagination_item_count']),
+		//	'pagination' => array('pageSize' =>Yii::$app->params['pagination_item_count']),
+			'pagination' => array('pageSize' =>Yii::$app->params['pagination_item_count'],'page' =>$page_number),
 			'sort' => [
 /* 				'defaultOrder' => [
 					'price' => SORT_DESC,

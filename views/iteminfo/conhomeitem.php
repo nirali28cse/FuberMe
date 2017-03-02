@@ -5,9 +5,15 @@ use yii\widgets\ListView;
 
 $livecount = $livedataProvider->getCount();
 $offlinecount = $offlinedataProvider->getCount();
+
+			if(Yii::$app->request->isAjax){
 ?>
+					<div class="clearfix">&nbsp;</div>
+					<div style="border: 1px solid #38b662;"></div>
+					<div class="clearfix">&nbsp;</div>
 
 <?php
+			}
 
  					 	 echo  ListView::widget([
 						//		'layout' => "{sorter}\n{summary}\n{items}\n{pager}",								
