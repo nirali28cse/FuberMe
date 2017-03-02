@@ -4,7 +4,7 @@
 <div class="footer-content">
 	 <div class="container">
 		 <div class="copywrite"  style="float:left;">
-			 <p>Copyright © 2016 <a href="#">FuberMe</a></p>
+			 <p>Copyright © <?php echo date('Y'); ?> <a href="#">FuberMe</a></p>
 		 </div>	
 
 		 <div class="copywrite" style="float:right;">
