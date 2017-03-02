@@ -51,8 +51,8 @@ class ItemInfoLiveSearch extends ItemInfo
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-			'pagination' => array('pageSize' =>Yii::$app->params['pagination_item_count']),
-		//	'pagination' => array('page' => $page_number,'pageSize' =>Yii::$app->params['pagination_item_count']),
+		//	'pagination' => array('pageSize' =>Yii::$app->params['pagination_item_count']),
+			'pagination' => array('pageSize' =>Yii::$app->params['pagination_item_count'],'page' =>$page_number),
 		//	'pagination' => false,
 			'sort' => [
 /* 				'defaultOrder' => [
