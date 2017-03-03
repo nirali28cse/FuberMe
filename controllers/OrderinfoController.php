@@ -500,14 +500,36 @@ class OrderinfoController extends Controller
 	}
 	
 	
+	
 	public function actionPaypalordersuccess()
     {
-		echo '<pre>';
-		print_r($_GET);
-		exit;
-		return $this->render('paypalorderSuccess', [
-			// 'order_array' => $_SESSION['order_array'],
-		]);
+		
+		if(isset($_GET['order_id'])){
+			
+			$model = $this->findModel($_GET['order_id']);
+			$order_status=2;  // order status change
+			$model->order_status=$order_status;
+			if($model->save()){
+				unset($_SESSION['master_chef']);
+				unset($_SESSION['master_chef_name']);
+				unset($_SESSION['order_array']);
+				$order_items = OrderItemInfo::find()->where(['order_info_id'=>$model->id])->all(); 
+				if(count($order_items)){
+					foreach($order_items as $order_item){				
+						if($model->payment_method=='paypal'){
+							$item_id=$order_item->item_id;
+							$item_chef_id=$order_item->item_chef_user_id;
+							$update_qty=$order_item->item_qty;
+							$customer_user_id=$model->user_id;
+							$this->Afterinvoiceupdateitemqty($item_id,$item_chef_id,$update_qty,$customer_user_id); 	
+						}						
+					}
+				}
+				
+				return $this->redirect(['view', 'id' =>$model->id,'paysucess'=>1]);
+			}
+		}
+
 	}
 	
 	

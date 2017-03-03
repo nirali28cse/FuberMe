@@ -1,7 +1,22 @@
+<style>
+.invoicesuccess{
+    color: #38b662;
+    padding: 10px 0;
+}
+</style>
+
+
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
     		<div class="invoice-title">
+			
+			
+				<?php if(isset($_GET['paysucess']) and $_GET['paysucess']==1){ ?>
+						<div class="invoicesuccess">Your Payment Successfully Done.</div>
+				<?php } ?>
+				
+				
     			<h2>Invoice</h2><h3 class="pull-right">Order # <?php echo $model->order_number; ?></h3>
     		</div>
     		<hr>
