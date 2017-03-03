@@ -90,6 +90,8 @@ class OrderInfoSearch extends OrderInfo
             ->andFilterWhere(['like', 'payment_method', $this->payment_method])
             ->andFilterWhere(['like', 'tax_in_percent', $this->tax_in_percent])
             ->andFilterWhere(['like', 'order_notes', $this->order_notes]);
+			
+		$query->orderBy(['(order_date_time)' => SORT_DESC]);
 
         return $dataProvider;
     }

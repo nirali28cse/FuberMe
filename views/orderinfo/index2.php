@@ -4,6 +4,10 @@
     color: #38b662 !important;
 }
 
+.summary{
+	display: none;
+}
+
 
 </style>
 
@@ -54,11 +58,13 @@ $dataProvidercount = $dataProvider->getCount();
 			'format' => 'html',
             'value' => function($model) { 
 					$invoice_items=array();
-					foreach($model->orderItemInfo as $iteminfo){
-						$invoice_items[]=$iteminfo->itemInfo->name;
+					$invoice_item=null;					
+					if(count($model->orderItemInfo)>0){
+						foreach($model->orderItemInfo as $iteminfo){
+							$invoice_items[]=$iteminfo->itemInfo->name;
+						}
+						$invoice_item=implode(',',$invoice_items);
 					}
-					$invoice_item=null;
-					$invoice_item=implode(',',$invoice_items);
 					return $invoice_item;
 				},
 			],	
@@ -78,10 +84,12 @@ $dataProvidercount = $dataProvider->getCount();
 			'format' => 'html',
             'value' => function($model) { 
 					$chef_name=null;
-					foreach($model->orderItemInfo as $iteminfo){
-						$chef_name[$iteminfo->item_chef_user_id]=$iteminfo->chefInfo->username;
-					}					
-					$chef_name=implode(',',$chef_name);
+					if(count($model->orderItemInfo)>0){
+						foreach($model->orderItemInfo as $iteminfo){
+							$chef_name[$iteminfo->item_chef_user_id]=$iteminfo->chefInfo->username;
+						}					
+						$chef_name=implode(',',$chef_name);
+					}
 					return $chef_name;
 				},
 			],	

@@ -24,6 +24,57 @@
 .seller-grid {
     padding-bottom: 3%;
 }
+
+.otheritem{
+    font-size: 0.9em;
+    font-weight: 600;
+    padding: 10px 0;
+    text-transform: uppercase;
+    color: #38b662;
+    border-bottom: 1px solid rgb(236, 236, 236);
+    margin-bottom: 1em;
+	
+}	
+
+
+.list-view>.item{float:left; width:33.3%;}
+
+.product-grid {
+    width: 100%;
+}
+
+
+.sofa-grid h4 a{
+    background: #38b662;
+	color: White;
+	border-radius: 0;
+}
+.itemerrorclass{
+    font-size: 14px;
+    color: #ff1414;
+    margin: 95px 15px;
+    display: block;
+    clear: both;
+    position: absolute;
+}
+
+
+.items{
+    float: left;
+    margin: 0 0 16px 0px;
+    display: block;
+    clear: both;
+}
+
+.pagination {
+    display: none;
+}
+
+
+.col-md-12{
+    padding-right: 0;
+    padding-left: 0;
+}
 </style>
 
 
@@ -196,16 +247,45 @@ if(count($user_info)>0){
 				 </div>
 				  <div class="clearfix"></div>
 				 
+
+				 
+						 <h4 class="otheritem" > Other Dishes By Chef <?php  echo $master_chef_name; ?></h4>
+
+   <div class="product-model">	 
+	 <div class="container">
+		 <div class="col-md-12 product-model-sec">									
+				<div class="item-info-index">
+						<?php	
+
+						
+						        echo $this->render('/iteminfo/conhomeitem', [
+									'livedataProvider' => $livedataProvider,
+									'offlinedataProvider' => $offlinedataProvider,
+								]);
+								
+
+
+						?>		
+						
+				</div>
+			</div>
+		</div>
+	</div>
+		
+							 <div class="clearfix"></div>
+
+				 
+				 
 	<?php
 
 
 				//get related item of this chef_user_id
-				$random_chef_items= ItemInfo::find()
+/* 				$random_chef_items= ItemInfo::find()
 								->where(['chef_user_id' => $user_id])
 							//	->where(['status' => 1])
 								// ->andWhere(['!=','id',$model->id])
 								->orderBy(['status' => SORT_DESC])
-								->all();
+								->all(); 
 				
 				if(count($random_chef_items)>0){
 				?> 
@@ -282,7 +362,9 @@ if(count($user_info)>0){
 							 <div class="clearfix"></div>
 						</div>						 
 				</div>
-				<?php } ?>  
+				<?php } 
+				*/
+				?>  
 				 
 				 
 				 
@@ -369,3 +451,63 @@ $(document).ready(function(){
 <br/>
 <br/>
 <br/>
+
+
+
+	
+<script type="text/javascript">
+
+// infinite scroll 
+var noresult = false;
+var busy = false;
+var limit = 5
+var offset = 0;
+
+function displayRecords(lim, off) {
+        $.ajax({
+          type: "GET",
+          async: false,
+          url: <?php Yii::$app->homeUrl; ?>'?r=iteminfo/conhome',
+          data: "per-page=" + lim + "&page=" + off,
+          cache: false,
+          beforeSend: function() {
+            $("#loader_message").html("").hide();
+            $('#loader_image').show();
+          },
+          success: function(html) {
+			//  alert(html);
+            $("#results").append(html);
+            $('#loader_image').hide();
+            if (html == "") {
+              $("#loader_message").html('<button data-atr="nodata" class="btn btn-default" type="button">No more records.</button>').show()
+            } else {
+              $("#loader_message").html('<button class="btn btn-default" type="button">Loading please wait...</button>').show();
+            }
+            window.busy = false;
+
+          }
+        });
+}
+
+$(document).ready(function() {
+
+$(window).scroll(function() {
+          // make sure u give the container id of the data to be loaded in.
+          if ($(window).scrollTop() + $(window).height() > $("#results").height() && !busy) {
+            busy = true;
+       //     offset = limit + offset;
+			offset=offset+1;
+				
+			if(!noresult){
+				displayRecords(limit, offset);	
+			}	
+            
+
+          }
+});
+
+});
+// infinite scroll 
+</script>
+
+	

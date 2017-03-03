@@ -454,7 +454,7 @@ use yii\widgets\ListView;
 var noresult = false;
 var busy = false;
 var limit = 5
-var offset = 1;
+var offset = 0;
 
 function displayRecords(lim, off) {
         $.ajax({

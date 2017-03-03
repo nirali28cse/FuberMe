@@ -4,6 +4,10 @@
     color: #38b662 !important;
 }
 
+.summary{
+	display: none;
+}
+
 </style>
 
 <?php
@@ -52,11 +56,14 @@ $dataProvidercount = $dataProvider->getCount();
 			'format' => 'html',
             'value' => function($model) { 
 					$invoice_items=array();
-					foreach($model->orderItemInfo as $iteminfo){
-						$invoice_items[]=$iteminfo->itemInfo->name;
-					}
 					$invoice_item=null;
-					$invoice_item=implode(',',$invoice_items);
+					if(count($model->orderItemInfo)>0){
+						foreach($model->orderItemInfo as $iteminfo){
+							$invoice_items[]=$iteminfo->itemInfo->name;
+						}					
+						$invoice_item=implode(',',$invoice_items);
+					}
+
 					return $invoice_item;
 				},
 			],	
