@@ -36,7 +36,7 @@ class OrderItemInfo extends \yii\db\ActiveRecord
             [['order_info_id', 'item_id', 'item_qty', 'item_price', 'item_chef_user_id'], 'required'],
             [['order_info_id', 'item_id', 'item_qty', 'item_chef_user_id'], 'integer'],
             [['date_time'], 'safe'],
-            [['item_price'], 'string', 'max' => 100],
+         //   [['item_price'], 'string', 'max' => 100],
         ];
     }
 
