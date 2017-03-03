@@ -329,6 +329,24 @@ class OrderinfoController extends Controller
 		}		
 		//update offline live items
 		
+		if(isset($_SESSION['master_chef']) and $_SESSION['master_chef']>0){
+			$chef_array[]=$_SESSION['master_chef'];
+			if($chef_array!=null){
+				$_SESSION['filetrsarray']=array(
+											'min_location'=>0,
+											'max_location'=>0,
+											'chef_array'=>$chef_array,
+											'search_by_item'=>null,
+											'min_price'=>0,
+											'max_price'=>0,
+											'cusion_array'=>array(),
+											'dieta_array'=>array(),
+											'categ_array'=>array(),
+											);
+			}
+		}
+
+		
         $livesearchModel = new ItemInfoLiveSearch(); 
         $livedataProvider = $livesearchModel->search(Yii::$app->request->queryParams); 
 				
