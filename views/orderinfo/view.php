@@ -32,7 +32,7 @@
     					<?php echo $model->customer_address; ?><br>
     					<?php echo $model->customer_city; ?>,<?php echo $model->customer_zip; ?><br>    										
 					<?php } ?>
-					<?php if($model->delivery_method=='pickup'){ ?>
+					<?php if($model->delivery_method=='pickup' and count($model->orderItemInfo)>0){ ?>
 						<strong>PickUp Address:</strong><br>
     					<?php echo $model->orderItemInfo[0]->chefInfo->username; ?>,<br>  
     					<?php echo $model->orderItemInfo[0]->chefInfo->address;  ?>,<br>    										
