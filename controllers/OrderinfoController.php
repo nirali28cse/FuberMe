@@ -505,7 +505,7 @@ class OrderinfoController extends Controller
     {
 		
 		if(isset($_GET['order_id'])){
-			
+			session_start();
 			$model = $this->findModel($_GET['order_id']);
 			$order_status=2;  // order status change
 			$model->order_status=$order_status;
