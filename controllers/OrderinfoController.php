@@ -333,8 +333,8 @@ class OrderinfoController extends Controller
 			$chef_array[]=$_SESSION['master_chef'];
 			if($chef_array!=null){
 				$_SESSION['filetrsarray']=array(
-											'min_location'=>0,
-											'max_location'=>0,
+											'min_location'=>1,
+											'max_location'=>1,
 											'chef_array'=>$chef_array,
 											'search_by_item'=>null,
 											'min_price'=>0,
