@@ -54,6 +54,19 @@ class OrderInfoSearch extends OrderInfo
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+								
+			'sort' => [
+				'attributes' => [
+					'delivery_method' => [
+						'asc' => ['delivery_method' => SORT_ASC, 'order_number' => SORT_DESC],
+						'desc' => ['delivery_method' => SORT_DESC, 'order_number' => SORT_ASC],
+					],
+					'order_number',
+				],
+				'defaultOrder'=>'order_date_time DESC',
+			],	
+					
+			
         ]);
 
         $this->load($params);
@@ -91,7 +104,10 @@ class OrderInfoSearch extends OrderInfo
             ->andFilterWhere(['like', 'tax_in_percent', $this->tax_in_percent])
             ->andFilterWhere(['like', 'order_notes', $this->order_notes]);
 			
-		$query->orderBy(['(order_date_time)' => SORT_DESC]);
+/* 		if(!isset($_GET['sort'])){
+			$query->orderBy(['(order_date_time)' => SORT_DESC]);
+		} */	
+		
 
         return $dataProvider;
     }

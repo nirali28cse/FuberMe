@@ -78,7 +78,7 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 		    <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 		</div>
 		<div class="col-sm-3">	
-		    <?= $form->field($model, 'quantity')->textInput(['type' =>'number','maxlength' => true]) ?>
+		    <?= $form->field($model, 'quantity')->textInput(['type' =>'number','min' =>'0','maxlength' => true]) ?>
 		</div>
 	 </div>
 
@@ -156,10 +156,13 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 				<?= $form->field($model, 'availability_from_date')->widget(\yii\jui\DatePicker::classname(), [
 					'dateFormat' => 'php:Y-m-d',
 					'value'=>Yii::$app->params['today_date'],
-					'options' => ['placeholder' => 'Select end date',
+					'options' => ['placeholder' => 'Select Start date',
 					'style'=>'height: 50px;width: 100%;padding: 10px;font-size: 16px;'],
 					'clientOptions' => [
 					 //   'autoclose' => true,     
+					],
+					'clientOptions' => [
+						'minDate'=>'0', 
 					],
 				]) ?>
 
@@ -287,7 +290,10 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 	
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
+        <a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/index" style="margin-left: 15px;" class="btn btn-success">Cancel</a>
+		
+		<?= Html::submitButton($model->isNewRecord ? 'Add Item' : 'Update Item', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
+		
     </div>
 
     <?php ActiveForm::end(); ?>

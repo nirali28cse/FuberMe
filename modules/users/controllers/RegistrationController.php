@@ -164,7 +164,7 @@ class RegistrationController extends Controller
 					 
 					 if(isset($_GET['directorder']) and ($_GET['directorder']>0)){
 						$directorder=$_GET['directorder'];
-						return $this->redirect(['/orderinfo/review', 'itemid' =>$directorder]);
+						return $this->redirect(['/orderinfo/review', 'itemid' =>$directorder, 'directorder' =>$directorder]);
 					 }else{
 						// if admin 
 						if(Yii::$app->user->identity->is_admin==1){

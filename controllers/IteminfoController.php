@@ -364,9 +364,64 @@ print_r($chef_distance_array); */
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+	
+		$model=$this->findModel($id);
+		//update offline live items
+		$alloffline_liveitems = ItemInfo::find()
+		 ->where(['AND',
+				['<=', 'availability_from_date',Yii::$app->params['today_date']],
+				['<=', 'availability_to_date',Yii::$app->params['today_date']],
+				['status'=>1]
+				])
+		 ->all();
+
+		if(count($alloffline_liveitems)>0){
+			$update_itemid_array=array();
+			foreach($alloffline_liveitems as $alloffline_liveitem){
+				$update_itemid_array[]=$alloffline_liveitem->id;
+			}
+
+			if($update_itemid_array!=null){
+				$update_item=ItemInfo::updateAll( 
+					 array('status' =>0),['id' =>  $update_itemid_array]
+				);
+			}
+
+		}		
+		//update offline live items
+		
+		if($model->chef_user_id>0){
+			$chef_array[]=$model->chef_user_id;
+			if($chef_array!=null){
+				$_SESSION['filetrsarray']=array(
+											'min_location'=>1,
+											'max_location'=>1,
+											'chef_array'=>$chef_array,
+											'search_by_item'=>null,
+											'min_price'=>0,
+											'max_price'=>0,
+											'cusion_array'=>array(),
+											'dieta_array'=>array(),
+											'categ_array'=>array(),
+											);
+			}
+		}
+
+		
+		$livesearchModel = new ItemInfoLiveSearch(); 
+		$livedataProvider = $livesearchModel->search(Yii::$app->request->queryParams); 
+				
+		$offlinesearchModel = new ItemInfoOfflineSearch(); 
+		$offlinedataProvider = $offlinesearchModel->search(Yii::$app->request->queryParams); 
+
+
+		return $this->render('view', [
+			'model' => $model,
+			'livedataProvider' => $livedataProvider,
+			'offlinedataProvider' => $offlinedataProvider,
+		]);
+	
+
     }
 
     /**

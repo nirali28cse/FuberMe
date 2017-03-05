@@ -94,6 +94,8 @@
 											<?php } ?>		
 											
 											<li><a href="<?php echo $url; ?>">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+											<li class="divider"></li>												
+											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/forgotpassword/changepass">Change Password <span class="	glyphicon glyphicon-lock pull-right"></span></a></li>
 											<li class="divider"></li>										
 											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login/logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
 										</ul>
@@ -126,7 +128,7 @@
 								}
 								
 							?> 
-						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/review&itemid=<?php echo $item_id; ?>" class="yellowactive"><?php echo $totla_item; ?> Plate &nbsp;<span class="glyphicon glyphicon-cutlery  pull-right"></span> </a></li>							
+						<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/review&itemid=<?php echo $item_id; ?>" class="yellowactive"><?php echo $totla_item; ?> Items &nbsp;<span class="glyphicon glyphicon-cutlery  pull-right"></span> </a></li>							
 						<?php } ?>
 						
 						<?php 

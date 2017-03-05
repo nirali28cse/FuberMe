@@ -878,6 +878,7 @@ ul.tabs-menu li.active a{
 .product-info-cust {
 	float: left;
 	padding: 0.8em 1.2em;
+	width: 100%;
 } 
 .item_quantity {
   margin: 1em 0;
@@ -933,7 +934,7 @@ a:hover, a:focus {
 	 letter-spacing:1px;
 }
 span.item_price{
-	color:#000;
+	color:#38b662;
 	font-weight:600;
 	font-size:1em;
 	 font-family: 'Arimo', sans-serif;

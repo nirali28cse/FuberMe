@@ -251,27 +251,24 @@ if(count($user_info)>0){
 				 
 						 <h4 class="otheritem" > Other Dishes By Chef <?php  echo $master_chef_name; ?></h4>
 
-   <div class="product-model">	 
-	 <div class="container">
-		 <div class="col-md-12 product-model-sec">									
-				<div class="item-info-index">
-						<?php	
+						   <div class="product-model">	 
+							 <div class="container">
+								 <div class="col-md-12 product-model-sec">									
+										<div class="item-info-index">
+												<?php	
+				
+														echo $this->render('/iteminfo/conhomeitem', [
+															'livedataProvider' => $livedataProvider,
+															'offlinedataProvider' => $offlinedataProvider,
+														]);
 
-						
-						        echo $this->render('/iteminfo/conhomeitem', [
-									'livedataProvider' => $livedataProvider,
-									'offlinedataProvider' => $offlinedataProvider,
-								]);
+												?>		
+												
+										</div>
+									</div>
+								</div>
+							</div>
 								
-
-
-						?>		
-						
-				</div>
-			</div>
-		</div>
-	</div>
-		
 							 <div class="clearfix"></div>
 
 				 
@@ -412,6 +409,14 @@ $(document).ready(function(){
 			unset($_SESSION['master_chef']);
 	 ?>
 	 
+			<script type="text/javascript">
+			history.pushState(null, null, '<?php echo $_SERVER["REQUEST_URI"]; ?>');
+			window.addEventListener('popstate', function(event) {
+				window.location.assign("<?php echo Yii::$app->homeUrl; ?>");
+			});
+			</script>
+			
+			
 			<div class="cart_main">
 				 <div class="container">
 					
