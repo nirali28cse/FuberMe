@@ -16,8 +16,11 @@
 						<div class="invoicesuccess">Your Payment Successfully Done.</div>
 				<?php } ?>
 				
+				<a href="#"  onclick="goBack()" class="pull-right" style="color: #38b662;"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+    			<h2>Invoice</h2>
+    			
 				
-    			<h2>Invoice</h2><h3 class="pull-right">Order # <?php echo $model->order_number; ?></h3>
+				<h3 class="pull-right">Order # <?php echo $model->order_number; ?></h3>
     		</div>
     		<hr>
     		<div class="row">
@@ -122,3 +125,10 @@
     	</div>
     </div>
 </div>
+
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>

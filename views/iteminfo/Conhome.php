@@ -568,7 +568,7 @@ $('#collapse3,#collapse2,#collapse1').on('hide.bs.collapse', function () {
       range: true,
       min: 0,
       max: 100,
-      values: [ 20, 40 ],
+      values: [ 0, 100 ],
       slide: function( event, ui ) {
         $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
       },
@@ -598,7 +598,7 @@ $('#collapse3,#collapse2,#collapse1').on('hide.bs.collapse', function () {
       range: true,
       min: 0,
       max: 100,
-      values: [ 5, 50 ],
+      values: [ 0, 100 ],
       slide: function( event, ui ) {
         $( "#location" ).val( "" + ui.values[ 0 ] + "M - " + ui.values[ 1 ] + "M" );
       },

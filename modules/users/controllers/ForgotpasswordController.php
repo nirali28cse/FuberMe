@@ -86,6 +86,33 @@ class ForgotpasswordController extends Controller
 		return $this->redirect(['resetpass', 'id' =>$model->id]);
 	}	 
 	
+    public function actionChangepass()
+    {
+		$id=Yii::$app->user->id;
+		$model =  Cuserdetail::findOne($id);	
+        if(count($model)>0){
+			if (Yii::$app->request->post()){
+				$new_password=$_POST['new_password'];
+				$reenter_password=$_POST['reenter_password'];
+				if(($new_password==$reenter_password) and ($new_password!=null) and ($reenter_password!=null)){	
+					$model->password=MD5($new_password);	
+					if($model->save()){
+						return $this->goHome();
+					}
+				}else{					
+					Yii::$app->session->set('reset_password','<div class="alert alert-danger">
+					Password Not Match,Please Enter Password Again.
+					</div>');
+				}		
+			}
+		}
+		
+		return $this->render('changepass', [
+			'model' => $model,
+		]);
+	}
+	
+	
     public function actionResetpass($id)
     {   
 

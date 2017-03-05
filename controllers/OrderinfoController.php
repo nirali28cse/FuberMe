@@ -278,6 +278,20 @@ class OrderinfoController extends Controller
 		if($payment_method!=null and $payment_method=='paypal'){
 			$tax_in_percent=2.9;	
 		}
+		
+		
+		if(isset($_GET['directorder']) and $_GET['directorder']>0){
+			$order_items=$_SESSION['order_array']['order_item'];
+			if(count($order_items)>0){
+				foreach($order_items as $order_item){					
+					$chef_id=$order_item['item_chef'];
+					if(Yii::$app->user->id==$chef_id){
+						$ditem=$order_item['item_id'];
+						$item_info=$this->Deleteitem($ditem);
+					}
+				}
+			}
+		}
 
 		// delete item		
 		if(isset($_GET['ditem']) and $_GET['ditem']>0){
@@ -428,6 +442,7 @@ class OrderinfoController extends Controller
 			
 			$order_array=$_SESSION['order_array'];
 			$order_number=0;
+			$order_seq_number=0;
 			
 			$payment_method=$_POST['OrderInfo']['payment_method'];
 			if($payment_method=='cod'){
@@ -439,8 +454,31 @@ class OrderinfoController extends Controller
 			}
 			
 			$userid=$order_array['customer_info']['customer_id'];
-			$order_number=substr(number_format(time() * rand(),0,'',''),0,10);
+			// $order_number=substr(number_format(time() * rand(),0,'',''),0,10);
+			
+			// generate seq order number
+			$last_entry=OrderInfo::find()->orderBy(['id' => SORT_DESC])->one();
+			$last_seq_number=0;
+			if(count($last_entry)>0){
+				$last_seq_number=$last_entry->order_seq_number;
+			}
+			if(count($last_seq_number)>0){
+				$order_seq_number=$last_seq_number+1;
+			}else{
+				$order_seq_number=1;
+			}
+			
+			$count_number=strlen((string)$order_seq_number);
+			if($count_number==1) $order_seq_zeronumber='00000'; 
+			if($count_number==2) $order_seq_zeronumber='0000'; 
+			if($count_number==3) $order_seq_zeronumber='000'; 
+			if($count_number==4) $order_seq_zeronumber='00'; 
+			if($count_number==5) $order_seq_zeronumber='0'; 
+			// generate seq order number
+			
+			$order_number=date('Y').$order_seq_zeronumber.$order_seq_number;			
 			$model->order_number=$order_number;
+			$model->order_seq_number=$order_seq_zeronumber.$order_seq_number;			
 			$model->final_amount=$order_array['final_amount'];
 			$model->total_amount=$order_array['total_amount'];
 			$model->tax_in_percent=$order_array['tax_in_percent'];
@@ -507,7 +545,7 @@ class OrderinfoController extends Controller
 		if(isset($_GET['order_id'])){
 			session_start();
 			$model = $this->findModel($_GET['order_id']);
-			$order_status=2;  // order status change
+			$order_status=3;  // order status change
 			$model->order_status=$order_status;
 			if($model->save()){
 				unset($_SESSION['master_chef']);
