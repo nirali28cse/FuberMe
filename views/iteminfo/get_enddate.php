@@ -70,7 +70,7 @@ use yii\widgets\ActiveForm;
 			<div class="col-sm-8" style="padding: 0;">
 				<?php  // $form->field($model, 'availability_to_date')->textInput(['maxlength' => true]) ?>
 				
-				<input type="hidden" name="ItemInfo[availability_from_date]" value="<?php echo $model->availability_from_date; ?>">
+				<input type="hidden" name="availability_from_date" value="<?php echo $model->availability_from_date; ?>">
 				<input type="hidden" name="ItemInfo[id]" value="<?php echo $model->id; ?>">
 				
 				<?php /* $form->field($model, 'availability_to_date')->label(false)->widget(
@@ -132,7 +132,7 @@ use yii\widgets\ActiveForm;
  <script type="text/javascript"> 
  function validateform1(){ 
 
-	var availability_from_date=$('input[name="ItemInfo[availability_from_date]"]').val(); 
+	var availability_from_date=$('input[name="availability_from_date"]').val(); 
 	var availability_to_date=$('input[name="ItemInfo[availability_to_date]"]').val(); 
 	var availability_to_time = $('select#iteminfo-availability_to_time option:selected').val();
 	var quantity=$('input[name="ItemInfo[quantity]"]').val(); 
