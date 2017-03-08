@@ -38,7 +38,7 @@ use yii\widgets\ActiveForm;
 
 			
 			<p class="faque">I'm having issues with the website. How do I report it?</p>
-			<p class="faqans">Our sincere apologies! We are always looking to improve. Please contact us by email at <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=<?php echo Yii::$app->params['adminemailid']; ?>"><?php echo Yii::$app->params['adminemailid']; ?></a>, or reach us by phone / text at <a>508-257-1499</a>.</p>
+			<p class="faqans">Our sincere apologies! We are always looking to improve. Please contact us by email at<a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=<?php echo Yii::$app->params['adminemailid']; ?>"><?php echo Yii::$app->params['adminemailid']; ?></a>, or reach us by phone / text at (508) 257-1499.</p>
 			
 			
 			<div class="clearfix">&nbsp;</div>
@@ -50,53 +50,68 @@ use yii\widgets\ActiveForm;
 			 
 			<p class="faque">What kind of food options are available?</p>
 			<p class="faqans">
-			The options are endless! </p>
+			The options are endless!  </p>
 			<div class="clearfix">&nbsp;</div>
 			<p class="faqans">
-			It can be your favorite food item that you love to eat, or even a unique recipe from a chef that are not available in restaurants or supermarkets. It can be your regular meal, or a catering order for your party. 
+			It can be your favorite food item that you love to eat, or even a unique recipe from a chef that are not available in restaurants or supermarkets. 
 			</p>
+			<div class="clearfix">&nbsp;</div>
+			<p class="faqans">
+			It can be your regular meal, or a catering order for your party. 
+			</p>		
 			<div class="clearfix">&nbsp;</div>
 			<p class="faqans">
 			Start browsing and you will be amazed with the available varieties.
 			</p>
 			 
 			<p class="faque">I couldn’t find the food/item I was looking for. What should I do?</p>
-			<p class="faqans">Excellent! If you have any specific suggestions, do share with us via email, facebook, or twitter. Our chefs are always looking for suggestions directly from their customers.</p>
+			<p class="faqans">Not to worry! If you have any specific suggestions, do share with us via email, facebook, or twitter. Our chefs are always looking for suggestions directly from their customers. We will socialize to all chefs and that item may become available soon.</p>
 						 
 			<p class="faque">I have dietary restrictions – how can I clarify what's in the food?</p>
-			<p class="faqans">We encourage our chefs to list dietary preference (vegetarian, non-vegetarian, gluten-free, halal and so on...) in their listing. You can filter by dietary preference while searching for your favorite food items.</p>
+			<p class="faqans">We encourage our chefs to list dietary preference (vegetarian, non-vegetarian, gluten-free, halal and so on...) in their listing. You can filter by dietary preference while searching for your favorite food items. Or, you can read the details after selecting an item.</p>
 									 
 			<p class="faque">I have allergy restrictions - how can I clarify what’s in the food?</p>
 			<p class="faqans">Same as above. Chefs list all allergens in their meal listing, but if you have specific questions you can also add a note while placing an order. </p>
 												 
 			<p class="faque">How do I get my food? Pickup or delivery?</p>
-			<p class="faqans">It is completely up to the chef that you are ordering from. A chef can either offer a pickup option, delivery, or both. If you have a preference, you can apply a filter during your search to select chefs that offer your preferred option. </p>
+			<p class="faqans">It is completely up to the chef that you are ordering from. A chef can either offer a pickup option, delivery, or both. If you have a preference, you can apply a filter during your search to order from chefs that offer your preferred option.  </p>
 			<div class="clearfix">&nbsp;</div>
 			<p class="faqans">Note that delivery option may include additional delivery charges from chef.</p>
 			
 						 
 			<p class="faque">How do I find chef’s address for a pickup?</p>
-			<p class="faqans">Chef’s address will be displayed after you place an order. Before placing an order, you can see chef’s approximate location by town name or zip code. </p>
+			<p class="faqans">Chef’s address will be displayed after you place an order. Before placing an order, you can see chef’s approximate location by town name and zip code. </p>
 			
 			<p class="faque">For pickup, can I bring my own container for the food?</p>
-			<p class="faqans">Our chefs use their own containers, but please contact the chef directly if you want to bring your own container and it can be accommodated. </p>
+			<p class="faqans">Our chefs use their own containers, but please contact the chef directly after placing an order, and it can be accommodated. </p>
 			
 			<p class="faque">How do I pay?</p>
-			<p class="faqans">Two options. Either you pay online (credit card, debit card or PayPal) Or pay cash at the time of pickup/delivery. </p>
+			<p class="faqans">Two options. Either you pay online securely (via credit card, debit card or PayPal) Or pay cash at the time of pickup/delivery. </p>
 			<div class="clearfix">&nbsp;</div></p>
-			<p class="faqans">For online payments, we use a secure provider and your information is always safe.</p>
+			<p class="faqans">For online payments, we do not store your credit card information, and it is always processed securely via the most trusted partner PayPal. </p>
 			
 			<p class="faque">How does food pricing work?</p>
-			<p class="faqans">Chefs have complete control over the pricing of their food. We understand that not every food item costs the same to make and we respect that. You may even find a same food item with different price from different chefs. Foodies have a choice to find their best suitable item based on the price, chef ratings, pickup/delivery, and other options. </p>
+			<p class="faqans">Chefs have complete control over the pricing of their food. We understand that not every food item costs the same to make and we respect that. You may even find a same food item with different prices from different chefs. Foodies have a full control to find their best suitable item based on the price, chef ratings, pickup/delivery, and other options.  </p>
 			
 			<p class="faque">I am a regular user/foodie, but would also like to be a home chef. Is it possible?</p>
-			<p class="faqans">Of course! That’s the flexibility of this platform. You can be a foodie/user on certain days when you cannot cook, but can be a chef on other days and sell when you feel like cooking. </p>
+			<p class="faqans">Of course! </p>
+			<div class="clearfix">&nbsp;</div>
+			<p class="faqans">That’s the flexibility of this platform. You can be a foodie/user on certain days when you cannot (or do not want to) cook, but can be a chef on the other days and sell when you feel like cooking.</p>
+			
 			
 			<p class="faque">I want homemade food on a daily basis or for multiple days in a row. Can I do it? </p>
-			<p class="faqans">Why not! While placing an order, you can decide the pickup/delivery time, and chef will plan accordingly!</p>
+			<p class="faqans">Why not! </p>
+			<div class="clearfix">&nbsp;</div>
+			<p class="faqans">While placing an order, add a note to chef with your preferred pickup/delivery date and time, and chef will plan accordingly! </p>
+
+			
+			<p class="faque">I want to order multiple items from the same chef. Can I do it in the same order?</p>
+			<p class="faqans">Yes! </p>
+			<div class="clearfix">&nbsp;</div>
+			<p class="faqans">After you add an item in your cart, you will also see the other items offered by the same chef at the bottom. You can add as many items (and quantities) from the same chef as part of the same order.</p>
 			
 			<p class="faque">Can I place a big/catering order for multiple people? </p>
-			<p class="faqans">It depends. There are certain chefs who specialize only in catering orders and requires minimum quantity. Please check the details in chef’s food item testing</p>
+			<p class="faqans">It depends on the chef. There are many chefs who specialize only in catering orders, while there are others who offer only limited quantities. You can change the available quantities in a drop down before placing your order, as well as other items offered by the same chef.</p>
 
 			
 			<div class="clearfix">&nbsp;</div>
@@ -108,10 +123,11 @@ use yii\widgets\ActiveForm;
 			<p class="faque">Is there a fee to be a Chef?</p>
 			<p class="faqans">No.</p>
 			<p class="faqans">It’s completely free to be a chef and start selling. Just register yourself and start cooking!</p>
+			<p class="faqans">You may ask “what’s the catch?” and we say “none!”. There may be fees in far future, but if you are reading this, then you are the part of the lucky bunches to start free. There is nothing to lose.</p>
 
 					
 			<p class="faque">Are there any other fees for Chefs?</p>
-			<p class="faqans">Chefs just cover payment processing fees on any food sold via online payment via PayPal or credit/debit card. We do not take any commissions currently for any transactions between chef and foodies. </p>
+			<p class="faqans">Chefs just cover payment processing fees on any orders placed via PayPal or credit/debit card. We do not take any commissions currently for any transactions between chef and foodies. </p>
 
 			<p class="faque">What can I cook?</p>
 			<p class="faqans">You can check out the various food categories while creating a new food item. It can be your popular recipe praised by your guests/foodies, or something that foodies may not find anywhere else like restaurants or supermarkets. </p>
@@ -134,29 +150,31 @@ use yii\widgets\ActiveForm;
 			<div class="clearfix">&nbsp;</div>
 			<p class="faqans">When you are building your business, you may not have many customer orders to prepare in advance. In that case, you can select appropriate ‘Preparation Time’ from the drop-down menu while adding a food item. </p>
 			<div class="clearfix">&nbsp;</div>
-			<p class="faqans">Once your business is booming and you receive many orders, you have an option to decide the maximum quantity available. Your food item will go offline automatically after all your available quantities are sold, or once your item end date expires, whichever happens first.</p>
+			<p class="faqans">Once your business is booming and you receive many orders, you have an option to decide the maximum quantity available. Your food item will go offline automatically after all your available quantities are sold, or once your item end date expires, whichever happens first. You will also receive an email when your available quantities go below a certain threshold. </p>
 			
 			<p class="faque">Do I need to list all of my Ingredients? </p>
-			<p class="faqans">Not really. Just list the most important ingredients which will help you and your customer to identify the food contents, as well as any allergic ingredients. </p>
+			<p class="faqans">It’s up to you. At the least, mention the most important ingredients which will help you and your customer to identify the food contents, as well as any allergic ingredients. </p>
 			
 			<p class="faque">What do I write in Description?</p>
 			<p class="faqans">Other than the important fields you populate while creating an item, this item description field is an important field to market your item, of course, without revealing your secret recipe. You can also include information like price per quantity, quantity size, packaging details etc.</p>
 			
 			<p class="faque">How will I get orders from customers?</p>
-			<p class="faqans">After a customer completes the online checkout process, you will receive an instant SMS and email notification with the order details, as well as the contact information of the customer. You can also review your orders by going into your profile page.</p>
+			<p class="faqans">After a customer completes the online checkout process, you will receive an instant SMS and email notification with the order details, as well as the contact information of the customer. You can also check the ‘Received Order History’ by going to your profile page.</p>
 			
 			<p class="faque">Do I have to deliver the food to customers?</p>
 			<p class="faqans">It depends on your preference. You can offer options like pick up (from your designated location), delivery (in certain radius from you), or both. If you pick a delivery option, you may mention extra delivery charges, if any. Customers have options to filter out their searches by delivery or pick up options. </p>
 			
 			<p class="faque">How will the money be paid?</p>
-			<p class="faqans">You have an option to offer online payments via PayPal/Credit/Debit cards to your PayPal account, and/or offer cash on delivery. </p>
+			<p class="faqans">You have an option to offer online secure payments via PayPal/Credit/Debit cards to your PayPal account, and/or offer cash on delivery. You can select such information during the initial registration, and even change it later from your profile. </p>
 			
 			<p class="faque">When can I start receiving orders?</p>
-			<p class="faqans">We are trying to avoid chicken and egg situation. So our current focus is to allow chefs to register themselves and have them start adding their food items in their profile. </p>
+			<p class="faqans">We are trying to avoid chicken and egg situation (or catch 22 situation, for vegetarians!). </p>
 			<div class="clearfix">&nbsp;</div>
-			<p class="faqans">With growing interest of customer registrations already, we are planning to launch the customer focus website soon, where they can start placing their orders from large variety of food items. </p>
+			<p class="faqans">So our current focus is to allow chefs to register themselves and have them start adding their food items in their profile. </p>
 			<div class="clearfix">&nbsp;</div>
-			<p class="faqans">If you are interested in being a foodie/customer, please subscribe with your email, and we will keep you posted with the launch. </p>
+			<p class="faqans">With growing interest of customer registrations already, we are planning to launch the customer focus website soon, where they can start placing their orders from large variety of food items already available from many chefs. </p>
+			<div class="clearfix">&nbsp;</div>
+			<p class="faqans">If you are interested in being a foodie/customer, please subscribe with your email, and we will keep you posted with the launch.  </p>
 					
 					
 		

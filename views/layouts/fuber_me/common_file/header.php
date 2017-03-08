@@ -13,7 +13,7 @@
 					<span class="icon-bar"></span>
 				  </button>
 				<div class="top_left">
-				<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome" class="top-sellers">
+				<a href="<?php echo Yii::$app->homeUrl; ?>" class="top-sellers">
 					<img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/whitelogo.png'); ?>" style="width: 100%;" alt="FuberMe"> 
 				</a>
 				</div>	
