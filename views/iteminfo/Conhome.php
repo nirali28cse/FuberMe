@@ -6,6 +6,7 @@ use yii\widgets\ListView;
 use yii\helpers\Url;
 
 ?>
+
 <style>
 
 
@@ -94,6 +95,13 @@ span.item_price {
     display: none;
 }
 </style>
+
+
+
+
+
+
+
 
   <?php
 /* $this->registerJsFile(Url::to('@web/fuberme/js/jquery.min.js'),array(

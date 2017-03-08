@@ -6,7 +6,7 @@ return [
     'http_url' => 'http://34.195.26.140',
     'today_date' => date('Y-m-d'),
     'pagination_item_count' => '20',
-    'adminemailid' => 'fuberme@gmail.com',
+    'adminemailid' => 'email@fuberme.com',
     'delivery_method' => array('pickup'=>'Pickup','homedelivery'=>'Home Delivery','both'=>'Both'),
     'payment_method' => array('paypal'=>'PayPal','cod'=>'Cash On Delivery'),
     'order_status' => array('1'=>'Order Placed With COD','2'=>'Order Placed With Paypal But not Paid',
