@@ -73,10 +73,10 @@ use yii\widgets\ListView;
 	<!-- <div class="container"> -->
 		 <div class="slider">
 				<ul class="rslides" id="slider1">
-				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/1.jpg'); ?>" alt=""></li>
-				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/2.jpg'); ?>" alt=""></li>
-				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/3.jpg'); ?>" alt=""></li>
-				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/4.jpg'); ?>" alt=""></li>
+				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/One.jpg'); ?>" alt=""></li>
+				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/Two.jpg'); ?>" alt=""></li>
+				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/three.jpg'); ?>" alt=""></li>
+				  <li><img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/four.jpg'); ?>" alt=""></li>
 				</ul>
 				
 

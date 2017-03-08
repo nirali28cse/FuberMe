@@ -305,7 +305,33 @@ class Emailfunction extends Component
 	{
 		$model=Userdetail::findOne($chef_user_id);
 		$toemail = $model->email_id;
-
+		$customer_name=null;
+		$customer_address=null;
+		$customer_contact=null;
+		$order_number=null;
+		$order_item_info=null;
+		$maxhead_up_time=null;
+		$order_item=array();
+		$head_up_time_array=array();
+		
+		$customer_name=$order_query->customer_name;
+		$customer_address=$order_query->customer_address.','.$order_query->customer_city.','.$order_query->customer_zip;
+		$customer_contact=$order_query->customer_email.','.$order_query->customer_mobile_no;
+		$order_number=$order_query->order_number;
+		
+		foreach($order_item_query as $order_item){
+			$order_item[]= '<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+									<td>
+										'.$order_item->itemInfo->name.' (Qty '.$orderitem->item_qty.' in $'.$orderitem->item_price.')
+									</td>				
+							</tr>';
+			$head_up_time_array[]=$order_item->itemInfo->head_up_time;				
+		}
+		
+		$order_item_info=implode(' ',$order_item);
+		$maxhead_up_time=max($head_up_time_array);
+		
+		
 		$subject = 'Congratulations! You have received a new order from FuberMe';		
 		$emailcontent = '
 		<html>
@@ -340,7 +366,19 @@ class Emailfunction extends Component
 								
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 					<td>
-						Foodie Name/contact info
+						'.$customer_name.'
+					</td>				
+				</tr>	
+				
+				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+					<td>
+						'.$customer_address.'
+					</td>				
+				</tr>
+									
+				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+					<td>
+						'.$customer_contact.'
 					</td>				
 				</tr>
 					
@@ -353,20 +391,16 @@ class Emailfunction extends Component
 				
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 					<td>
-						Order #22346
+						Order #'.$order_number.' 
 					</td>				
 				</tr>
 
 											
-				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-					<td>
-						food item, QTY
-					</td>				
-				</tr>
+				'.$order_item_info.'
 															
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 					<td style="padding: 12px 0;color: #38b662;">
-						This order should be ready in 90 Mins.
+						This order should be ready in '.$maxhead_up_time.' Mins.
 
 					</td>				
 				</tr>
@@ -416,7 +450,37 @@ class Emailfunction extends Component
 	{
 		$model=Userdetail::findOne($customer_user_id);
 		$toemail = $model->email_id;
+		$customer_name=null;
+		$customer_address=null;
+		$customer_contact=null;
+		$order_number=null;
+		$order_item_info=null;
+		$maxhead_up_time=null;
+		$order_item=array();
+		$head_up_time_array=array();
+		
+		$chef_user_id=$order_query->chef_user_id;
+		$chef_info=Userdetail::findOne($chef_user_id);
+		$chef_name=$chef_info->username;
+		$chef_address=$chef_info->address.','.$chef_info->city.','.$chef_info->zipcode;
+		$chef_contact=$chef_info->email_id.','.$chef_info->mobile_number;
 
+		foreach($order_item_query as $order_item){
+			$order_item[]= '<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+									<td>
+										'.$order_item->itemInfo->name.' (Qty '.$orderitem->item_qty.' in $'.$orderitem->item_price.')
+									</td>				
+							</tr>';
+			$head_up_time_array[]=$order_item->itemInfo->head_up_time;				
+		}
+		
+		$order_item_info=implode(' ',$order_item);
+		$maxhead_up_time=max($head_up_time_array);
+		$deliverymaxhead_up_time=$maxhead_up_time+30;
+		
+		
+		
+		
 		$subject = 'Your FuberMe order has been placed';	
 
 		//for delivery method pickup		
@@ -455,22 +519,12 @@ class Emailfunction extends Component
 							</td>				
 						</tr>
 										
-						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-							<td>
-								Item Name1 (Qty 2 in $10)
-							</td>				
-						</tr>
-						
-						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-							<td>
-								Item Name2 (Qty 2 in $10)
-							</td>				
-						</tr>
+						'.$order_item_info.'
 							
 																	
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td style="padding: 12px 0;">
-								Your order will be ready after <span style="color: #38b662;">90 Mins</span>.
+								Your order will be ready after <span style="color: #38b662;">'.$maxhead_up_time.' Mins</span>.
 							</td>				
 						</tr>
 							
@@ -483,12 +537,19 @@ class Emailfunction extends Component
 						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td>
-								address
+								'.$chef_name.'
 							</td>				
-						</tr>											
+						</tr>	
+						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td>
-								City,state,pincode
+								'.$chef_address.'
+							</td>				
+						</tr>		
+						
+						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+							<td>
+								'.$chef_contact.'
 							</td>				
 						</tr>
 
@@ -563,28 +624,18 @@ class Emailfunction extends Component
 							</td>				
 						</tr>
 										
-						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-							<td>
-								Item Name1 (Qty 2 in $10)
-							</td>				
-						</tr>
-						
-						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-							<td>
-								Item Name2 (Qty 2 in $10)
-							</td>				
-						</tr>
+						'.$order_item_info.'
 							
 																	
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td style="padding: 12px 0;">
-								Your order will be ready after <span style="color: #38b662;">90 Mins</span>.
+								Your order will be ready after <span style="color: #38b662;">'.$maxhead_up_time.' Mins</span>.
 							</td>				
 						</tr>
 						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td>
-								Your food item will be delivered in <span style="color: #38b662;">120 Mins</span> by <span style="color: #38b662;">Chef Name</span>
+								Your food item will be delivered in <span style="color: #38b662;">'.$deliverymaxhead_up_time.' Mins</span> by <span style="color: #38b662;">'.$chef_name.'</span>
 							</td>				
 						</tr>
 							
@@ -597,12 +648,19 @@ class Emailfunction extends Component
 						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td>
-								address
+								'.$chef_name.'
 							</td>				
-						</tr>											
+						</tr>	
+						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td>
-								City,state,pincode
+								'.$chef_address.'
+							</td>				
+						</tr>		
+						
+						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+							<td>
+								'.$chef_contact.'
 							</td>				
 						</tr>
 
