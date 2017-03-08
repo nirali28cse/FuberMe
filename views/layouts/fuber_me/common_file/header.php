@@ -108,8 +108,8 @@
 										<a href="#" class="dropdown-toggle" style="border: 1px solid white;" data-toggle="dropdown">Registration <b class="caret"></b></a>
 										<ul class="dropdown-menu agile_short_dropdown">
 											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration">SignUp as a Chef <span class="glyphicon glyphicon-user  pull-right"></span></a></li>
-											<li class="divider"></li>		
-											<?php /* <li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex<?php echo $append_url; ?>">Eat with FuberMe <span class="glyphicon glyphicon-cutlery  pull-right"></span></a></li> */ ?>
+											<?php /* <li class="divider"></li>		
+											 <li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex<?php echo $append_url; ?>">Eat with FuberMe <span class="glyphicon glyphicon-cutlery  pull-right"></span></a></li> */ ?>
 										</ul>
 									</li>	
 								<?php } ?>									
