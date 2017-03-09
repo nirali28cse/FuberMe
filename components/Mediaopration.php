@@ -64,9 +64,9 @@ class Mediaopration extends Component
 					if($item_status==0 and $item_is_offline==1){
 					}elseif($item_status==1 and $item_is_live==1){
 					}elseif($item_status==0 and $item_is_live==1){
-						$update_itemto_live[]=$alloffline_liveitem->id;
+						$update_itemto_live[]=$model->id;
 					}elseif($item_status==1 and $item_is_offline==1){
-						$update_itemto_offline[]=$alloffline_liveitem->id;
+						$update_itemto_offline[]=$model->id;
 					}
 
 			}
