@@ -60,9 +60,10 @@
 												</div>
 											</li>
 											<li class="divider navbar-login-session-bg"></li>
-											 <li><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome">Eat with FuberMe <span class="glyphicon glyphicon-cutlery  pull-right"></span></a></li>
-											<li class="divider"></li>											
+					<?php /* 						 <li><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome">Eat with FuberMe <span class="glyphicon glyphicon-cutlery  pull-right"></span></a></li>
+											<li class="divider"></li>	 	*/	?>								
 											<?php 
+											
 											$display=1;
 											$display1=1;
 											$userinfo=app\modules\users\models\Userdetail::findOne(Yii::$app->user->id);

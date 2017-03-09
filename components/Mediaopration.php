@@ -6,12 +6,88 @@ namespace app\components;
 use Yii;
 use yii\base\Component;
 use yii\base\InvalidConfigException;
-
+use app\models\ItemInfo;
 
 
 class Mediaopration extends Component
 {
 
+	 public static function Updateitemstatus()
+	 {
+
+		$alloffline_liveitems = ItemInfo::find()->all();
+
+		if(count($alloffline_liveitems)>0){
+			
+			$update_itemto_live=array();
+			$update_itemto_offline=array();
+			foreach($alloffline_liveitems as $model){
+				
+					$newdate =Yii::$app->params['today_date'];
+					$newdates = strtotime($newdate);
+					$availability_to_date = strtotime($model->availability_to_date);
+					$availability_from_date = strtotime($model->availability_from_date);
+					$newhours = date("H");
+					$newminiute = date("i");		
+					$newTime = $newhours.':'.$newminiute;
+					$newTime = strtotime($newTime); 
+					$availability_from_time = strtotime($model->availability_from_time); 
+					$availability_to_time = strtotime($model->availability_to_time); 
+					
+					$display_offline=0;
+					if($availability_from_date<=$newdates and $newdates<=$availability_to_date){
+						if($availability_from_date!=$newdates and $newdates!=$availability_to_date){
+							$display_offline=1;
+						}elseif($availability_from_date==$newdates and $newdates!=$availability_to_date){
+							$display_offline=1;
+						}else{
+							if($availability_from_date==$newdates and ($newTime>=$availability_from_time and $availability_to_time>=$newTime)){
+								$display_offline=1;
+							}
+							if($availability_to_date==$newdates and $newTime>=$availability_from_time and $availability_to_time>=$newTime){
+								$display_offline=1;
+							}
+						}
+					}
+					
+					$item_is_live=0;
+					$item_is_offline=0;
+					$item_status=0;
+					if($display_offline==1){  
+						$item_is_live=1;
+					}else{
+						$item_is_offline=1;
+					}
+					
+					$item_status=$model->status;
+
+					if($item_status==0 and $item_is_offline==1){
+					}elseif($item_status==1 and $item_is_live==1){
+					}elseif($item_status==0 and $item_is_live==1){
+						$update_itemto_live[]=$alloffline_liveitem->id;
+					}elseif($item_status==1 and $item_is_offline==1){
+						$update_itemto_offline[]=$alloffline_liveitem->id;
+					}
+
+			}
+
+			if($update_itemto_live!=null){
+				$update_item=ItemInfo::updateAll( 
+					 array('status' =>1),['id' =>  $update_itemto_live]
+				);
+			}
+			
+			if($update_itemto_offline!=null){
+				$update_item=ItemInfo::updateAll( 
+					 array('status' =>0),['id' =>  $update_itemto_offline]
+				);
+			}
+
+		}	
+	 
+	 }	
+	 
+	 
 	 public static function Getuserfolderpath($user_id)
 	 {
 

@@ -110,27 +110,8 @@ class SiteController extends Controller
 
 
 		//update offline live items
-		$alloffline_liveitems = ItemInfo::find()
-		 ->where(['AND',
-				['<=', 'availability_from_date',Yii::$app->params['today_date']],
-				['<=', 'availability_to_date',Yii::$app->params['today_date']],
-				['status'=>1]
-				])
-		 ->all();
-
-		if(count($alloffline_liveitems)>0){
-			$update_itemid_array=array();
-			foreach($alloffline_liveitems as $alloffline_liveitem){
-				$update_itemid_array[]=$alloffline_liveitem->id;
-			}
-
-			if($update_itemid_array!=null){
-				$update_item=ItemInfo::updateAll( 
-					 array('status' =>0),['id' =>  $update_itemid_array]
-				);
-			}
-
-		}		
+		// Call functtion for to update item 
+		Yii::$app->mediacomponent->Updateitemstatus();	
 		//update offline live items
 		
 		
