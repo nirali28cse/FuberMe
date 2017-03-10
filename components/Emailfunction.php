@@ -177,7 +177,7 @@ class Emailfunction extends Component
 							</tr> */
 										
 
-					echo	'<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+				$emailcontent =$emailcontent .	'<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 									<td class="content-block" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;color: #38b662;" valign="top">Get ready to wow the world with your special recipes!</td>
 							</tr>
 							
