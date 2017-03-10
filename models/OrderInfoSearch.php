@@ -54,7 +54,7 @@ class OrderInfoSearch extends OrderInfo
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-								
+			'pagination' => array('pageSize' =>10),				
 			'sort' => [
 				'attributes' => [
 					'delivery_method' => [

@@ -191,16 +191,18 @@ span.item_price {
 										$activecous=null;
 										$removecous=null;
 										$check_status=null;
+										$delivery_types='delivery';
 										if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['delivery_array']!=null and in_array($deliverykey,$_SESSION['filetrsarray']['delivery_array'])){
 											$activecous='class="active"';
 											$removecous='<a href="'.Yii::$app->homeUrl.'?r=iteminfo/conhome&ddelivery='.$deliverykey.'" class="rclose">remove</a>';
 											$check_status='checked';
+											$delivery_types='ddelivery';
 										} 
 										
 
 								 ?>	
 										<label class="checkbox">
-										<input type="checkbox" <?php echo $check_status; ?> name="checkbox"  onclick='window.location.assign("<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&delivery=<?php echo $deliverykey; ?>")'><i></i>
+										<input type="checkbox" <?php echo $check_status; ?> name="checkbox"  onclick='window.location.assign("<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&<?php echo $delivery_types;  ?>=<?php echo $deliverykey; ?>")'><i></i>
 										<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&delivery=<?php echo $deliverykey; ?>"  <?php echo $deliverytype; ?>><?php echo $deliverykey; ?></a>
 										<?php echo $removecous; ?>
 										</label>						 

@@ -238,13 +238,13 @@ if(count($user_info)>0){
 						  */		 
 							 ?>
 						 <div class="clearfix">&nbsp;</div>
-						<?php if(Yii::$app->user->isGuest){ ?>
-							<a class="continue" href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex&directorder=<?php echo $value['item_id']; ?>">CheckOut</a>
-						<?php }else{ ?>
-							<a class="continue" href="#">Coming Soon…</a>
-							<?php /* <a class="continue" href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/create">CheckOut</a>
-							*/ ?>
-						<?php } ?>
+						<?php /* if(Yii::$app->user->isGuest){ ?>
+								<a class="continue" href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex&directorder=<?php echo $value['item_id']; ?>">CheckOut</a>						
+						<?php }else{ ?>							
+							 <a class="continue" href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/create">CheckOut</a>
+						<?php } */ ?>
+						
+						<a class="continue" href="#" style="background: gray;">Coming Soon…</a>
 						</div>
 				 </div>
 				  <div class="clearfix"></div>
@@ -443,7 +443,7 @@ $(document).ready(function(){
 								 <div class="clearfix"></div>
 							 <div class="clearfix">&nbsp;</div>
 							 
-							 <a class="continue" href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome"> Find your food here..</a>
+							 <a class="continue" href="<?php echo Yii::$app->homeUrl; ?>"> Find your food here..</a>
 
 							</div>
 							</div>
