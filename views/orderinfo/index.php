@@ -102,7 +102,7 @@ $dataProvidercount = $dataProvider->getCount();
 			],
 			
 			'order_notes:ntext',
-            // 'order_date_time',
+            'order_date_time',
 
  			[
 				'class' => 'yii\grid\ActionColumn',
