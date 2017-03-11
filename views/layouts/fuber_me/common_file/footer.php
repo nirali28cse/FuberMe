@@ -1,5 +1,9 @@
 
-	<div class="clearfix"> </div>
+	<div class="clearfix">&nbsp;</div>
+	<div class="clearfix">&nbsp;</div>
+	<div class="clearfix">&nbsp;</div>
+	<div class="clearfix">&nbsp;</div>
+	<div class="clearfix">&nbsp;</div>
 
 <div class="footer-content">
 	 <div class="container">
