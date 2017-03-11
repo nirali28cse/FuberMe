@@ -185,6 +185,9 @@ class ItemInfoLiveSearch extends ItemInfo
 							 	['>=', 'availability_to_date',Yii::$app->params['today_date']]
 								]); 
 
+			if(Yii::$app->controller->id=='iteminfo' and Yii::$app->controller->action->id=='view' and (isset($_GET['id']) and $_GET['id']>0)){
+				$query->andFilterWhere(['!=','id',$_GET['id']]);
+			}
 /*  echo '<pre>';
 print_r($query);
 exit;    */

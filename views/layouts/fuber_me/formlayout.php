@@ -34,16 +34,19 @@ form{
  <?php } ?>
 
 		<!-- content-starts-here -->
-		<div class="content" style="margin-top: 5%;">
+		<?php 
+/* 		<div class="content" style="margin-top: 5%;">
 			<div class="login_sec">
-				<div class="container">
-		
+				<div class="container"> */  ?>
+		<div  style="margin-top: 5%;">
 					<?php  echo $content; ?>
 					
 					<div class="clearfix"></div>
 				</div>
+			<?php 
+/* 			
 			</div>
-		</div>
+		</div> */  ?>
 
 
 <?php include('common_file/footer.php'); ?>
