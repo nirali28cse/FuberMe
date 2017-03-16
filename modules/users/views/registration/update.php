@@ -100,8 +100,13 @@ use yii\widgets\ActiveForm;
 </div>
 
 <script>
+var paymentmethod1=$('#userdetail-payment_method').val();
+if(paymentmethod1=='paypal'){	
+	$('.field-userdetail-paypal_email').show();
+}else{
+	$('.field-userdetail-paypal_email').hide();
+}	
 
-$('.field-userdetail-paypal_email').hide();
 $("body").on("change","#userdetail-payment_method",function(){
 	var paymentmethod=$(this).val();				
 	if(paymentmethod=='paypal'){

@@ -9,6 +9,12 @@
 }
 
 
+@media (max-width: 768px){
+	.top_left {
+		width: 13%;
+	}
+}
+
 </style>
 
 <?php

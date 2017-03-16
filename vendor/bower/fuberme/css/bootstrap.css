@@ -4068,7 +4068,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
-  border-color: #101010;
+  border-color: #fff;
   float: right;
     width: 75%;
 }
@@ -4086,7 +4086,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     background-color: #3c763d;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-    color: #999;
+    color: #fff;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {

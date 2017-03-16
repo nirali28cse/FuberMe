@@ -200,7 +200,7 @@ print_r($query);
 exit;    */
 
 
-		$query->orderBy(['(status)' => SORT_DESC]);
+		$query->orderBy(['(status)' => SORT_DESC,'(id)' => SORT_DESC]);
 
         return $dataProvider;
     }

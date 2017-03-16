@@ -25,7 +25,9 @@ use yii\widgets\ListView;
 
 <style>
 
-.list-view>.item{float:left; width:33.3%;}
+
+
+.list-view>.item{float:left;width: auto;padding: 0.5%;}
 
 .product-grid {
     width: 100%;
