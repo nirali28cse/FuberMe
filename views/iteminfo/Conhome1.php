@@ -9,7 +9,7 @@ use yii\helpers\Url;
 
 <style>
 
-.list-view>.item{float:left; width:50%;}
+.list-view>.item{float:left;width: auto;padding: 0.5%;}
 
 bug_solve8
 span.item_price {
@@ -114,9 +114,11 @@ span.item_price {
 
     </style>
  
-        <style type="text/css">
-            body,html,.row-offcanvas {
-  height:100%;
+<style type="text/css">
+
+body,html,.row-offcanvas {
+  height:80%;
+  position: fixed;
 }
 
 body {
@@ -136,8 +138,6 @@ body {
 #main {
   height:100%;
   overflow:auto;
-/*   width: 75%;
-  float: right; */
 }
 
 /*
@@ -145,6 +145,13 @@ body {
  * --------------------------------------------------
  */
 @media screen and (max-width: 768px) {
+	
+	body,html,.row-offcanvas {
+	  height:80%;
+	  position: relative;
+	}
+
+
   .row-offcanvas {
     position: relative;
     -webkit-transition: all 0.25s ease-out;
@@ -166,8 +173,18 @@ body {
     position: absolute;
     top: 0;
   }
+
 }
-        </style>
+
+.content {
+   margin-top: 2%;
+}
+
+/* Not show scrollbar  */
+::-webkit-scrollbar { 
+    display: none; 
+}
+</style>
 
 	
 	
@@ -234,27 +251,16 @@ body {
 
 
 
+  
 
+<div class="product-model">	 
+ <div class="container">
+<h2 style="padding: 15px 0;">Order Your food</h2>	
+</div>
+</div>
 <div class="row-offcanvas row-offcanvas-left">
-
-<?php 
-/* <div class="product-model">	 
-	 <div class="container">
-		 
-		<h2>Order Your food</h2>			
-
-			
-			
-		
-			 
-	      </div>
-		</div> */
-		
-		?>
-		
-
   <div id="sidebar" class="sidebar-offcanvas">
-      <div class="col-md-12">
+     <div class="col-md-12">
 	
 
 
@@ -550,35 +556,30 @@ body {
 
       </div>
   </div>
-  
-  
-  
   <div id="main">
       <div class="col-md-12">
-
-						<?php	
-							echo $this->render('conhomeitem', [
-								'livedataProvider' => $livedataProvider,
-								'offlinedataProvider' => $offlinedataProvider,
-							]);				
-						
-						?>
-						
-						<?php	
-							echo $this->render('conhomeitem', [
-								'livedataProvider' => $livedataProvider,
-								'offlinedataProvider' => $offlinedataProvider,
-							]);				
-						
-						?>
-
+      	  <p class="visible-xs">
+            <button type="button" class="item_add items" data-toggle="offcanvas">Filters</button>
+          </p>
+			<?php	
+				echo $this->render('conhomeitem', [
+					'livedataProvider' => $livedataProvider,
+					'offlinedataProvider' => $offlinedataProvider,
+				]);				
+			
+			?>
+			
+			<?php	
+				echo $this->render('conhomeitem', [
+					'livedataProvider' => $livedataProvider,
+					'offlinedataProvider' => $offlinedataProvider,
+				]);				
+			
+			?>
       </div>
   </div>
-  
-  
-  
-  
 </div><!--/row-offcanvas -->
+  
   
   
 <?php

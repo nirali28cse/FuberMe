@@ -37,12 +37,8 @@ form{
  <?php } ?>
 
  <!-- content-starts-here -->
-		<div class="content">
-			<div class="login_sec">
-				<div class="container"> 		
-					<?php  echo $content; ?>
-				</div>
-			</div>
+		<div class="content">		
+			<?php  echo $content; ?>
 		</div> 
 		
 					

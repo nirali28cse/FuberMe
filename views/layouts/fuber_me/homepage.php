@@ -6,13 +6,18 @@
 
 	
 <?php include('common_file/header.php'); ?>
-
+<style>
+@media (max-width: 768px){
+.content{
+	margin-top: 14%;
+} 
+</style>
 
 <?php  // include('common_file/header_search.php'); ?>
 
 
 		<!-- content-starts-here -->
-		<div class="content" style="margin-top: 5%;">
+		<div class="content">
 			<?php  echo $content; ?>
 		</div>
 

@@ -69,6 +69,8 @@ class IteminfoController extends Controller
 	
     public function actionConhome1()
     {
+		$this->layout = '/fuber_me/customerhome';
+		
 		session_start();
 		
 		$old_cusion_array=array();
@@ -339,8 +341,11 @@ print_r($chef_distance_array); */
 		
 
     }
+	
+	
   public function actionConhome()
     {
+		$this->layout = '/fuber_me/customerhome';
 		session_start();
 		
 		$old_cusion_array=array();

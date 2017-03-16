@@ -642,7 +642,7 @@ ul#flexiselDemo1 p{
 /*----*/
 .footer-content{
 	background:#F5F5F5;
-	padding:2em 0;
+	padding:1em 0;
     left: 0px;
     bottom: 0px;
     width: 100%;
@@ -661,9 +661,9 @@ ul#flexiselDemo1 p{
   padding-left: 0;
 }
 
-/* .content{
-    min-height: 320px;
-} */
+.content{
+	margin-top: 5%;
+} 
 
 
 .ftr-grid ul li{
@@ -1857,6 +1857,9 @@ a.cpns:hover{
 }
 }
 @media (max-width: 768px){
+.top_left {
+	width: 32%;
+}
 .social i {
   height: 24px;
   background: url('../images/social2.png') no-repeat 0px 0px;
@@ -1893,7 +1896,7 @@ a i.google:hover{
   vertical-align: text-top;
 }
 .search {
-  width: 45%;
+  width: 50%;
 }
 .search input[type="text"] {
   padding: 10px 10px 10px 15px;
