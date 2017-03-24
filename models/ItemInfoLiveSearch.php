@@ -191,9 +191,12 @@ class ItemInfoLiveSearch extends ItemInfo
 /*  echo '<pre>';
 print_r($query);
 exit;    */
- 
-		$query->orderBy(['(status)' => SORT_DESC,'(id)' => SORT_DESC]);
-
+		if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['min_location']>0 and $_SESSION['filetrsarray']['max_location']>0){
+			$query->orderBy(['(status)' => SORT_DESC]);
+		}else{
+			$query->orderBy(['(status)' => SORT_DESC,'(id)' => SORT_DESC]);
+		}
+		
         return $dataProvider;
     }
 }
