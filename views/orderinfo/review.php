@@ -1,4 +1,15 @@
 <style>
+
+@media screen and (max-width: 768px)
+{
+	.cart-item-info {
+		clear: both;
+	}
+	.cart-item img {
+		width: auto;
+	}
+}
+
 .cart-item {
     width: 10%;
 	padding: 0;
@@ -37,7 +48,7 @@
 }	
 
 
-.list-view>.item{float:left; width:33.3%;}
+.list-view>.item{float:left; width:auto;padding: 1%;}
 
 .product-grid {
     width: 100%;

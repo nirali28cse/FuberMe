@@ -248,7 +248,38 @@ body {
 
 <div class="product-model">	 
  <div class="container">
-<h2 style="padding: 15px 0;">Order Your food</h2>	
+
+	<div class="row">
+	  <div class="col-sm-3" style="padding: 0;">
+		<h2 style="padding: 25px 0;float: left;">Order Your food</h2>	
+	  </div>
+	  <div class="col-sm-9" style="padding: 0;">
+		  <div class="mega_nav" style="padding-top: 1%;">
+			 <div style="width: 118%;">
+				 <div class="menu_sec">
+				 
+					<form>
+						
+					   <input type="hidden" name="r" value="iteminfo/conhome">
+					   <div class="search">				 
+							<input type="text" name="search_by_item" value="<?php if(isset($_GET['search_by_item']) and ($_GET['search_by_item']!=null)){ echo $_GET['search_by_item']; } ?>" placeholder="Search Item...">
+						</div>
+						
+					   <div class="search">
+							<input type="text"  name="search_by_location"  value="<?php if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){ echo $_GET['search_by_location']; } ?>" placeholder="Search By Location...">
+						<input type="submit" value="">
+						</div>
+					
+					</form>
+							
+			<div class="clearfix"> </div>
+				</div>
+			</div>
+		</div>
+	  </div>
+	</div>
+
+
 </div>
 </div>
 <div class="row-offcanvas row-offcanvas-left">
@@ -561,14 +592,7 @@ body {
 				]);				
 			
 			?>
-			
-			<?php	
-				echo $this->render('conhomeitem', [
-					'livedataProvider' => $livedataProvider,
-					'offlinedataProvider' => $offlinedataProvider,
-				]);				
-			
-			?>
+
       </div>
   </div>
 </div><!--/row-offcanvas -->

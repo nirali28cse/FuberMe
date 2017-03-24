@@ -5,7 +5,7 @@ return [
   //  'adminemailid' => 'email@fuberme.com',
     'http_url' => 'http://34.195.26.140',
     'today_date' => date('Y-m-d'),
-    'pagination_item_count' => '20',
+    'pagination_item_count' => '100',
     'adminemailid' => 'email@fuberme.com',
     'delivery_method' => array('pickup'=>'Pickup','homedelivery'=>'Home Delivery','both'=>'Both'),
     'payment_method' => array('paypal'=>'PayPal','cod'=>'Cash On Delivery'),
