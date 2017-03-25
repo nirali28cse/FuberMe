@@ -17,6 +17,7 @@ use app\modules\users\models\Userdetail;
 
 class SiteController extends Controller
 {
+
     /**
      * @inheritdoc
      */
@@ -48,16 +49,20 @@ class SiteController extends Controller
      */
     public function actions()
     {
+		
+		// Yii::$app->response->statusCode;
+
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
-            'captcha' => [
+/*             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
+            ], */
         ];
     }
+	
 
     /**
      * Displays homepage.
@@ -83,110 +88,109 @@ class SiteController extends Controller
 								['LIKE','zipcode',$search_by_location],
 								['LIKE','city',$search_by_location]
 								])->all();;
-
-			 if(count($allchef_info)>0){
-				$chef_zipcode=0;
-				$chef_array1=array();				
-				foreach($allchef_info as $allchef){
-					$chef_id=$allchef->id;
-					$chef_zipcode=$allchef->zipcode;
-					$chef_array[]=$chef_id;
-					$chef_array1[$chef_zipcode]=$chef_id;
-				}
-				$min_location=1;
-				$max_location=1;
-			 }
-			 
-			$chef_distance_array=array();			
-			
-			$allchef_info = Userdetail::find()
-			 ->where(['status'=>1])
-			 ->where(['or','user_type=2','user_type=3'])
-			 ->all();
-			 
-			 if(count($allchef_info)>0){
-				foreach($allchef_info as $allchef){
-					$zipcode=$allchef->zipcode;
-					$chef_id=$allchef->id;
-					if($zipcode>0 and $zipcode!=null){
-						$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$zipcode."&sensor=false";
-						$details=file_get_contents($url);
-						$result = json_decode($details,true);
-						if($result['results']!=null){
-							
-							$lat=0;
-							$lng=0;
-							$lat=$result['results'][0]['geometry']['location']['lat'];
-							$lng=$result['results'][0]['geometry']['location']['lng'];
-							$chef_latitude=0;
-							$chef_longitude=0;
-							if($lat!=null)$chef_latitude=$lat;
-							if($lng!=null)$chef_longitude=$lng;
-								
-							$chef_distance_array[$chef_id]=array('chef_latitude'=>$chef_latitude,'chef_longitude'=>$chef_longitude);	
-						}							
+			 $chef_zipcode=0;
+			 if(count($allchef_info)>0){				
+					$chef_array1=array();				
+					foreach($allchef_info as $allchef){
+						$chef_id=$allchef->id;
+						$chef_zipcode=$allchef->zipcode;
+						$chef_array[]=$chef_id;
+						$chef_array1[$chef_zipcode]=$chef_id;
 					}
-				}
-			 }
-		
-			if($chef_zipcode>0 and $chef_zipcode!=null){
+					$min_location=1;
+					$max_location=1;
+
+				$chef_distance_array=array();			
+				
+				$allchef_info = Userdetail::find()
+				 ->where(['status'=>1])
+				 ->where(['or','user_type=2','user_type=3'])
+				 ->all();
+				 
+				 if(count($allchef_info)>0){
+					foreach($allchef_info as $allchef){
+						$zipcode=$allchef->zipcode;
+						$chef_id=$allchef->id;
+						if($zipcode>0 and $zipcode!=null){
+							$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$zipcode."&sensor=false";
+							$details=file_get_contents($url);
+							$result = json_decode($details,true);
+							if($result['results']!=null){
+								
+								$lat=0;
+								$lng=0;
+								$lat=$result['results'][0]['geometry']['location']['lat'];
+								$lng=$result['results'][0]['geometry']['location']['lng'];
+								$chef_latitude=0;
+								$chef_longitude=0;
+								if($lat!=null)$chef_latitude=$lat;
+								if($lng!=null)$chef_longitude=$lng;
+									
+								$chef_distance_array[$chef_id]=array('chef_latitude'=>$chef_latitude,'chef_longitude'=>$chef_longitude);	
+							}							
+						}
+					}
+				 }
+				 
 				$location_chef_id=0;	
 				$location_chef_id=$chef_array1[$chef_zipcode];
-				$location_info=$chef_distance_array[$location_chef_id];
-				$location_latitude=$location_info['chef_latitude'];
-				$location_longitude=$location_info['chef_longitude'];
-			}
-			
-				 
-			function distance($lat1, $lon1, $lat2, $lon2, $unit) {
+				if($chef_zipcode>0 and $chef_zipcode!=null and in_array($location_chef_id,$chef_distance_array)){
 
-			  $theta = $lon1 - $lon2;
-			  $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-			  $dist = acos($dist);
-			  $dist = rad2deg($dist);
-			  $miles = $dist * 60 * 1.1515;
-			  $unit = strtoupper($unit);
+					$location_info=$chef_distance_array[$location_chef_id];
+					$location_latitude=$location_info['chef_latitude'];
+					$location_longitude=$location_info['chef_longitude'];
+		 
+				function distance($lat1, $lon1, $lat2, $lon2, $unit) {
 
-			  if ($unit == "K") {
-				  return ($miles * 1.609344);
-			  } else if ($unit == "N") {
-				  return ($miles * 0.8684);
-			  } else {
-				  return $miles;
-			  }
-			}
-			
-			$location_distance_array=array();
-			if($chef_distance_array!=null){
-				foreach($chef_distance_array as $chef_id=>$chef_distance){
-					$chef_latitude=$chef_distance['chef_latitude'];
-					$chef_longitude=$chef_distance['chef_longitude'];					
-					$location_distance_array[$chef_id]=distance($location_latitude,$chef_latitude,$location_longitude,$chef_longitude, "M"); 
+				  $theta = $lon1 - $lon2;
+				  $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+				  $dist = acos($dist);
+				  $dist = rad2deg($dist);
+				  $miles = $dist * 60 * 1.1515;
+				  $unit = strtoupper($unit);
+
+				  if ($unit == "K") {
+					  return ($miles * 1.609344);
+				  } else if ($unit == "N") {
+					  return ($miles * 0.8684);
+				  } else {
+					  return $miles;
+				  }
 				}
-			}
-			
-			$search_loca_dist=0;
-			$equal_distance_array=array();
-			$less_distance_array=array();
-			$greter_distance_array=array();
-
-			$new_chef_array=array();
-			if($location_distance_array!=null){				
-				$search_loca_dist=$location_distance_array[$location_chef_id];
-				foreach($location_distance_array as $chef_id=>$location_distance){
-					if($search_loca_dist==$location_distance){
-						$equal_distance_array[]=$chef_id;
-					}elseif($search_loca_dist>$location_distance){
-						$less_distance_array[]=$chef_id;
-					}elseif($search_loca_dist<$location_distance){
-						$greter_distance_array[]=$chef_id;
+				
+				$location_distance_array=array();
+				if($chef_distance_array!=null){
+					foreach($chef_distance_array as $chef_id=>$chef_distance){
+						$chef_latitude=$chef_distance['chef_latitude'];
+						$chef_longitude=$chef_distance['chef_longitude'];					
+						$location_distance_array[$chef_id]=distance($location_latitude,$chef_latitude,$location_longitude,$chef_longitude, "M"); 
 					}
-				}				
+				}
+				
+				$search_loca_dist=0;
+				$equal_distance_array=array();
+				$less_distance_array=array();
+				$greter_distance_array=array();
+
+				$new_chef_array=array();
+				if($location_distance_array!=null){				
+					$search_loca_dist=$location_distance_array[$location_chef_id];
+					foreach($location_distance_array as $chef_id=>$location_distance){
+						if($search_loca_dist==$location_distance){
+							$equal_distance_array[]=$chef_id;
+						}elseif($search_loca_dist>$location_distance){
+							$less_distance_array[]=$chef_id;
+						}elseif($search_loca_dist<$location_distance){
+							$greter_distance_array[]=$chef_id;
+						}
+					}				
+				}
+				
+				$merge_array1=array_merge($equal_distance_array,$less_distance_array);
+				$new_chef_array=array_merge($merge_array1,$greter_distance_array);
+				$chef_array=$new_chef_array;
+			 }
 			}
-			
-			$merge_array1=array_merge($equal_distance_array,$less_distance_array);
-			$new_chef_array=array_merge($merge_array1,$greter_distance_array);
-			$chef_array=$new_chef_array;
 		}
 							
 		if($chef_array!=null or $search_by_item!=null){
@@ -302,7 +306,32 @@ class SiteController extends Controller
 		  print_r(Yii::$app->paypal->payDemo());  
 		  exit();
     }   
+	
+	
 
+/* 	public function actionError()
+    {
+		echo 'hii';
+		exit;
+		$this->layout = '/fuber_me/homepage';
+		
+		$exception = Yii::$app->errorHandler->exception;
+		if ($exception !== null) {
+			return $this->render('error', ['exception' => $exception]);
+		}
+
+    } */
+		
+	public function actionError()
+	{
+		echo 'hii';
+		exit;
+		$exception = Yii::$app->errorHandler->exception;
+		if ($exception !== null) {
+			return $this->render('error', ['exception' => $exception]);
+		}
+	}
+	
 	public function actionThanku()
     {
 		$this->layout = '/fuber_me/homepage';

@@ -1,5 +1,7 @@
 <?php
 
+
+
 $params = require(__DIR__ . '/params.php');
 
 $config = [
@@ -15,7 +17,8 @@ $config = [
 	'layout' => '/fuber_me/formlayout',
 	'timeZone' => 'US/Eastern',
     'components' => [
-	
+
+		
 		'assetManager' => [
 			'linkAssets' => false,
 		    'bundles' => [
@@ -73,6 +76,7 @@ $config = [
             'enableAutoLogin' => true,
         ], */
         'errorHandler' => [
+		//	'maxSourceLines' => 10,
             'errorAction' => 'site/error',
         ],
         'mailer' => [

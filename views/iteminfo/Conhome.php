@@ -173,13 +173,23 @@ body {
    margin-top: 2%;
 }
 
-/* Not show scrollbar  */
-::-webkit-scrollbar { 
-    display: none; 
-}
+
 </style>
 
 	
+<style>
+.search1{
+    background: url(<?php echo yii\helpers\Url::to('@web/fuberme/images/search1.png'); ?>) no-repeat 0px 1px;
+    border: none;
+    cursor: pointer;
+    width: 24px;
+    outline: none;
+    position: absolute;
+    height: 24px;
+    top: 3px;
+    right: 8px;
+}
+</style>
 	
    <script>
 	// NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
@@ -263,11 +273,12 @@ body {
 					   <input type="hidden" name="r" value="iteminfo/conhome">
 					   <div class="search">				 
 							<input type="text" name="search_by_item" value="<?php if(isset($_GET['search_by_item']) and ($_GET['search_by_item']!=null)){ echo $_GET['search_by_item']; } ?>" placeholder="Search Item...">
+							<div class="search1"></div>
 						</div>
 						
-					   <div class="search">
+					   <div class="search" style="margin-left: 15px;">
 							<input type="text"  name="search_by_location"  value="<?php if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){ echo $_GET['search_by_location']; } ?>" placeholder="Search By Location...">
-						<input type="submit" value="">
+							<input type="submit" value="">
 						</div>
 					
 					</form>
