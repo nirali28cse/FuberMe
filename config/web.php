@@ -79,6 +79,7 @@ $config = [
 		//	'maxSourceLines' => 10,
             'errorAction' => 'site/error',
         ],
+		
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
 		//	'viewPath' => '@app/mail',
