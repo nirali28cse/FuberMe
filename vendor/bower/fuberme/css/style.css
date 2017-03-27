@@ -1896,7 +1896,7 @@ a i.google:hover{
   vertical-align: text-top;
 }
 .search {
-  width: 50%;
+  width: 47%;
 }
 .search input[type="text"] {
   padding: 10px 10px 10px 15px;
@@ -1959,7 +1959,7 @@ a i.google:hover{
   margin:0 2% 2% 0;
 }
 .footer-content{
-	padding: 2em 0 0 0;
+	padding: 0.5em 0 0 0;
 }
 .contact-left,.contact-right {
   padding: 0;
@@ -2386,6 +2386,7 @@ float: none;
 }
 .copywrite {
   text-align: center;
+  width: 50%;
 }
 .log form input[type="text"], .log form input[type="password"] {
   width: 100%;
@@ -2424,6 +2425,7 @@ a.order{
 }
 .copywrite {
   text-align: center;
+  width: 50%;
 }
 }
 @media (max-width: 320px){

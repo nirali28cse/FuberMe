@@ -80,5 +80,47 @@ $(document).ready(function(){
 
 
 
+<script type="text/javascript">
+// session timeout
+
+var idleTime = 0;
+$(document).ready(function () {
+    //Increment the idle time counter every minute.
+    var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
+
+    //Zero the idle timer on mouse movement.
+    $(this).mousemove(function (e) {
+        idleTime = 0;
+    });
+    $(this).keypress(function (e) {
+        idleTime = 0;
+    });
+});
+
+function timerIncrement() {
+    idleTime = idleTime + 1;
+    if (idleTime > 30){ // 20 minutes
+		// Call ajax request for logout user
+		$.ajax({			
+			type: 'POST',
+			url: <?php Yii::$app->homeUrl; ?>'?r=users/login/idealusertimeout',
+			data: {},			
+			error: function (err) {
+			//	alert("error - " + err);
+				return false;
+			},
+			success: function (data1) {
+				if(data1==1){	
+					window.home();
+				}else if(data1==2){	
+					window.location.reload();
+				}			
+			}
+		});
+    }
+}
+// session timeout
+</script>   
+
 
 

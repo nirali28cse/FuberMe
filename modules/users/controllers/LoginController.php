@@ -17,7 +17,7 @@ use app\models\LoginForm;
 class LoginController extends Controller
 {
 
-
+    public $enableCsrfValidation = false;
 
     public function behaviors()
     {
@@ -25,7 +25,7 @@ class LoginController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                //    'idealusertimeout' => ['post'],
                 ],
             ],
         ];
@@ -114,5 +114,17 @@ class LoginController extends Controller
 		unset($_SESSION['master_chef']);
         return $this->goHome();
     }
+
+
+	public function actionIdealusertimeout()
+	{
+		// Yii::$app->controller->enableCsrfValidation = false;
+		if (!Yii::$app->user->isGuest) {
+			Yii::$app->user->logout();
+			return 1;
+		}else{
+			return 2;
+		} 
+	}
 	
 }
