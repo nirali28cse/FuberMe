@@ -105,17 +105,25 @@ class IteminfoController extends Controller
 		$new_delivery_array=array();	
 	
 		if(isset($_GET['cusion']) and $_GET['cusion']>0){			
-			$new_cusion_array[]=$_GET['cusion'];
+			if(!in_array($_GET['cusion'],$old_cusion_array)){
+			  $new_cusion_array[$_GET['cusion']]=$_GET['cusion'];
+			}
 		}	
 		if(isset($_GET['dieta']) and $_GET['dieta']>0){
-			$new_dieta_array[]=$_GET['dieta'];
+			if(!in_array($_GET['dieta'],$old_dieta_array)){
+				$new_dieta_array[$_GET['dieta']]=$_GET['dieta'];
+			}
 		}	
 		if(isset($_GET['categ']) and $_GET['categ']>0){
-			$new_categ_array[]=$_GET['categ'];
+			if(!in_array($_GET['categ'],$old_categ_array)){
+				$new_categ_array[$_GET['categ']]=$_GET['categ'];	
+			}
 		}	
 		if(isset($_GET['delivery']) and $_GET['delivery']!=null){
-			$new_delivery_array[0]='both';
-			$new_delivery_array[1]=$_GET['delivery'];			
+			if(!in_array($_GET['delivery'],$old_delivery_array)){
+				$new_delivery_array[0]='both';
+				$new_delivery_array[1]=$_GET['delivery'];			
+			}
 		}	
 
 
@@ -435,7 +443,9 @@ print_r($chef_distance_array); */
 										'search_by_item'=>$search_by_item,
 										);
 		}
-
+/* echo '<pre>';
+print_r($_SESSION['filetrsarray']);
+exit; */
 		
 		//update offline live items
 		// Call functtion for to update item 

@@ -106,14 +106,13 @@ class ItemInfoLiveSearch extends ItemInfo
 				$search_by_item=$_SESSION['filetrsarray']['search_by_item'];
 			}
 			
-			if($_SESSION['filetrsarray']['cusion_array']!=null){
+			if($_SESSION['filetrsarray']['categ_array']!=null){
 				$categ_array=$_SESSION['filetrsarray']['categ_array'];
 				$query->andFilterWhere(['in','item_category_info_id',$categ_array]);	
 			}else{
 				$query->andFilterWhere(['=', 'item_category_info_id',$this->item_category_info_id]);
 			}	
-					
-					
+
 			if($_SESSION['filetrsarray']['cusion_array']!=null){
 				$cusion_array=$_SESSION['filetrsarray']['cusion_array'];
 				$query->andFilterWhere(['in','item_cuisine_type_info_id',$cusion_array]);	
@@ -129,7 +128,7 @@ class ItemInfoLiveSearch extends ItemInfo
 			}	
 			
 			
-			if($_SESSION['filetrsarray']['min_price']>0 and $_SESSION['filetrsarray']['max_price']>0){
+			if($_SESSION['filetrsarray']['min_price']>0 or $_SESSION['filetrsarray']['max_price']>0){
 				$min_price=$_SESSION['filetrsarray']['min_price'];
 				$max_price=$_SESSION['filetrsarray']['max_price'];
  				$query->andFilterWhere(['AND',
@@ -139,7 +138,7 @@ class ItemInfoLiveSearch extends ItemInfo
 			//	$query->andFilterWhere(['between','price',$min_price,$max_price]);									
 			}	
 			
-			if($_SESSION['filetrsarray']['min_location']>0 and $_SESSION['filetrsarray']['max_location']>0){
+			if($_SESSION['filetrsarray']['min_location']>0 or $_SESSION['filetrsarray']['max_location']>0){
 				$min_location=$_SESSION['filetrsarray']['min_location'];
 				$max_location=$_SESSION['filetrsarray']['max_location'];
 				$chef_array=$_SESSION['filetrsarray']['chef_array'];
@@ -188,9 +187,7 @@ class ItemInfoLiveSearch extends ItemInfo
 			if(Yii::$app->controller->id=='iteminfo' and Yii::$app->controller->action->id=='view' and (isset($_GET['id']) and $_GET['id']>0)){
 				$query->andFilterWhere(['!=','id',$_GET['id']]);
 			}
-/*  echo '<pre>';
-print_r($query);
-exit;    */
+ 
 		if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['min_location']>0 and $_SESSION['filetrsarray']['max_location']>0){
 			$query->orderBy(['(status)' => SORT_DESC]);
 		}else{

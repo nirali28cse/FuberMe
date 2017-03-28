@@ -104,7 +104,7 @@ class ItemInfoOfflineSearch extends ItemInfo
 				$search_by_item=$_SESSION['filetrsarray']['search_by_item'];
 			}
 
-			if($_SESSION['filetrsarray']['cusion_array']!=null){
+			if($_SESSION['filetrsarray']['categ_array']!=null){
 				$categ_array=$_SESSION['filetrsarray']['categ_array'];
 				$query->andFilterWhere(['in','item_category_info_id',$categ_array]);	
 			}else{
@@ -127,7 +127,7 @@ class ItemInfoOfflineSearch extends ItemInfo
 			}	
 			
 
-			if($_SESSION['filetrsarray']['min_price']>0 and $_SESSION['filetrsarray']['max_price']>0){
+			if($_SESSION['filetrsarray']['min_price']>0 or $_SESSION['filetrsarray']['max_price']>0){
 				$min_price=$_SESSION['filetrsarray']['min_price'];
 				$max_price=$_SESSION['filetrsarray']['max_price'];
 				$query->andFilterWhere(['AND',
@@ -138,7 +138,7 @@ class ItemInfoOfflineSearch extends ItemInfo
 
 			}	
 			
-			if($_SESSION['filetrsarray']['min_location']>0 and $_SESSION['filetrsarray']['max_location']>0){
+			if($_SESSION['filetrsarray']['min_location']>0 or $_SESSION['filetrsarray']['max_location']>0){
 				$min_location=$_SESSION['filetrsarray']['min_location'];
 				$max_location=$_SESSION['filetrsarray']['max_location'];
 				$chef_array=$_SESSION['filetrsarray']['chef_array'];
@@ -197,8 +197,8 @@ class ItemInfoOfflineSearch extends ItemInfo
 			
 /*  echo '<pre>';
 print_r($query);
-exit;    */
-
+exit;  
+ */
 
 		if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['min_location']>0 and $_SESSION['filetrsarray']['max_location']>0){
 			$query->orderBy(['(status)' => SORT_DESC]);

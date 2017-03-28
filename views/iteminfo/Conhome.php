@@ -112,6 +112,7 @@ span.item_price {
 body,html,.row-offcanvas {
   height:75%;
   position: fixed;
+  width: 100%;
 }
 
 body {
@@ -257,7 +258,7 @@ body {
   
 
 <div class="product-model">	 
- <div class="container">
+ <div class="container" style="width: 1148px;">
 
 	<div class="row">
 	  <div class="col-sm-3" style="padding: 0;">
