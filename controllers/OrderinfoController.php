@@ -280,7 +280,8 @@ class OrderinfoController extends Controller
 		}
 		
 		
-		if(isset($_GET['directorder']) and $_GET['directorder']>0){
+	//	if(isset($_GET['directorder']) and $_GET['directorder']>0){
+		if(isset($_SESSION['order_array']['order_item'])){
 			$order_items=$_SESSION['order_array']['order_item'];
 			if(count($order_items)>0){
 				foreach($order_items as $order_item){					
@@ -298,6 +299,7 @@ class OrderinfoController extends Controller
 			$ditem=$_GET['ditem'];
 			$item_info=$this->Deleteitem($ditem);
 		}
+		
 		
 		
 		$order_array['customer_info']=array('customer_id'=>$customer_id,'customer_name'=>$customer_name,

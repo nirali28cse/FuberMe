@@ -429,7 +429,7 @@ print_r($chef_distance_array); */
 
 		
 		
-		if($cusion_array!=null or $dieta_array!=null or $delivery_array!=null or $categ_array!=null or $min_price>0 or $max_location>0 or $min_location>0 or $max_price>0){
+		if($search_by_item!=null or $cusion_array!=null or $dieta_array!=null or $delivery_array!=null or $categ_array!=null or $min_price>0 or $max_location>0 or $min_location>0 or $max_price>0){
 			$_SESSION['filetrsarray']=array(
 										'min_price'=>$min_price,
 										'max_price'=>$max_price,
@@ -443,9 +443,7 @@ print_r($chef_distance_array); */
 										'search_by_item'=>$search_by_item,
 										);
 		}
-/* echo '<pre>';
-print_r($_SESSION['filetrsarray']);
-exit; */
+
 		
 		//update offline live items
 		// Call functtion for to update item 
