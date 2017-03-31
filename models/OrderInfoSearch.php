@@ -42,12 +42,18 @@ class OrderInfoSearch extends OrderInfo
     public function search($params)
     {
 
-		if(Yii::$app->controller->action->id=='index' and (Yii::$app->user->identity->user_type=2 or Yii::$app->user->identity->user_type=3)){
-			$query = OrderInfo::find()->joinWith(['orderItemInfo'=>function ($query) {  $query->Where(['item_chef_user_id'=>Yii::$app->user->id]); } ]);		  
+		if((Yii::$app->controller->action->id=='index' or Yii::$app->controller->action->id=='index2') and (Yii::$app->user->identity->user_type=2 or Yii::$app->user->identity->user_type=3)){
+		//	$query = OrderInfo::find()->joinWith(['orderItemInfo.itemInfo'=>function ($query) {  $query->Where(['orderItemInfo.item_chef_user_id'=>Yii::$app->user->id]); } ]);		  
+			
+			$query = OrderInfo::find()->joinWith(['orderItemInfo.itemInfo'=>function ($query) { 
+			$query->Where(['chef_user_id'=>Yii::$app->user->id]);
+			},'orderItemInfo.chefInfo'=>function ($query) { 
+			// $query->Where(['chef_user_id'=>Yii::$app->user->id]);
+			} ]);
+			
 		}else{
 			$query = OrderInfo::find();
 		}
-		
 
 		
         // add conditions that should always apply here
@@ -60,7 +66,20 @@ class OrderInfoSearch extends OrderInfo
 					'delivery_method' => [
 						'asc' => ['delivery_method' => SORT_ASC, 'order_number' => SORT_DESC],
 						'desc' => ['delivery_method' => SORT_DESC, 'order_number' => SORT_ASC],
-					],
+					],	
+					'invoice_item' => [
+						'asc' => ['item_info.name' => SORT_ASC],
+						'desc' => ['item_info.name' => SORT_DESC],
+					],	
+					'customer' => [
+						'asc' => ['users.username' => SORT_ASC, 'users.address' => SORT_ASC],
+						'desc' => ['users.username' => SORT_DESC, 'users.address' => SORT_DESC],
+					],		
+					'chef_name' => [
+						'asc' => ['users.username' => SORT_ASC, 'users.address' => SORT_ASC],
+						'desc' => ['users.username' => SORT_DESC, 'users.address' => SORT_DESC],
+					],		
+
 					'order_number',
 					'final_amount',
 					'payment_method',

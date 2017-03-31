@@ -69,6 +69,11 @@ $dataProvidercount = $dataProvider->getCount();
 						foreach($model->orderItemInfo as $iteminfo){
 							$invoice_items[]=$iteminfo->itemInfo->name;
 						}
+						if(isset($_GET['sort']) and $_GET['sort']=='invoice_item'){
+							sort($invoice_items);	
+						}else{
+							rsort($invoice_items);	
+						}
 						$invoice_item=implode(',',$invoice_items);
 					}
 					return $invoice_item;
@@ -93,7 +98,12 @@ $dataProvidercount = $dataProvider->getCount();
 					if(count($model->orderItemInfo)>0){
 						foreach($model->orderItemInfo as $iteminfo){
 							$chef_name[$iteminfo->item_chef_user_id]=$iteminfo->chefInfo->username;
-						}					
+						}		
+						if(isset($_GET['sort']) and $_GET['sort']=='invoice_item'){
+							sort($chef_name);	
+						}else{
+							rsort($chef_name);	
+						}						
 						$chef_name=implode(',',$chef_name);
 					}
 					return $chef_name;

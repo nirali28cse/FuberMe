@@ -64,7 +64,7 @@
 											<li class="divider"></li>	 	*/	?>								
 											<?php 
 											
-											$display=1;
+/* 											$display=1;
 											$display1=1;
 											$userinfo=app\modules\users\models\Userdetail::findOne(Yii::$app->user->id);
 											$user_type=0;
@@ -74,25 +74,25 @@
 												if((Yii::$app->controller->action->id=='index') and (Yii::$app->controller->id=='orderinfo') and ($user_type==3)){
 													$display=0;
 												}
-												if($display==1){
+												if($display==1){ */
 												?>
 													<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index">Received Orders History <span class="glyphicon glyphicon-tasks pull-right"></span></a></li>
 													<li class="divider"></li>
-												<?php } ?>			
-											<?php } ?>			
+												<?php // } ?>			
+											<?php // } ?>			
 											
-											<?php if($user_type==1 or $user_type==3){ 
+											<?php /*  if($user_type==1 or $user_type==3){ 
 												
 												if((Yii::$app->controller->action->id=='index2') and (Yii::$app->controller->id=='orderinfo') and ($user_type==3)){
 													$display1=0;
 												}
 
-												if($display1==1){
+												if($display1==1){ */
 											?>
 												<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index2">Your Orders <span class="glyphicon glyphicon-list-alt pull-right"></span></a></li>
 												<li class="divider"></li>
-												<?php } ?>		
-											<?php } ?>		
+												<?php // } ?>		
+											<?php // } ?>		
 											
 											<li><a href="<?php echo $url; ?>">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 											<li class="divider"></li>												
@@ -134,7 +134,10 @@
 						
 						<?php 
 						if(!Yii::$app->user->isGuest){
-						if(Yii::$app->user->identity->user_type==2 or Yii::$app->user->identity->user_type==3){
+						$userinfo=app\modules\users\models\Userdetail::findOne(Yii::$app->user->id);
+						$user_type=0;
+						$user_type=$userinfo->user_type;
+						if($user_type==2 or $user_type==3){
 								$activeclass=null; if(Yii::$app->controller->id=='iteminfo' and Yii::$app->controller->action->id=='index') $activeclass='yellowactive';
 						?>
 

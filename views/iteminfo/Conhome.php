@@ -133,11 +133,18 @@ body {
   height:100%;
   overflow:auto;
 }
+.orderleft{
+	padding: 0;width: 20%;float: left;
+} 
+.orderright{
+	padding: 0;width: 65%;float: left;
+}  
 
 /*
  * off Canvas sidebar
  * --------------------------------------------------
  */
+ 
 @media screen and (max-width: 768px) {
 	
 	body,html,.row-offcanvas {
@@ -167,12 +174,19 @@ body {
     position: absolute;
     top: 0;
   }
-
+  
+	.orderleft{
+		padding: 0;width: 100%;float: left;
+	} 
+	.orderright{
+		padding: 0;width: 85%;float: left;
+	}  
 }
 
 .content {
    margin-top: 2%;
 }
+
 
 
 </style>
@@ -255,16 +269,14 @@ body {
 
 
 
-  
-
 <div class="product-model">	 
- <div class="container" style="width: 1148px;">
+ <div class="container" style="width: 100%;">
 
 	<div class="row">
-	  <div class="col-sm-3" style="padding: 0;">
+	  <div  class="orderleft">
 		<h2 style="padding: 25px 0;float: left;">Order Your food</h2>	
 	  </div>
-	  <div class="col-sm-9" style="padding: 0;">
+	  <div class="orderright">
 		  <div class="mega_nav" style="padding-top: 1%;">
 			 <div style="width: 118%;">
 				 <div class="menu_sec">
@@ -303,7 +315,7 @@ body {
 				 <section  class="sky-form" style="border-top: 0px solid #eee;">
 					 <h4><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
 					 &nbsp; Price
-						  <input type="text" id="amount" readonly style="border:0; color:#38b662;text-align: right;">
+						  <input type="text" id="amount" readonly style="border:0; color:#38b662;text-align: right;font-size: 12px;float: right;margin-top: -14px;">
 					 </h4>
 					 <div class="row scroll-pane">
 						 <div class="col col-4">
@@ -317,8 +329,9 @@ body {
 				 </section> 
 			
 				 <section  class="sky-form">
-					 <h4><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-					 DISTANCE<input type="text" id="location" readonly style="border:0; color:#38b662;text-align: right;">
+					 <h4>
+					 <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+					 DISTANCE<input type="text" id="location" readonly style="border:0; color:#38b662;text-align: right;font-size: 12px;float: right;margin-top: -14px;">
 					 </h4>
 					 <div class="row scroll-pane">
 						 <div class="col col-4">

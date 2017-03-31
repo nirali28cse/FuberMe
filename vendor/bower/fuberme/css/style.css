@@ -2386,7 +2386,7 @@ float: none;
 }
 .copywrite {
   text-align: center;
-  width: 50%;
+  width: 100%;
 }
 .log form input[type="text"], .log form input[type="password"] {
   width: 100%;
