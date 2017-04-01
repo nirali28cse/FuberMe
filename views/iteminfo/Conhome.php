@@ -8,6 +8,12 @@ use yii\helpers\Url;
 ?>
 
 <style>
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.product-model h2{
+		font-size:1.4em;
+	}
+}
+
 
 .list-view>.item{float:left;width: auto;padding: 0.5%;}
 

@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 }
 </style>
 <div class="product-model">	 
-	 <div class="container">
+	 <div>
 
 		
 		 <div class="col-md-12 product-model-sec">

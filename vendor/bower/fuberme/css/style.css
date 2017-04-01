@@ -1857,6 +1857,10 @@ a.cpns:hover{
 }
 }
 @media (max-width: 768px){
+.product-model-sec {
+    float: none;
+    display: inline;
+}
 .top_left {
 	width: 32%;
 }
@@ -2425,7 +2429,7 @@ a.order{
 }
 .copywrite {
   text-align: center;
-  width: 50%;
+  width: 100%;
 }
 }
 @media (max-width: 320px){

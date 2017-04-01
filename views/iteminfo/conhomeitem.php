@@ -99,7 +99,13 @@ $offlinecount = $offlinedataProvider->getCount();
 						 <div class="registration">
 										<br/><br/><br/><br/>
 										<center><h2>
-										No Dishes Found.	
+										Oops. No chef is selling what you are looking for.
+										<br/>
+										We are hungry for feedback. Share your preference with us by email 
+										<br/>
+										<a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=<?php echo Yii::$app->params['adminemailid']; ?>" style="text-transform: lowercase;"><?php echo Yii::$app->params['adminemailid']; ?></a>										
+										OR post on our FB page OR Tweet Us.
+										<br/>
 										</h2></center>
 							
 							 <div class="clearfix"></div>
