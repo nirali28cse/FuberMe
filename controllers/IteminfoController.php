@@ -555,16 +555,16 @@ print_r($chef_distance_array); */
 			$folder_name='item_images';
 			$user_id=Yii::$app->user->id;
 			
-			
+
 			
 			// image upload		
 
 			$valid_exts = array('jpeg', 'jpg', 'png', 'gif');
-			$max_file_size = $_FILES['image']['size']; #200kb
+			$max_file_size = $_FILES['ItemInfo']['size']['image']; #200kb
 			$nw = 350;# image with # height			
 			$nh = 250; 							
-			if ( isset($_FILES['image']) ) {
-				if (! $_FILES['image']['error'] && $_FILES['image']['size'] <= $max_file_size) {
+			if ( isset($_FILES['ItemInfo']) ) {
+				if (! $_FILES['ItemInfo']['error']['image'] && $_FILES['ItemInfo']['size']['image'] <= $max_file_size) {
 						
 					$user_path = Yii::$app->basePath.'/web/fuberme/'.$user_id;		
 					if ($user_path && ! file_exists($user_path))
@@ -577,18 +577,18 @@ print_r($chef_distance_array); */
 						mkdir($folder_path, 0755, true);
 					} 	
 						
-					$ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+					$ext = strtolower(pathinfo($_FILES['ItemInfo']['name']['image'], PATHINFO_EXTENSION));
 					if (in_array($ext, $valid_exts)) {
 							$image_name=Yii::$app->security->generateRandomString(). '.' . $ext;
 							$path = Yii::$app->basePath.'/web/fuberme/'.$user_id.'/'.$folder_name.'/'.$image_name;
-							$size = getimagesize($_FILES['image']['tmp_name']);
+							$size = getimagesize($_FILES['ItemInfo']['tmp_name']['image']);
 
 							$x = (int) $_POST['x'];
 							$y = (int) $_POST['y'];
 							$w = (int) $_POST['w'] ? $_POST['w'] : $size[0];
 							$h = (int) $_POST['h'] ? $_POST['h'] : $size[1];
 
-							$data = file_get_contents($_FILES['image']['tmp_name']);
+							$data = file_get_contents($_FILES['ItemInfo']['tmp_name']['image']);
 							$vImg = imagecreatefromstring($data);
 							$dstImg = imagecreatetruecolor($nw, $nh);
 							imagecopyresampled($dstImg, $vImg, 0, 0, $x, $y, $nw, $nh, $w, $h);
@@ -670,12 +670,12 @@ print_r($chef_distance_array); */
 
 			// image upload			
 			$valid_exts = array('jpeg', 'jpg', 'png', 'gif');
-			$max_file_size =$_FILES['image']['size']; //  200 * 1024; #200kb
+			$max_file_size =$_FILES['ItemInfo']['size']['image']; //  200 * 1024; #200kb
 			$nw = 350;# image with # height			
 			$nh = 250; 
 
-			if ( isset($_FILES['image']) ) {
-				if (! $_FILES['image']['error'] && $_FILES['image']['size'] <= $max_file_size) {
+			if ( isset($_FILES['ItemInfo']) ) {
+				if (! $_FILES['ItemInfo']['error']['image'] &&  $_FILES['ItemInfo']['size']['image'] <= $max_file_size) {
 					
 						
 					$user_path = Yii::$app->basePath.'/web/fuberme/'.$user_id;		
@@ -691,11 +691,11 @@ print_r($chef_distance_array); */
 						
 
 					
-					$ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+					$ext = strtolower(pathinfo($_FILES['ItemInfo']['name']['image'] , PATHINFO_EXTENSION));
 					if (in_array($ext, $valid_exts)) {
 							$image_name=Yii::$app->security->generateRandomString(). '.' . $ext;
 							$path = Yii::$app->basePath.'/web/fuberme/'.$user_id.'/'.$folder_name.'/'.$image_name;
-							$size = getimagesize($_FILES['image']['tmp_name']);
+							$size = getimagesize($_FILES['ItemInfo']['tmp_name']['image']);
 
 							$x = (int) $_POST['x'];
 							$y = (int) $_POST['y'];
@@ -707,7 +707,7 @@ print_r($chef_distance_array); */
 							$nw = $size[0] * $percent;
 							$nh = $size[1] * $percent; */
 
-							$data = file_get_contents($_FILES['image']['tmp_name']);
+							$data = file_get_contents($_FILES['ItemInfo']['tmp_name']['image']);
 							$vImg = imagecreatefromstring($data);
 							$dstImg = imagecreatetruecolor($nw, $nh);
 							imagecopyresampled($dstImg, $vImg, 0, 0, $x, $y, $nw, $nh, $w, $h);

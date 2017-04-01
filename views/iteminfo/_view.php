@@ -3,7 +3,8 @@ use yii\helpers\Html;
 $user_id=Yii::$app->user->id;
 ?>
 
-					<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/update&id=<?php echo $model->id; ?>"><div class="product-grid love-grid">
+					<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/update&id=<?php echo $model->id; ?>">
+					<div class="product-grid love-grid" style="width: 350px;">
 						<div class="more-product"><span> </span></div>						
 						<div class="product-img b-link-stripe b-animate-go  thickbox">
 							<?php if($model->image==null){ ?>

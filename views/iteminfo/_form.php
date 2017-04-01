@@ -271,13 +271,17 @@ $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 		
 		<br/>
 	<!-- image uploading form -->
+<?= $form->field($model, 'image')->label('Upload Image',['for'=>'uploadImage','class'=>'btn btn-warning'])
+                                ->fileInput(['id'=>'uploadImage','class'=>'sr-only','accept'=>'image/*']) ?>
 
-		<div>
+
+<?php 								
+/* 		<div>
 		  <label for="uploadImage" class="btn btn-warning">Upload Image</label>
 		  <input id="uploadImage" style="visibility:hidden;" accept="image/*"  type="file">
 		</div>
-
-
+ */
+?>
 		<!-- hidden inputs -->
 		<input type="hidden" id="x" name="x" />
 		<input type="hidden" id="y" name="y" />
