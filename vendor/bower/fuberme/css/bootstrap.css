@@ -3045,7 +3045,7 @@ input[type="button"].btn-block {
   font-weight: normal;
   line-height: 1.42857143;
   color: #333;
-  white-space: nowrap;
+  white-space: normal;
 }
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {

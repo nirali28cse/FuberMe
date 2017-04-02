@@ -1,3 +1,11 @@
+<?php
+if(!Yii::$app->user->isGuest){
+	$userinfo=app\modules\users\models\Userdetail::findOne(Yii::$app->user->id);
+	$user_type=0;
+	$user_type=$userinfo->user_type;
+}
+?>
+
 <div class="top_bg">
 	<div class="container">
 		<div class="header_top-sec">
@@ -13,7 +21,7 @@
 					<span class="icon-bar"></span>
 				  </button>
 				<div class="top_left">
-				<a href="<?php echo Yii::$app->homeUrl; ?>" class="top-sellers">
+				<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome" class="top-sellers">
 					<img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/whitelogo.png'); ?>" style="width: 100%;" alt="FuberMe"> 
 				</a>
 				</div>	
@@ -60,8 +68,8 @@
 												</div>
 											</li>
 											<li class="divider navbar-login-session-bg"></li>
-					<?php /* 						 <li><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome">Eat with FuberMe <span class="glyphicon glyphicon-cutlery  pull-right"></span></a></li>
-											<li class="divider"></li>	 	*/	?>								
+											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome">Eat with FuberMe <span class="glyphicon glyphicon-cutlery  pull-right"></span></a></li>
+											<li class="divider"></li>	 									
 											<?php 
 											
 /* 											$display=1;
@@ -75,10 +83,11 @@
 													$display=0;
 												}
 												if($display==1){ */
+												if($user_type==2 or $user_type==3){
 												?>
 													<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index">Received Orders History <span class="glyphicon glyphicon-tasks pull-right"></span></a></li>
 													<li class="divider"></li>
-												<?php // } ?>			
+												<?php  } ?>			
 											<?php // } ?>			
 											
 											<?php /*  if($user_type==1 or $user_type==3){ 
@@ -88,11 +97,12 @@
 												}
 
 												if($display1==1){ */
+												if($user_type==1 or $user_type==3){
 											?>
 												<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index2">Your Orders <span class="glyphicon glyphicon-list-alt pull-right"></span></a></li>
 												<li class="divider"></li>
 												<?php // } ?>		
-											<?php // } ?>		
+											<?php  } ?>		
 											
 											<li><a href="<?php echo $url; ?>">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 											<li class="divider"></li>												
@@ -109,8 +119,8 @@
 										<a href="#" class="dropdown-toggle" style="border: 1px solid white;" data-toggle="dropdown">Registration <b class="caret"></b></a>
 										<ul class="dropdown-menu agile_short_dropdown">
 											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration">SignUp as a Chef <span class="glyphicon glyphicon-user  pull-right"></span></a></li>
-											<?php /* <li class="divider"></li>		
-											 <li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex<?php echo $append_url; ?>">Eat with FuberMe <span class="glyphicon glyphicon-cutlery  pull-right"></span></a></li> */ ?>
+											 <li class="divider"></li>		
+											 <li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex<?php echo $append_url; ?>">Eat with FuberMe <span class="glyphicon glyphicon-cutlery  pull-right"></span></a></li> 
 										</ul>
 									</li>	
 								<?php } ?>									
@@ -134,9 +144,6 @@
 						
 						<?php 
 						if(!Yii::$app->user->isGuest){
-						$userinfo=app\modules\users\models\Userdetail::findOne(Yii::$app->user->id);
-						$user_type=0;
-						$user_type=$userinfo->user_type;
 						if($user_type==2 or $user_type==3){
 								$activeclass=null; if(Yii::$app->controller->id=='iteminfo' and Yii::$app->controller->action->id=='index') $activeclass='yellowactive';
 						?>

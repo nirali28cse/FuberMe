@@ -249,13 +249,13 @@ if(count($user_info)>0){
 						  */		 
 							 ?>
 						 <div class="clearfix">&nbsp;</div>
-						<?php /* if(Yii::$app->user->isGuest){ ?>
+						<?php if(Yii::$app->user->isGuest){ ?>
 								<a class="continue" href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex&directorder=<?php echo $value['item_id']; ?>">CheckOut</a>						
 						<?php }else{ ?>							
 							 <a class="continue" href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/create">CheckOut</a>
-						<?php } */ ?>
+						<?php } ?>
 						
-						<a class="continue" href="#" style="background: gray;">Coming Soon…</a>
+						<?php /* <a class="continue" href="#" style="background: gray;">Coming Soon…</a> */ ?>
 						</div>
 				 </div>
 				  <div class="clearfix"></div>
