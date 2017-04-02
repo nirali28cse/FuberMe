@@ -59,8 +59,8 @@ exit;
 
 
 
-<input type="hidden" name="return" value="http://34.195.26.140/?r=orderinfo/paypalordersuccess&order_id=<?php echo $orderid; ?>">
-<input type="hidden" name="cancel_return" value="http://34.195.26.140/?r=orderinfo/paypalorderfailer">
+<input type="hidden" name="return" value=" <?php echo Yii::$app->params['http_url']; ?>?r=orderinfo/paypalordersuccess&order_id=<?php echo $orderid; ?>">
+<input type="hidden" name="cancel_return" value="<?php echo Yii::$app->params['http_url']; ?>?r=orderinfo/paypalorderfailer">
 
 
  
