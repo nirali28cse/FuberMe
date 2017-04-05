@@ -92,7 +92,7 @@ $offlinecount = $offlinedataProvider->getCount();
 				<?php
 						}
 						
-						if (!Yii::$app->request->isAjax){
+					//	if (!Yii::$app->request->isAjax){
  						if($livecount==0 and $offlinecount==0){
 						?>						
 							
@@ -115,7 +115,7 @@ $offlinecount = $offlinedataProvider->getCount();
 						</script>
 
 						<?php } ?>
-						<?php } ?>
+						<?php // } ?>
 						
 
 

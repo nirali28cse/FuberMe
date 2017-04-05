@@ -83,6 +83,59 @@ class SiteController extends Controller
 		}	
 		if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){
 			$search_by_location=$_GET['search_by_location'];			
+			
+
+			$chef_distance_array=array();			
+			
+			$allchef_info = Userdetail::find()
+			 ->where(['status'=>1])
+			 ->where(['or','user_type=2','user_type=3'])
+			 ->all();
+			 
+			 if(count($allchef_info)>0){
+				foreach($allchef_info as $allchef){
+					$zipcode=$allchef->zipcode;
+					$chef_id=$allchef->id;
+					if($zipcode>0 and $zipcode!=null){
+						$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$zipcode."&sensor=false";
+						$details=file_get_contents($url);
+						$result = json_decode($details,true);
+						if($result['results']!=null){
+							
+							$lat=0;
+							$lng=0;
+							$lat=$result['results'][0]['geometry']['location']['lat'];
+							$lng=$result['results'][0]['geometry']['location']['lng'];
+							$chef_latitude=0;
+							$chef_longitude=0;
+							if($lat!=null)$chef_latitude=$lat;
+							if($lng!=null)$chef_longitude=$lng;
+								
+							$chef_distance_array[$chef_id]=array('chef_latitude'=>$chef_latitude,'chef_longitude'=>$chef_longitude);	
+						}							
+					}
+				}
+			 }
+			 
+		 
+			function distance($lat1, $lon1, $lat2, $lon2, $unit) {
+
+			  $theta = $lon1 - $lon2;
+			  $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+			  $dist = acos($dist);
+			  $dist = rad2deg($dist);
+			  $miles = $dist * 60 * 1.1515;
+			  $unit = strtoupper($unit);
+
+			  if ($unit == "K") {
+				  return ($miles * 1.609344);
+			  } else if ($unit == "N") {
+				  return ($miles * 0.8684);
+			  } else {
+				  return $miles;
+			  }
+			}
+			
 			$allchef_info = Userdetail::find()->where(['status'=>1])
 							->Where(['or',
 								['LIKE','zipcode',$search_by_location],
@@ -100,38 +153,6 @@ class SiteController extends Controller
 					$min_location=1;
 					$max_location=1;
 
-				$chef_distance_array=array();			
-				
-				$allchef_info = Userdetail::find()
-				 ->where(['status'=>1])
-				 ->where(['or','user_type=2','user_type=3'])
-				 ->all();
-				 
-				 if(count($allchef_info)>0){
-					foreach($allchef_info as $allchef){
-						$zipcode=$allchef->zipcode;
-						$chef_id=$allchef->id;
-						if($zipcode>0 and $zipcode!=null){
-							$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$zipcode."&sensor=false";
-							$details=file_get_contents($url);
-							$result = json_decode($details,true);
-							if($result['results']!=null){
-								
-								$lat=0;
-								$lng=0;
-								$lat=$result['results'][0]['geometry']['location']['lat'];
-								$lng=$result['results'][0]['geometry']['location']['lng'];
-								$chef_latitude=0;
-								$chef_longitude=0;
-								if($lat!=null)$chef_latitude=$lat;
-								if($lng!=null)$chef_longitude=$lng;
-									
-								$chef_distance_array[$chef_id]=array('chef_latitude'=>$chef_latitude,'chef_longitude'=>$chef_longitude);	
-							}							
-						}
-					}
-				 }
-				 
 				$location_chef_id=0;	
 				$location_chef_id=$chef_array1[$chef_zipcode];
 				if($chef_zipcode>0 and $chef_zipcode!=null and in_array($location_chef_id,$chef_distance_array)){
@@ -139,24 +160,7 @@ class SiteController extends Controller
 					$location_info=$chef_distance_array[$location_chef_id];
 					$location_latitude=$location_info['chef_latitude'];
 					$location_longitude=$location_info['chef_longitude'];
-		 
-				function distance($lat1, $lon1, $lat2, $lon2, $unit) {
 
-				  $theta = $lon1 - $lon2;
-				  $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-				  $dist = acos($dist);
-				  $dist = rad2deg($dist);
-				  $miles = $dist * 60 * 1.1515;
-				  $unit = strtoupper($unit);
-
-				  if ($unit == "K") {
-					  return ($miles * 1.609344);
-				  } else if ($unit == "N") {
-					  return ($miles * 0.8684);
-				  } else {
-					  return $miles;
-				  }
-				}
 				
 				$location_distance_array=array();
 				if($chef_distance_array!=null){
@@ -190,6 +194,63 @@ class SiteController extends Controller
 				$new_chef_array=array_merge($merge_array1,$greter_distance_array);
 				$chef_array=$new_chef_array;
 			 }
+			 
+			}else{
+				$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$search_by_location."&sensor=false";
+				$details=file_get_contents($url);
+				$result = json_decode($details,true);
+				
+				
+				if($result['results']!=null){					
+					$lat=0;
+					$lng=0;
+					$lat=$result['results'][0]['geometry']['location']['lat'];
+					$lng=$result['results'][0]['geometry']['location']['lng'];
+					$chef_latitude=0;
+					$chef_longitude=0;
+					if($lat!=null)$chef_latitude=$lat;
+					if($lng!=null)$chef_longitude=$lng;
+						
+					$location_distance_array=array();	
+					$location_distance_array[0]=array('chef_latitude'=>$chef_latitude,'chef_longitude'=>$chef_longitude);	
+
+					$location_latitude=$chef_latitude;
+					$location_longitude=$chef_longitude;
+					
+					
+					if($chef_distance_array!=null){
+						foreach($chef_distance_array as $chef_id=>$chef_distance){
+							$chef_latitude=$chef_distance['chef_latitude'];
+							$chef_longitude=$chef_distance['chef_longitude'];					
+							$location_distance_array[$chef_id]=distance($location_latitude,$chef_latitude,$location_longitude,$chef_longitude, "M"); 
+						}
+					}
+					
+					$search_loca_dist=0;
+					$equal_distance_array=array();
+					$less_distance_array=array();
+					$greter_distance_array=array();
+
+					$new_chef_array=array();
+					if($location_distance_array!=null){				
+						$search_loca_dist=$location_distance_array[0];
+						foreach($location_distance_array as $chef_id=>$location_distance){
+							if($search_loca_dist==$location_distance){
+								$equal_distance_array[]=$chef_id;
+							}elseif($search_loca_dist>$location_distance){
+								$less_distance_array[]=$chef_id;
+							}elseif($search_loca_dist<$location_distance){
+								$greter_distance_array[]=$chef_id;
+							}
+						}				
+					}
+					
+					$merge_array1=array_merge($equal_distance_array,$less_distance_array);
+					$new_chef_array=array_merge($merge_array1,$greter_distance_array);
+					$chef_array=$new_chef_array;
+						
+				}
+
 			}
 		}
 							
@@ -221,11 +282,18 @@ class SiteController extends Controller
         $offlinesearchModel = new ItemInfoOfflineSearch(); 
         $offlinedataProvider = $offlinesearchModel->search(Yii::$app->request->queryParams); 
 
+		if (Yii::$app->request->isAjax){
+			return $this->renderAjax('/iteminfo/conhomeitem', [
+					'livedataProvider' => $livedataProvider,
+					'offlinedataProvider' => $offlinedataProvider,
+				]);
+		}else{
+			return $this->render('index', [
+				'livedataProvider' => $livedataProvider,
+				'offlinedataProvider' => $offlinedataProvider,
+			]);
+		}
 
-        return $this->render('index', [
-            'livedataProvider' => $livedataProvider,
-            'offlinedataProvider' => $offlinedataProvider,
-        ]);
 		
       //  return $this->render('index');
     }  

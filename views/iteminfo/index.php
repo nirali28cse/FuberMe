@@ -15,6 +15,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 <style>
+
+
+.list-view>.item{float:left;width: auto;padding: 0.5%;}
+
 .popover {
 	width: 100%;
     max-width: 100%;

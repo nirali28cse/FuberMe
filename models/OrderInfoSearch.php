@@ -72,8 +72,8 @@ class OrderInfoSearch extends OrderInfo
 						'desc' => ['item_info.name' => SORT_DESC],
 					],	
 					'customer' => [
-						'asc' => ['users.username' => SORT_ASC, 'users.address' => SORT_ASC],
-						'desc' => ['users.username' => SORT_DESC, 'users.address' => SORT_DESC],
+						'asc' => ['customer_name' => SORT_ASC],
+						'desc' => ['customer_name' => SORT_DESC],
 					],		
 					'chef_name' => [
 						'asc' => ['users.username' => SORT_ASC, 'users.address' => SORT_ASC],

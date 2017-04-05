@@ -873,7 +873,6 @@ ul.tabs-menu li.active a{
 	width: 100%;
     height: 212px;
 	max-width: 350px;
-    min-width: 350px;
 }
 .product-info-cust {
 	float: left;
