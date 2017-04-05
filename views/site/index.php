@@ -27,7 +27,7 @@ use yii\widgets\ListView;
 
 
 
-.list-view>.item{float:left;width: auto;padding: 0.5%;}
+.list-view>.item{float:left;width: auto;padding: 1.2%;}
 
 .product-grid {
     width: 100%;
@@ -419,7 +419,7 @@ use yii\widgets\ListView;
 	 <div class="container">
 		 <div class="menu_sec">
 		 
-			<form>
+			<form id="searchform"  onsubmit="return ajaxsearch()">
 			   <div class="search">				 
 					<input type="text" name="search_by_item" value="<?php if(isset($_GET['search_by_item']) and ($_GET['search_by_item']!=null)){ echo $_GET['search_by_item']; } ?>" placeholder="Search Item...">
 					<div class="search1"></div>
@@ -427,9 +427,9 @@ use yii\widgets\ListView;
 				
 			   <div class="search" style="margin-left: 15px;">
 					<input type="text"  name="search_by_location"  value="<?php if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){ echo $_GET['search_by_location']; } ?>" placeholder="Search By Location...">
-					<input type="submit" value="">
+					<div class="search1"></div>
 				</div>
-			
+			 <input type="submit" style="display: none;">
 			</form>
 					
 	<div class="clearfix"> </div>
@@ -461,7 +461,36 @@ use yii\widgets\ListView;
 		</div>
 	</div>
 	
+	
+	
+<script type="text/javascript">
+function ajaxsearch(){
+	var search_by_item=$('input[name="search_by_item"]').val(); 
+	var search_by_location=$('input[name="search_by_location"]').val(); 
 
+	if(search_by_item!=null || search_by_location!=null){
+		$.ajax({
+		  type: "GET",
+		  async: false,
+		  url: <?php Yii::$app->homeUrl; ?>'?r=site/index',
+		  data: "search_by_item=" + search_by_item + "&search_by_location=" + search_by_location,
+		  cache: false,
+		  beforeSend: function() {
+			$("#loader_message").html("").hide();
+			$('#loader_image').show();
+		  },
+		  success: function(resultdata) {
+			//  alert(html);
+			$(".product-model-sec").html(resultdata);
+
+		  }
+		});
+		return	false;
+	}else{
+		return	false;
+	}	
+}
+</script>
 
 	
 	

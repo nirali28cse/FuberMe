@@ -398,7 +398,11 @@ body {
 				?> 
 				<?php if(count($item_cuisine_type_info_ids)>0){ ?>							
 					<section  class="sky-form">
-						 <h4><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>&nbsp; Cuisine</h4>
+						 <h4><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>&nbsp; Cuisine 
+						 <?php if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['cusion_array']!=null){ ?>
+							<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&dacusion=1" style="float: right;font-size: 12px;text-transform: initial;color: #38b662;">clear all</a>
+						 <?php } ?>							
+						 </h4>
 						 <div class="row">
 							 <div class="col col-4">
 							 
@@ -541,7 +545,11 @@ body {
 				<?php $item_category_ids = app\models\ItemCategoryInfo::find()->where(['status'=>1])->all(); ?> 
 				<?php if(count($item_category_ids)>0){ ?>							
 					<section  class="sky-form">
-						 <h4><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>&nbsp; Category</h4>
+						 <h4><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>&nbsp; Category 
+						 <?php if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['categ_array']!=null){ ?>
+							<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&dacateg=1" style="float: right;font-size: 12px;text-transform: initial;color: #38b662;">clear all</a>
+						 <?php } ?>
+						 </h4>
 						 <div class="row">
 							 <div class="col col-4">
 							 

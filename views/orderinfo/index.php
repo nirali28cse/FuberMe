@@ -24,7 +24,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\OrderInfoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Received Orders History';
+$this->title = 'Received Orders';
 $this->params['breadcrumbs'][] = $this->title;
 
 
@@ -83,7 +83,7 @@ $dataProvidercount = $dataProvider->getCount();
             'label' => 'Invoice Amount',
 			'format' => 'html',
             'value' => function($model) { 
-					return '$'.$model->final_amount;
+					return '$'.round($model->final_amount, 2);
 				},
 			],	
 			[

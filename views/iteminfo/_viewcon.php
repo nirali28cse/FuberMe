@@ -5,7 +5,7 @@ $user_id=$model->chef_user_id;
 
 					<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/view&id=<?php echo $model->id; ?>">
 
-						<div class="product-grid love-grid" style="width: 350px;">
+						<div class="product-grid love-grid" style="width: 100%;">
 						<div class="more-product"><span> </span></div>						
 						<div class="product-img b-link-stripe b-animate-go  thickbox">
 							<?php if($model->image==null){ ?>

@@ -85,7 +85,7 @@ if(!Yii::$app->user->isGuest){
 												if($display==1){ */
 												if($user_type==2 or $user_type==3){
 												?>
-													<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index">Received Orders History <span class="glyphicon glyphicon-tasks pull-right"></span></a></li>
+													<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index">Received Orders <span class="glyphicon glyphicon-tasks pull-right"></span></a></li>
 													<li class="divider"></li>
 												<?php  } ?>			
 											<?php // } ?>			
@@ -99,7 +99,7 @@ if(!Yii::$app->user->isGuest){
 												if($display1==1){ */
 												if($user_type==1 or $user_type==3){
 											?>
-												<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index2">Your Orders <span class="glyphicon glyphicon-list-alt pull-right"></span></a></li>
+												<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index2">My Orders <span class="glyphicon glyphicon-list-alt pull-right"></span></a></li>
 												<li class="divider"></li>
 												<?php // } ?>		
 											<?php  } ?>		

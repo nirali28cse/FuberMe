@@ -137,6 +137,16 @@ class IteminfoController extends Controller
 		$categ_array=array_merge($old_categ_array,$new_categ_array);		
 		$delivery_array=array_merge($old_delivery_array,$new_delivery_array);		
 
+		if(isset($_GET['dacateg']) and $_GET['dacateg']==1){
+			unset($categ_array);
+			$categ_array=array();
+		}
+		
+		if(isset($_GET['dacusion']) and $_GET['dacusion']==1){
+			unset($cusion_array);
+			$cusion_array=array();
+		}
+		
 		if(isset($_GET['dcusion']) and in_array($_GET['dcusion'],$cusion_array)){
 			if (($key = array_search($_GET['dcusion'], $cusion_array)) !== false) {
 				unset($cusion_array[$key]);
