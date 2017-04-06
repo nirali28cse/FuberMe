@@ -319,15 +319,19 @@ class Emailfunction extends Component
 		$customer_address=$order_query->customer_address.','.$order_query->customer_city.','.$order_query->customer_zip;
 		$customer_contact=$order_query->customer_email.','.$order_query->customer_mobile_no;
 		$order_number=$order_query->order_number;
-		
-		foreach($order_item_query as $order_item){
+
+
+/* 		foreach($order_item_query as $orderitem){
+		echo '<pre>';
+print_r($orderitem);
+exit; */
 			$order_item[]= '<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 									<td>
-										'.$order_item->itemInfo->name.' (Qty '.$orderitem->item_qty.' in $'.$orderitem->item_price.')
+										'.$order_item_query->itemInfo->name.' (Qty '.$order_item_query->item_qty.' in $'.$order_item_query->item_price.')
 									</td>				
 							</tr>';
-			$head_up_time_array[]=$order_item->itemInfo->head_up_time;				
-		}
+			$head_up_time_array[]=$order_item_query->itemInfo->head_up_time;				
+	//	}
 		
 		$order_item_info=implode(' ',$order_item);
 		$maxhead_up_time=max($head_up_time_array);
@@ -447,7 +451,7 @@ class Emailfunction extends Component
 	}
 		
 	
-	public static function Neworderinformcustomer($customer_user_id,$order_query,$order_item_query)
+	public static function Neworderinformcustomer($item_chef_id,$customer_user_id,$order_query,$order_item_query)
 	{
 		$model=Userdetail::findOne($customer_user_id);
 		$toemail = $model->email_id;
@@ -460,20 +464,20 @@ class Emailfunction extends Component
 		$order_item=array();
 		$head_up_time_array=array();
 		
-		$chef_user_id=$order_query->chef_user_id;
-		$chef_info=Userdetail::findOne($chef_user_id);
+		// $chef_user_id=$order_item_query->chef_user_id;
+		$chef_info=Userdetail::findOne($item_chef_id);
 		$chef_name=$chef_info->username;
 		$chef_address=$chef_info->address.','.$chef_info->city.','.$chef_info->zipcode;
 		$chef_contact=$chef_info->email_id.','.$chef_info->mobile_number;
 
-		foreach($order_item_query as $order_item){
+		// foreach($order_item_query as $order_item){
 			$order_item[]= '<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 									<td>
-										'.$order_item->itemInfo->name.' (Qty '.$orderitem->item_qty.' in $'.$orderitem->item_price.')
+										'.$order_item_query->itemInfo->name.' (Qty '.$order_item_query->item_qty.' in $'.$order_item_query->item_price.')
 									</td>				
 							</tr>';
-			$head_up_time_array[]=$order_item->itemInfo->head_up_time;				
-		}
+			$head_up_time_array[]=$order_item_query->itemInfo->head_up_time;				
+		// }
 		
 		$order_item_info=implode(' ',$order_item);
 		$maxhead_up_time=max($head_up_time_array);
