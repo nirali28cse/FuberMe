@@ -231,7 +231,7 @@ if($model->image==null){
 				<h4 class="otheritem" > Other Dishes By Chef <?php echo $model->chefUser->username; ?></h4>
 
 				   <div class="product-model">	 
-					 <div class="container">
+					 <div class="container" style="padding: 0;margin: 0;">
 						 <div class="col-md-12 product-model-sec">									
 								<div class="item-info-index">
 										<?php	

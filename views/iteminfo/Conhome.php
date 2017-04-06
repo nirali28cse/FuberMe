@@ -15,7 +15,7 @@ use yii\helpers\Url;
 }
 
 
-.list-view>.item{float:left;width: 380px;padding: 0.5%;}
+.list-view>.item{float:left;width: 360px;padding: 0.5%;}
 
 bug_solve8
 span.item_price {

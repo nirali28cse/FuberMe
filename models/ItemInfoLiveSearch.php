@@ -184,9 +184,9 @@ class ItemInfoLiveSearch extends ItemInfo
 							 	['>=', 'availability_to_date',Yii::$app->params['today_date']]
 								]); 
 
-			if(Yii::$app->controller->id=='iteminfo' and Yii::$app->controller->action->id=='view' and (isset($_GET['id']) and $_GET['id']>0)){
+/* 			if(Yii::$app->controller->id=='iteminfo' and Yii::$app->controller->action->id=='view' and (isset($_GET['id']) and $_GET['id']>0)){
 				$query->andFilterWhere(['!=','id',$_GET['id']]);
-			}
+			} */
  
 		if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['min_location']>0 and $_SESSION['filetrsarray']['max_location']>0){
 			$query->orderBy(['(status)' => SORT_DESC]);

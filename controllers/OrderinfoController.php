@@ -401,7 +401,7 @@ class OrderinfoController extends Controller
 			
 			//For new Order place
 			$send_email_chef=Yii::$app->emailcomponent->Neworderinformchef($item_chef_id,$order_query,$order_item_query);
-			$send_email_customer=Yii::$app->emailcomponent->Neworderinformcustomer($customer_user_id,$order_query,$order_item_query);
+			$send_email_customer=Yii::$app->emailcomponent->Neworderinformcustomer($item_chef_id,$customer_user_id,$order_query,$order_item_query);
 			$send_email_fuberadmin=Yii::$app->emailcomponent->Neworderinformfuberadmin();
 			$item_info->save();
 			
@@ -485,6 +485,8 @@ class OrderinfoController extends Controller
 							$item_chef_id=$model1->item_chef_user_id;
 							$update_qty=$model1->item_qty;
 							$customer_user_id=$model->user_id;
+							$order_query=$model;
+							$order_item_query=$model1;
 							$this->Afterinvoiceupdateitemqty($item_id,$item_chef_id,$update_qty,$customer_user_id,$order_query,$order_item_query); 	
 						}				
 					 }						
@@ -545,7 +547,7 @@ class OrderinfoController extends Controller
 							$update_qty=$order_item->item_qty;
 							$customer_user_id=$model->user_id;
 							$order_query=$model;
-							$order_item_query=$order_items;
+							$order_item_query=$order_item;
 							$this->Afterinvoiceupdateitemqty($item_id,$item_chef_id,$update_qty,$customer_user_id,$order_query,$order_item_query); 	
 						}						
 					}
