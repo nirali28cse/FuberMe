@@ -333,8 +333,8 @@ body {
 						 </div>
 					 </div>
 				 </section> 
-			
-				 <section  class="sky-form">
+			<?php
+/* 				 <section  class="sky-form">
 					 <h4>
 					 <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
 					 DISTANCE<input type="text" id="location" readonly style="border:0; color:#38b662;text-align: right;font-size: 12px;float: right;margin-top: -14px;">
@@ -348,7 +348,9 @@ body {
 
 						 </div>
 					 </div>
-				 </section> 
+				 </section>  */
+				 
+				 ?>
 			
 			
 

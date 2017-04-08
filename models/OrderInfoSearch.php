@@ -47,19 +47,28 @@ class OrderInfoSearch extends OrderInfo
 				$query = OrderInfo::find()
 				->joinWith(['orderItemInfo.itemInfo'=>function ($query) { 
 				$query->Where(['chef_user_id'=>Yii::$app->user->id]); }
-				])->groupBy(['order_info_id']);
+				])->groupBy(['order_info_id','item_info.name']);
 				
 		}		
 
 		// Customer 
 		if((Yii::$app->controller->action->id=='index2') and (Yii::$app->user->identity->user_type=1 or Yii::$app->user->identity->user_type=3)){
 
-/* 				$query = OrderInfo::find()
+/*  				$query = OrderInfo::find()
 				->Where(['user_id'=>Yii::$app->user->id])
-				->joinWith(['orderItemInfo.itemInfo'=>function ($query) {  } ]); */
-			//	->groupBy(['order_info_id']);		
-				$query = OrderInfo::find();	
-				$query->andFilterWhere(['=', 'user_id',Yii::$app->user->id]);				
+				->joinWith(['orderItemInfo.itemInfo'=>function ($query) { 
+					$query->Where(['item_id','>',0]);
+				} ])
+				->groupBy(['order_info_id']);	 */
+
+				$query = OrderInfo::find()
+				->Where(['user_id'=>Yii::$app->user->id])
+				->joinWith(['orderItemInfo.itemInfo.chefUser'=>function ($query) { 
+				// $query->Where(['chef_user_id'=>Yii::$app->user->id]);
+				}])->groupBy(['order_info.id','item_info.name','users.username','users.address']);
+				
+/* 				$query = OrderInfo::find();	
+				$query->andFilterWhere(['=', 'user_id',Yii::$app->user->id]);	 */			
 		}
 		
 		
@@ -137,10 +146,10 @@ class OrderInfoSearch extends OrderInfo
             ->andFilterWhere(['like', 'tax_in_percent', $this->tax_in_percent])
             ->andFilterWhere(['like', 'order_notes', $this->order_notes]);
 			
-/* 		if(!isset($_GET['sort'])){
+ 		if(!isset($_GET['sort'])){
 			$query->orderBy(['(order_date_time)' => SORT_DESC]);
-		} */	
-		$query->orderBy(['(order_date_time)' => SORT_DESC]);
+		} 	
+	//	$query->orderBy(['(order_date_time)' => SORT_DESC]);
 
         return $dataProvider;
     }
