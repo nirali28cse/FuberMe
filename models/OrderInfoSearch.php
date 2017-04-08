@@ -42,25 +42,35 @@ class OrderInfoSearch extends OrderInfo
     public function search($params)
     {
 
-		if((Yii::$app->controller->action->id=='index' or Yii::$app->controller->action->id=='index2') and (Yii::$app->user->identity->user_type=2 or Yii::$app->user->identity->user_type=3)){
-		//	$query = OrderInfo::find()->joinWith(['orderItemInfo.itemInfo'=>function ($query) {  $query->Where(['orderItemInfo.item_chef_user_id'=>Yii::$app->user->id]); } ]);		  
-			
-			$query = OrderInfo::find()->joinWith(['orderItemInfo.itemInfo'=>function ($query) { 
-			$query->Where(['chef_user_id'=>Yii::$app->user->id]);
-			},'orderItemInfo.chefInfo'=>function ($query) { 
-			// $query->Where(['chef_user_id'=>Yii::$app->user->id]);
-			} ]);
-			
-		}else{
-			$query = OrderInfo::find();
-		}
+		// Chef 
+		if((Yii::$app->controller->action->id=='index') and (Yii::$app->user->identity->user_type=2 or Yii::$app->user->identity->user_type=3)){
+				$query = OrderInfo::find()
+				->joinWith(['orderItemInfo.itemInfo'=>function ($query) { 
+				$query->Where(['chef_user_id'=>Yii::$app->user->id]); }
+				])->groupBy(['order_info_id']);
+				
+		}		
 
+		// Customer 
+		if((Yii::$app->controller->action->id=='index2') and (Yii::$app->user->identity->user_type=1 or Yii::$app->user->identity->user_type=3)){
+
+/* 				$query = OrderInfo::find()
+				->Where(['user_id'=>Yii::$app->user->id])
+				->joinWith(['orderItemInfo.itemInfo'=>function ($query) {  } ]); */
+			//	->groupBy(['order_info_id']);		
+				$query = OrderInfo::find();	
+				$query->andFilterWhere(['=', 'user_id',Yii::$app->user->id]);				
+		}
+		
+		
 		
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-			'pagination' => array('pageSize' =>10),				
+           'pagination' => [
+					'pageSize' => 10,
+				],
+			'query' => $query,						
 			'sort' => [
 				'attributes' => [
 					'delivery_method' => [
@@ -108,9 +118,9 @@ class OrderInfoSearch extends OrderInfo
             'order_date_time' => $this->order_date_time,
         ]);
 
-		if(Yii::$app->controller->action->id=='index2' and (Yii::$app->user->identity->user_type=1 or Yii::$app->user->identity->user_type=3)){
+/* 		if(Yii::$app->controller->action->id=='index2' and (Yii::$app->user->identity->user_type=1 or Yii::$app->user->identity->user_type=3)){
 			 $query->andFilterWhere(['=', 'user_id',Yii::$app->user->id]);
-		}
+		} */
 		
         $query->andFilterWhere(['like', 'order_number', $this->order_number])
             ->andFilterWhere(['like', 'final_amount', $this->final_amount])
@@ -130,7 +140,7 @@ class OrderInfoSearch extends OrderInfo
 /* 		if(!isset($_GET['sort'])){
 			$query->orderBy(['(order_date_time)' => SORT_DESC]);
 		} */	
-		
+		$query->orderBy(['(order_date_time)' => SORT_DESC]);
 
         return $dataProvider;
     }

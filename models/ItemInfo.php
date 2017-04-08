@@ -56,7 +56,7 @@ class ItemInfo extends \yii\db\ActiveRecord
 			[['quantity'],'integer','message'=>'Enter a valid Quntity in number.'],
 			['price', 'compare', 'compareValue' => 100, 'operator' => '<=', 'type' => 'number','message'=>'Enter a valid Price up to $100'],
 			// [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg,jpeg,gif,png', 'maxSize' => 1024 * 1024 * 1024],
-			['image', 'image', 'minWidth' => 350,'minHeight' => 350,  'extensions' => 'jpg, gif, png', 'maxSize' =>512000],
+			['image', 'image', 'minWidth' => 350,'minHeight' => 350,  'extensions' => 'jpg, gif, png', 'maxSize' =>2560000],
             [['head_up_time', 'availability_from_time', 'availability_to_time'], 'string', 'max' => 100],
             [['chef_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['chef_user_id' => 'id']],
 			[['availability_to_date', 'availability_from_date'], 'date', 'format' => 'php:Y-m-d'],

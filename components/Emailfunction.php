@@ -483,7 +483,7 @@ exit; */
 		$maxhead_up_time=max($head_up_time_array);
 		$deliverymaxhead_up_time=$maxhead_up_time+30;
 		
-		
+		$order_number=$order_query->order_number;
 		
 		
 		$subject = 'Your FuberMe order has been placed';	
@@ -514,7 +514,7 @@ exit; */
 						<table style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;" width="100%" cellspacing="0" cellpadding="0">
 						<tbody>
 						<tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-						<td class="content-block" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">Your order number is <span style="color: #38b662;">xxxxxxxx</span></td>
+						<td class="content-block" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">Your order number is <span style="color: #38b662;">'.$order_number.'</span></td>
 						</tr>
 						
 
@@ -619,7 +619,7 @@ exit; */
 						<table style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;" width="100%" cellspacing="0" cellpadding="0">
 						<tbody>
 						<tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-						<td class="content-block" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;" valign="top">Your order number is <span style="color: #38b662;">xxxxxxxx</span></td>
+						<td class="content-block" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;" valign="top">Your order number is <span style="color: #38b662;">'.$order_number.'</span></td>
 						</tr>
 						
 

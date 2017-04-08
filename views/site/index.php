@@ -426,7 +426,7 @@ use yii\widgets\ListView;
 				</div>
 				
 			   <div class="search" style="margin-left: 15px;">
-					<input type="text"  name="search_by_location"  value="<?php if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){ echo $_GET['search_by_location']; } ?>" placeholder="Search By Location...">
+					<input type="text"  name="search_by_location"  value="<?php if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){ echo $_GET['search_by_location']; } ?>" placeholder="Search By Zip...">
 					<div class="search1"></div>
 				</div>
 			 <input type="submit" style="display: none;">

@@ -304,18 +304,19 @@ class IteminfoController extends Controller
 					$chef_latitude=$chef_distance['chef_latitude'];
 					$chef_longitude=$chef_distance['chef_longitude'];					
 					$chef_distance=0;
-					$chef_distance=distance($my_latitude,$chef_latitude,$my_longitude,$chef_longitude, "M"); 
-					if($chef_distance<=$max_location){
+				//	echo $chef_distance=distance($my_latitude,$chef_latitude,$my_longitude,$chef_longitude, "M"); 
+				//	echo '<br/>';
+					if($chef_distance>=$min_location and $chef_distance<=$max_location){
 						$chef_array[]=$chef_id;	
 					}					
 				}
 			}
 				
 		}	
-		
-/* echo '<pre>';
+		/* echo $max_location;
+echo '<pre>';
 print_r($chef_array);
-print_r($chef_distance_array); */
+print_r($chef_distance_array); */ 
 
 		$search_by_item=null;
 

@@ -3,6 +3,10 @@ if(!Yii::$app->user->isGuest){
 	$userinfo=app\modules\users\models\Userdetail::findOne(Yii::$app->user->id);
 	$user_type=0;
 	$user_type=$userinfo->user_type;
+	
+	$user_order=0;
+	$orderinfo=app\models\OrderInfo::find()->Where(['user_id'=>Yii::$app->user->id]);		  
+	if(count($orderinfo)>0) $user_order=1;
 }
 ?>
 
@@ -97,7 +101,7 @@ if(!Yii::$app->user->isGuest){
 												}
 
 												if($display1==1){ */
-												if($user_type==1 or $user_type==3){
+												if($user_type==1 or $user_type==3 or $user_order==1){
 											?>
 												<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index2">My Orders <span class="glyphicon glyphicon-list-alt pull-right"></span></a></li>
 												<li class="divider"></li>
