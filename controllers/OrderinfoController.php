@@ -13,7 +13,7 @@ use app\models\ItemInfoLiveSearch;
 use app\models\ItemInfoOfflineSearch;
 use app\models\OrderItemInfo;
 use app\modules\users\models\Userdetail;
-
+use yii\data\Pagination;
 use yii\helpers\Url;
 /**
  * OrderinfoController implements the CRUD actions for OrderInfo model.
@@ -52,6 +52,8 @@ class OrderinfoController extends Controller
         $searchModel = new OrderInfoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+		
+		
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

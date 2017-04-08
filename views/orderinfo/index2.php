@@ -67,6 +67,7 @@ $dataProvidercount = $dataProvider->getCount();
 					$invoice_item=null;					
 					if(count($model->orderItemInfo)>0){
 						foreach($model->orderItemInfo as $iteminfo){
+							if(count($iteminfo->itemInfo)>0)
 							$invoice_items[]=$iteminfo->itemInfo->name;
 						}
 						if(isset($_GET['sort']) and $_GET['sort']=='invoice_item'){

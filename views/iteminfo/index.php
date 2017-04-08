@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 						<p>
-							<?= Html::a('Add New Item', ['create'], ['class' => 'btn btn-success']) ?>
+							<?= Html::a('Add New Item', ['create'], ['class' => 'btn btn-success','style'=>'margin-right: 5%;']) ?>
 						</p>
 												
 
