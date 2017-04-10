@@ -404,7 +404,7 @@ class OrderinfoController extends Controller
 			//For new Order place
 			$send_email_chef=Yii::$app->emailcomponent->Neworderinformchef($item_chef_id,$order_query,$order_item_query);
 			$send_email_customer=Yii::$app->emailcomponent->Neworderinformcustomer($item_chef_id,$customer_user_id,$order_query,$order_item_query);
-			$send_email_fuberadmin=Yii::$app->emailcomponent->Neworderinformfuberadmin();
+			$send_email_fuberadmin=Yii::$app->emailcomponent->Neworderinformfuberadmin($item_chef_id,$order_query);
 			$item_info->save();
 			
 			

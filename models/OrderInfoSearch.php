@@ -47,7 +47,7 @@ class OrderInfoSearch extends OrderInfo
 				$query = OrderInfo::find()
 				->joinWith(['orderItemInfo.itemInfo'=>function ($query) { 
 				$query->Where(['chef_user_id'=>Yii::$app->user->id]); }
-				])->groupBy(['order_info_id','item_info.name']);
+				])->groupBy(['order_info_id']);
 				
 		}		
 
@@ -65,7 +65,9 @@ class OrderInfoSearch extends OrderInfo
 				->Where(['user_id'=>Yii::$app->user->id])
 				->joinWith(['orderItemInfo.itemInfo.chefUser'=>function ($query) { 
 				// $query->Where(['chef_user_id'=>Yii::$app->user->id]);
-				}])->groupBy(['order_info.id','item_info.name','users.username','users.address']);
+				}])
+				// ->groupBy(['order_info.id','item_info.name','users.username','users.address']);
+				->groupBy(['order_info.id']);
 				
 /* 				$query = OrderInfo::find();	
 				$query->andFilterWhere(['=', 'user_id',Yii::$app->user->id]);	 */			
@@ -86,24 +88,25 @@ class OrderInfoSearch extends OrderInfo
 						'asc' => ['delivery_method' => SORT_ASC, 'order_number' => SORT_DESC],
 						'desc' => ['delivery_method' => SORT_DESC, 'order_number' => SORT_ASC],
 					],	
-					'invoice_item' => [
+/* 					'invoice_item' => [
 						'asc' => ['item_info.name' => SORT_ASC],
 						'desc' => ['item_info.name' => SORT_DESC],
-					],	
+					],	 */
 					'customer' => [
 						'asc' => ['customer_name' => SORT_ASC],
 						'desc' => ['customer_name' => SORT_DESC],
 					],		
-					'chef_name' => [
+/* 					'chef_name' => [
 						'asc' => ['users.username' => SORT_ASC, 'users.address' => SORT_ASC],
 						'desc' => ['users.username' => SORT_DESC, 'users.address' => SORT_DESC],
-					],		
+					],	 */	
 
 					'order_number',
 					'final_amount',
 					'payment_method',
 					'order_status',
 					'order_date_time',
+					'order_notes',
 				],
 				'defaultOrder'=>'order_date_time DESC',
 			],	

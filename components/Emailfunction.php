@@ -124,7 +124,7 @@ class Emailfunction extends Component
 					';		
 		}
 		
-		// cheif 
+		// chef 
 		if($model->user_type==2){
 			$emailcontent = '		
 					<html>
@@ -166,15 +166,15 @@ class Emailfunction extends Component
 							
 									
 										
-			/* 				<tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+				$emailcontent =$emailcontent .'<tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td class="content-block" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;color: orange;" valign="top">Once your account is activated, use the links below to go get started:</td>
 							</tr>
 
 							
 							<tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td class="content-block" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px 0px 20px; text-align: center;" valign="top"><a class="btn-primary" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #fff; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #38b662; margin: 0; border-color: #38b662; border-style: solid; border-width: 10px 20px;" 
-							href="#">Start Now</a></td>
-							</tr> */
+							href="https://www.youtube.com/watch?v=4j-TmkkvnhU&feature=youtu.be">Get Started As a FuberMe Chef - YouTube</a></td>
+							</tr> ';
 										
 
 				$emailcontent =$emailcontent .	'<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
@@ -304,6 +304,7 @@ class Emailfunction extends Component
 	
 	public static function Neworderinformchef($chef_user_id,$order_query,$order_item_query)
 	{
+
 		$model=Userdetail::findOne($chef_user_id);
 		$toemail = $model->email_id;
 		$customer_name=null;
@@ -453,8 +454,12 @@ exit; */
 	
 	public static function Neworderinformcustomer($item_chef_id,$customer_user_id,$order_query,$order_item_query)
 	{
+/* 		
+		echo 'Neworderinformcustomer';
+		exit; */
+		
 		$model=Userdetail::findOne($customer_user_id);
-		$toemail = $model->email_id;
+		$toemail = $order_query->customer_email;
 		$customer_name=null;
 		$customer_address=null;
 		$customer_contact=null;
@@ -785,8 +790,18 @@ exit; */
 	
 	
 	
-	public static function Neworderinformfuberadmin()
+	public static function Neworderinformfuberadmin($item_chef_id,$order_query)
 	{
+		
+		
+		$chef_info=Userdetail::findOne($item_chef_id);
+		$chef_name=$chef_info->username;
+		$final_amount=0;
+		$customer_name=null;
+		$order_number=0;
+		$final_amount=$order_query->final_amount;
+		$customer_name=$order_query->customer_name;
+		$order_number=$order_query->order_number;
 		
 		$toemail = Yii::$app->params['adminemailid'];
 
@@ -815,12 +830,14 @@ exit; */
 				<table style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;" width="100%" cellspacing="0" cellpadding="0">
 				<tbody>
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-				<td class="content-block" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">A new order as just placed by:&nbsp;</td>
+				<td class="content-block" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">A new order is just placed by:&nbsp;</td>
 				</tr>
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 				<td class="content-block" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-				<p>For Chef:&nbsp;</p>
-				<p>Amounting to:&nbsp;</p>
+				<p>Form Chef : &nbsp; '.$chef_name.'</p>
+				<p>To Customer : &nbsp; '.$customer_name.'</p>
+				<p>Order Amount : &nbsp; '.$final_amount.'</p>
+				<p>Order Number : &nbsp; '.$order_number.'</p>
 				</td>
 				</tr>
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
