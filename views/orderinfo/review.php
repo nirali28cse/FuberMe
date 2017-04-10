@@ -103,6 +103,8 @@ $user_id=$master_chef;
 
 $user_info = Userdetail::find()->where([ 'id'=>$user_id,'status'=>1 ])->one();
 $master_chef_name=null;
+$master_chef_city=null;
+$master_chef_zipcode=null;
 if(count($user_info)>0){
 	$master_chef_name=$user_info->username;	
 	$master_chef_city=$user_info->city;	
