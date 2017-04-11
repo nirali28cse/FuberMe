@@ -19,7 +19,7 @@
 
 use yii\widgets\ListView;
 
-	$sms_url="https://api-mapper.clicksend.com/http/v2/";
+	/* $sms_url="https://api-mapper.clicksend.com/http/v2/";
 	$request = "username=fuberme&key=C6B80D78-E856-54F7-01EA-A377CDEAB09B&method=http&message=post";
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $sms_url); 
@@ -30,7 +30,7 @@ use yii\widgets\ListView;
 	curl_close($ch); 
 	print $response; 
 	echo 'hii';
-	exit;
+	exit; */
 ?>
 
 
