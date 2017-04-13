@@ -237,19 +237,17 @@ if(count($user_info)>0){
 							 <h3>Price Details</h3>
 							 <span>Total</span>
 							 <span class="total tamount">$ <?php echo $order_array['total_amount']; ?></span>
-<?php
-/* 							 <span>Paypel Charges (%)</span>
+						
+						<?php if($order_array['tax_in_percent']>0){ ?>
+							 <span>Paypel Charges (%)</span>
 							 <span class="total"><?php echo $order_array['tax_in_percent']; ?></span>
-							 		 */		 
-							 ?>
+							 		
 							 <div class="clearfix"></div>
-							 
-						<?php
-						/* 	
+
 						 <h4 class="last-price">Final Total</h4> 
 						 <span class="total final ttfinal"><?php echo $order_array['final_amount']; ?></span>
-						  */		 
-							 ?>
+						<?php } ?>
+						
 						 <div class="clearfix">&nbsp;</div>
 						<?php if(Yii::$app->user->isGuest){ ?>
 								<a class="continue" href="<?php echo Yii::$app->homeUrl; ?>?r=users/registration/cindex&directorder=<?php echo $value['item_id']; ?>">CheckOut</a>						

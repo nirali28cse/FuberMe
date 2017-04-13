@@ -194,7 +194,9 @@ body {
 }
 
 
-
+.invalidzip{
+color: red;float: right;
+}	
 </style>
 
 	
@@ -287,7 +289,7 @@ body {
 			 <div style="width: 118%;">
 				 <div class="menu_sec">
 				 
-					<form>
+					<form  onsubmit="return locationsearch()">
 						
 					   <input type="hidden" name="r" value="iteminfo/conhome">
 					   <div class="search">				 
@@ -296,7 +298,7 @@ body {
 						</div>
 						
 					   <div class="search" style="margin-left: 15px;">
-							<input type="text"  name="search_by_location"  value="<?php if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){ echo $_GET['search_by_location']; } ?>" placeholder="Search By Zip...">
+							<input type="text"  name="search_by_location"  value="<?php if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){ echo $_GET['search_by_location']; } ?>" maxlength="5" placeholder="Search By Zip...">
 							<input type="submit" value="">
 						</div>
 					
@@ -306,8 +308,10 @@ body {
 				</div>
 			</div>
 		</div>
+			<div class="invalidzip"></div>
 	  </div>
 	</div>
+
 
 
 </div>
@@ -395,82 +399,6 @@ body {
 				<?php } ?>	
 				
 				
-				<?php 
-				$item_cuisine_type_info_ids = app\models\CuisineTypeInfo::find()->where(['status'=>1])->all(); 
-				?> 
-				<?php if(count($item_cuisine_type_info_ids)>0){ ?>							
-					<section  class="sky-form">
-						 <h4><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>&nbsp; Cuisine 
-						 <?php if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['cusion_array']!=null){ ?>
-							<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&dacusion=1" style="float: right;font-size: 12px;text-transform: initial;color: #38b662;">clear all</a>
-						 <?php } ?>							
-						 </h4>
-						 <div class="row">
-							 <div class="col col-4">
-							 
-								 <?php 
-								 $counter=1;
-								 $ccounter=6;
-								 $collapse_array=array();
-								 foreach($item_cuisine_type_info_ids as $item_cuisine_type_info_id){ 
-										$activecous=null;
-										$removecous=null;
-										$check_status=null;
-										$cusion_types='cusion';
-										if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['cusion_array']!=null and in_array($item_cuisine_type_info_id->id,$_SESSION['filetrsarray']['cusion_array'])){
-											$activecous='class="active"';
-											$removecous='<a href="'.Yii::$app->homeUrl.'?r=iteminfo/conhome&dcusion='.$item_cuisine_type_info_id->id.'" class="rclose">remove</a>';
-											$check_status='checked';
-											$cusion_types='dcusion';
-											$ccounter=$counter+1;
-										} 
-										if($counter<$ccounter){
-								 ?>	
-										<label class="checkbox">
-										<input type="checkbox" <?php echo $check_status; ?> name="checkbox"  onclick='window.location.assign("<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&<?php echo $cusion_types; ?>=<?php echo $item_cuisine_type_info_id->id; ?>")'><i></i>
-										<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&<?php echo $cusion_types; ?>=<?php echo $item_cuisine_type_info_id->id; ?>"  <?php echo $activecous; ?>><?php echo $item_cuisine_type_info_id->name; ?></a>
-										<?php echo $removecous; ?>
-										</label>						 
-								 <?php 
-								 }else{
-									 $collapse_array[$counter]['item_cuisine_type_info_id']=$item_cuisine_type_info_id;
-									 $collapse_array[$counter]['activecous']=$activecous;
-									 $collapse_array[$counter]['removecous']=$removecous;
-									 $collapse_array[$counter]['cusion_types']=$cusion_types;
-									 $collapse_array[$counter]['check_status']=$check_status;
-								 }
-								 $counter++;
-								 }
-								 ?>	
-
-								<?php if(count($collapse_array)>0){ ?>
-									   <div id="collapse1" class="panel-collapse collapse">
-									<?php foreach($collapse_array as $collapse){ 
-											$item_cuisine_type_info_id=$collapse['item_cuisine_type_info_id'];
-											$activecous=$collapse['activecous'];
-											$removecous=$collapse['removecous'];
-											$cusion_types=$collapse['cusion_types'];
-											$check_status=$collapse['check_status'];
-									?>
-										<label class="checkbox">
-										<input type="checkbox" <?php echo $check_status; ?> name="checkbox"  onclick='window.location.assign("<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&<?php echo $cusion_types; ?>=<?php echo $item_cuisine_type_info_id->id; ?>")'><i></i>
-										<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&<?php echo $cusion_types; ?>=<?php echo $item_cuisine_type_info_id->id; ?>"  <?php echo $activecous; ?>><?php echo $item_cuisine_type_info_id->name; ?></a>
-										<?php echo $removecous; ?>
-										</label>										 
-									<?php } ?>
-									 </div>
-									  <div class="panel-heading">
-										<h4 class="panel-title">
-										  <a data-toggle="collapse" href="#collapse1">View More</a>
-										</h4>
-									  </div>
-								<?php } ?>
-								 
-							 </div>
-						 </div>
-					 </section> 	
-				<?php } ?>	
-
 
 				<?php $item_dietary_preference_ids = app\models\DietaryPreference::find()->where(['status'=>1])->all(); ?> 
 				<?php if(count($item_dietary_preference_ids)>0){ ?>							
@@ -618,6 +546,82 @@ body {
 					 </section> 	
 				<?php } ?>	
 	
+
+				<?php 
+				$item_cuisine_type_info_ids = app\models\CuisineTypeInfo::find()->where(['status'=>1])->all(); 
+				?> 
+				<?php if(count($item_cuisine_type_info_ids)>0){ ?>							
+					<section  class="sky-form">
+						 <h4><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>&nbsp; Cuisine 
+						 <?php if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['cusion_array']!=null){ ?>
+							<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&dacusion=1" style="float: right;font-size: 12px;text-transform: initial;color: #38b662;">clear all</a>
+						 <?php } ?>							
+						 </h4>
+						 <div class="row">
+							 <div class="col col-4">
+							 
+								 <?php 
+								 $counter=1;
+								 $ccounter=6;
+								 $collapse_array=array();
+								 foreach($item_cuisine_type_info_ids as $item_cuisine_type_info_id){ 
+										$activecous=null;
+										$removecous=null;
+										$check_status=null;
+										$cusion_types='cusion';
+										if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['cusion_array']!=null and in_array($item_cuisine_type_info_id->id,$_SESSION['filetrsarray']['cusion_array'])){
+											$activecous='class="active"';
+											$removecous='<a href="'.Yii::$app->homeUrl.'?r=iteminfo/conhome&dcusion='.$item_cuisine_type_info_id->id.'" class="rclose">remove</a>';
+											$check_status='checked';
+											$cusion_types='dcusion';
+											$ccounter=$counter+1;
+										} 
+										if($counter<$ccounter){
+								 ?>	
+										<label class="checkbox">
+										<input type="checkbox" <?php echo $check_status; ?> name="checkbox"  onclick='window.location.assign("<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&<?php echo $cusion_types; ?>=<?php echo $item_cuisine_type_info_id->id; ?>")'><i></i>
+										<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&<?php echo $cusion_types; ?>=<?php echo $item_cuisine_type_info_id->id; ?>"  <?php echo $activecous; ?>><?php echo $item_cuisine_type_info_id->name; ?></a>
+										<?php echo $removecous; ?>
+										</label>						 
+								 <?php 
+								 }else{
+									 $collapse_array[$counter]['item_cuisine_type_info_id']=$item_cuisine_type_info_id;
+									 $collapse_array[$counter]['activecous']=$activecous;
+									 $collapse_array[$counter]['removecous']=$removecous;
+									 $collapse_array[$counter]['cusion_types']=$cusion_types;
+									 $collapse_array[$counter]['check_status']=$check_status;
+								 }
+								 $counter++;
+								 }
+								 ?>	
+
+								<?php if(count($collapse_array)>0){ ?>
+									   <div id="collapse1" class="panel-collapse collapse">
+									<?php foreach($collapse_array as $collapse){ 
+											$item_cuisine_type_info_id=$collapse['item_cuisine_type_info_id'];
+											$activecous=$collapse['activecous'];
+											$removecous=$collapse['removecous'];
+											$cusion_types=$collapse['cusion_types'];
+											$check_status=$collapse['check_status'];
+									?>
+										<label class="checkbox">
+										<input type="checkbox" <?php echo $check_status; ?> name="checkbox"  onclick='window.location.assign("<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&<?php echo $cusion_types; ?>=<?php echo $item_cuisine_type_info_id->id; ?>")'><i></i>
+										<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome&<?php echo $cusion_types; ?>=<?php echo $item_cuisine_type_info_id->id; ?>"  <?php echo $activecous; ?>><?php echo $item_cuisine_type_info_id->name; ?></a>
+										<?php echo $removecous; ?>
+										</label>										 
+									<?php } ?>
+									 </div>
+									  <div class="panel-heading">
+										<h4 class="panel-title">
+										  <a data-toggle="collapse" href="#collapse1">View More</a>
+										</h4>
+									  </div>
+								<?php } ?>
+								 
+							 </div>
+						 </div>
+					 </section> 	
+				<?php } ?>	
 
       </div>
   </div>
@@ -961,10 +965,32 @@ body {
 		</div>
 		
 		*/
+		
+		
+$min_price=0;
+$max_price=100;		
+if(isset($_SESSION['filetrsarray']['min_price']) and $_SESSION['filetrsarray']['min_price']>0){
+	$min_price=$_SESSION['filetrsarray']['min_price'];
+}	
+if(isset($_SESSION['filetrsarray']['max_price']) and $_SESSION['filetrsarray']['max_price']>0){
+	$max_price=$_SESSION['filetrsarray']['max_price'];
+}	
 		?>
 
 
 <script type="text/javascript">
+
+function locationsearch(){
+	var search_by_location=$('input[name="search_by_location"]').val(); 
+
+	if(!$.isNumeric(search_by_location) && search_by_location!=''){ 
+		$(".invalidzip").html("Invalid zip code.");
+		return	false;
+	}else{
+		$(".invalidzip").html("");
+		return true;
+	}
+}
 
 // infinite scroll 
 var noresult = false;
@@ -1038,6 +1064,13 @@ $('#collapse3,#collapse2,#collapse1').on('hide.bs.collapse', function () {
 
 
 
+var min_price1='<?php echo $min_price; ?>';
+var max_price1='<?php echo $max_price; ?>';
+
+/* alert(min_price1);
+alert(max_price1);
+ */
+
 
  // price slider
   $( function() {
@@ -1045,7 +1078,7 @@ $('#collapse3,#collapse2,#collapse1').on('hide.bs.collapse', function () {
       range: true,
       min: 0,
       max: 100,
-      values: [ 0, 100 ],
+      values: [ min_price1, max_price1 ],
       slide: function( event, ui ) {
         $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
       },

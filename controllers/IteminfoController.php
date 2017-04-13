@@ -95,7 +95,17 @@ class IteminfoController extends Controller
 			$old_delivery_array=$_SESSION['filetrsarray']['delivery_array'];
 		}
 		
+		$min_price=0;
+		$max_price=0;		
+		if(isset($_SESSION['filetrsarray']['min_price']) and $_SESSION['filetrsarray']['min_price']>0){
+			$min_price=$_SESSION['filetrsarray']['min_price'];
+		}	
+		if(isset($_SESSION['filetrsarray']['max_price']) and $_SESSION['filetrsarray']['max_price']>0){
+			$max_price=$_SESSION['filetrsarray']['max_price'];
+		}	
 
+		
+		
 		unset($_SESSION['filetrsarray']);
 
 
@@ -172,10 +182,7 @@ class IteminfoController extends Controller
 		}	
 		
 
-
 		
-		$min_price=0;
-		$max_price=0;		
 		if(isset($_GET['min_price']) and $_GET['min_price']>0){
 			$min_price=$_GET['min_price'];
 		}	
@@ -559,7 +566,7 @@ print_r($chef_distance_array); */
     public function actionCreate()
     {
         $model = new ItemInfo();
-
+		$model->setScenario('create');
         if ($model->load(Yii::$app->request->post())) {
 			$model->chef_user_id=Yii::$app->user->id;
 			

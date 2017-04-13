@@ -109,7 +109,16 @@
     								<td class="thick-line"></td>
     								<td class="thick-line text-center"><strong>Subtotal</strong></td>
     								<td class="thick-line text-right">$ <?php echo $model->total_amount; ?></td>
+    							</tr>		
+								
+								<?php if($model->tax_in_percent>0){ ?>
+    							<tr>
+    								<td class="thick-line"></td>
+    								<td class="thick-line"></td>
+    								<td class="thick-line text-center"><strong>Tax(%)</strong></td>
+    								<td class="thick-line text-right">$ <?php echo $model->tax_in_percent; ?></td>
     							</tr>
+								<?php } ?>
 
     							<tr>
     								<td class="no-line"></td>
