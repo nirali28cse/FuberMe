@@ -17,6 +17,7 @@
 
 <?php 
 
+
 use yii\widgets\ListView;
 
 	/* $sms_url="https://api-mapper.clicksend.com/http/v2/";
@@ -424,6 +425,14 @@ use yii\widgets\ListView;
     top: 3px;
     right: 8px;
 }
+
+
+.invalidzip{
+    color: red;
+    float: right;
+    margin-right: 39%;
+    margin-top: 10px;
+}
 </style>
 
 <div class="mega_nav">
@@ -437,7 +446,7 @@ use yii\widgets\ListView;
 				</div>
 				
 			   <div class="search" style="margin-left: 15px;">
-					<input type="text"  name="search_by_location"  value="<?php if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){ echo $_GET['search_by_location']; } ?>" placeholder="Search By Zip...">
+					<input type="text"  name="search_by_location"  value="<?php if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){ echo $_GET['search_by_location']; } ?>" maxlength="5" placeholder="Search By Zip...">
 					<div class="search1"></div>
 				</div>
 			 <input type="submit" style="display: none;">
@@ -445,6 +454,7 @@ use yii\widgets\ListView;
 					
 	<div class="clearfix"> </div>
 		</div>
+		<div class="invalidzip"></div>
 	</div>
 </div>
 
@@ -479,6 +489,15 @@ function ajaxsearch(){
 	var search_by_item=$('input[name="search_by_item"]').val(); 
 	var search_by_location=$('input[name="search_by_location"]').val(); 
 
+	if(!$.isNumeric(search_by_location) && search_by_location!=''){ 
+		search_by_location=null;	
+		search_by_item=null;	
+		$(".invalidzip").html("Invalid zip code.");
+	}else{
+		$(".invalidzip").html("");
+	}
+	
+	
 	if(search_by_item!=null || search_by_location!=null){
 		$.ajax({
 		  type: "GET",

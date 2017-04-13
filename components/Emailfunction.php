@@ -446,7 +446,26 @@ exit; */
 				</table>
 			</body>
 		 </html>
-		';			
+		';		
+
+		//  send sms 	
+		$sms_url="https://api-mapper.clicksend.com/http/v2/send.php";
+		$request = "username=fuberme&key=C6B80D78-E856-54F7-01EA-A377CDEAB09B&method=http&to=".$customer_contact."
+		&message=You have received a new order ".$order_number." from FuberMe customer ".$customer_name.". Order should be ready in ".$maxhead_up_time." mins. Please check your email or FuberMe for more details.
+		";
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $sms_url); 
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,false);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,false);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $request); 
+		$response = curl_exec($ch); 
+		curl_close($ch); 
+	/* 	echo '<pre>';
+		print $response; 
+		exit; */
+		
 		return $send_email=self::sendEmail($toemail,$subject,$emailcontent);
 		
 	}
