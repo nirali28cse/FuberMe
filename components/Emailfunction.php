@@ -326,17 +326,31 @@ class Emailfunction extends Component
 		echo '<pre>';
 print_r($orderitem);
 exit; */
+
+		foreach($order_item_query as $orderitem){
+			
 			$order_item[]= '<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 									<td>
-										'.$order_item_query->itemInfo->name.' (Qty '.$order_item_query->item_qty.' in $'.$order_item_query->item_price.')
+										'.$orderitem->itemInfo->name.' (Qty '.$orderitem->item_qty.' in $'.$orderitem->item_price.')
 									</td>				
 							</tr>';
-			$head_up_time_array[]=$order_item_query->itemInfo->head_up_time;				
+			$head_up_time_array[]=$orderitem->itemInfo->head_up_time;
+			
+		}
+
+		
 	//	}
 		
 		$order_item_info=implode(' ',$order_item);
 		$maxhead_up_time=max($head_up_time_array);
-		
+		if($maxhead_up_time>59){
+			$hours = floor($maxhead_up_time / 60);
+			$min = $maxhead_up_time - ($hours * 60);
+			$maxhead_up_time=$hours.' Hour '.$min.' Mins';
+		}else{
+			$maxhead_up_time=$maxhead_up_time.' Mins';
+		} 
+
 		
 		$subject = 'Congratulations! You have received a new order from FuberMe';		
 		$emailcontent = '
@@ -406,12 +420,13 @@ exit; */
 															
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 					<td style="padding: 12px 0;color: #38b662;">
-						This order should be ready in '.$maxhead_up_time.' Mins.
+						This order should be ready in '.$maxhead_up_time.' .
 
 					</td>				
 				</tr>
 				
-
+				<tr><td><p>&nbsp;</p></td></tr>
+				
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 						<td class="content-block" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">Please contact FuberMe team immediately if you are not able to fulfil this order or have any questions.</td>
 				</tr>
@@ -492,20 +507,37 @@ exit; */
 		$chef_info=Userdetail::findOne($item_chef_id);
 		$chef_name=$chef_info->username;
 		$chef_address=$chef_info->address.','.$chef_info->city.','.$chef_info->zipcode;
-		$chef_contact=$chef_info->email_id.','.$chef_info->mobile_number;
+		$chef_email_id=$chef_info->email_id;
+		$chef_contact=$chef_info->mobile_number;
 
-		// foreach($order_item_query as $order_item){
+		 foreach($order_item_query as $orderitem){
 			$order_item[]= '<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 									<td>
-										'.$order_item_query->itemInfo->name.' (Qty '.$order_item_query->item_qty.' in $'.$order_item_query->item_price.')
+										'.$orderitem->itemInfo->name.' (Qty '.$orderitem->item_qty.' in $'.$orderitem->item_price.')
 									</td>				
 							</tr>';
-			$head_up_time_array[]=$order_item_query->itemInfo->head_up_time;				
-		// }
+			$head_up_time_array[]=$orderitem->itemInfo->head_up_time;				
+		 }
 		
 		$order_item_info=implode(' ',$order_item);
 		$maxhead_up_time=max($head_up_time_array);
 		$deliverymaxhead_up_time=$maxhead_up_time+30;
+		
+		if($deliverymaxhead_up_time>59){
+			$hours = floor($deliverymaxhead_up_time / 60);
+			$min = $deliverymaxhead_up_time - ($hours * 60);
+			$deliverymaxhead_up_time=$hours.' Hour '.$min.' Mins';
+		}else{
+			$deliverymaxhead_up_time=$deliverymaxhead_up_time.' Mins';
+		} 
+		
+		if($maxhead_up_time>59){
+			$hours = floor($maxhead_up_time / 60);
+			$min = $maxhead_up_time - ($hours * 60);
+			$maxhead_up_time=$hours.' Hour '.$min.' Mins';
+		}else{
+			$maxhead_up_time=$maxhead_up_time.' Mins';
+		} 
 		
 		$order_number=$order_query->order_number;
 		
@@ -578,10 +610,17 @@ exit; */
 						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td>
+								'.$chef_email_id.'
+							</td>				
+						</tr>	
+						
+						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+							<td> <span class="glyphicon glyphicon-earphone"></span>
 								'.$chef_contact.'
 							</td>				
 						</tr>
 
+						<tr><td><p>&nbsp;</p></td></tr>
 						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 								<td class="content-block" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 10 0 20px;" valign="top">Please contact FuberMe team if you have any questions or trouble signing in</td>
@@ -689,10 +728,17 @@ exit; */
 						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td>
+								'.$chef_email_id.'
+							</td>				
+						</tr>	
+						
+						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+							<td> <span class="glyphicon glyphicon-earphone"></span>
 								'.$chef_contact.'
 							</td>				
 						</tr>
 
+						<tr><td><p>&nbsp;</p></td></tr>
 						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 								<td class="content-block" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 10 0 20px;" valign="top">Please contact FuberMe team if you have any questions/suggestions or need help.</td>
@@ -814,7 +860,7 @@ exit; */
 		
 		
 		$chef_info=Userdetail::findOne($item_chef_id);
-		$chef_name=$chef_info->username;
+		$chef_name=$chef_info->username.'('.$chef_info->email_id.')';
 		$final_amount=0;
 		$customer_name=null;
 		$order_number=0;
@@ -853,9 +899,9 @@ exit; */
 				</tr>
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 				<td class="content-block" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-				<p>Form Chef : &nbsp; '.$chef_name.'</p>
+				<p>From Chef : &nbsp; '.$chef_name.'</p>
 				<p>To Customer : &nbsp; '.$customer_name.'</p>
-				<p>Order Amount : &nbsp; '.$final_amount.'</p>
+				<p>Order Amount : &nbsp; $'.$final_amount.'</p>
 				<p>Order Number : &nbsp; '.$order_number.'</p>
 				</td>
 				</tr>

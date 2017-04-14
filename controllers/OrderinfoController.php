@@ -401,18 +401,25 @@ class OrderinfoController extends Controller
 				$item_info->availability_to_time=$newTime;
 			}
 			
-			//For new Order place
-			$send_email_chef=Yii::$app->emailcomponent->Neworderinformchef($item_chef_id,$order_query,$order_item_query);
-			$send_email_customer=Yii::$app->emailcomponent->Neworderinformcustomer($item_chef_id,$customer_user_id,$order_query,$order_item_query);
-			$send_email_fuberadmin=Yii::$app->emailcomponent->Neworderinformfuberadmin($item_chef_id,$order_query);
+		
 			$item_info->save();
 			
 			
 		}
 	}
-
-
 	
+	
+	 public function Emailsend($item_chef_id,$customer_user_id,$order_query,$order_item_query){
+	
+/* 		$order_query
+		$order_item_query
+		$item_chef_id
+		$customer_user_id */
+		//For new Order place
+		$send_email_chef=Yii::$app->emailcomponent->Neworderinformchef($item_chef_id,$order_query,$order_item_query);
+		$send_email_customer=Yii::$app->emailcomponent->Neworderinformcustomer($item_chef_id,$customer_user_id,$order_query,$order_item_query);
+		$send_email_fuberadmin=Yii::$app->emailcomponent->Neworderinformfuberadmin($item_chef_id,$order_query);
+	 }
     /**
      * Creates a new OrderInfo model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -471,6 +478,7 @@ class OrderinfoController extends Controller
 			$model->tax_in_percent=$order_array['tax_in_percent'];
 			$model->user_id=$order_array['customer_info']['customer_id'];
 			$model->order_status=$order_status;
+			$model->order_date_time=date('Y-m-d H:i:s');
 
 			if($model->save()){
 				$order_items=$order_array['order_item'];
@@ -494,6 +502,8 @@ class OrderinfoController extends Controller
 					 }						
 				}
 				if($model->payment_method=='cod'){	
+					$order_item_query1 = OrderItemInfo::find()->where(['order_info_id'=>$model->id])->all(); 
+					$this->Emailsend($item_chef_id,$customer_user_id,$order_query,$order_item_query1);
 					unset($_SESSION['order_array']);
 					unset($_SESSION['master_chef']);
 					return $this->redirect(['view', 'id' =>$model->id]);
@@ -553,6 +563,7 @@ class OrderinfoController extends Controller
 							$this->Afterinvoiceupdateitemqty($item_id,$item_chef_id,$update_qty,$customer_user_id,$order_query,$order_item_query); 	
 						}						
 					}
+					$this->Emailsend($item_chef_id,$customer_user_id,$order_query,$order_items);
 				}
 				
 				return $this->redirect(['view', 'id' =>$model->id,'paysucess'=>1]);
