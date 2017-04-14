@@ -40,6 +40,25 @@
 
 
 <script>
+
+
+var ajaxsupport=false;
+
+if(!window.XMLHttpRequest) {
+  ajaxsupport=true;
+}
+
+if(typeof(Storage) !== "undefined") {
+  //   alert('if');
+} else {
+   // Sorry! No Web Storage support..
+   ajaxsupport=true;
+}
+
+if(ajaxsupport){
+	alert('Sorry! No Web Storage support..Please use another browser.');
+}
+
 $(document).ready(function(){
 	$(document).on("click",".placeorder",function(e){		
 		e.preventDefault();

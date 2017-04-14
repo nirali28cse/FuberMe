@@ -984,7 +984,7 @@ function locationsearch(){
 	var search_by_location=$('input[name="search_by_location"]').val(); 
 
 	if(!$.isNumeric(search_by_location) && search_by_location!=''){ 
-		$(".invalidzip").html("Invalid zip code.");
+		$(".invalidzip").html("Please enter a valid zip code (e.g. 01581).");
 		return	false;
 	}else{
 		$(".invalidzip").html("");
