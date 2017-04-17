@@ -346,7 +346,11 @@ exit; */
 		if($maxhead_up_time>59){
 			$hours = floor($maxhead_up_time / 60);
 			$min = $maxhead_up_time - ($hours * 60);
-			$maxhead_up_time=$hours.' Hour '.$min.' Mins';
+			$mins=null;
+			if($min>1) $mins =$min.' Mins';
+			$hours_ex='Hour';
+			if($hours>1)$hours_ex='Hours';
+			$maxhead_up_time=$hours.' '.$hours_ex.' '.$mins;
 		}else{
 			$maxhead_up_time=$maxhead_up_time.' Mins';
 		} 
@@ -465,8 +469,8 @@ exit; */
 
 		//  send sms 	
 		$sms_url="https://api-mapper.clicksend.com/http/v2/send.php";
-		$request = "username=fuberme&key=C6B80D78-E856-54F7-01EA-A377CDEAB09B&method=http&to=".$customer_contact."
-		&message=You have received a new order ".$order_number." from FuberMe customer ".$customer_name.". Order should be ready in ".$maxhead_up_time." mins. Please check your email or FuberMe for more details.
+		$request = "username=fuberme&key=C6B80D78-E856-54F7-01EA-A377CDEAB09B&method=http&to=".$customer_contact."&from=508-257-1499
+		&message=You have received a new order ".$order_number." from FuberMe customer ".$customer_name.". Order should be ready in ".$maxhead_up_time.". Please check your email or FuberMe for more details.
 		";
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $sms_url); 
