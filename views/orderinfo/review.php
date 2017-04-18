@@ -238,9 +238,9 @@ if(count($user_info)>0){
 							 <span>Total</span>
 							 <span class="total tamount">$ <?php echo $order_array['total_amount']; ?></span>
 						
-						<?php if($order_array['tax_in_percent']>0){ ?>
-							 <span>Paypel Charges (%)</span>
-							 <span class="total"><?php echo $order_array['tax_in_percent']; ?></span>
+						<?php if($order_array['tax_in_percent_amount']>0){ ?>
+							 <span>Paypel Charges </span>
+							 <span class="total">$ <?php echo $order_array['tax_in_percent_amount']; ?></span>
 							 		
 							 <div class="clearfix"></div>
 
