@@ -276,6 +276,8 @@ color: red;float: right;
 <!--  Slider css and js -->
 
 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+  
 
 <div class="product-model">	 
  <div class="container" style="width: 100%;">
@@ -1097,7 +1099,7 @@ alert(max_price1);
                 data: "min_price="+min_price+"&max_price="+max_price,
                 cache: false,
 				success: function(response) {
-                    $('#main').html(response);
+                    $('.list-view').html(response);
                 },
             });
         }

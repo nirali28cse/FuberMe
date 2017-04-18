@@ -491,11 +491,7 @@ function ajaxsearch(){
 
 	
 	var location_lenth=search_by_location.toString().length;
-	if(location_lenth<5){
-		search_by_location=null;	
-		search_by_item=null;	
-		$(".invalidzip").html("Please enter a valid zip code (e.g. 01581).");
-	}
+
 	
 	
 	if((!$.isNumeric(search_by_location)) && (search_by_location!='')){ 
@@ -503,12 +499,18 @@ function ajaxsearch(){
 		search_by_item=null;			
 		$(".invalidzip").html("Please enter a valid zip code (e.g. 01581).");
 	}else{
-		$(".invalidzip").html("");
+		if(location_lenth>0 && location_lenth<5){
+			search_by_location=null;	
+			search_by_item=null;	
+			$(".invalidzip").html("Please enter a valid zip code (e.g. 01581).");
+		}else{
+			$(".invalidzip").html("");
+		}		
 	}
 	
 	
 	if(search_by_item!=null || search_by_location!=null){
-		$.ajax({
+/* 		$.ajax({
 		  type: "GET",
 		  async: false,
 		  url: <?php Yii::$app->homeUrl; ?>'?r=site/index',
@@ -523,8 +525,8 @@ function ajaxsearch(){
 			$(".product-model-sec").html(resultdata);
 
 		  }
-		});
-		return	false;
+		}); */
+		return	true;
 	}else{
 		return	false;
 	}	
