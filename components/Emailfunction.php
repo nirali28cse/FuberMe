@@ -309,6 +309,7 @@ class Emailfunction extends Component
 		$toemail = $model->email_id;
 		$customer_name=null;
 		$customer_address=null;
+		$customer_email=null;
 		$customer_contact=null;
 		$order_number=null;
 		$order_item_info=null;
@@ -318,7 +319,8 @@ class Emailfunction extends Component
 		
 		$customer_name=$order_query->customer_name;
 		$customer_address=$order_query->customer_address.','.$order_query->customer_city.','.$order_query->customer_zip;
-		$customer_contact=$order_query->customer_email.','.$order_query->customer_mobile_no;
+		$customer_email=$order_query->customer_email;
+		$customer_contact=$order_query->customer_mobile_no;
 		$order_number=$order_query->order_number;
 
 
@@ -400,6 +402,12 @@ exit; */
 					</td>				
 				</tr>
 									
+				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+					<td>
+						'.$customer_email.'
+					</td>				
+				</tr>	
+				
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 					<td>
 						'.$customer_contact.'

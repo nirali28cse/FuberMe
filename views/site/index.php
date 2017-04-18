@@ -458,8 +458,7 @@ use yii\widgets\ListView;
 	</div>
 </div>
 
-<br/>
-<br/>
+
 		
    <div class="product-model">	 
 	 <div class="container">
