@@ -982,7 +982,14 @@ if(isset($_SESSION['filetrsarray']['max_price']) and $_SESSION['filetrsarray']['
 
 function locationsearch(){
 	var search_by_location=$('input[name="search_by_location"]').val(); 
-
+	
+	var location_lenth=search_by_location.toString().length;
+	if(location_lenth<5){
+		search_by_location=null;	
+		search_by_item=null;	
+		$(".invalidzip").html("Please enter a valid zip code (e.g. 01581).");
+	}
+	
 	if(!$.isNumeric(search_by_location) && search_by_location!=''){ 
 		$(".invalidzip").html("Please enter a valid zip code (e.g. 01581).");
 		return	false;

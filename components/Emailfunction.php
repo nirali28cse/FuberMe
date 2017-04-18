@@ -528,17 +528,27 @@ exit; */
 		$deliverymaxhead_up_time=$maxhead_up_time+30;
 		
 		if($deliverymaxhead_up_time>59){
-			$hours = floor($deliverymaxhead_up_time / 60);
-			$min = $deliverymaxhead_up_time - ($hours * 60);
-			$deliverymaxhead_up_time=$hours.' Hour '.$min.' Mins';
+			$hours1 = floor($deliverymaxhead_up_time / 60);
+			$min1 = $deliverymaxhead_up_time - ($hours1 * 60);
+			$mins1=null;
+			if($min1>1) $mins1 =$min1.' Mins';
+			$hours_ex1='Hour';
+			if($hours1>1)$hours_ex1='Hours';
+			$deliverymaxhead_up_time=$hours1.' '.$hours_ex1.' '.$mins1;
 		}else{
 			$deliverymaxhead_up_time=$deliverymaxhead_up_time.' Mins';
 		} 
 		
+
+		
 		if($maxhead_up_time>59){
 			$hours = floor($maxhead_up_time / 60);
 			$min = $maxhead_up_time - ($hours * 60);
-			$maxhead_up_time=$hours.' Hour '.$min.' Mins';
+			$mins=null;
+			if($min>1) $mins =$min.' Mins';
+			$hours_ex='Hour';
+			if($hours>1)$hours_ex='Hours';
+			$maxhead_up_time=$hours.' '.$hours_ex.' '.$mins;
 		}else{
 			$maxhead_up_time=$maxhead_up_time.' Mins';
 		} 
@@ -874,7 +884,7 @@ exit; */
 		
 		$toemail = Yii::$app->params['adminemailid'];
 
-		$subject = 'New Order place';		
+		$subject = 'New Order Placed';		
 		$emailcontent = '
 		<html>
 			<body>
@@ -903,8 +913,8 @@ exit; */
 				</tr>
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 				<td class="content-block" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-				<p>From Chef : &nbsp; '.$chef_name.'</p>
-				<p>To Customer : &nbsp; '.$customer_name.'</p>
+				<p>From Customer : &nbsp; '.$customer_name.'</p>
+				<p>To Chef : &nbsp; '.$chef_name.'</p>
 				<p>Order Amount : &nbsp; $'.$final_amount.'</p>
 				<p>Order Number : &nbsp; '.$order_number.'</p>
 				</td>

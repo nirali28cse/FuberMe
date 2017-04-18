@@ -207,7 +207,7 @@ class OrderinfoController extends Controller
 				$final_amount_per=$final_amount_per+0.30;
 				$final_amount=$total_amount+$final_amount_per;
 				$final_amount=number_format((float)$final_amount, 2, '.', '');
-				$tax_in_percent_amount=$final_amount_per;
+				$tax_in_percent_amount=number_format((float)$final_amount_per, 2, '.', '');  //$final_amount_per;
 			}
 
 			$_SESSION['order_array']['total_amount']=$total_amount;
