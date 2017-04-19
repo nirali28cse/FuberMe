@@ -279,6 +279,9 @@ color: red;float: right;
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
   
 
+  
+  
+  
 <div class="product-model">	 
  <div class="container" style="width: 100%;">
 
@@ -632,6 +635,7 @@ color: red;float: right;
       	  <p class="visible-xs">
             <button type="button" class="item_add items" data-toggle="offcanvas">Filters</button>
           </p>
+			<div id="main1">
 			<?php	
 				echo $this->render('conhomeitem', [
 					'livedataProvider' => $livedataProvider,
@@ -640,6 +644,7 @@ color: red;float: right;
 			
 			?>
 
+			</div>
       </div>
   </div>
 </div><!--/row-offcanvas -->
@@ -656,13 +661,6 @@ color: red;float: right;
 		 <div class="col-md-9 product-model-sec">
 		 
 
-						<?php	
-							echo $this->render('conhomeitem', [
-								'livedataProvider' => $livedataProvider,
-								'offlinedataProvider' => $offlinedataProvider,
-							]);				
-						
-						?>
 
 
 		 </div>
@@ -986,18 +984,22 @@ function locationsearch(){
 	var search_by_location=$('input[name="search_by_location"]').val(); 
 	
 	var location_lenth=search_by_location.toString().length;
-	if(location_lenth<5){
-		search_by_location=null;	
-		search_by_item=null;	
-		$(".invalidzip").html("Please enter a valid zip code (e.g. 01581).");
-	}
+
 	
 	if(!$.isNumeric(search_by_location) && search_by_location!=''){ 
 		$(".invalidzip").html("Please enter a valid zip code (e.g. 01581).");
 		return	false;
 	}else{
-		$(".invalidzip").html("");
-		return true;
+		if(location_lenth>0 && location_lenth<5){
+			search_by_location=null;	
+			search_by_item=null;	
+			$(".invalidzip").html("Please enter a valid zip code (e.g. 01581).");
+			return	false;
+		}else{
+			$(".invalidzip").html("");
+			return true;
+		}	
+		
 	}
 }
 
@@ -1099,7 +1101,7 @@ alert(max_price1);
                 data: "min_price="+min_price+"&max_price="+max_price,
                 cache: false,
 				success: function(response) {
-                    $('.list-view').html(response);
+                    $('#main1').html(response);
                 },
             });
         }
