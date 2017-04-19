@@ -97,10 +97,10 @@ class IteminfoController extends Controller
 		
 		$min_price=0;
 		$max_price=0;		
-		if(isset($_SESSION['filetrsarray']['min_price']) and $_SESSION['filetrsarray']['min_price']>0){
+		if(isset($_SESSION['filetrsarray']['min_price']) and $_SESSION['filetrsarray']['min_price']>=0){
 			$min_price=$_SESSION['filetrsarray']['min_price'];
 		}	
-		if(isset($_SESSION['filetrsarray']['max_price']) and $_SESSION['filetrsarray']['max_price']>0){
+		if(isset($_SESSION['filetrsarray']['max_price']) and $_SESSION['filetrsarray']['max_price']>=0){
 			$max_price=$_SESSION['filetrsarray']['max_price'];
 		}	
 
@@ -183,10 +183,10 @@ class IteminfoController extends Controller
 		
 
 		
-		if(isset($_GET['min_price']) and $_GET['min_price']>0){
+		if(isset($_GET['min_price']) and $_GET['min_price']>=0){
 			$min_price=$_GET['min_price'];
 		}	
-		if(isset($_GET['max_price']) and $_GET['max_price']>0){
+		if(isset($_GET['max_price']) and $_GET['max_price']>=0){
 			$max_price=$_GET['max_price'];
 		}	
 		
