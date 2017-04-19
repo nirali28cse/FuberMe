@@ -607,7 +607,7 @@ exit; */
 																	
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td style="padding: 12px 0;">
-								Your order will be ready after <span style="color: #38b662;">'.$maxhead_up_time.' Mins</span>.
+								Your order will be ready after <span style="color: #38b662;">'.$maxhead_up_time.'</span>.
 							</td>				
 						</tr>
 							
@@ -719,13 +719,13 @@ exit; */
 																	
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td style="padding: 12px 0;">
-								Your order will be ready after <span style="color: #38b662;">'.$maxhead_up_time.' Mins</span>.
+								Your order will be ready after <span style="color: #38b662;">'.$maxhead_up_time.'</span>.
 							</td>				
 						</tr>
 						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td>
-								Your food item will be delivered in <span style="color: #38b662;">'.$deliverymaxhead_up_time.' Mins</span> by <span style="color: #38b662;">'.$chef_name.'</span>
+								Your food item will be delivered in <span style="color: #38b662;">'.$deliverymaxhead_up_time.'</span> by <span style="color: #38b662;">'.$chef_name.'</span>
 							</td>				
 						</tr>
 							
