@@ -239,7 +239,7 @@ if(count($user_info)>0){
 							 <span class="total tamount">$ <?php echo $order_array['total_amount']; ?></span>
 						
 						<?php if($order_array['tax_in_percent_amount']>0){ ?>
-							 <span>Paypal Charges </span>
+							 <span>PayPal Fee </span>
 							 <span class="total">$ <?php echo $order_array['tax_in_percent_amount']; ?></span>
 							 		
 							 <div class="clearfix"></div>

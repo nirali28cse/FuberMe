@@ -887,7 +887,7 @@ exit; */
 		$customer_name=null;
 		$order_number=0;
 		$final_amount=$order_query->final_amount;
-		$customer_name=$order_query->customer_name;
+		$customer_name=$order_query->customer_name.','.$order_query->customer_email;
 		$order_number=$order_query->order_number;
 		
 		$toemail = Yii::$app->params['adminemailid'];
