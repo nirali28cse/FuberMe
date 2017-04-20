@@ -589,7 +589,13 @@ $(window).scroll(function() {
 // infinite scroll 
 </script>
 
-	
+<script>		
+	$(".search").on("click",".search1",function(){
+		if(ajaxsearch()){
+			$('form#searchform').submit();
+		}
+	});	
+</script>	
 
 <script>
 /* 

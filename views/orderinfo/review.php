@@ -219,8 +219,10 @@ if(count($user_info)>0){
 					var myArray = jQuery.parseJSON(myArray);
 					var total_amount='$'+myArray['total_amount'];
 					var final_amount='$'+myArray['final_amount'];
+					var tax_in_percent_amount='$'+myArray['tax_in_percent_amount'];
 					$(".tamount").html(total_amount);
 					$(".ttfinal").html(final_amount);
+					$(".ttax").html(tax_in_percent_amount);
 				}
 			});
 		});
@@ -240,7 +242,7 @@ if(count($user_info)>0){
 						
 						<?php if($order_array['tax_in_percent_amount']>0){ ?>
 							 <span>PayPal Fee </span>
-							 <span class="total">$ <?php echo $order_array['tax_in_percent_amount']; ?></span>
+							 <span class="total ttax">$ <?php echo $order_array['tax_in_percent_amount']; ?></span>
 							 		
 							 <div class="clearfix"></div>
 

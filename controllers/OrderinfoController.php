@@ -227,7 +227,7 @@ class OrderinfoController extends Controller
 		if(isset($_SESSION['order_array'])){
 			$_SESSION['order_array']['order_item'][$item_id]['item_qty']=$new_qty;
 			$this->UpdateAmount();
-			$norder_array=array('total_amount'=>$_SESSION['order_array']['total_amount'],'final_amount'=>$_SESSION['order_array']['final_amount']);
+			$norder_array=array('tax_in_percent_amount'=>$_SESSION['order_array']['tax_in_percent_amount'],'total_amount'=>$_SESSION['order_array']['total_amount'],'final_amount'=>$_SESSION['order_array']['final_amount']);
 			echo $json = json_encode($norder_array);
 		}
 
