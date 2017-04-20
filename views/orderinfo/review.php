@@ -454,7 +454,7 @@ $(document).ready(function(){
 								 <div class="clearfix"></div>
 							 <div class="clearfix">&nbsp;</div>
 							 
-							 <a class="continue" href="<?php echo Yii::$app->homeUrl; ?>"> Find your food here..</a>
+							 <a class="continue" href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome"> Find your food here..</a>
 
 							</div>
 							</div>
