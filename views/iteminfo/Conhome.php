@@ -304,9 +304,9 @@ color: red;float: right;
 						
 					   <div class="search" style="margin-left: 15px;">
 							<input type="text"  name="search_by_location"  value="<?php if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){ echo $_GET['search_by_location']; } ?>" maxlength="5" placeholder="Search By Zip...">
-							<input type="submit" value="">
+							<div class="search1"></div>
 						</div>
-					
+						<input type="submit" style="display: none;">
 					</form>
 							
 			<div class="clearfix"> </div>
@@ -317,7 +317,13 @@ color: red;float: right;
 	  </div>
 	</div>
 
-
+<script>		
+	$(".search").on("click",".search1",function(){
+		if(locationsearch()){
+			$('form#searchform').submit();
+		}
+	});	
+</script>	
 
 </div>
 </div>
