@@ -26,7 +26,7 @@ if(!Yii::$app->user->isGuest){
 				  </button>
 				<div class="top_left">
 				<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/conhome" class="top-sellers">
-					<img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/whitelogo.png'); ?>" style="width: 100%;" alt="FuberMe"> 
+					<img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/whitelogo.png'); ?>" alt="FuberMe"> 
 				</a>
 				</div>	
 				</div>
