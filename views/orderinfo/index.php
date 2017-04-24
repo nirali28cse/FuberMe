@@ -13,6 +13,7 @@
 		width: 13%;
 	}
 }
+
 </style>
 
 <?php

@@ -11,7 +11,11 @@
 .content{
 	margin-top: 14%;
 } 
-
+.table {
+    display: block;
+    overflow-x: auto;
+}  
+}
 </style>
 
 <?php  // include('common_file/header_search.php'); ?>

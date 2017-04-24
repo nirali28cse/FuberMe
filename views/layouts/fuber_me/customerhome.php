@@ -27,7 +27,12 @@ form{
 @media (max-width: 768px){
 .content{
 	margin-top: 18%;
+} 
+.table {
+    display: block;
+    overflow-x: auto;
 }  
+} 
 </style>
 
 
