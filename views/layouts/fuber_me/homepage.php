@@ -11,6 +11,7 @@
 .content{
 	margin-top: 14%;
 } 
+
 </style>
 
 <?php  // include('common_file/header_search.php'); ?>
