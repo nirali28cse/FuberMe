@@ -306,7 +306,8 @@ class Emailfunction extends Component
 	{
 
 		$model=Userdetail::findOne($chef_user_id);
-		$toemail = $model->email_id;
+		$toemail = $model->email_id;		
+		$chef_contact_number=null;
 		$customer_name=null;
 		$customer_address=null;
 		$customer_email=null;
@@ -318,6 +319,7 @@ class Emailfunction extends Component
 		$order_item=array();
 		$head_up_time_array=array();
 		
+		$chef_contact_number = $model->mobile_number;
 		$customer_name=$order_query->customer_name;
 		$customer_address=$order_query->customer_address.','.$order_query->customer_city.','.$order_query->customer_zip;
 		$customer_email=$order_query->customer_email;
@@ -486,7 +488,7 @@ exit; */
 
 		//  send sms 	
 		$sms_url="https://api-mapper.clicksend.com/http/v2/send.php";
-		$request = "username=fuberme&key=C6B80D78-E856-54F7-01EA-A377CDEAB09B&method=http&to=".$customer_contact."&from=508-257-1499
+		$request = "username=fuberme&key=C6B80D78-E856-54F7-01EA-A377CDEAB09B&method=http&to=".$chef_contact_number."&from=508-257-1499
 		&message=You have received a new order ".$order_number." from FuberMe customer ".$customer_name.". Order should be ready in ".$maxhead_up_time.". Please check your email or FuberMe for more details.
 		";
 		$ch = curl_init();
