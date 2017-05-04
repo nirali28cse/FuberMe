@@ -130,7 +130,9 @@ if(!Yii::$app->user->isGuest){
 								<?php } ?>									
 								
 								<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login<?php echo $append_url; ?>">Login</a></li>							
-								
+								<?php  if(Yii::$app->controller->id=='registration' and Yii::$app->controller->action->id=='index'){ ?>	
+									<li class="top_link"><a href="https://www.youtube.com/watch?v=4j-TmkkvnhU" class="yellowactive">How-To Video</a></li>	
+								<?php } ?>
 						<?php } ?>
 						
 						<?php if(isset($_SESSION['order_array']['order_item']) and $_SESSION['order_array']['order_item']!=null){
@@ -152,8 +154,10 @@ if(!Yii::$app->user->isGuest){
 								$activeclass=null; if(Yii::$app->controller->id=='iteminfo' and Yii::$app->controller->action->id=='index') $activeclass='yellowactive';
 						?>
 
+							
 							<li class="top_link"><a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/index" class="<?php echo $activeclass; ?>">My Menu</a></li>	
-
+							<li class="top_link"><a href="https://www.youtube.com/watch?v=4j-TmkkvnhU" class="yellowactive">How-To Video</a></li>	
+							
 						<?php  } ?>
 						<?php  } ?>
 

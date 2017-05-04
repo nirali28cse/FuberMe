@@ -312,6 +312,7 @@ class Emailfunction extends Component
 		$customer_email=null;
 		$customer_contact=null;
 		$order_number=null;
+		$order_notes=null;
 		$order_item_info=null;
 		$maxhead_up_time=null;
 		$order_item=array();
@@ -322,6 +323,7 @@ class Emailfunction extends Component
 		$customer_email=$order_query->customer_email;
 		$customer_contact=$order_query->customer_mobile_no;
 		$order_number=$order_query->order_number;
+		$order_notes=$order_query->order_notes;
 
 
 /* 		foreach($order_item_query as $orderitem){
@@ -440,6 +442,13 @@ exit; */
 				<tr><td><p>&nbsp;</p></td></tr>
 				
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+					<td>
+						Order Notes - '.$order_notes.' 
+					</td>				
+				</tr>
+				
+				
+				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 						<td class="content-block" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">Please contact FuberMe team immediately if you are not able to fulfil this order or have any questions.</td>
 				</tr>
 				
@@ -510,6 +519,7 @@ exit; */
 		$customer_address=null;
 		$customer_contact=null;
 		$order_number=null;
+		$order_notes=null;
 		$order_item_info=null;
 		$maxhead_up_time=null;
 		$order_item=array();
@@ -562,6 +572,7 @@ exit; */
 		} 
 		
 		$order_number=$order_query->order_number;
+		$order_notes=$order_query->order_notes;
 		
 		
 		$subject = 'Your FuberMe order has been placed';	
@@ -610,7 +621,13 @@ exit; */
 								Your order will be ready after <span style="color: #38b662;">'.$maxhead_up_time.'</span>.
 							</td>				
 						</tr>
-							
+				
+						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+							<td>
+								Order Notes - '.$order_notes.' 
+							</td>				
+						</tr>
+						
 						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td style="padding: 12px 0; color: #38b662;">
@@ -716,7 +733,15 @@ exit; */
 										
 						'.$order_item_info.'
 							
-																	
+								
+						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+							<td>
+								Order Notes - '.$order_notes.' 
+							</td>				
+						</tr>
+						
+
+								
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td style="padding: 12px 0;">
 								Your order will be ready after <span style="color: #38b662;">'.$maxhead_up_time.'</span>.
@@ -885,10 +910,12 @@ exit; */
 		$chef_name=$chef_info->username.'('.$chef_info->email_id.')';
 		$final_amount=0;
 		$customer_name=null;
+		$order_notes=null;
 		$order_number=0;
 		$final_amount=$order_query->final_amount;
 		$customer_name=$order_query->customer_name.','.$order_query->customer_email;
 		$order_number=$order_query->order_number;
+		$order_notes=$order_query->order_notes;
 		
 		$toemail = Yii::$app->params['adminemailid'];
 
@@ -925,6 +952,7 @@ exit; */
 				<p>To Chef : &nbsp; '.$chef_name.'</p>
 				<p>Order Amount : &nbsp; $'.$final_amount.'</p>
 				<p>Order Number : &nbsp; '.$order_number.'</p>
+				<p>Order Notes : &nbsp; '.$order_notes.'</p>
 				</td>
 				</tr>
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
