@@ -66,7 +66,7 @@ use yii\widgets\ActiveForm;
 
 					<?php // $model->is_aggree_with_terms_condition = true; 
 
-					 echo $form->field($model, 'is_aggree_with_terms_condition')->checkbox(['label'=>'I accept <a href="'.Yii::$app->homeUrl.'?r=site/tou" style="color:#38b662;">terms and conditions</a>.','checked'=>false]); ?>
+					 echo $form->field($model, 'is_aggree_with_terms_condition')->checkbox(['label'=>'I accept <a href="'.Yii::$app->homeUrl.'?r=site/tou" target="_blank" style="color:#38b662;">terms and conditions</a>.','checked'=>false]); ?>
 					
 					<div>
 						<input type="submit" value="create an account" id="register-submit">

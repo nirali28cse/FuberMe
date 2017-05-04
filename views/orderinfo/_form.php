@@ -84,7 +84,7 @@ use yii\widgets\ActiveForm;
 
 
 	
-    <?= $form->field($model, 'order_notes')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'order_notes')->textarea(['placeholder'=>'For example, pickup/delivery time, Food allergies, special instructions etc.','rows' => 6]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Place Order' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

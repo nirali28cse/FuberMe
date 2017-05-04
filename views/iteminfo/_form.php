@@ -25,6 +25,8 @@ $this->registerJsFile(Url::to('@web/fuberme/js/jquery.imgareaselect.pack.js'),ar
 $this->registerJsFile(Url::to('@web/fuberme/js/script.js'),array(
 		'position' => \yii\web\View::POS_HEAD
 	));
+	
+
 
 ?>
 

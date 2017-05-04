@@ -1,3 +1,79 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.fa {
+    padding: 10px;
+    font-size: 25px;
+    width: 40px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+    opacity: 0.7;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+/* Twitter */
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+/* Twitter */
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+/* You Tube */
+.fa-youtube {
+	background: #bb0000;
+    color: white;
+}
+
+
+.copywrite1{
+	 width: 74%;
+}
+.copywrite2{
+	 width: 40%;
+}
+.copywrite3{
+	 width: 50%;
+}
+.container1{
+	display: flex;
+	align-items: center;
+}
+
+@media (max-width: 768px){
+.copywrite1{
+	 width: 100%;
+	 text-align: center;
+}
+.copywrite2{
+	 width: 100%;
+	 text-align: center;
+}
+.copywrite3{
+	 width: 100%;
+	 text-align: center;
+}
+.container1{
+	display: initial;
+	align-items: center;
+}
+}
+</style>
+
 
 	<div class="clearfix">&nbsp;</div>
 	<div class="clearfix">&nbsp;</div>
@@ -6,12 +82,20 @@
 	<div class="clearfix">&nbsp;</div>
 
 <div class="footer-content">
-	 <div class="container">
-		 <div class="copywrite"  style="float:left;">
+	 <div class="container container1">
+		 <div class="copywrite copywrite1">
 			 <p>Copyright © <?php echo date('Y'); ?> <a href="#">FuberMe</a></p>
 		 </div>	
 
-		 <div class="copywrite" style="float:right;">
+		 
+			 <div class="copywrite copywrite2">
+				<a href="https://www.facebook.com/FuberMe/" target="_blank"  class="fa fa-facebook"></a>
+				<a href="https://twitter.com/fuberme" target="_blank"  class="fa fa-twitter"></a>
+				<a href="https://www.youtube.com/channel/UCoNeWMw8UW2DbLkhwpJq3bg" target="_blank"  class="fa fa-youtube"></a>
+			 </div>	
+
+		 <div class="copywrite copywrite3">
+
 <?php /* 				<div class="social">
 					<ul>
 						<li><a href="#"><i class="facebook"></i></a></li>
