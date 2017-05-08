@@ -114,14 +114,15 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+			  '<url:(.*)>'=>'site/index',
             ],
         ],
-        */
+
 		
 		'user' => [
             'identityClass' => 'app\modules\users\models\Userdetail',
