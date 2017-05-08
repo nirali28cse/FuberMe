@@ -331,28 +331,9 @@ print_r($chef_distance_array); */
 			$search_by_item=$_GET['search_by_item'];			
 		}	
 		if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){
-			$min_location=0;
-			$max_location=0;
 			$search_by_location=$_GET['search_by_location'];			
-			$allchef_info = Userdetail::find()->where(['status'=>1])
-							->Where(['or',
-								['LIKE','zipcode',$search_by_location],
-								['LIKE','city',$search_by_location]
-								])->all();;
+			
 
-			 if(count($allchef_info)>0){
-				$chef_zipcode=0;
-				$chef_array1=array();				
-				foreach($allchef_info as $allchef){
-					$chef_id=$allchef->id;
-					$chef_zipcode=$allchef->zipcode;
-					$chef_array[]=$chef_id;
-					$chef_array1[$chef_zipcode]=$chef_id;
-				}
-				$min_location=1;
-				$max_location=1;
-			 }
-			 
 			$chef_distance_array=array();			
 			
 			$allchef_info = Userdetail::find()
@@ -384,16 +365,8 @@ print_r($chef_distance_array); */
 					}
 				}
 			 }
-		
-			if($chef_zipcode>0 and $chef_zipcode!=null){
-				$location_chef_id=0;	
-				$location_chef_id=$chef_array1[$chef_zipcode];
-				$location_info=$chef_distance_array[$location_chef_id];
-				$location_latitude=$location_info['chef_latitude'];
-				$location_longitude=$location_info['chef_longitude'];
-			}
-			
-				 
+			 
+		 
 			function distance($lat1, $lon1, $lat2, $lon2, $unit) {
 
 			  $theta = $lon1 - $lon2;
@@ -412,39 +385,125 @@ print_r($chef_distance_array); */
 			  }
 			}
 			
-			$location_distance_array=array();
-			if($chef_distance_array!=null){
-				foreach($chef_distance_array as $chef_id=>$chef_distance){
-					$chef_latitude=$chef_distance['chef_latitude'];
-					$chef_longitude=$chef_distance['chef_longitude'];					
-					$location_distance_array[$chef_id]=distance($location_latitude,$chef_latitude,$location_longitude,$chef_longitude, "M"); 
-				}
-			}
-			
-			$search_loca_dist=0;
-			$equal_distance_array=array();
-			$less_distance_array=array();
-			$greter_distance_array=array();
-
-			$new_chef_array=array();
-			if($location_distance_array!=null){				
-				$search_loca_dist=$location_distance_array[$location_chef_id];
-				foreach($location_distance_array as $chef_id=>$location_distance){
-					if($search_loca_dist==$location_distance){
-						$equal_distance_array[]=$chef_id;
-					}elseif($search_loca_dist>$location_distance){
-						$less_distance_array[]=$chef_id;
-					}elseif($search_loca_dist<$location_distance){
-						$greter_distance_array[]=$chef_id;
+			$allchef_info = Userdetail::find()->where(['status'=>1])
+							->Where(['or',
+								['LIKE','zipcode',$search_by_location],
+								['LIKE','city',$search_by_location]
+								])->all();;
+			 $chef_zipcode=0;
+			 if(count($allchef_info)>0){				
+					$chef_array1=array();				
+					foreach($allchef_info as $allchef){
+						$chef_id=$allchef->id;
+						$chef_zipcode=$allchef->zipcode;
+						$chef_array[]=$chef_id;
+						$chef_array1[$chef_zipcode]=$chef_id;
 					}
-				}				
-			}
-			
-			$merge_array1=array_merge($equal_distance_array,$less_distance_array);
-			$new_chef_array=array_merge($merge_array1,$greter_distance_array);
-			$chef_array=$new_chef_array;
-		}
+					$min_location=1;
+					$max_location=1;
 
+				$location_chef_id=0;	
+				$location_chef_id=$chef_array1[$chef_zipcode];
+
+				if($chef_zipcode!=null and array_key_exists($location_chef_id,$chef_distance_array)){
+
+					$location_info=$chef_distance_array[$location_chef_id];
+					$location_latitude=$location_info['chef_latitude'];
+					$location_longitude=$location_info['chef_longitude'];
+
+				
+				$location_distance_array=array();
+				if($chef_distance_array!=null){
+					foreach($chef_distance_array as $chef_id=>$chef_distance){
+						$chef_latitude=$chef_distance['chef_latitude'];
+						$chef_longitude=$chef_distance['chef_longitude'];					
+						$location_distance_array[$chef_id]=distance($location_latitude,$chef_latitude,$location_longitude,$chef_longitude, "M"); 
+					}
+				}
+				
+				$search_loca_dist=0;
+				$equal_distance_array=array();
+				$less_distance_array=array();
+				$greter_distance_array=array();
+
+				$new_chef_array=array();
+				if($location_distance_array!=null){				
+					$search_loca_dist=$location_distance_array[$location_chef_id];
+					foreach($location_distance_array as $chef_id=>$location_distance){
+						if($search_loca_dist==$location_distance){
+							$equal_distance_array[]=$chef_id;
+						}elseif($search_loca_dist>$location_distance){
+							$less_distance_array[]=$chef_id;
+						}elseif($search_loca_dist<$location_distance){
+							$greter_distance_array[]=$chef_id;
+						}
+					}				
+				}
+				
+				$merge_array1=array_merge($equal_distance_array,$less_distance_array);
+				$new_chef_array=array_merge($merge_array1,$greter_distance_array);
+				$chef_array=$new_chef_array;
+			 }
+
+			}else{
+				$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$search_by_location."&sensor=false";
+				$details=file_get_contents($url);
+				$result = json_decode($details,true);
+				
+				
+				if($result['results']!=null){					
+					$lat=0;
+					$lng=0;
+					$lat=$result['results'][0]['geometry']['location']['lat'];
+					$lng=$result['results'][0]['geometry']['location']['lng'];
+					$chef_latitude=0;
+					$chef_longitude=0;
+					if($lat!=null)$chef_latitude=$lat;
+					if($lng!=null)$chef_longitude=$lng;
+						
+					$location_distance_array=array();	
+					$location_distance_array[0]=array('chef_latitude'=>$chef_latitude,'chef_longitude'=>$chef_longitude);	
+
+					$location_latitude=$chef_latitude;
+					$location_longitude=$chef_longitude;
+					
+					
+					if($chef_distance_array!=null){
+						foreach($chef_distance_array as $chef_id=>$chef_distance){
+							$chef_latitude=$chef_distance['chef_latitude'];
+							$chef_longitude=$chef_distance['chef_longitude'];					
+							$location_distance_array[$chef_id]=distance($location_latitude,$chef_latitude,$location_longitude,$chef_longitude, "M"); 
+						}
+					}
+					
+					$search_loca_dist=0;
+					$equal_distance_array=array();
+					$less_distance_array=array();
+					$greter_distance_array=array();
+
+					$new_chef_array=array();
+					if($location_distance_array!=null){				
+						$search_loca_dist=$location_distance_array[0];
+						foreach($location_distance_array as $chef_id=>$location_distance){
+							if($search_loca_dist==$location_distance){
+								$equal_distance_array[]=$chef_id;
+							}elseif($search_loca_dist>$location_distance){
+								$less_distance_array[]=$chef_id;
+							}elseif($search_loca_dist<$location_distance){
+								$greter_distance_array[]=$chef_id;
+							}
+						}				
+					}
+					
+					$merge_array1=array_merge($equal_distance_array,$less_distance_array);
+					$new_chef_array=array_merge($merge_array1,$greter_distance_array);
+					$chef_array=$new_chef_array;
+						
+				}
+
+			}
+
+		}
 		
 		
 		if($search_by_item!=null or $cusion_array!=null or $dieta_array!=null or $delivery_array!=null or $categ_array!=null or $min_price>0 or $max_location>0 or $min_location>0 or $max_price>0){

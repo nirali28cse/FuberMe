@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 .fa {
-    padding: 10px;
+    padding: 5px;
     font-size: 25px;
-    width: 40px;
+    width: 32px;
     text-align: center;
     text-decoration: none;
     border-radius: 50%;
