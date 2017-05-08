@@ -289,10 +289,11 @@ class SiteController extends Controller
 					'offlinedataProvider' => $offlinedataProvider,
 				]);
 		}else{
-			return $this->render('index', [
+/* 			return $this->render('index', [
 				'livedataProvider' => $livedataProvider,
 				'offlinedataProvider' => $offlinedataProvider,
-			]);
+			]); */
+			 return $this->render('index1');
 		}
 
 		
