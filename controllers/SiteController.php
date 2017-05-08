@@ -155,7 +155,8 @@ class SiteController extends Controller
 
 				$location_chef_id=0;	
 				$location_chef_id=$chef_array1[$chef_zipcode];
-				if($chef_zipcode>0 and $chef_zipcode!=null and in_array($location_chef_id,$chef_distance_array)){
+
+				if($chef_zipcode!=null and array_key_exists($location_chef_id,$chef_distance_array)){
 
 					$location_info=$chef_distance_array[$location_chef_id];
 					$location_latitude=$location_info['chef_latitude'];
@@ -194,7 +195,7 @@ class SiteController extends Controller
 				$new_chef_array=array_merge($merge_array1,$greter_distance_array);
 				$chef_array=$new_chef_array;
 			 }
-			 
+
 			}else{
 				$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$search_by_location."&sensor=false";
 				$details=file_get_contents($url);

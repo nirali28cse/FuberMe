@@ -337,7 +337,7 @@ exit; */
 			
 			$order_item[]= '<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 									<td>
-										'.$orderitem->itemInfo->name.' (Qty '.$orderitem->item_qty.' in $'.$orderitem->item_price.')
+										'.$orderitem->itemInfo->name.' (Qty '.$orderitem->item_qty.' in $'.($orderitem->item_qty*$orderitem->item_price).')
 									</td>				
 							</tr>';
 			$head_up_time_array[]=$orderitem->itemInfo->head_up_time;
@@ -444,11 +444,12 @@ exit; */
 				<tr><td><p>&nbsp;</p></td></tr>
 				
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-					<td>
+					<td style="color: red;">
 						Order Notes - '.$order_notes.' 
 					</td>				
 				</tr>
 				
+				<tr><td><p>&nbsp;</p></td></tr>
 				
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 						<td class="content-block" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">Please contact FuberMe team immediately if you are not able to fulfil this order or have any questions.</td>
@@ -537,7 +538,7 @@ exit; */
 		 foreach($order_item_query as $orderitem){
 			$order_item[]= '<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 									<td>
-										'.$orderitem->itemInfo->name.' (Qty '.$orderitem->item_qty.' in $'.$orderitem->item_price.')
+										'.$orderitem->itemInfo->name.' (Qty '.$orderitem->item_qty.' in $'.($orderitem->item_qty*$orderitem->item_price).')
 									</td>				
 							</tr>';
 			$head_up_time_array[]=$orderitem->itemInfo->head_up_time;				
@@ -623,13 +624,16 @@ exit; */
 								Your order will be ready after <span style="color: #38b662;">'.$maxhead_up_time.'</span>.
 							</td>				
 						</tr>
-				
+						
+						<tr><td><p>&nbsp;</p></td></tr>
+						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-							<td>
+							<td style="color: red;"> 
 								Order Notes - '.$order_notes.' 
 							</td>				
 						</tr>
 						
+						<tr><td><p>&nbsp;</p></td></tr>
 						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td style="padding: 12px 0; color: #38b662;">
@@ -735,14 +739,15 @@ exit; */
 										
 						'.$order_item_info.'
 							
-								
+						<tr><td><p>&nbsp;</p></td></tr>	
+						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-							<td>
+							<td style="color: red;">
 								Order Notes - '.$order_notes.' 
 							</td>				
 						</tr>
 						
-
+						<tr><td><p>&nbsp;</p></td></tr>
 								
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 							<td style="padding: 12px 0;">
@@ -954,9 +959,12 @@ exit; */
 				<p>To Chef : &nbsp; '.$chef_name.'</p>
 				<p>Order Amount : &nbsp; $'.$final_amount.'</p>
 				<p>Order Number : &nbsp; '.$order_number.'</p>
-				<p>Order Notes : &nbsp; '.$order_notes.'</p>
+				<p style="color: red;">Order Notes : &nbsp; '.$order_notes.'</p>
 				</td>
 				</tr>
+				
+				<tr><td><p>&nbsp;</p></td></tr>
+				
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 				<td class="content-block" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px 0px 20px; text-align: center;" valign="top">&nbsp;</td>
 				</tr>
