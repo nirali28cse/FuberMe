@@ -73,7 +73,7 @@ class SiteController extends Controller
     {
 		$this->layout = '/fuber_me/homepage';
 		
-		/* $min_location=0;
+		$min_location=0;
 		$max_location=0;
 		$search_by_item=null;
 		$chef_array=array();
@@ -294,12 +294,8 @@ class SiteController extends Controller
 				'offlinedataProvider' => $offlinedataProvider,
 			]); 
 			 
-		} */
+		} 
 
-		
-		return $this->render('index1');
-
-      //  return $this->render('index');
     }  
 	
 	

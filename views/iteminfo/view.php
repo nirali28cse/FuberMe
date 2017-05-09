@@ -69,7 +69,12 @@ $default_itemimage=yii\helpers\Url::to('@web/fuberme/images/default_item_image.j
 if($model->image==null){
 	$item_image=$default_itemimage;
 }else{
-	$item_image=yii\helpers\Url::to('@web/fuberme/'.$user_id.'/item_images/'.$model->image);
+	$default_itemimage1=yii\helpers\Url::to('@web/fuberme/'.$user_id.'/item_images/'.$model->image);
+	if ((file_exists($default_itemimage1))) {   
+		$item_image=$default_itemimage1;                        
+	}else{
+		$item_image=$default_itemimage;
+	}
 }
 ?>
 <script>
