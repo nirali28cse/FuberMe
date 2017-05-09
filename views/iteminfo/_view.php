@@ -1,17 +1,25 @@
 <?php
 use yii\helpers\Html;
 $user_id=Yii::$app->user->id;
+
+
+$image_url=yii\helpers\Url::to('@web/fuberme/images/default_item_image.jpg');
+
+if($model->image!=null){
+$image_url1=yii\helpers\Url::to('@web/fuberme/'.$user_id.'/item_images/'.$model->image);
+if ((file_exists($image_url1))) {   
+	$image_url=$image_url1;                        
+}
+}
+
 ?>
 
 					<a href="<?php echo Yii::$app->homeUrl; ?>?r=iteminfo/update&id=<?php echo $model->id; ?>">
 					<div class="product-grid love-grid" style="width: 100%;">
 						<div class="more-product"><span> </span></div>						
 						<div class="product-img b-link-stripe b-animate-go  thickbox">
-							<?php if($model->image==null){ ?>
-								<img src="<?php echo  yii\helpers\Url::to('@web/fuberme/images/default_item_image.jpg'); ?>"  alt="item image">
-							<?php }else{ ?>
-								<img src="<?php echo  yii\helpers\Url::to('@web/fuberme/'.$user_id.'/item_images/'.$model->image); ?>" alt="FuberMe">
-							<?php } ?>
+
+							<img src="<?php echo  $image_url; ?>" alt="item image">
 								
 						<!--	<div class="b-wrapper">
 							<h4 class="b-animate b-from-left  b-delay03">							
