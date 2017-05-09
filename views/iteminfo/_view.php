@@ -6,7 +6,7 @@ $user_id=Yii::$app->user->id;
 $image_url=yii\helpers\Url::to('@web/fuberme/images/default_item_image.jpg');
 
 if($model->image!=null){
-$image_url1=yii\helpers\Url::to('@web/fuberme/'.$user_id.'/item_images/'.$model->image);
+$image_url1='fuberme/'.$user_id.'/item_images/'.$model->image;
 if ((file_exists($image_url1))) {   
 	$image_url=$image_url1;                        
 }
