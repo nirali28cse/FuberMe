@@ -12,10 +12,6 @@ nbproject
 # windows thumbnail cache
 Thumbs.db
 
-# composer vendor dir
-/web/assets
-/config/db.php
-/web/fuberme
 
 
 
