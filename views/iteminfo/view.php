@@ -210,7 +210,23 @@ if($model->image==null){
 					  <div class="item-list">
 						 <ul>
 							
-							 <li>Preparation Time : <?php echo Yii::$app->params['head_up_time'][$model->head_up_time]; ?></li>
+							 
+							 <?php 
+							 
+							 if($model->chefUser->delivery_method!=null){ ?>
+							 <li>Delivery method : 
+							 <?php
+
+							 $delivery_method=Yii::$app->params['delivery_method'][$model->chefUser->delivery_method];							 
+							 if($model->chefUser->delivery_method=='both'){
+								 $delivery_method='Pickup and Home Delivery';
+							 }
+							 echo $delivery_method;
+							 ?>
+							 </li>
+							 <?php }  ?>
+							 
+							 <li>Heads-up time : <?php echo Yii::$app->params['head_up_time'][$model->head_up_time]; ?></li>
 							 <?php if($model->ingredients!=null){ ?>
 							 <li>Ingredients : <?php echo $model->ingredients; ?></li>
 							 <?php }  ?>

@@ -35,12 +35,30 @@ class OrderinfoController extends Controller
         ];
     }
 	
-	
-	public function beforeAction($action) {
-		$this->enableCsrfValidation = false;
-		return parent::beforeAction($action);
-	}
 
+	public function beforeAction($event)
+    {
+        $this->enableCsrfValidation = false;
+		$before_login_action=array();
+		$after_login_action=array();
+	//	$before_login_action=array('index','error','thanku','thankupass','faq','tou','Sendemail','Confirm');
+
+		$action=Yii::$app->controller->action->id;
+		$allow_action=false;
+		// check is user loged in 
+		if(Yii::$app->user->isGuest){
+			if(in_array($action,$before_login_action)) $allow_action=true;
+		}else{
+			$allow_action=true;
+		}
+		
+		if(!$allow_action){
+			 return $this->goHome();
+		}else{
+			return parent::beforeAction($event);
+		}
+    }
+	
     /**
      * Lists all OrderInfo models.
      * @return mixed
@@ -418,7 +436,7 @@ class OrderinfoController extends Controller
 		//For new Order place
 		$send_email_chef=Yii::$app->emailcomponent->Neworderinformchef($item_chef_id,$order_query,$order_item_query);
 		$send_email_customer=Yii::$app->emailcomponent->Neworderinformcustomer($item_chef_id,$customer_user_id,$order_query,$order_item_query);
-		$send_email_fuberadmin=Yii::$app->emailcomponent->Neworderinformfuberadmin($item_chef_id,$order_query);
+		$send_email_fuberadmin=Yii::$app->emailcomponent->Neworderinformfuberadmin($item_chef_id,$order_query,$order_item_query);
 	 }
     /**
      * Creates a new OrderInfo model.
@@ -628,10 +646,17 @@ class OrderinfoController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = OrderInfo::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
+		if(!Yii::$app->user->isGuest){
+			if(Yii::$app->user->identity->is_admin!=1){
+				$model = OrderInfo::findOne($id);
+			}
+						
+			if (($model) !== null) {
+				return $model;
+			} else {
+				throw new NotFoundHttpException('The requested page does not exist.');
+			}
+		}
     }
+
 }

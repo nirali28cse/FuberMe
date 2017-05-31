@@ -37,7 +37,29 @@ class ForgotpasswordController extends Controller
      * @return mixed
      */
 	 
-	 
+	public function beforeAction($event)
+    {
+        $this->enableCsrfValidation = false;
+		$before_login_action=array();
+		$after_login_action=array();
+		$before_login_action=array('index','index2','resetpass');
+
+		$action=Yii::$app->controller->action->id;
+		$allow_action=false;
+		// check is user loged in 
+		if(Yii::$app->user->isGuest){
+			if(in_array($action,$before_login_action)) $allow_action=true;
+		}else{
+			$allow_action=true;
+		}
+		
+		if(!$allow_action){
+			 return $this->goHome();
+		}else{
+			return parent::beforeAction($event);
+		}
+    }
+	
 
     public function actionIndex()
     {   
@@ -49,10 +71,17 @@ class ForgotpasswordController extends Controller
 				$model1=Cuserdetail::find()->where(['email_id'=>$_POST['Cuserdetail']['email_id']])->one();			
 				if(count($model1)>0){
 					$model=$model1;
-					if ($model->save()) {	
-						$send_email=Yii::$app->emailcomponent->Forgetpasswordresetlink($model->id);
-						return $this->redirect(['/site/thankupass']);
+					if($model->status==0){
+						Yii::$app->session->set('forget_password','<div class="alert alert-danger">
+						This email is not registered. Please check your email to confirm the registration, or register with a different email. Thank you!
+						</div>');	
+					}else{
+						if ($model->save()) {	
+							$send_email=Yii::$app->emailcomponent->Forgetpasswordresetlink($model->id);
+							return $this->redirect(['/site/thankupass']);
+						}
 					}
+
 				}else{
 					Yii::$app->session->set('forget_password','<div class="alert alert-danger">
 					This email does not exists,Please try again.
@@ -69,6 +98,7 @@ class ForgotpasswordController extends Controller
     public function actionIndex2($resetid, $key)
     {   
 		Yii::$app->session->set('reset_password', null);
+		
 		$model = \app\modules\users\models\Cuserdetail::find()->where([
 		'id'=>$resetid,
 		'auth_key'=>$key,

@@ -63,7 +63,31 @@ class SiteController extends Controller
         ];
     }
 	
+	public function beforeAction($event)
+    {
+        
+		$before_login_action=array();
+		$after_login_action=array();
+		$before_login_action=array('index','error','thanku','thankupass','faq','tou','Sendemail','Confirm');
 
+		$action=Yii::$app->controller->action->id;
+		$allow_action=false;
+		// check is user loged in 
+		if(Yii::$app->user->isGuest){
+			if(in_array($action,$before_login_action)) $allow_action=true;
+		}else{
+			$allow_action=true;
+		}
+		
+		if(!$allow_action){
+			 return $this->goHome();
+		}else{
+			return parent::beforeAction($event);
+		}
+		
+    }
+	
+	
     /**
      * Displays homepage.
      *
@@ -91,7 +115,7 @@ class SiteController extends Controller
 			 ->where(['status'=>1])
 			 ->where(['or','user_type=2','user_type=3'])
 			 ->all();
-			 
+
 			 if(count($allchef_info)>0){
 				foreach($allchef_info as $allchef){
 					$zipcode=$allchef->zipcode;
@@ -368,12 +392,12 @@ class SiteController extends Controller
       //  return $this->render('index');
     }   */
 	
-    public function actionIndex2()
+/*     public function actionIndex2()
     {
 		  echo '<pre/>';
 		  print_r(Yii::$app->paypal->payDemo());  
 		  exit();
-    }   
+    }    */
 	
 	
 
@@ -425,7 +449,7 @@ class SiteController extends Controller
         return $this->render('tou');
     }
 	
-    public function actionProducts()
+  /*   public function actionProducts()
     {
 		$this->layout = '/fuber_me/homepage';
         return $this->render('products');
@@ -439,14 +463,14 @@ class SiteController extends Controller
     {
 		$this->layout = '/fuber_me/homepage';
         return $this->render('cart');
-    }  
+    }   */
 
     /**
      * Login action.
      *
      * @return string
      */
-    public function actionLogin()
+   /*  public function actionLogin()
     {
 		$this->layout = '/fuber_me/homepage';
         if (!Yii::$app->user->isGuest) {
@@ -460,26 +484,26 @@ class SiteController extends Controller
         return $this->render('login', [
             'model' => $model,
         ]);
-    }
+    } */
 
     /**
      * Logout action.
      *
      * @return string
      */
-    public function actionLogout()
+  /*   public function actionLogout()
     {
         Yii::$app->user->logout();
 
         return $this->goHome();
     }
-
+ */
     /**
      * Displays contact page.
      *
      * @return string
      */
-    public function actionContact()
+/*     public function actionContact()
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
@@ -490,7 +514,7 @@ class SiteController extends Controller
         return $this->render('contact', [
             'model' => $model,
         ]);
-    }
+    } */
 
     /**
      * Displays about page.
@@ -503,10 +527,10 @@ class SiteController extends Controller
 		return $this->redirect(['//site/thanku']);			
     }  
 
-	public function actionAbout()
+/* 	public function actionAbout()
     {
         return $this->render('about');
-    }
+    } */
 		
 	public function actionConfirm($id, $key)
 	{

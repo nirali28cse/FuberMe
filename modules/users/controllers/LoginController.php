@@ -30,6 +30,31 @@ class LoginController extends Controller
             ],
         ];
     }
+	
+	
+	public function beforeAction($event)
+    {
+        $this->enableCsrfValidation = false;
+		$before_login_action=array();
+		$after_login_action=array();
+		$before_login_action=array('index');
+
+		$action=Yii::$app->controller->action->id;
+		$allow_action=false;
+		// check is user loged in 
+		if(Yii::$app->user->isGuest){
+			if(in_array($action,$before_login_action)) $allow_action=true;
+		}else{
+			$allow_action=true;
+		}
+		
+		if(!$allow_action){
+			 return $this->goHome();
+		}else{
+			return parent::beforeAction($event);
+		}
+    }
+	
 
     /**
      * Lists all Userdetail models.
@@ -109,10 +134,12 @@ class LoginController extends Controller
 	 */
 	 public function actionLogout()
     {
-        Yii::$app->user->logout();
-		unset($_SESSION['order_array']);
-		unset($_SESSION['master_chef']);
-        return $this->goHome();
+		if (!Yii::$app->user->isGuest) {
+			Yii::$app->user->logout();
+			unset($_SESSION['order_array']);
+			unset($_SESSION['master_chef']);
+			return $this->goHome();
+		}
     }
 
 

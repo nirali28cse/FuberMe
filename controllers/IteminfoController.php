@@ -36,10 +36,39 @@ class IteminfoController extends Controller
         ];
     }
 
+	
+	public function beforeAction($event)
+    {
+        
+		$before_login_action=array();
+		$after_login_action=array();
+		$before_login_action=array('conhome','view');
+
+		$action=Yii::$app->controller->action->id;
+		$allow_action=false;
+		// check is user loged in 
+		if(Yii::$app->user->isGuest){
+			if(in_array($action,$before_login_action)) $allow_action=true;
+		}else{
+			$allow_action=true;
+		}
+		
+		if(!$allow_action){
+			 return $this->goHome();
+		}else{
+			return parent::beforeAction($event);
+		}
+		
+    }
+	
+	
     /**
      * Lists all ItemInfo models.
      * @return mixed
      */
+	 
+	 
+	 
     public function actionIndex()
     {
         $searchModel = new ItemInfoSearch();
@@ -57,14 +86,16 @@ class IteminfoController extends Controller
 	
     public function actionIndex2()
     {
-        $searchModel = new ItemInfoSearch();
-		$searchModel->status = 1;	
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		if(Yii::$app->user->identity->is_admin==1){
+			$searchModel = new ItemInfoSearch();
+			$searchModel->status = 1;	
+			$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index2', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+			return $this->render('index2', [
+				'searchModel' => $searchModel,
+				'dataProvider' => $dataProvider,
+			]);
+		}
     }
 	
   
@@ -72,7 +103,7 @@ class IteminfoController extends Controller
   public function actionConhome()
     {
 		$this->layout = '/fuber_me/customerhome';
-		session_start();
+	//	session_start();
 
 		$old_cusion_array=array();
 		$old_dieta_array=array();
@@ -559,6 +590,7 @@ print_r($chef_distance_array); */
     {
 	
 		$model=$this->findModel($id);
+
 		//update offline live items
 		$alloffline_liveitems = ItemInfo::find()
 		 ->where(['AND',
@@ -944,10 +976,30 @@ print_r($chef_distance_array); */
      */
     protected function findModel($id)
     {
-        if (($model = ItemInfo::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
+		if(!Yii::$app->user->isGuest){
+			if(Yii::$app->user->identity->is_admin==1){
+				$model = ItemInfo::findOne($id);
+			}else{
+				$model = ItemInfo::find()->where([
+					'id'=>$id,
+				//	'chef_user_id'=>Yii::$app->user->id,
+					])->one();
+			}
+
+		}else{
+			$model = ItemInfo::find()->where([
+					'id'=>$id,
+				//	'chef_user_id'=>Yii::$app->user->id,
+					])->one();
+		}
+		
+					
+		if (($model) !== null) {
+			return $model;
+		} else {
+			throw new NotFoundHttpException('The requested page does not exist.');
+		}
+		
+			
     }
 }

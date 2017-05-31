@@ -21,7 +21,7 @@ $user_id=$model->chef_user_id;
 						<div class="product-info simpleCart_shelfItem">
 							<div class="product-info-cust">
 								<h4><?php echo $model->name; ?></h4>
-								<p><?php if($model->delivery_method!='both') echo Yii::$app->params['delivery_method'][$model->delivery_method]; else echo 'Pickup,Home Delivery'; ?></p>
+
 								<p>Availability : <br/><?php echo $model->availability_from_date.' '.Yii::$app->params['time_piker'][$model->availability_from_time]; ?>
 								- <?php echo $model->availability_to_date.' '.Yii::$app->params['time_piker'][$model->availability_to_time]; ?></p>
 								<span class="item_price">$ <?php echo $model->price; ?></span>
