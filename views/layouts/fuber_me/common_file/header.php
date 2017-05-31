@@ -1,8 +1,12 @@
 <?php
 if(!Yii::$app->user->isGuest){
 	$userinfo=app\modules\users\models\Userdetail::findOne(Yii::$app->user->id);
+	$is_admin=0;
 	$user_type=0;
 	$user_type=$userinfo->user_type;
+    $is_admin=$userinfo->is_admin ;
+
+
 	
 	$user_order=0;
 	$orderinfo=app\models\OrderInfo::find()->Where(['user_id'=>Yii::$app->user->id]);		  
@@ -101,18 +105,31 @@ if(!Yii::$app->user->isGuest){
 												}
 
 												if($display1==1){ */
+												
 												if($user_type==1 or $user_type==3 or $user_order==1){
 											?>
 												<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=orderinfo/index2">My Orders <span class="glyphicon glyphicon-list-alt pull-right"></span></a></li>
 												<li class="divider"></li>
 												<?php // } ?>		
 											<?php  } ?>		
+
+										<?php /* if($is_admin==1){ ?>
+											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/forgotpassword/changepass">Change Password <span class="	glyphicon glyphicon-lock pull-right"></span></a></li>
+											<li class="divider"></li>	
+											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/forgotpassword/changepass">Change Password <span class="	glyphicon glyphicon-lock pull-right"></span></a></li>
+											<li class="divider"></li>	
+											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/forgotpassword/changepass">Change Password <span class="	glyphicon glyphicon-lock pull-right"></span></a></li>
+											<li class="divider"></li>	
+										<?php  } */ ?>	
+											
 											
 											<li><a href="<?php echo $url; ?>">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 											<li class="divider"></li>												
 											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/forgotpassword/changepass">Change Password <span class="	glyphicon glyphicon-lock pull-right"></span></a></li>
 											<li class="divider"></li>										
 											<li><a href="<?php echo Yii::$app->homeUrl; ?>?r=users/login/logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+
+											
 										</ul>
 								</li>
 	

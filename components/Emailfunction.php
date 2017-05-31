@@ -909,7 +909,7 @@ exit; */
 	
 	
 	
-	public static function Neworderinformfuberadmin($item_chef_id,$order_query)
+	public static function Neworderinformfuberadmin($item_chef_id,$order_query,$order_item_query)
 	{
 		
 		
@@ -925,7 +925,21 @@ exit; */
 		$order_notes=$order_query->order_notes;
 		
 		$toemail = Yii::$app->params['adminemailid'];
-
+		
+		$order_item_info=null;
+		foreach($order_item_query as $orderitem){
+			$order_item[]= '<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+									<td>
+										'.$orderitem->itemInfo->name.' (Qty '.$orderitem->item_qty.' in $'.($orderitem->item_qty*$orderitem->item_price).')
+									</td>				
+							</tr>';
+			$head_up_time_array[]=$orderitem->itemInfo->head_up_time;				
+		 }
+		
+		$order_item_info=implode(' ',$order_item);
+		
+		
+		
 		$subject = 'New Order Placed';		
 		$emailcontent = '
 		<html>
@@ -965,6 +979,16 @@ exit; */
 				
 				<tr><td><p>&nbsp;</p></td></tr>
 				
+				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+					<td style="padding: 12px 0;color: #38b662;">
+						Order Summary:
+					</td>				
+				</tr>
+								
+				'.$order_item_info.'
+					
+				<tr><td><p>&nbsp;</p></td></tr>	
+						
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 				<td class="content-block" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px 0px 20px; text-align: center;" valign="top">&nbsp;</td>
 				</tr>

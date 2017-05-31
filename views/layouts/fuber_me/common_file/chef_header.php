@@ -1,6 +1,6 @@
 
 
-<div class="mega_nav">
+<div class="mega_nav" style="margin-top: 7%;margin-bottom: -5%;">
 	 <div class="container">
 		 <div class="menu_sec">
 

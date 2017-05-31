@@ -25,11 +25,30 @@ class UserdetailController extends Controller
             ],
         ];
     }
+
+	public function beforeAction($event)
+    {
+        $this->enableCsrfValidation = false;
+		$before_login_action=array();
+		$after_login_action=array();
+	//	$before_login_action=array('index','error','thanku','thankupass','faq','tou','Sendemail','Confirm');
+
+		$action=Yii::$app->controller->action->id;
+		$allow_action=false;
+		// check is user loged in 
+		if(Yii::$app->user->isGuest){
+			if(in_array($action,$before_login_action)) $allow_action=true;
+		}else{
+			$allow_action=true;
+		}
+		
+		if(!$allow_action){
+			 return $this->goHome();
+		}else{
+			return parent::beforeAction($event);
+		}
+    }
 	
-	public function beforeAction($action) {
-		$this->enableCsrfValidation = false;
-		return parent::beforeAction($action);
-	}
 
     /**
      * Lists all Userdetail models.
@@ -37,13 +56,15 @@ class UserdetailController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UserdetailSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		if(Yii::$app->user->identity->is_admin==1){
+			$searchModel = new UserdetailSearch();
+			$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+			return $this->render('index', [
+				'searchModel' => $searchModel,
+				'dataProvider' => $dataProvider,
+			]);
+		}
     }  
 
 /* 	public function actionIndexcust()
@@ -63,19 +84,19 @@ class UserdetailController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+/*     public function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }
+    } */
 
     /**
      * Creates a new Userdetail model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+/*     public function actionCreate()
     {
         $model = new Userdetail();
 
@@ -86,7 +107,7 @@ class UserdetailController extends Controller
                 'model' => $model,
             ]);
         }
-    }
+    } */
 
     /**
      * Updates an existing Userdetail model.
@@ -94,7 +115,7 @@ class UserdetailController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+/*     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
@@ -105,7 +126,7 @@ class UserdetailController extends Controller
                 'model' => $model,
             ]);
         }
-    }
+    } */
 
     /**
      * Deletes an existing Userdetail model.
@@ -115,8 +136,10 @@ class UserdetailController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-        return $this->redirect(['index']);
+		if(Yii::$app->user->identity->is_admin==1){
+			$this->findModel($id)->delete();
+			return $this->redirect(['index']);
+		}
     }  
 
 

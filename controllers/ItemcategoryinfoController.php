@@ -29,6 +29,34 @@ class ItemcategoryinfoController extends Controller
         ];
     }
 
+	
+	public function beforeAction($event)
+    {
+        
+		$before_login_action=array();
+		$after_login_action=array();
+	//	$before_login_action=array('index','error','thanku','thankupass','faq','tou','Sendemail','Confirm');
+
+		$action=Yii::$app->controller->action->id;
+		$allow_action=false;
+		// check is user loged in 
+		if(Yii::$app->user->isGuest){
+			if(in_array($action,$before_login_action)) $allow_action=true;
+		}else{
+			if(Yii::$app->user->identity->is_admin==1){
+				$allow_action=true;
+			}
+		}
+		
+		if(!$allow_action){
+			 return $this->goHome();
+		}else{
+			return parent::beforeAction($event);
+		}
+		
+    }
+	
+	
     /**
      * Lists all ItemCategoryInfo models.
      * @return mixed
