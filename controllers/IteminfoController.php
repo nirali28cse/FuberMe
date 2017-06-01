@@ -103,7 +103,7 @@ class IteminfoController extends Controller
   public function actionConhome()
     {
 		$this->layout = '/fuber_me/customerhome';
-	//	session_start();
+		session_start();
 
 		$old_cusion_array=array();
 		$old_dieta_array=array();
@@ -234,19 +234,20 @@ class IteminfoController extends Controller
 		if($delivery_array!=null){
 			$allchef_info = Userdetail::find()
 			 ->where(['status'=>1])
-			 ->where(['or','user_type=2','user_type=3'])
-			 ->where(['in','delivery_method',$delivery_array])
+			 ->ANDwhere(['or','user_type=2','user_type=3'])
+			 ->ANDwhere(['in','delivery_method',$delivery_array])
 			 ->all();
-			 
+
 			 if(count($allchef_info)>0){
+					$min_location=1;
+					$max_location=1;
 				foreach($allchef_info as $allchef){
 					$chef_id=$allchef->id;
 					$chef_array[]=$chef_id;	
 				}
 			 }
 		}
-
-				 
+	 
 				 
 		
 		if(isset($_GET['min_location']) and $_GET['min_location']>0){
@@ -552,7 +553,8 @@ print_r($chef_distance_array); */
 										);
 		}
 
-		
+
+			
 		//update offline live items
 		// Call functtion for to update item 
 		Yii::$app->mediacomponent->Updateitemstatus();	

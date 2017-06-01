@@ -41,7 +41,7 @@ class OrderinfoController extends Controller
         $this->enableCsrfValidation = false;
 		$before_login_action=array();
 		$after_login_action=array();
-	//	$before_login_action=array('index','error','thanku','thankupass','faq','tou','Sendemail','Confirm');
+		$before_login_action=array('checkchef','review');
 
 		$action=Yii::$app->controller->action->id;
 		$allow_action=false;
@@ -100,7 +100,7 @@ class OrderinfoController extends Controller
 	 
     public function actionCheckchef()
     {
-		session_start();
+	//	session_start();
 		$itemid=0;
 		$itemid=$_POST['item_id'];
 		$item_info = ItemInfo::find()->where([ 'id'=>$itemid,'status'=>1])->one();
@@ -446,7 +446,7 @@ class OrderinfoController extends Controller
     public function actionCreate()
     {
 		
-		session_start();	
+	//	session_start();	
 
         $model = new OrderInfo();
 
