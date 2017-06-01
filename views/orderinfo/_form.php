@@ -8,9 +8,16 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+<?php
+if(isset($_SESSION['master_chef']) and ($_SESSION['master_chef']>0)){
+	$master_chef_name=$_SESSION['master_chef_name'];
+}
+?>
+
+
 <div class="order-info-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(array('id'=>'invoiceform1')); ?>
 
     <?= $form->field($model, 'customer_name')->textInput(['value' =>$order_array['customer_info']['customer_name'],'maxlength' => true]) ?>
 
@@ -21,6 +28,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'customer_address')->textarea(['value' =>$order_array['customer_info']['customer_address'],'rows' => 6]) ?>
 
     <?= $form->field($model, 'customer_city')->textInput(['value' =>$order_array['customer_info']['customer_city'],'maxlength' => true]) ?>
+    
+	<input type="hidden" id="master_chef_name" value="<?php echo $master_chef_name; ?>">
 
 
 	<?php $usa_state = yii\helpers\ArrayHelper::map(app\models\UsaState::find()->where(['status'=>1])->all(), 'id', 'name'); ?>
@@ -80,6 +89,7 @@ use yii\widgets\ActiveForm;
 			['value'=>$order_array['payment_method'],
 			'prompt'=>'Select Payment Method']    // options
 		);
+		
 	?>
 
 
@@ -87,9 +97,12 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'order_notes')->textarea(['placeholder'=>'For example, pickup/delivery time, Food allergies, special instructions etc.','rows' => 6]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Place Order' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Place Order' : 'Update', ['id'=>'beforeplaceorder','class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
+
+
+

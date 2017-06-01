@@ -972,9 +972,16 @@ exit; */
 				<p>From Customer : &nbsp; '.$customer_name.'</p>
 				<p>To Chef : &nbsp; '.$chef_name.'</p>
 				<p>Order Amount : &nbsp; $'.$final_amount.'</p>
-				<p>Order Number : &nbsp; '.$order_number.'</p>
 				<p style="color: red;">Order Notes : &nbsp; '.$order_notes.'</p>
 				</td>
+				</tr>
+				
+				<tr><td><p>&nbsp;</p></td></tr>
+				
+				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+					<td>
+						Order #'.$order_number.' 
+					</td>				
 				</tr>
 				
 				<tr><td><p>&nbsp;</p></td></tr>

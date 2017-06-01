@@ -121,9 +121,29 @@
 
 
 
-
-
 <script>
+
+
+$(document).ready(function(){
+	$(document).on("submit","#invoiceform1",function(){
+		var delivery_method=null;
+		var chef_name=null;
+		var customer_city=null;
+		
+		var delivery_method=$( "#orderinfo-delivery_method").val();
+		var customer_city=$("#orderinfo-customer_city").val();
+		var chef_name=$("#master_chef_name").val();
+
+		if(confirm("Are you sure you want to place an order for "+delivery_method+" from chef "+chef_name+" in "+customer_city+"?")){
+			return true;
+		}
+		else{
+			return false;
+		}												
+	});	
+	
+});
+
 
 
 var ajaxsupport=false;
@@ -143,17 +163,20 @@ if(ajaxsupport){
 	alert('Sorry! No Web Storage support..Please use another browser.');
 }
 
+
+
+
 $(document).ready(function(){
 	$(document).on("click",".placeorder",function(e){		
 		e.preventDefault();
-		var oldHref = $(this).attr('href');
+		var oldHref = $(this).attr('href');	
 		var item_id=$(this).attr('id');
 		$.ajax({			
 			type: 'POST',
 			url: <?php Yii::$app->homeUrl; ?>'?r=orderinfo/checkchef',
 			data: {item_id:item_id},			
 			error: function (err) {
-			//	alert("error - " + err);
+				// alert("error - " + err);
 				return false;
 			},
 			success: function (data1) {
@@ -170,7 +193,7 @@ $(document).ready(function(){
 				}else if(data1==4){	
 					$('.itemerror'+item_id).html('Sorry,you can not purchase your own item.');
 					return false;
-				}else{					
+				}else{						
 					 window.location.href = oldHref; // go to the new url
 				}				
 			}
