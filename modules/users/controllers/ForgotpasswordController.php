@@ -54,7 +54,7 @@ class ForgotpasswordController extends Controller
 		}
 		
 		if(!$allow_action){
-			 return $this->goHome();
+			return $this->goHome()->send();
 		}else{
 			return parent::beforeAction($event);
 		}
