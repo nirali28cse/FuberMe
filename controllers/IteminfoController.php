@@ -54,7 +54,7 @@ class IteminfoController extends Controller
 		}
 		
 		if(!$allow_action){
-			 return $this->goHome();
+			 return $this->goHome()->send();
 		}else{
 			return parent::beforeAction($event);
 		}
@@ -103,7 +103,7 @@ class IteminfoController extends Controller
   public function actionConhome()
     {
 		$this->layout = '/fuber_me/customerhome';
-		session_start();
+	//	session_start();
 
 		$old_cusion_array=array();
 		$old_dieta_array=array();
