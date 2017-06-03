@@ -101,6 +101,21 @@ class ItemInfoLiveSearch extends ItemInfo
 			$min_price=0;
 			$max_price=0;
 			
+			if($_SESSION['filetrsarray']['min_location']>0 or $_SESSION['filetrsarray']['max_location']>0){
+				$min_location=$_SESSION['filetrsarray']['min_location'];
+				$max_location=$_SESSION['filetrsarray']['max_location'];
+				$chef_array=$_SESSION['filetrsarray']['chef_array'];
+				if($chef_array!=null){
+/* 					foreach($chef_array as $key => $value) {
+							$query->orFilterWhere(['=', 'chef_user_id', $value]);
+					} */
+					$query->andFilterWhere(['in','chef_user_id',$chef_array]);	
+				}else{
+					$query->andFilterWhere(['=', 'chef_user_id',0]);
+				}
+			}else{
+				$query->andFilterWhere(['=', 'chef_user_id',$this->chef_user_id]);
+			}		
 			
 			if($_SESSION['filetrsarray']['search_by_item']!=null){
 				$search_by_item=$_SESSION['filetrsarray']['search_by_item'];
@@ -137,21 +152,7 @@ class ItemInfoLiveSearch extends ItemInfo
 								]);		
 			//	$query->andFilterWhere(['between','price',$min_price,$max_price]);									
 			}	
-			
-			if($_SESSION['filetrsarray']['min_location']>0 or $_SESSION['filetrsarray']['max_location']>0){
-				$min_location=$_SESSION['filetrsarray']['min_location'];
-				$max_location=$_SESSION['filetrsarray']['max_location'];
-				$chef_array=$_SESSION['filetrsarray']['chef_array'];
-				if($chef_array!=null){
-					foreach($chef_array as $key => $value) {
-							$query->orFilterWhere(['=', 'chef_user_id', $value]);
-					}
-				}else{
-					$query->andFilterWhere(['=', 'chef_user_id',0]);
-				}
-			}else{
-				$query->andFilterWhere(['=', 'chef_user_id',$this->chef_user_id]);
-			}				
+		
 		}else{
 			$query->andFilterWhere(['like', 'price', $this->price]);
 			$query->andFilterWhere(['=', 'chef_user_id',$this->chef_user_id]);
@@ -194,6 +195,9 @@ class ItemInfoLiveSearch extends ItemInfo
 			$query->orderBy(['(status)' => SORT_DESC,'(id)' => SORT_DESC]);
 		}
 		
+/*         echo '<pre>';
+		print_r($query);
+		exit;   */
         return $dataProvider;
     }
 }
