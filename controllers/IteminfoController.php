@@ -104,6 +104,8 @@ class IteminfoController extends Controller
     {
 		$this->layout = '/fuber_me/customerhome';
 	//	session_start();
+		
+	//	unset($_SESSION['filetrsarray']);
 
 		$old_cusion_array=array();
 		$old_dieta_array=array();
@@ -121,9 +123,11 @@ class IteminfoController extends Controller
 		if(isset($_SESSION['filetrsarray']['categ_array']) and $_SESSION['filetrsarray']['categ_array']!=null){
 			$old_categ_array=$_SESSION['filetrsarray']['categ_array'];
 		}		
-		
+
 		if(isset($_SESSION['filetrsarray']['delivery_array']) and $_SESSION['filetrsarray']['delivery_array']!=null){
-			$old_delivery_array=$_SESSION['filetrsarray']['delivery_array'];
+		//	if($_SESSION['filetrsarray']['delivery_array'][0]!='both'){
+				$old_delivery_array=$_SESSION['filetrsarray']['delivery_array'];	
+		//	}			
 		}
 		
 		$min_price=0;
@@ -196,7 +200,7 @@ class IteminfoController extends Controller
 		
 		if(isset($_GET['ddieta']) and in_array($_GET['ddieta'],$dieta_array)){
 			if (($key = array_search($_GET['ddieta'], $dieta_array)) !== false) {
-				unset($dieta_array[$key]);
+				unset($dieta_array[$key]);				
 			}
 		}	
 		
@@ -209,6 +213,12 @@ class IteminfoController extends Controller
 		if(isset($_GET['ddelivery']) and in_array($_GET['ddelivery'],$delivery_array)){
 			if (($key = array_search($_GET['ddelivery'], $delivery_array)) !== false) {
 				unset($delivery_array[$key]);
+
+				if(isset($delivery_array) and $delivery_array!=null){
+					if(count($delivery_array)==1){
+						$delivery_array=array();
+					}			
+				}
 			}
 		}	
 		
@@ -229,7 +239,9 @@ class IteminfoController extends Controller
 		
 		
 		//Chef array from delivery type
-		
+
+/* 		*/
+
 		// get the all chef  locations latitude and longitude from zip code
 		if($delivery_array!=null){
 			$allchef_info = Userdetail::find()
@@ -551,6 +563,12 @@ print_r($chef_distance_array); */
 										'delivery_array'=>$delivery_array,
 										'search_by_item'=>$search_by_item,
 										);
+										
+/* echo '<pre>';
+		print_r($old_delivery_array);
+		print_r($new_delivery_array);
+		print_r($_SESSION['filetrsarray']);
+		exit;  */
 		}
 
 
