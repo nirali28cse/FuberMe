@@ -302,6 +302,7 @@ class OrderinfoController extends Controller
 		
 	//	if(isset($_GET['directorder']) and $_GET['directorder']>0){
 		if(isset($_SESSION['order_array']['order_item'])){
+
 			$order_items=$_SESSION['order_array']['order_item'];
 			if(count($order_items)>0){
 				foreach($order_items as $order_item){					

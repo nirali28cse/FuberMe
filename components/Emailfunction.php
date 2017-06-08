@@ -451,6 +451,20 @@ exit; */
 				
 				<tr><td><p>&nbsp;</p></td></tr>
 				
+				<tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+				<td class="content-block" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px 0px 20px; text-align: center;" valign="top">
+				<a class="btn-primary" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #fff; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #38b662; margin: 0; border-color: #38b662; border-style: solid; border-width: 10px 20px;"
+				href="'.
+				Yii::$app->urlManager->createAbsoluteUrl(
+						['/site/redirectorder','from'=>'chef']
+						)
+				.'">Click Here To View Your Order Details</a>
+				</td>
+				</tr>
+
+				
+				<tr><td><p>&nbsp;</p></td></tr>
+				
 				<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 						<td class="content-block" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">Please contact FuberMe team immediately if you are not able to fulfil this order or have any questions.</td>
 				</tr>
@@ -667,6 +681,21 @@ exit; */
 
 						<tr><td><p>&nbsp;</p></td></tr>
 						
+						<tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+						<td class="content-block" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px 0px 20px; text-align: center;" valign="top">
+						<a class="btn-primary" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #fff; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #38b662; margin: 0; border-color: #38b662; border-style: solid; border-width: 10px 20px;"
+						href="'.
+						Yii::$app->urlManager->createAbsoluteUrl(
+								['/site/redirectorder','from'=>'customer']
+								)
+						.'">Click Here To View Your Order Details</a>
+						</td>
+						</tr>
+
+						
+						<tr><td><p>&nbsp;</p></td></tr>
+				
+				
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 								<td class="content-block" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 10 0 20px;" valign="top">Please contact FuberMe team if you have any questions or trouble signing in</td>
 						</tr>
@@ -794,6 +823,21 @@ exit; */
 
 						<tr><td><p>&nbsp;</p></td></tr>
 						
+						<tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+						<td class="content-block" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0px; padding: 0px 0px 20px; text-align: center;" valign="top">
+						<a class="btn-primary" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #fff; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #38b662; margin: 0; border-color: #38b662; border-style: solid; border-width: 10px 20px;"
+						href="'.
+						Yii::$app->urlManager->createAbsoluteUrl(
+								['/site/redirectorder','from'=>'customer']
+								)
+						.'">Click Here To View Your Order Details</a>
+						</td>
+						</tr>
+
+						
+						<tr><td><p>&nbsp;</p></td></tr>
+						
+						
 						<tr style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 								<td class="content-block" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 10 0 20px;" valign="top">Please contact FuberMe team if you have any questions/suggestions or need help.</td>
 						</tr>
@@ -914,13 +958,13 @@ exit; */
 		
 		
 		$chef_info=Userdetail::findOne($item_chef_id);
-		$chef_name=$chef_info->username.'('.$chef_info->email_id.')';
+		$chef_name=$chef_info->username.'('.$chef_info->email_id.','.$chef_info->mobile_number.')';
 		$final_amount=0;
 		$customer_name=null;
 		$order_notes=null;
 		$order_number=0;
 		$final_amount=$order_query->final_amount;
-		$customer_name=$order_query->customer_name.','.$order_query->customer_email;
+		$customer_name=$order_query->customer_name.','.$order_query->customer_email.','.$order_query->customer_mobile_no;
 		$order_number=$order_query->order_number;
 		$order_notes=$order_query->order_notes;
 		
