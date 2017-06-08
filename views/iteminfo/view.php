@@ -186,7 +186,7 @@ if($model->image==null){
 								
 								if($display_offline==1){  
 								?>
-									<div class="itemerrorclass itemerror<?php echo $model->id; ?>"></div>
+									<div style="margin: 38px 15px;" class="itemerrorclass itemerror<?php echo $model->id; ?>"></div>
 									<?= yii\helpers\Html::a('Order Now <span class="glyphicon glyphicon-chevron-right"></span>',['/orderinfo/review','itemid'=>$model->id],['class'=>'item_add items placeorder','id'=>$model->id]) ?>
 								<?php }else{ ?>								
 								   <?= yii\helpers\Html::a('<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;&nbsp;Currently Offline','#',['class'=>'item_add','style'=>'background: lightgray;color: red;']) ?>

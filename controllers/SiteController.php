@@ -68,7 +68,7 @@ class SiteController extends Controller
         
 		$before_login_action=array();
 		$after_login_action=array();
-		$before_login_action=array('index','error','thanku','thankupass','faq','tou','Sendemail','Confirm');
+		$before_login_action=array('index','error','thanku','thankupass','redirectorder','faq','tou','sendemail','Confirm');
 
 		$action=Yii::$app->controller->action->id;
 		$allow_action=false;
@@ -93,7 +93,28 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionRedirectorder()
+    { 
+		if(Yii::$app->user->isGuest){	
+			// login
+			return $this->redirect(['//users/login/index']);
+		}else{
+			$get_from=null;
+			
+			if(isset($_GET['from']) and ($_GET['from']!=null)){
+				$get_from=$_GET['from'];	
+				if($get_from=='chef'){
+					return $this->redirect(['//orderinfo/index']);
+				}elseif($get_from=='customer'){
+					return $this->redirect(['//orderinfo/index2']);
+				}
+			}				
+		}
+	}
+	
+	
+	
+	public function actionIndex()
     {
 		$this->layout = '/fuber_me/homepage';
 		

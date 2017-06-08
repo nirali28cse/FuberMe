@@ -134,10 +134,13 @@ class LoginController extends Controller
 	 */
 	 public function actionLogout()
     {
-		if (!Yii::$app->user->isGuest) {
-			Yii::$app->user->logout();
+		if (!Yii::$app->user->isGuest) {		
 			unset($_SESSION['order_array']);
 			unset($_SESSION['master_chef']);
+			unset($_SESSION['master_chef_name']);
+			unset($_SESSION['filetrsarray']);
+			unset($_SESSION);
+			Yii::$app->user->logout();
 			return $this->goHome();
 		}
     }
