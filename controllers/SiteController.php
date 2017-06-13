@@ -68,7 +68,7 @@ class SiteController extends Controller
         
 		$before_login_action=array();
 		$after_login_action=array();
-		$before_login_action=array('index','error','thanku','thankupass','redirectorder','faq','tou','sendemail','Confirm');
+		$before_login_action=array('index','error','thanku','thankupass','redirectorder','faq','tou','sendemail','confirm');
 
 		$action=Yii::$app->controller->action->id;
 		$allow_action=false;

@@ -95,7 +95,7 @@ class ItemInfoLiveSearch extends ItemInfo
 		$item_cuisine_type_info_id=$this->item_cuisine_type_info_id;
 		$item_dietary_preference=$this->item_dietary_preference;
 		$search_by_item=$this->name;
-		
+		$chef_array=array();
 		if(isset($_SESSION['filetrsarray'])){
 			
 			$min_price=0;
@@ -191,13 +191,15 @@ class ItemInfoLiveSearch extends ItemInfo
  
 		if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['min_location']>0 and $_SESSION['filetrsarray']['max_location']>0){
 			$query->orderBy(['(status)' => SORT_DESC]);
+			if($chef_array!=null){
+				$query->orderBy(['chef_user_id' => ($chef_array),'(status)' => SORT_DESC]);	
+			}
+			
 		}else{
 			$query->orderBy(['(status)' => SORT_DESC,'(id)' => SORT_DESC]);
 		}
 		
-/*         echo '<pre>';
-		print_r($query);
-		exit;   */
+
         return $dataProvider;
     }
 }
