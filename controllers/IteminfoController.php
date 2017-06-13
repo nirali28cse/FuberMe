@@ -306,7 +306,7 @@ class IteminfoController extends Controller
 						$zipcode=$allchef->zipcode;
 						$chef_id=$allchef->id;
 						if($zipcode>0 and $zipcode!=null){
-							$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$zipcode."&sensor=false";
+							$url = "https://maps.googleapis.com/maps/api/geocode/json?address=".$zipcode."&sensor=true&key=AIzaSyCFC5eV1WfHcUixc5F96FmlvvfoPHdOAnk";
 							$details=file_get_contents($url);
 							$result = json_decode($details,true);
 							if($result['results']!=null){
@@ -364,10 +364,7 @@ class IteminfoController extends Controller
 			}
 				
 		}	
-		/* echo $max_location;
-echo '<pre>';
-print_r($chef_array);
-print_r($chef_distance_array); */ 
+
 
 		$search_by_item=null;
 
@@ -390,7 +387,7 @@ print_r($chef_distance_array); */
 					$zipcode=$allchef->zipcode;
 					$chef_id=$allchef->id;
 					if($zipcode>0 and $zipcode!=null){
-						$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$zipcode."&sensor=false";
+						$url = "https://maps.googleapis.com/maps/api/geocode/json?address=".$zipcode."&sensor=true&key=AIzaSyCFC5eV1WfHcUixc5F96FmlvvfoPHdOAnk";
 						$details=file_get_contents($url);
 						$result = json_decode($details,true);
 						if($result['results']!=null){
@@ -429,13 +426,14 @@ print_r($chef_distance_array); */
 			  }
 			}
 			
-			$allchef_info = Userdetail::find()->where(['status'=>1])
+		/* 	$allchef_info = Userdetail::find()->where(['status'=>1])
 							->Where(['or',
 								['LIKE','zipcode',$search_by_location],
 								['LIKE','city',$search_by_location]
 								])->all();;
 			 $chef_zipcode=0;
-			 if(count($allchef_info)>0){				
+			 if(count($allchef_info)>0){
+				 
 					$chef_array1=array();				
 					foreach($allchef_info as $allchef){
 						$chef_id=$allchef->id;
@@ -489,8 +487,15 @@ print_r($chef_distance_array); */
 				$chef_array=$new_chef_array;
 			 }
 
-			}else{
-				$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$search_by_location."&sensor=false";
+			}else{ */
+			
+			
+				$location_distance_array=array();	
+				$equal_distance_array=array();
+				$less_distance_array=array();
+				$greter_distance_array=array();
+				
+				$url = "https://maps.googleapis.com/maps/api/geocode/json?address=".$search_by_location."&sensor=true&key=AIzaSyCFC5eV1WfHcUixc5F96FmlvvfoPHdOAnk";
 				$details=file_get_contents($url);
 				$result = json_decode($details,true);
 				
@@ -505,12 +510,14 @@ print_r($chef_distance_array); */
 					if($lat!=null)$chef_latitude=$lat;
 					if($lng!=null)$chef_longitude=$lng;
 						
-					$location_distance_array=array();	
-					$location_distance_array[0]=array('chef_latitude'=>$chef_latitude,'chef_longitude'=>$chef_longitude);	
+
+				//	$location_distance_array[0]=array('chef_latitude'=>$chef_latitude,'chef_longitude'=>$chef_longitude);	
 
 					$location_latitude=$chef_latitude;
 					$location_longitude=$chef_longitude;
 					
+					$location_distance_array[0]=distance($location_latitude,$chef_latitude,$location_longitude,$chef_longitude, "M"); 
+
 					
 					if($chef_distance_array!=null){
 						foreach($chef_distance_array as $chef_id=>$chef_distance){
@@ -521,13 +528,11 @@ print_r($chef_distance_array); */
 					}
 					
 					$search_loca_dist=0;
-					$equal_distance_array=array();
-					$less_distance_array=array();
-					$greter_distance_array=array();
+
 
 					$new_chef_array=array();
 					if($location_distance_array!=null){				
-						$search_loca_dist=$location_distance_array[0];
+						echo $search_loca_dist=$location_distance_array[0];
 						foreach($location_distance_array as $chef_id=>$location_distance){
 							if($search_loca_dist==$location_distance){
 								$equal_distance_array[]=$chef_id;
@@ -542,14 +547,24 @@ print_r($chef_distance_array); */
 					$merge_array1=array_merge($equal_distance_array,$less_distance_array);
 					$new_chef_array=array_merge($merge_array1,$greter_distance_array);
 					$chef_array=$new_chef_array;
+					$min_location=1;
+					$max_location=1;
 						
 				}
 
-			}
+		//	}
 
 		}
-		
-		
+
+/*  echo '<pre>';
+print_r($chef_array);
+print_r($location_distance_array);
+print_r($equal_distance_array);
+print_r($less_distance_array);
+print_r($greter_distance_array);
+print_r($result);
+exit;  */
+
 		if($search_by_item!=null or $cusion_array!=null or $dieta_array!=null or $delivery_array!=null or $categ_array!=null or $min_price>0 or $max_location>0 or $min_location>0 or $max_price>0){
 			$_SESSION['filetrsarray']=array(
 										'min_price'=>$min_price,
