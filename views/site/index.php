@@ -15,6 +15,7 @@
 }
 </style>
 
+
 <?php 
 
 
@@ -491,8 +492,6 @@ function ajaxsearch(){
 	
 	var location_lenth=search_by_location.toString().length;
 
-	
-	
 	if((!$.isNumeric(search_by_location)) && (search_by_location!='')){ 
 		search_by_location=null;	
 		search_by_item=null;			

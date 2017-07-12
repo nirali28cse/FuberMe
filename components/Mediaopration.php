@@ -225,8 +225,115 @@ class Mediaopration extends Component
 
 	 }
 	 
-	public static function Multipledelete($oldfile_delete_array,$folder_name,$user_id)
+	 
+	 
+	public static function distance($lat1, $lon1, $lat2, $lon2, $unit) {
+
+	  $theta = $lon1 - $lon2;
+	  $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+	  $dist = acos($dist);
+	  $dist = rad2deg($dist);
+	  $miles = $dist * 60 * 1.1515;
+	  $unit = strtoupper($unit);
+
+	  if ($unit == "K") {
+		  return ($miles * 1.609344);
+	  } else if ($unit == "N") {
+		  return ($miles * 0.8684);
+	  } else {
+		  return $miles;
+	  }
+	}
+
+ 
+	 public static function search_by_geolocation($search_by_location,$allchef_info)
 	 {
+		 $chef_distance_array=array();	
+		 $chef_array=array();	
+		 
+		 if(count($allchef_info)>0){
+			foreach($allchef_info as $allchef){
+				$zipcode=$allchef->zipcode;
+				$chef_id=$allchef->id;
+				if($zipcode>0 and $zipcode!=null){				
+					
+					$url = "https://maps.googleapis.com/maps/api/geocode/json?address=".$zipcode."&key=".Yii::$app->params['geo_location_api_fey'];
+					$details=file_get_contents($url);
+					$result = json_decode($details,true);
+					if($result['results']!=null){
+						
+						$lat=0;
+						$lng=0;
+						$lat=$result['results'][0]['geometry']['location']['lat'];
+						$lng=$result['results'][0]['geometry']['location']['lng'];
+						$chef_latitude=0;
+						$chef_longitude=0;
+						if($lat!=null)$chef_latitude=$lat;
+						if($lng!=null)$chef_longitude=$lng;
+							
+						$chef_distance_array[$chef_id]=array('chef_latitude'=>$chef_latitude,'chef_longitude'=>$chef_longitude);	
+					}							
+				}
+			}
+		 }
+		 
+		$url = "https://maps.googleapis.com/maps/api/geocode/json?address=".$search_by_location."&key=".Yii::$app->params['geo_location_api_fey'];
+		$details=file_get_contents($url);
+		$result = json_decode($details,true);		
+		
+		if($result['results']!=null){					
+			$lat=0;
+			$lng=0;
+			$lat=$result['results'][0]['geometry']['location']['lat'];
+			$lng=$result['results'][0]['geometry']['location']['lng'];
+			$chef_latitude=0;
+			$chef_longitude=0;
+			if($lat!=null)$chef_latitude=$lat;
+			if($lng!=null)$chef_longitude=$lng;
+				
+			$location_distance_array=array();	
+			$location_distance_array[0]=self::distance($chef_latitude,$chef_latitude,$chef_longitude,$chef_longitude, "M"); 
+
+			$location_latitude=$chef_latitude;
+			$location_longitude=$chef_longitude;
+			
+			
+			if($chef_distance_array!=null){
+				foreach($chef_distance_array as $chef_id=>$chef_distance){
+					$chef_latitude=$chef_distance['chef_latitude'];
+					$chef_longitude=$chef_distance['chef_longitude'];					
+					$location_distance_array[$chef_id]=self::distance($location_latitude,$chef_latitude,$location_longitude,$chef_longitude, "M"); 
+				}
+			}
+			
+			$search_loca_dist=0;
+			$equal_distance_array=array();
+			$less_distance_array=array();
+			$greter_distance_array=array();
+
+    		$new_chef_array=array();
+ 			if($location_distance_array!=null){				
+				$search_loca_dist=$location_distance_array[0];
+				foreach($location_distance_array as $chef_id=>$location_distance){
+					if($search_loca_dist==$location_distance){
+						$equal_distance_array[]=$chef_id;
+					}elseif($search_loca_dist>$location_distance){
+						$less_distance_array[]=$chef_id;
+					}elseif($search_loca_dist<$location_distance){
+						$greter_distance_array[]=$chef_id;
+					}
+				}				
+			} 
+			
+			$merge_array1=array_merge($equal_distance_array,$less_distance_array);
+			$new_chef_array=array_merge($merge_array1,$greter_distance_array);
+			$chef_array=$new_chef_array;	
+
+		}
+		
+
+		return $chef_array;
+		 
 		 
 	 }
 	 

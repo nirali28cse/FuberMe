@@ -128,16 +128,25 @@ class SiteController extends Controller
 		}	
 		if(isset($_GET['search_by_location']) and ($_GET['search_by_location']!=null)){
 			$search_by_location=$_GET['search_by_location'];			
-			
 
-			$chef_distance_array=array();			
 			
 			$allchef_info = Userdetail::find()
-			 ->where(['status'=>1])
-			 ->where(['or','user_type=2','user_type=3'])
+			 ->andFilterWhere(['status'=>1])
+			 ->andFilterWhere(['or','user_type=2','user_type=3'])
 			 ->all();
 
-			 if(count($allchef_info)>0){
+			$location_chef_array=array();			
+			$location_chef_array=Yii::$app->mediacomponent->search_by_geolocation($search_by_location,$allchef_info);
+
+			if(count($location_chef_array)>0){
+				$min_location=1;
+				$max_location=1;
+				$chef_array=$location_chef_array;
+			}
+
+			
+			
+		/* 	 if(count($allchef_info)>0){
 				foreach($allchef_info as $allchef){
 					$zipcode=$allchef->zipcode;
 					$chef_id=$allchef->id;
@@ -297,7 +306,10 @@ class SiteController extends Controller
 						
 				}
 
-			}
+			} */
+			
+			
+			
 		}
 							
 		if($chef_array!=null or $search_by_item!=null){
