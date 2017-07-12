@@ -192,9 +192,9 @@ class ItemInfoLiveSearch extends ItemInfo
 		if(isset($_SESSION['filetrsarray']) and $_SESSION['filetrsarray']['min_location']>0 and $_SESSION['filetrsarray']['max_location']>0){
 			$query->orderBy(['(status)' => SORT_DESC]);
 			if($chef_array!=null){
-				$query->orderBy(['chef_user_id' => ($chef_array),'(status)' => SORT_DESC]);	
+				$chef_order=implode(',',$chef_array);
+				$query->orderBy([new \yii\db\Expression('FIELD  (chef_user_id,'.$chef_order.')')]);
 			}
-			
 		}else{
 			$query->orderBy(['(status)' => SORT_DESC,'(id)' => SORT_DESC]);
 		}
