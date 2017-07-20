@@ -245,7 +245,18 @@ class Mediaopration extends Component
 	  }
 	}
 
- 
+	public static function getClosest($search, $arr) {
+	   $closest = null;
+	   foreach ($arr as $item) {
+		  if ($closest === null || abs($search - $closest) > abs($item - $search)) {
+			 $closest = $item;
+		  }
+	   }
+	   return $closest;
+	}
+
+
+	
 	 public static function search_by_geolocation($search_by_location,$allchef_info)
 	 {
 		 $chef_distance_array=array();	
@@ -292,7 +303,8 @@ class Mediaopration extends Component
 			if($lng!=null)$chef_longitude=$lng;
 				
 			$location_distance_array=array();	
-			$location_distance_array[0]=self::distance($chef_latitude,$chef_latitude,$chef_longitude,$chef_longitude, "M"); 
+			$location_distance=null;	
+			$location_distance=self::distance($chef_latitude,$chef_latitude,$chef_longitude,$chef_longitude, "M"); 
 
 			$location_latitude=$chef_latitude;
 			$location_longitude=$chef_longitude;
@@ -306,7 +318,7 @@ class Mediaopration extends Component
 				}
 			}
 			
-			$search_loca_dist=0;
+/* 			$search_loca_dist=0;
 			$equal_distance_array=array();
 			$less_distance_array=array();
 			$greter_distance_array=array();
@@ -327,11 +339,25 @@ class Mediaopration extends Component
 			
 			$merge_array1=array_merge($equal_distance_array,$less_distance_array);
 			$new_chef_array=array_merge($merge_array1,$greter_distance_array);
-			$chef_array=$new_chef_array;	
-
+			$chef_array=$new_chef_array; */	
+			
+			$chef_array=array();
+			$chef_location_array=array();
+			foreach($location_distance_array as $location_distance_a){
+				$nearest_location=self::getClosest($location_distance,$location_distance_array);			
+				if($nearest_location!=null){
+					$nearest_chef_id=array_search ($nearest_location,$location_distance_array);
+					if($nearest_chef_id>0){
+						// remove that chef from array
+						unset($location_distance_array[$nearest_chef_id]);
+						// resort array
+						$chef_array[]=$nearest_chef_id;
+						$chef_location_array[$nearest_chef_id]=$nearest_location;	
+					}
+				}
+			}
+	
 		}
-		
-
 		return $chef_array;
 		 
 		 
