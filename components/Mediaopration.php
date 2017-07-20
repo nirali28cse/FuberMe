@@ -264,26 +264,24 @@ class Mediaopration extends Component
 		 
 		 if(count($allchef_info)>0){
 			foreach($allchef_info as $allchef){
+				
+				$chef_id=0;
+				$zipcode=0;
+				$zipcode_lng=null;
+				$zipcode_lat=null;
+				
 				$zipcode=$allchef->zipcode;
 				$chef_id=$allchef->id;
-				if($zipcode>0 and $zipcode!=null){				
-					
-					$url = "https://maps.googleapis.com/maps/api/geocode/json?address=".$zipcode."&key=".Yii::$app->params['geo_location_api_fey'];
-					$details=file_get_contents($url);
-					$result = json_decode($details,true);
-					if($result['results']!=null){
-						
-						$lat=0;
-						$lng=0;
-						$lat=$result['results'][0]['geometry']['location']['lat'];
-						$lng=$result['results'][0]['geometry']['location']['lng'];
-						$chef_latitude=0;
-						$chef_longitude=0;
-						if($lat!=null)$chef_latitude=$lat;
-						if($lng!=null)$chef_longitude=$lng;
-							
-						$chef_distance_array[$chef_id]=array('chef_latitude'=>$chef_latitude,'chef_longitude'=>$chef_longitude);	
-					}							
+				$zipcode_lng=$allchef->zipcode_lng;
+				$zipcode_lat=$allchef->zipcode_lat;
+				if($zipcode>0 and $zipcode!=null and $zipcode_lng!=null and $zipcode_lat!=null){				
+											
+					$chef_latitude=0;
+					$chef_longitude=0;
+					$chef_latitude=$zipcode_lat;
+					$chef_longitude=$zipcode_lng;						
+					$chef_distance_array[$chef_id]=array('chef_latitude'=>$chef_latitude,'chef_longitude'=>$chef_longitude);	
+									
 				}
 			}
 		 }
@@ -358,6 +356,7 @@ class Mediaopration extends Component
 			}
 	
 		}
+
 		return $chef_array;
 		 
 		 
