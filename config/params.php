@@ -4,7 +4,7 @@ return [
     'adminEmail' => 'nirali28cse@gmail.com',
   //  'adminemailid' => 'email@fuberme.com',
     'http_url' => 'http://34.209.41.230',
-    'geo_location_api_fey' => 'AIzaSyB4te_pCYGh1e6ewpGY2I4CDlL-5k6OfTE',
+    'geo_location_api_fey' => 'AIzaSyCbquOPDMwDKHxd7I7yVAD_X3H7-EOrRxY',
     'today_date' => date('Y-m-d'),
     'pagination_item_count' => '200',
     'adminemailid' => 'email@fuberme.com',

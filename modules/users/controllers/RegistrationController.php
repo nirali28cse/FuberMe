@@ -83,9 +83,32 @@ class RegistrationController extends Controller
 				$model->password=MD5($password);	
 				$model->user_type=$user_type;	
 				$model->auth_key =  Yii::$app->getSecurity()->generateRandomString();
+				
+				// store lat and long
+				$zipcode=$model->zipcode;
+				if($zipcode>0 and $zipcode!=null){		
+					$url = "https://maps.googleapis.com/maps/api/geocode/json?address=".$zipcode."&key=".Yii::$app->params['geo_location_api_fey'];
+					$details=file_get_contents($url);
+					$result = json_decode($details,true);
+					if($result['results']!=null){						
+						$lat=0;
+						$lng=0;
+						$lat=$result['results'][0]['geometry']['location']['lat'];
+						$lng=$result['results'][0]['geometry']['location']['lng'];
+						$chef_latitude=null;
+						$chef_longitude=null;
+						if($lat!=null)$chef_latitude=$lat;
+						if($lng!=null)$chef_longitude=$lng;
+						$model->zipcode_lat=$chef_latitude;
+						$model->zipcode_lng=$chef_longitude;
+					}							
+				}
+				// store lat and long
+				
 			}
 
 			if($model->save()){
+				
 				if($usend_email==1){
 	
 					$send_email=Yii::$app->emailcomponent->Userregistrationverification($model->id);
@@ -170,6 +193,29 @@ class RegistrationController extends Controller
 			}
 			
 			
+			
+		   // store lat and long
+			$zipcode=$model->zipcode;
+			if($zipcode>0 and $zipcode!=null){		
+				$url = "https://maps.googleapis.com/maps/api/geocode/json?address=".$zipcode."&key=".Yii::$app->params['geo_location_api_fey'];
+				$details=file_get_contents($url);
+				$result = json_decode($details,true);
+				if($result['results']!=null){						
+					$lat=0;
+					$lng=0;
+					$lat=$result['results'][0]['geometry']['location']['lat'];
+					$lng=$result['results'][0]['geometry']['location']['lng'];
+					$chef_latitude=null;
+					$chef_longitude=null;
+					if($lat!=null)$chef_latitude=$lat;
+					if($lng!=null)$chef_longitude=$lng;
+					$model->zipcode_lat=$chef_latitude;
+					$model->zipcode_lng=$chef_longitude;
+				}							
+			}
+			// store lat and long
+				
+				
 			if($model->save()){				
 				if($usend_email==1){
 		
@@ -230,6 +276,31 @@ class RegistrationController extends Controller
 		}
 		
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			
+			
+		   // store lat and long
+			$zipcode=$model->zipcode;
+			if($zipcode>0 and $zipcode!=null){		
+				$url = "https://maps.googleapis.com/maps/api/geocode/json?address=".$zipcode."&key=".Yii::$app->params['geo_location_api_fey'];
+				$details=file_get_contents($url);
+				$result = json_decode($details,true);
+				if($result['results']!=null){						
+					$lat=0;
+					$lng=0;
+					$lat=$result['results'][0]['geometry']['location']['lat'];
+					$lng=$result['results'][0]['geometry']['location']['lng'];
+					$chef_latitude=null;
+					$chef_longitude=null;
+					if($lat!=null)$chef_latitude=$lat;
+					if($lng!=null)$chef_longitude=$lng;
+					$model->zipcode_lat=$chef_latitude;
+					$model->zipcode_lng=$chef_longitude;
+					$model->save();
+				}							
+			}
+			// store lat and long
+			
+			
 			// if admin 
 			if(Yii::$app->user->identity->is_admin==1){
 				return $this->redirect(['//cuisinetypeinfo/index']);

@@ -116,6 +116,46 @@ class SiteController extends Controller
 	
 	public function actionIndex()
     {
+		
+	/* 	$allchef_info = Userdetail::find()->all();
+		 if(count($allchef_info)>0){
+			foreach($allchef_info as $allchef){
+				$chef_id=0;
+				$zipcode=0;
+				$zipcode_lng=null;
+				$zipcode_lat=null;
+				$chef_id=$allchef->id;
+				$zipcode=$allchef->zipcode;
+				$zipcode_lng=$allchef->zipcode_lng;
+				$zipcode_lat=$allchef->zipcode_lat;
+
+				if($zipcode>0 and $zipcode!=null and $zipcode_lng==null and $zipcode_lat==null){				
+					
+					$url = "https://maps.googleapis.com/maps/api/geocode/json?address=".$zipcode."&key=".Yii::$app->params['geo_location_api_fey'];
+
+					$details=file_get_contents($url);
+					$result = json_decode($details,true);
+
+					if($result['results']!=null){
+						
+						$lat=0;
+						$lng=0;
+						$lat=$result['results'][0]['geometry']['location']['lat'];
+						$lng=$result['results'][0]['geometry']['location']['lng'];
+						$chef_latitude=0;
+						$chef_longitude=0;
+						if($lat!=null)$chef_latitude=$lat;
+						if($lng!=null)$chef_longitude=$lng;
+			
+						$connection = Yii::$app->db;
+						$connection->createCommand()->update('users',['zipcode_lng' =>$chef_longitude,'zipcode_lat' =>$chef_latitude],['id'=>$chef_id])->execute();
+
+					}							
+				}
+			}
+		 }
+		  */
+		 
 		$this->layout = '/fuber_me/homepage';
 		
 		$min_location=0;
